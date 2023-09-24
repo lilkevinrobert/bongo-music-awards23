@@ -11,15 +11,15 @@ const NavBar = () => {
           src="/favicon.svg"
         /> */}
         <h3 className="self-center whitespace-nowrap text-xl text-slate-900 dark:text-white">
-          Bongo <span className="text-yellow-300"> Music </span>Awards
+          Bongo <span className="text-yellow-400"> Music Awards</span>
         </h3>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Button className="bg-yellow-300 rounded-lg">Login</Button>
+        <Button className="bg-yellow-400 rounded-3xl">Login</Button>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link active href="#">
+        <Navbar.Link active href="#" className="bg-yellow-400">
           <p>Home</p>
         </Navbar.Link>
         <Navbar.Link href="#">About</Navbar.Link>
