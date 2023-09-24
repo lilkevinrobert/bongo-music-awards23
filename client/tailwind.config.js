@@ -7,7 +7,17 @@ export default {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        montserratThin: "Montserrat-Thin",
+        montserratSemibold: "Montserrat-Semibold",
+        montserratBold: "Montserrat-Bold",
+        montserratRegular: "Montserrat-Regular",
+        montserratMedium: "Montserrat-Medium",
+        montserratLight: "Montserrat-Light",
+        montserratBlack: "Montserrat-Black",
+      }
+    },
   },
   plugins: [require('flowbite/plugin')],
 }
