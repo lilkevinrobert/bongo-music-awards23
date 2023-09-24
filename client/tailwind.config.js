@@ -9,13 +9,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        montserratThin: "Montserrat-Thin",
-        montserratSemibold: "Montserrat-Semibold",
-        montserratBold: "Montserrat-Bold",
-        montserratRegular: "Montserrat-Regular",
-        montserratMedium: "Montserrat-Medium",
-        montserratLight: "Montserrat-Light",
-        montserratBlack: "Montserrat-Black",
+        LatoBold: "LatoBold",
+        LatoLight: "LatoLight",
+        LatoRegular: "LatoRegular",
       }
     },
   },

@@ -3,14 +3,14 @@ import { Button, Navbar } from "flowbite-react";
 
 const NavBar = () => {
   return (
-    <Navbar fluid className="font-montserratRegular">
+    <Navbar fluid className="font-LatoBold">
       <Navbar.Brand href="../">
         {/* <img
           alt="Flowbite React Logo"
           className="mr-3 h-6 sm:h-9"
           src="/favicon.svg"
         /> */}
-        <h3 className="self-center whitespace-nowrap text-xl text-slate-900 font-semibold dark:text-white">
+        <h3 className="self-center whitespace-nowrap text-xl text-slate-900 dark:text-white">
           Bongo <span className="text-yellow-300"> Music </span>Awards
         </h3>
       </Navbar.Brand>

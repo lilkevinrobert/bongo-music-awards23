@@ -3,32 +3,16 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "montserratBlack";
-  src: url("../public/Montserrat-Black.ttf");
+  font-family: "LatoBold";
+  src: url("../public/Lato-Bold.ttf");
 }
 @font-face {
-  font-family: "montserratBold";
-  src: url("../public/Montserrat-Bold.ttf");
+  font-family: "LatoLight";
+  src: url("../public/Lato-Light.ttf");
 }
 @font-face {
-  font-family: "montserratSemibold";
-  src: url("../public/Montserrat-SemiBold.ttf");
-}
-@font-face {
-  font-family: "montserratLight";
-  src: url("../public/Montserrat-Light.ttf");
-}
-@font-face {
-  font-family: "montserratMedium";
-  src: url("../public/Montserrat-Medium.ttf");
-}
-@font-face {
-  font-family: "montserratRegular";
-  src: url("../public/Montserrat-Regular.ttf");
-}
-@font-face {
-  font-family: "montserratThin";
-  src: url("../public/Montserrat-Thin.ttf");
+  font-family: "LatoRegular";
+  src: url("../public/Lato-Regular.ttf");
 }
 
 :root {
