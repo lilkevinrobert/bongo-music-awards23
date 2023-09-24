@@ -9,9 +9,9 @@ const AdminDashboard = () => {
       <AdminNavBar />
       <Profile />
       <section className="w-full bg-slate-50 flex flex-row gap-2 md:gap-4 p-6 md:px-16">
-        <SummaryCard />
-        <SummaryCard />
-        <SummaryCard />
+        <SummaryCard count={1} event="ongoing" />
+        <SummaryCard count={2} event="upcoming"/>
+        <SummaryCard count={0} event="awaiting" />
       </section>
     </div>
   );
