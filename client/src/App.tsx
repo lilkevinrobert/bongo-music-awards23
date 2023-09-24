@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AdminDashboard from "./pages/Admin/Dashboard";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
   const router = createBrowserRouter([
