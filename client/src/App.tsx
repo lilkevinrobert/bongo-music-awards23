@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
 function App() {
 
   return (
-    <>
-    <h1 className='text-red-400'>Hello Bongo Music Awards!</h1>
-    </>
+<>
+<p>here we go!</p>
+</>
   )
 }
 
