@@ -15,7 +15,7 @@ const NavBar = () => {
         </h3>
       </Navbar.Brand>
       <div className="flex md:order-2">
-        <Button className="bg-yellow-400 rounded-3xl">Login</Button>
+        <Button type="button" className="bg-yellow-400 hover:bg-slate-900 rounded-3xl">Login</Button>
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
