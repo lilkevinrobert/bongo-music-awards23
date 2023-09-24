@@ -1,8 +1,19 @@
-import React from 'react'
+import React from 'react';
+import NavBar from '../components/navbar/Navbar';
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div className='w-full h-screen'>
+        <NavBar />
+        <div className='border flex flex-col md:flex-row'>
+            <div>
+                banner for the event
+            </div>
+            <div>
+                content
+            </div>
+        </div>
+    </div>
   )
 }
 
