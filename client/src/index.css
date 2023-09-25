@@ -4,15 +4,15 @@
 
 @font-face {
   font-family: "LatoBold";
-  src: url("../public/Lato-Bold.ttf");
+  src: url("/Lato-Bold.ttf");
 }
 @font-face {
   font-family: "LatoLight";
-  src: url("../public/Lato-Light.ttf");
+  src: url("/Lato-Light.ttf");
 }
 @font-face {
   font-family: "LatoRegular";
-  src: url("../public/Lato-Regular.ttf");
+  src: url("/Lato-Regular.ttf");
 }
 
 :root {
