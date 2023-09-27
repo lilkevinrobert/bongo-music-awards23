@@ -2,6 +2,7 @@ import React from "react";
 import AdminNavBar from "../../components/Navbar/AdminNavBar";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import Profile from "../../components/Profile/Profile";
+import InfoActionCard from "../../components/Cards/InfoActionCard";
 
 const AdminDashboard = () => {
   return (
@@ -12,6 +13,9 @@ const AdminDashboard = () => {
         <SummaryCard count={1} event="ongoing" />
         <SummaryCard count={2} event="upcoming"/>
         <SummaryCard count={0} event="awaiting" />
+      </section>
+      <section className="w-full p-6 md:px-16 bg-slate-50 grid grid-cols-3">
+        <InfoActionCard />
       </section>
     </div>
   );
