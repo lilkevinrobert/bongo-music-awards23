@@ -3,7 +3,7 @@ import {Field, ObjectType, Int} from "@nestjs/graphql";
 
 @Entity({name: 'genres'})
 @ObjectType()
-export class Genre {
+export class GenreEntity {
 
     @PrimaryGeneratedColumn({type: 'bigint'})
     @Field(type => Int)

@@ -1,10 +1,10 @@
 import {Resolver, Query, Mutation, Args} from '@nestjs/graphql';
-import {Genre} from "../entity/genre";
+import {GenreEntity} from "../entity/genre.entity";
 import {GenreService} from "../services/genre.service";
 import {CreateGenreInput} from "../dto/CreateGenre.input";
 
 
-@Resolver(()=> Genre)
+@Resolver(()=> GenreEntity)
 export class GenreResolver {
 
     constructor(private readonly genreService: GenreService) {}
@@ -15,13 +15,13 @@ export class GenreResolver {
         return "Hello world!";
     }
 
-    @Query(()=> [Genre], {name: 'genres', nullable: true})
-     allGenres(): Promise<Genre[]>{
+    @Query(()=> [GenreEntity], {name: 'genres', nullable: true})
+     allGenres(): Promise<GenreEntity[]>{
         return  this.genreService.allGenres();
     }
 
-    @Mutation(returns => Genre, {name: 'createGenre'})
-    createGenre(@Args('createGenreInput') createGenreInput: CreateGenreInput): Promise<Genre> {
+    @Mutation(returns => GenreEntity, {name: 'createGenre'})
+    createGenre(@Args('createGenreInput') createGenreInput: CreateGenreInput): Promise<GenreEntity> {
         return this.genreService.createGenre(createGenreInput);
     }
 
