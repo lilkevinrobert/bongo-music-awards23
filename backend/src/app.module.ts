@@ -7,6 +7,7 @@ import {GraphQLModule} from "@nestjs/graphql";
 import {ApolloDriver, ApolloDriverConfig} from "@nestjs/apollo";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {GenreEntity} from "./modules/admin/entity/genre.entity";
+import {CategoryEntity} from "./modules/admin/entity/category.entity";
 
 @Module({
     imports: [
@@ -17,7 +18,8 @@ import {GenreEntity} from "./modules/admin/entity/genre.entity";
             username: 'root',
             password: '',
             database: 'bma23',
-            entities: [GenreEntity],
+            entities: [GenreEntity, CategoryEntity],
+ //           entities: ['./'],
             synchronize: true,
         }),
         GraphQLModule.forRoot<ApolloDriverConfig>({

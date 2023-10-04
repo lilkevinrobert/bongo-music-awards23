@@ -11,6 +11,7 @@ export class CategoryEntity {
     category_id: number;
 
     @Column({name: 'category_name', nullable: false})
+    @Field({name: 'category_name', nullable: true, description: 'Name of the category'})
     categoryName: string;
 
 }
