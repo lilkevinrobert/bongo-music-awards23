@@ -1,16 +1,35 @@
-FROM node:18-alpine
+#FROM node:18-alpine
+#
+## Set the working directory
+#WORKDIR /app
+#
+## Copy package.json and package-lock.json to the working directory
+#COPY package*.json ./
+#
+#RUN npm install
+#
+## Copy the rest of the application files
+#COPY . .
+#
+#RUN npm run build
 
-# Set the working directory
-WORKDIR /app
+# Fetching the latest node image on alpine linux
+FROM node:alpine AS development
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Declaring env
+ENV NODE_ENV development
 
+# Setting up the work directory
+WORKDIR /react-app
+
+# Installing dependencies
+COPY ./package.json /react-app
 RUN npm install
 
-# Copy the rest of the application files
+# Copying all the files in our project
 COPY . .
 
-RUN npm run build
+# Starting our application
+CMD npm start
 
 
