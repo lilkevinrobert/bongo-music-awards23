@@ -16,7 +16,7 @@ import {CategoryEntity} from "./modules/admin/entity/category.entity";
             host: 'localhost',
             port: 3306,
             username: 'root',
-            password: '',
+            password: '#Wilmer16',
             database: 'bma23',
             entities: [GenreEntity, CategoryEntity],
  //           entities: ['./'],

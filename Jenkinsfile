@@ -15,12 +15,15 @@ pipeline {
                 sh 'docker build -t bma23-backend ./backend'
 
                 // supposed to run the specific build version (i.e ${environment.BUILD_NUMBER})
-                sh  'docker run --rm -p 3000:3000 bma23-backend:latest'
+                // sh  'docker run --rm -p 3000:3000 bma23-backend:latest'
             }
         }
-        stage('Test') {
+        stage('Building Frontend') {
             steps {
-                echo 'Testing..'
+                echo 'Building the frontend application.'
+                sh 'docker build -t bma23-client ./client'
+
+
             }
         }
         stage('Deploy') {
