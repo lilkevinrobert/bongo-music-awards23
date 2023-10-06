@@ -1,6 +1,5 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {Field, ObjectType, Int} from "@nestjs/graphql";
-import {Category} from "./category/category";
 
 @Entity({name: 'genres'})
 @ObjectType()
