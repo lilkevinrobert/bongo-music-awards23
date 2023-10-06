@@ -4,7 +4,7 @@ import {Category} from "./category/category";
 
 @Entity({name: 'genres'})
 @ObjectType()
-export class Genre {
+export class GenreEntity {
 
     @PrimaryGeneratedColumn({type: 'bigint'})
     @Field(type => Int)
@@ -16,9 +16,6 @@ export class Genre {
     @Column({name: 'genre_name', nullable: false})
     @Field()
     genreName: string;
-
-    @OneToMany(()=> Category, category => category.genre)
-    categories: Category[];
 
     @Column({default: () => 'CURRENT_TIMESTAMP'})
     @Field()
