@@ -1,8 +1,7 @@
-import React from "react";
-import AdminNavBar from "../../components/Navbar/AdminNavBar";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import Profile from "../../components/Profile/Profile";
 import InfoActionCard from "../../components/Cards/InfoActionCard";
+import AdminNavBar from "../../components/navbar/AdminNavBar.tsx";
 
 const AdminDashboard = () => {
   return (

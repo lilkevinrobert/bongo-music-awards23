@@ -1,5 +1,4 @@
 import { Button, Card } from 'flowbite-react';
-import React from 'react';
 
 const InfoActionCard = () => {
   return (

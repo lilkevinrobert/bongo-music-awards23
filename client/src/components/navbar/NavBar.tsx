@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Navbar } from "flowbite-react";
 
 const NavBar = () => {

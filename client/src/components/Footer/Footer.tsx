@@ -1,4 +1,3 @@
-import React from "react";
 import { Footer as FlowBiteFooter } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 

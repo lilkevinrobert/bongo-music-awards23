@@ -1,4 +1,3 @@
-import React from 'react';
 import ProfilePic from "../../assets/react.svg";
 import { CgProfile } from "react-icons/cg";
 

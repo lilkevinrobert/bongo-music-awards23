@@ -1,4 +1,3 @@
-import React from "react";
 import NomineesCard from "../Cards/NomineesCard";
 
 const Nominees = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import SampleImage from "../../../public/vite.svg";
 import { Button } from "flowbite-react";
 
