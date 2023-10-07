@@ -12,7 +12,6 @@ build
 /backend/build
 /backend/*.md
 /backend/.gitignore
-/backend/.dockerignore
 
 # client
 /client/node_modules
