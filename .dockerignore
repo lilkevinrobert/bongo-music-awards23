@@ -4,3 +4,19 @@ build
 .git
 *.md
 .gitignore
+
+
+# backend
+./backend/node_modules
+./backend/npm-debug.log
+./backend/build
+./backend/*.md
+./backend/.gitignore
+./backend/.dockerignore
+
+# client
+./client/node_modules
+./client/build
+./client/.gitignore
+./client/.git
+./client/*.md
