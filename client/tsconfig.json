@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
