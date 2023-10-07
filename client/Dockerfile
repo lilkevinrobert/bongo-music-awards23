@@ -14,7 +14,7 @@
 #RUN npm run build
 
 # Fetching the latest node image on alpine linux
-FROM node:alpine AS development
+FROM node:alpine AS react-build
 
 # Declaring env
 ENV NODE_ENV development
@@ -33,5 +33,16 @@ COPY . .
 # CMD npm start
 
 RUN npm run build
+
+
+
+# Stage 2 - the production environment
+FROM nginx:alpine
+EXPOSE 80
+COPY ./docker/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build /react-app/dist /usr/share/nginx/html
+
+
+
 
 
