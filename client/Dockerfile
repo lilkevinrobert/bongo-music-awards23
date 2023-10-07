@@ -14,16 +14,16 @@
 #RUN npm run build
 
 # Fetching the latest node image on alpine linux
-FROM node:alpine AS development
+FROM node:alpine AS production
 
 # Declaring env
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 # Setting up the work directory
-WORKDIR /react-app
+WORKDIR /app
 
 # Installing dependencies
-COPY ./package*.json /react-app
+COPY ./package*.json /app
 RUN npm ci
 
 # Copying all the files in our project
@@ -31,6 +31,7 @@ COPY . .
 
 # Starting our application
 # CMD npm start
+
 
 RUN npm run build
 
