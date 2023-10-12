@@ -1,5 +1,5 @@
 import SampleImage from "../../../public/vite.svg";
-import { Button } from "flowbite-react";
+import { Button } from "@material-tailwind/react";
 
 const Banner = () => {
   return (
@@ -9,7 +9,7 @@ const Banner = () => {
           Bongo Music Awards 2023
         </h2>
         <h1 className="text-slate-900 text-6xl md:text-8xl font-LatoBold capitalize">Hii Imeenda!</h1>
-        <Button type="button" size="xl" className="bg-yellow-400 hover:bg-yellow-100 rounded-3xl my-6 animate-bounce">
+        <Button type="button" size="md" className="bg-yellow-400 hover:bg-slate-900 transition ease-in-out rounded-3xl my-6 animate-bounce">
           <p>Vote Now</p>
         </Button>
       </div>
