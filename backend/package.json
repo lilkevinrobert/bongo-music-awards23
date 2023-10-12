@@ -1,8 +1,8 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Api for client application",
+  "author": "Kelvin Alex",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
