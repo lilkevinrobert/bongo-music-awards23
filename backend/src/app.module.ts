@@ -6,21 +6,20 @@ import {AdminModule} from './modules/admin/admin.module';
 import {GraphQLModule} from "@nestjs/graphql";
 import {ApolloDriver, ApolloDriverConfig} from "@nestjs/apollo";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {GenreEntity} from "./modules/admin/entity/genre.entity";
-import {CategoryEntity} from "./modules/admin/entity/category.entity";
+import {ConfigModule} from "@nestjs/config";
+import {config} from "./config/config";
+import {DatabaseConfig} from "./config/database.config";
 
 @Module({
     imports: [
-        TypeOrmModule.forRoot({
-            type: 'mysql',
-            host: 'localhost',
-            port: 3306,
-            username: 'root',
-            password: '#Wilmer16',
-            database: 'bma23',
-            entities: [GenreEntity, CategoryEntity],
- //           entities: ['./'],
-            synchronize: true,
+        ConfigModule.forRoot({
+            isGlobal: true,
+            cache: true,
+            load: [config]
+        }),
+        TypeOrmModule.forRootAsync({
+            imports: [ConfigModule],
+            useClass: DatabaseConfig,
         }),
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
