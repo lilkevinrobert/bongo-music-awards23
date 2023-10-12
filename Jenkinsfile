@@ -23,8 +23,6 @@ pipeline {
                 echo 'Building the frontend application.'
                 sh 'docker build -t bma23-client ./client'
                 sh 'docker run --rm -it -d -p 80:80 bma23-client:latest'
-
-
             }
         }
         stage('Deploy') {

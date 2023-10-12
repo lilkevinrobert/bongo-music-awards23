@@ -1,8 +1,38 @@
-services:
-  mysql:
-    image: mysql
-    env_file:
-      - ./backend/.env
-    ports:
-      - '3306:3307'
+# Use postgres/example user/password credentials
+version: '3.1'
 
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    container_name: postgres
+    # volume for pg (- ./pgdata:/var/lib/postgresql/data)
+    ports:
+      - "5432:5432"
+
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend-api
+    # volumes: (- ./src:/app/src)
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+    ports:
+      - '5050:80'
+    depends_on:
+      - db
