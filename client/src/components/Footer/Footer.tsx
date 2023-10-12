@@ -2,6 +2,12 @@ import { Footer as FlowBiteFooter } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 
 const Footer = () => {
+  const social_links = {
+    "instagram": `https://instagram.com/bongoawards?igshid=MzRlODBiNWFlZA==`,
+    "facebook": `https://www.facebook.com/bongoaward?mibextid=ZbWKwL`
+  };
+  const date = new Date();
+  const year = date.getFullYear();
   return (
     <FlowBiteFooter container className="rounded-none">
       <div className="w-full">
@@ -20,8 +26,8 @@ const Footer = () => {
             <div>
               <FlowBiteFooter.Title title="Follow us" />
               <FlowBiteFooter.LinkGroup col>
-                <FlowBiteFooter.Link href="#">Instagram</FlowBiteFooter.Link>
-                <FlowBiteFooter.Link href="#">Facebook</FlowBiteFooter.Link>
+                <FlowBiteFooter.Link href={social_links.instagram} target="_blank">Instagram</FlowBiteFooter.Link>
+                <FlowBiteFooter.Link href={social_links.facebook} target="_blank">Facebook</FlowBiteFooter.Link>
               </FlowBiteFooter.LinkGroup>
             </div>
             <div>
@@ -39,11 +45,11 @@ const Footer = () => {
         </div>
         <FlowBiteFooter.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-          <FlowBiteFooter.Copyright by="Bongo Music Awards" href="#" year={2023} />
+          <FlowBiteFooter.Copyright by="Bongo Music Awards" href="#" year={year} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <FlowBiteFooter.Icon href="#" icon={BsFacebook} />
-            <FlowBiteFooter.Icon href="#" icon={BsInstagram} />
-            <FlowBiteFooter.Icon href="#" icon={BsTwitter} />
+            <FlowBiteFooter.Icon href={social_links.facebook} target="_blank" icon={BsFacebook} />
+            <FlowBiteFooter.Icon href={social_links.instagram} target="_blank" icon={BsInstagram} />
+            {/* <FlowBiteFooter.Icon href="#" icon={BsTwitter} /> */}
           </div>
         </div>
       </div>
