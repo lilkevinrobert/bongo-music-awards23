@@ -1,4 +1,4 @@
-import SampleImage from "../../../public/vite.svg";
+import SampleImage from "/vite.svg";
 import { Button, Typography } from "@material-tailwind/react";
 
 const Banner = () => {
