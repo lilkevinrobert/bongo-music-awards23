@@ -12,7 +12,7 @@ const LoginPage = () => {
     {
       label: "LOGIN",
       value: "login",
-      desc: <Login />
+      desc: <Login />,
     },
     {
       label: "REGISTER",
@@ -21,12 +21,12 @@ const LoginPage = () => {
     },
   ];
   return (
-    <section className="w-full h-screen flex flex-col items-center justify-center bg-white text-red-600">
-      <div className="w-1/2 shadow">
+    <section className="px-4 w-full h-screen flex flex-col items-center justify-center bg-white">
+      <div className="w-full lg:w-1/2 shadow-none">
         <Tabs id="custom-animation" value="html">
-          <TabsHeader className="text-slate-950">
+          <TabsHeader className="text-slate-900 bg-gradient-to-r from-yellow-400 to-white">
             {data.map(({ label, value }) => (
-              <Tab key={value} value={value}>
+              <Tab key={value} value={value} className="hover:bg-white hover:rounded-md">
                 {label}
               </Tab>
             ))}
@@ -39,7 +39,7 @@ const LoginPage = () => {
             }}
           >
             {data.map(({ value, desc }) => (
-              <TabPanel key={value} value={value}>
+              <TabPanel key={value} value={value} className="flex items-center justify-center">
                 {desc}
               </TabPanel>
             ))}
