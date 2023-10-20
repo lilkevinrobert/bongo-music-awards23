@@ -6,7 +6,6 @@ import {
   ListItemPrefix,
   ListItemSuffix,
   Chip,
-  Button,
 } from "@material-tailwind/react";
 import {
   MdDashboard,
@@ -22,7 +21,7 @@ const AdminSidebar = () => {
     const openSidebarHandler = () => setOpenSidebar(!openSidebar)
   return (
     <>
-      <Card className={`h-screen w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 z-20`}>
+      <Card className={`h-screen w-5/12 max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 z-20`}>
         <div className="mb-2 p-4 flex flex-row items-center justify-between">
           <Typography variant="h5" color="blue-gray">
             Bongo Music Awards

@@ -1,12 +1,12 @@
 import { Typography } from '@material-tailwind/react';
 import AdminSidebar from '../../components/Navbar/AdminSidebar';
+import Layout from '../../components/Layout/Layout';
 
 const AdminDashboardPage = () => {
   return (
-    <div className='h-screen w-full border bg-red-200'>
-        <AdminSidebar />
-        <Typography>HElllloooo</Typography>
-    </div>
+    <Layout>
+        <Typography>Hey there I am using Bongo Music Awards</Typography>
+    </Layout>
   )
 }
 
