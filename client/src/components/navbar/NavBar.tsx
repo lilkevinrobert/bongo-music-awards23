@@ -30,7 +30,7 @@ const NavBar = () => {
         <Navbar.Link active href="#" className="text-yellow-400">
           <p>Home</p>
         </Navbar.Link>
-        <Navbar.Link href="#" className="hover:text-yellow-400">
+        <Navbar.Link href="./about" className="hover:text-yellow-400">
           About
         </Navbar.Link>
         <Navbar.Link href="#">Events</Navbar.Link>
