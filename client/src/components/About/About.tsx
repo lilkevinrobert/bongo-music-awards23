@@ -1,0 +1,61 @@
+import { Typography } from "@material-tailwind/react";
+
+const About = () => {
+  const awardSiteName = "Bongo Music Awards";
+  return (
+    <div className="w-full h-auto flex flex-col items-center justify-center gap-4 lg:gap-6 py-10 lg:px-36">
+      <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
+        <Typography variant="h6" className="underline underline-offset-4">About Us</Typography>
+        <Typography>
+          Welcome to the {awardSiteName} official web page, your ultimate
+          destination for celebrating and recognizing the exceptional talents
+          that shape the world of music. We are a passionate team of music
+          enthusiasts, artists, and industry professionals who believe in the
+          power of music to inspire, unite, and transform lives.
+        </Typography>
+      </section>
+      <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
+        <Typography variant="h6" className="underline underline-offset-4" >Our Mission</Typography>
+        <Typography>
+          Our Mission At {awardSiteName} is simple: to
+          honor and celebrate the artists, musicians, and creative visionaries
+          who bring the magic of music to life. We aim to provide a platform
+          that not only recognizes the outstanding contributions of these
+          individuals but also connects music lovers from all walks of life.
+        </Typography>
+      </section>
+      <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
+        <Typography variant="h6" className="underline underline-offset-4" >What we Do</Typography>
+        <div className="gap-4 flex flex-col items-center justify-center">
+          <li> Awards Ceremony: Each year, we host a prestigious music
+          awards ceremony that showcases the best in the industry. We recognize
+          excellence across various genres, from pop to classical, hip-hop to
+          rock, and everything in between.</li>
+          <li>Supporting Emerging Talent: We are
+          dedicated to nurturing and promoting emerging talent. Through our
+          platform, we offer opportunities for new artists to showcase their
+          skills and gain valuable exposure. </li>
+          <li>Celebrating Diversity: Music
+          transcends borders, languages, and cultures. We celebrate the
+          diversity of music and artists worldwide, acknowledging the unique
+          voices and perspectives that enrich our global musical landscape.</li>
+          <li>Community Engagement: We believe in the power of music to foster unity
+          and creativity. We engage with our community through various events,
+          workshops, and initiatives that promote music education, appreciation,
+          and collaboration.</li>
+        </div>
+      </section>
+      <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
+        <Typography variant="h6" className="underline underline-offset-4">Our Team</Typography>
+        <Typography>
+          Our Team is composed of music industry experts, event
+          organizers, tech-savvy professionals, and dedicated music enthusiasts.
+          Together, we work tirelessly to ensure that <span className="underline underline-offset-4">{awardSiteName} </span> is a platform that reflects the ever-evolving and vibrant world
+          of music.
+        </Typography>
+      </section>
+    </div>
+  );
+};
+
+export default About;
