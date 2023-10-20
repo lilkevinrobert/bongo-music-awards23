@@ -3,7 +3,7 @@ import { Typography } from "@material-tailwind/react";
 const About = () => {
   const awardSiteName = "Bongo Music Awards";
   return (
-    <div className="w-full h-auto flex flex-col items-center justify-center gap-4 lg:gap-6 py-10 lg:px-36">
+    <div className="w-full h-auto flex flex-col items-center justify-center gap-4 lg:gap-8 py-10 lg:px-40 bg-slate-50 text-slate-900">
       <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
         <Typography variant="h6" className="underline underline-offset-4 text-lg">About Us</Typography>
         <Typography>

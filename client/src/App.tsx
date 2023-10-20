@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import LoginPage from "./pages/LoginPage";
 import AboutPage from "./pages/AboutPage";
+import AdminDashboardPage from "./pages/Admin/DashboardPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +17,12 @@ function App() {
     },
     {
       path: "/admin",
-      element: <AdminDashboard />
+      children: [
+        {
+          path: "dashboard/",
+          element: <AdminDashboardPage />
+        }
+      ]
     },
     {
       path: "/artist",
