@@ -20,7 +20,6 @@ const Footer = () => {
               <FlowBiteFooter.Title title="about" />
               <FlowBiteFooter.LinkGroup col>
                 <FlowBiteFooter.Link href="#">Bongo Music Awards</FlowBiteFooter.Link>
-                <FlowBiteFooter.Link href="#">Tailwind CSS</FlowBiteFooter.Link>
               </FlowBiteFooter.LinkGroup>
             </div>
             <div>
