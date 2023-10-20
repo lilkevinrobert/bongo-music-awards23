@@ -27,7 +27,7 @@ const NavBar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link active href="#" className="text-yellow-400">
+        <Navbar.Link active href="./" className="text-yellow-400">
           <p>Home</p>
         </Navbar.Link>
         <Navbar.Link href="./about" className="hover:text-yellow-400">
