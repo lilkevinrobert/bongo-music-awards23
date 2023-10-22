@@ -9,6 +9,7 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {ConfigModule} from "@nestjs/config";
 import {config} from "./config/config";
 import {DatabaseConfig} from "./config/database.config";
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
     imports: [
@@ -27,7 +28,8 @@ import {DatabaseConfig} from "./config/database.config";
             playground: true,
         }),
         AuthModule,
-        AdminModule
+        AdminModule,
+        UsersModule
     ],
     controllers: [AppController],
     providers: [AppService],
