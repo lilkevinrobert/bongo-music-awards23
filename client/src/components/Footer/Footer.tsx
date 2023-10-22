@@ -1,5 +1,5 @@
 import { Footer as FlowBiteFooter } from "flowbite-react";
-import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import { BsFacebook, BsInstagram } from "react-icons/bs";
 
 const Footer = () => {
   const social_links = {
@@ -20,7 +20,6 @@ const Footer = () => {
               <FlowBiteFooter.Title title="about" />
               <FlowBiteFooter.LinkGroup col>
                 <FlowBiteFooter.Link href="#">Bongo Music Awards</FlowBiteFooter.Link>
-                <FlowBiteFooter.Link href="#">Tailwind CSS</FlowBiteFooter.Link>
               </FlowBiteFooter.LinkGroup>
             </div>
             <div>
@@ -49,7 +48,6 @@ const Footer = () => {
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <FlowBiteFooter.Icon href={social_links.facebook} target="_blank" icon={BsFacebook} />
             <FlowBiteFooter.Icon href={social_links.instagram} target="_blank" icon={BsInstagram} />
-            {/* <FlowBiteFooter.Icon href="#" icon={BsTwitter} /> */}
           </div>
         </div>
       </div>
