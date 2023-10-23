@@ -8,13 +8,25 @@ const Banner = () => {
         <h2 className="text-slate-900 text-3xl md:text-6xl font-LatoRegular mb-2">
           Bongo Music Awards 2023
         </h2>
-        <h1 className="text-slate-900 text-6xl md:text-8xl font-LatoBold capitalize">Hii Imeenda!</h1>
-        <Button type="button" size="md" className="h-14 bg-yellow-400 hover:bg-slate-900 transition ease-in-out rounded-3xl my-6 animate-bounce">
-          <Typography>Vote Now</Typography>
-        </Button>
+        <h1 className="text-slate-900 text-6xl md:text-8xl font-LatoBold capitalize">
+          Hii Imeenda!
+        </h1>
+        <div className="my-8">
+          <Button
+            type="button"
+            size="md"
+            className="bg-yellow-400 hover:bg-slate-900 transition ease-in-out rounded-3xl animate-bounce"
+          >
+            <Typography>Vote Now</Typography>
+          </Button>
+        </div>
       </div>
       <div className="h-1/2">
-        <img src={SampleImage} alt="event artwork" className="text-red-600 w-64 h-72 md:w-96" />
+        <img
+          src={SampleImage}
+          alt="event artwork"
+          className="text-red-600 w-64 h-72 md:w-96"
+        />
       </div>
     </div>
   );
