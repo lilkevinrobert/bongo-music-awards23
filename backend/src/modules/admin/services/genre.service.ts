@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {GenreEntity} from "../entity/genre.entity";
+import {GenreEntity} from "../../entity/genre.entity";
 import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {CreateGenreInput} from "../dto/CreateGenre.input";

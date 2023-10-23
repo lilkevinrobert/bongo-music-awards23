@@ -15,7 +15,7 @@ pipeline {
                 //sh 'docker build -t bma23-backend ./backend'
 
                 // supposed to run the specific build version (i.e ${environment.BUILD_NUMBER})
-                //sh  'docker compose up --build'
+                // sh  'docker compose up --build'
             }
         }
         stage('Building Frontend') {

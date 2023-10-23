@@ -1,7 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 import {Field, Int, ObjectType} from "@nestjs/graphql";
 
-@Entity({name: 'category'})
+@Entity({name: 'categories'})
 @ObjectType()
 export class CategoryEntity {
 

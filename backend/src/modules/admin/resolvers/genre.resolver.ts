@@ -1,5 +1,5 @@
 import {Resolver, Query, Mutation, Args} from '@nestjs/graphql';
-import {GenreEntity} from "../entity/genre.entity";
+import {GenreEntity} from "../../entity/genre.entity";
 import {GenreService} from "../services/genre.service";
 import {CreateGenreInput} from "../dto/CreateGenre.input";
 
