@@ -7,7 +7,7 @@ export type summaryCardType = {
 
 const SummaryCard = ({ count, event }:summaryCardType) => {
   return (
-    <Card className='w-4/12 bg-slate-50 text-slate-900 flex flex-col items-center'>
+    <Card className='w-4/12 bg-slate-50 text-slate-900 flex flex-col items-center shadow-none'>
         <h3 className='font-LatoBold text-2xl'>{ count }</h3>
         <div className='font-LatoBold uppercase'>
             <h4 className='text-sm font-LatoRegular'>Events</h4>

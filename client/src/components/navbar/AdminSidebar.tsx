@@ -21,7 +21,7 @@ const AdminSidebar = () => {
     const openSidebarHandler = () => setOpenSidebar(!openSidebar)
   return (
     <>
-      <Card className={`h-screen w-5/12 max-w-[20rem] p-4 bg-slate-50`}>
+      <Card className={`h-screen w-5/12 max-w-[20rem] p-4 bg-slate-50 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100`}>
         <div className="mb-2 p-4 flex flex-row items-center justify-between">
           <Typography variant="h5" color="blue-gray">
             Bongo Music Awards

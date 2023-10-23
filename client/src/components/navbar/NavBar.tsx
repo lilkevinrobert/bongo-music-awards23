@@ -35,7 +35,7 @@ const NavBar = () => {
         </Navbar.Link>
         <Navbar.Link href="#">Events</Navbar.Link>
         <Navbar.Link href="#">Nominees</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        <Navbar.Link href="./contact">Contact</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

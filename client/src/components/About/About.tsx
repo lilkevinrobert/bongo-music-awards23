@@ -27,19 +27,19 @@ const About = () => {
       <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
         <Typography variant="h6" className="underline underline-offset-4 text-lg" >What we Do</Typography>
         <div className="gap-4 flex flex-col items-center justify-center">
-          <li> Awards Ceremony: Each year, we host a prestigious music
+          <li> <span className="font-semibold">Awards Ceremony:</span> Each year, we host a prestigious music
           awards ceremony that showcases the best in the industry. We recognize
           excellence across various genres, from pop to classical, hip-hop to
           rock, and everything in between.</li>
-          <li>Supporting Emerging Talent: We are
+          <li><span className="font-semibold">Supporting Emerging Talent:</span> We are
           dedicated to nurturing and promoting emerging talent. Through our
           platform, we offer opportunities for new artists to showcase their
           skills and gain valuable exposure. </li>
-          <li>Celebrating Diversity: Music
+          <li><span className="font-semibold">Celebrating Diversity:</span> Music
           transcends borders, languages, and cultures. We celebrate the
           diversity of music and artists worldwide, acknowledging the unique
           voices and perspectives that enrich our global musical landscape.</li>
-          <li>Community Engagement: We believe in the power of music to foster unity
+          <li><span className="font-semibold">Community Engagement:</span> We believe in the power of music to foster unity
           and creativity. We engage with our community through various events,
           workshops, and initiatives that promote music education, appreciation,
           and collaboration.</li>
