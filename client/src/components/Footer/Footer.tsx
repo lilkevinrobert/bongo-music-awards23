@@ -19,7 +19,7 @@ const Footer = () => {
             <h2 className="text-slate-900 font-LatoBold text-3xl">
               Bongo Music Awards
             </h2>
-            <div className="self-start text-black font-semibold text-shadow-md antialiased flex flex-col py-4 gap-2">
+            <div className="self-start text-black font-LatoRegular text-shadow-md antialiased flex flex-col py-4 gap-2">
               <div className="flex items-center justify-start gap-4">
                 <MdPhone className="w-6 h-6" />
                 <Typography>+255 714 456 680</Typography>
