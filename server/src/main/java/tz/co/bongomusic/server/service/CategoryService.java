@@ -10,7 +10,7 @@ public interface CategoryService {
 
     Category findCategory(String id);
 
-    Category updateCategory(String id, Category category);
+    //Category updateCategory(String id, Category category);
 
 
     long count();

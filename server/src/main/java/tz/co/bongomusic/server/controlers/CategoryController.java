@@ -36,11 +36,11 @@ public class CategoryController {
     }
 
     // UPDATE SPECIFIC CATEGORY.
-    @PutMapping("{categoryId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Category> updateCategory(@Valid @PathVariable("categoryId") String categoryId, @RequestBody Category category){
-        return new ResponseEntity<>(categoryService.updateCategory(categoryId,category),HttpStatus.CREATED);
-    }
+//    @PutMapping("{categoryId}")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ResponseEntity<Category> updateCategory(@Valid @PathVariable("categoryId") String categoryId, @RequestBody Category category){
+//        return new ResponseEntity<>(categoryService.updateCategory(categoryId,category),HttpStatus.CREATED);
+//    }
 
     // COUNT AVAILABLE CATEGORIES.
     @GetMapping("/count")

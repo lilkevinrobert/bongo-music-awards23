@@ -50,21 +50,21 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(()-> new CategoryNotFoundException(id));
     }
 
-    @Override
-    public Category updateCategory(String id, Category category) {
-        return categoryRepository
-                .findCategoryById(id)
-                .map(existingCategories -> {
-                    var newCategory = new Category(
-                            existingCategories.getId(),
-                            category.getCategoryName(),
-                            existingCategories.getCreatedAt(),
-                            LocalDateTime.now()
-                    );
-                    return categoryRepository.save(newCategory);
-                })
-                .orElseThrow(()-> new CategoryNotFoundException(id));
-    }
+//    @Override
+//    public Category updateCategory(String id, Category category) {
+//        return categoryRepository
+//                .findCategoryById(id)
+//                .map(existingCategories -> {
+//                    var newCategory = new Category(
+//                            existingCategories.getId(),
+//                            category.getCategoryName(),
+//                            existingCategories.getCreatedAt(),
+//                            LocalDateTime.now()
+//                    );
+//                    return categoryRepository.save(newCategory);
+//                })
+//                .orElseThrow(()-> new CategoryNotFoundException(id));
+//    }
 
     @Override
     public long count() {

@@ -1,8 +1,7 @@
 package tz.co.bongomusic.server.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +12,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "category")
 public class Category {
@@ -24,6 +22,11 @@ public class Category {
     @NotBlank(message = "Category name cannot be empty.")
     private String categoryName;
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -33,4 +36,8 @@ public class Category {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    public Category(String id, String categoryName) {
+        this.id = id;
+        this.categoryName = categoryName;
+    }
 }

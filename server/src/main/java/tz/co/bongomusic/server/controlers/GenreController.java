@@ -42,11 +42,11 @@ public class GenreController {
     }
 
     // update genre
-    @PutMapping("{genreId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Genre> updateGenre(@Valid @PathVariable("genreId") String id, @RequestBody Genre genre){
-        return new ResponseEntity<>(genreService.updateGenre(id,genre), HttpStatus.CREATED);
-    }
+//    @PutMapping("{genreId}")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ResponseEntity<Genre> updateGenre(@Valid @PathVariable("genreId") String id, @RequestBody Genre genre){
+//        return new ResponseEntity<>(genreService.updateGenre(id,genre), HttpStatus.CREATED);
+//    }
 
     // read genre
     @GetMapping("{genreId}")

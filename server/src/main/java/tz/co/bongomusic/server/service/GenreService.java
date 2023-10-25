@@ -11,7 +11,7 @@ public interface GenreService {
 
      Iterable<Genre> findAllGenres();
 
-     Genre updateGenre(String id, Genre genre);
+     //Genre updateGenre(String id, Genre genre);
 
      long count();
 }
