@@ -2,7 +2,7 @@ import { Button, Card } from 'flowbite-react';
 
 const InfoActionCard = () => {
   return (
-<Card className="max-w-sm">
+<Card className="max-w-sm shadow-none">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         <p>
           Artists

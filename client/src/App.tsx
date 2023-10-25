@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
 import LoginPage from "./pages/LoginPage";
 import AboutPage from "./pages/AboutPage";
+import AdminDashboardPage from "./pages/Admin/DashboardPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,7 +17,12 @@ function App() {
     },
     {
       path: "/admin",
-      element: <AdminDashboard />
+      children: [
+        {
+          path: "dashboard/",
+          element: <AdminDashboardPage />
+        }
+      ]
     },
     {
       path: "/artist",
@@ -25,6 +31,10 @@ function App() {
     {
       path: "/about",
       element: <AboutPage />
+    },
+    {
+      path: "/contact",
+      element: <ContactPage />
     }
   ]);
 

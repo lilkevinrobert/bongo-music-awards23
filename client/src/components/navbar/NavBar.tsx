@@ -6,11 +6,6 @@ const NavBar = () => {
   return (
     <Navbar fluid className="font-LatoBold">
       <Navbar.Brand href="../">
-        {/* <img
-          alt="Flowbite React Logo"
-          className="mr-3 h-6 sm:h-9"
-          src="/favicon.svg"
-        /> */}
         <h3 className="self-center whitespace-nowrap text-xl text-slate-900 dark:text-white">
           Bongo <span className="text-yellow-400"> Music Awards</span>
         </h3>
@@ -27,15 +22,15 @@ const NavBar = () => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link active href="#" className="text-yellow-400">
+        <Navbar.Link active href="./" className="text-yellow-400">
           <p>Home</p>
         </Navbar.Link>
         <Navbar.Link href="./about" className="hover:text-yellow-400">
           About
         </Navbar.Link>
-        <Navbar.Link href="#">Events</Navbar.Link>
-        <Navbar.Link href="#">Nominees</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        {/* <Navbar.Link href="#">Events</Navbar.Link>
+        <Navbar.Link href="#">Nominees</Navbar.Link> */}
+        <Navbar.Link href="./contact">Contact</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
