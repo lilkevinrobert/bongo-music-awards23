@@ -1,5 +1,4 @@
 import { Typography } from "@material-tailwind/react";
-import AdminSidebar from "../../components/Navbar/AdminSidebar";
 import { MdNotifications } from "react-icons/md";
 import Layout from "../../components/Layout/Layout";
 import UpcomingEvent from "../../components/Events/UpcomingEvent";
