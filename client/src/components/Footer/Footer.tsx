@@ -26,11 +26,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center justify-start gap-4">
                 <HiMiniGlobeAlt className="w-6 h-6" />
-                <Typography>josias@bma.com</Typography>
+                <Typography>josia@bma.com</Typography>
               </div>
-              <div className="hidden items-center justify-start gap-4">
-                <MdLocationPin className="w-8 h-8" />
-                <Typography>Bunju</Typography>
+              <div className="flex items-center justify-start gap-4">
+                <MdLocationPin className="w-6 h-6" />
+                <Typography>Bagamoyo Rd, Dar es Salaam</Typography>
               </div>
             </div>
           </div>

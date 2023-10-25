@@ -36,6 +36,9 @@ const AdminDashboardPage = () => {
           />
           <div className="py-4">
             <UpcomingEvent />
+            <div>
+              Profile Summary
+            </div>
           </div>
         </section>
       </div>
