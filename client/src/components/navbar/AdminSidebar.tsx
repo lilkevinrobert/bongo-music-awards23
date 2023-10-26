@@ -27,7 +27,7 @@ const AdminSidebar = () => {
       >
         <div className="mb-2 p-4 flex flex-row items-center justify-between">
           <Typography variant="h5" color="blue-gray">
-            Bongo Music Awards
+            Bongo <span className="">Music Awards</span>
           </Typography>
           <MdKeyboardDoubleArrowRight
             className="w-8 h-8 lg:hidden"
@@ -36,7 +36,7 @@ const AdminSidebar = () => {
         </div>
         <List>
           <NavLink to="/admin/dashboard">
-          <ListItem className="gap-2 py-2 px-2">
+          <ListItem className="gap-2 py-4 px-2">
             <ListItemPrefix>
               <MdDashboard className="h-5 w-5" />
             </ListItemPrefix>
@@ -44,7 +44,7 @@ const AdminSidebar = () => {
           </ListItem>
           </NavLink>
           <NavLink to="/admin/categories">
-            <ListItem className="gap-2 py-2 px-2">
+            <ListItem className="gap-2 py-4 px-2">
               <ListItemPrefix>
                 <MdCategory className="h-5 w-5" />
               </ListItemPrefix>
@@ -52,14 +52,14 @@ const AdminSidebar = () => {
             </ListItem>
           </NavLink>
           <NavLink to="/admin/genres">
-            <ListItem className="gap-2 py-2 px-2">
+            <ListItem className="gap-2 py-4 px-2">
               <ListItemPrefix>
                 <MdCategory className="h-5 w-5" />
               </ListItemPrefix>
               Genres
             </ListItem>
           </NavLink>
-          <ListItem className="gap-2 py-2 px-2">
+          <ListItem className="gap-2 py-4 px-2">
             <ListItemPrefix>
               <MdPerson4 className="h-5 w-5" />
             </ListItemPrefix>
@@ -86,7 +86,7 @@ const AdminSidebar = () => {
           </ListItemPrefix>
           Settings
         </ListItem> */}
-          <ListItem className="gap-2 py-2 px-2">
+          <ListItem className="gap-2 py-4 px-2">
             <ListItemPrefix>
               <IoLogOut className="h-5 w-5" />
             </ListItemPrefix>
