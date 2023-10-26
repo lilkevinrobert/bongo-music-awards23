@@ -36,7 +36,7 @@ const genreFormData: genreType = {
 
 const AdminGenresPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [genreList, setGenreList] = useState([]);
   const [genre, setGenre] = useState(genreFormData);
   const [inputFields, setInputFields] = useState([""]);
@@ -57,7 +57,7 @@ const AdminGenresPage = () => {
           setGenreList(data);
         }
       });
-  }, []);
+  }, [BASE_URL, isLoading]);
 
   const handleGenreNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGenre({
