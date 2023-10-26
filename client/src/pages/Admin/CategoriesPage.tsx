@@ -43,7 +43,7 @@ const AdminCategoriesPage = () => {
                   Categories
                 </Typography>
                 <Button
-                  className="flex items-center gap-2 bg-yellow-400"
+                  className="hidden items-center gap-2 bg-yellow-400"
                   onClick={handleOpenAddCategory}
                 >
                   <MdOutlineAdd className="w-4 h-4 text-slate-50" />
