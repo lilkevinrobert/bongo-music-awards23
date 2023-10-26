@@ -1,8 +1,9 @@
-import { Button, Spinner, Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
 import { MdOutlineAdd } from "react-icons/md";
 import { useEffect, useState } from "react";
 import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
+import FetchingItems from "../../components/Spinner/FetchingItems";
 
 const AdminGenresPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -38,12 +39,7 @@ const AdminGenresPage = () => {
           </div>
           <div className="w-full h-auto my-4 flex items-center justify-center">
             {isLoading ? (
-              <div className="w-full h-96 flex items-center justify-center gap-4">
-                <Spinner className="h-12 w-12" />
-                <Typography className="text-slate-600 font-LatoRegular">
-                  Fetching your Items ...
-                </Typography>
-              </div>
+              <FetchingItems />
             ) : genreList.length > 0 ? (
               <p>ok</p>
             ) : (

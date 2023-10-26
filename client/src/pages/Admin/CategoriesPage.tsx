@@ -1,8 +1,9 @@
 import { MdOutlineAdd } from "react-icons/md";
 import Layout from "../../components/Layout/Layout";
-import { Button, Spinner, Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
 import { useEffect, useState } from "react";
+import FetchingItems from "../../components/Spinner/FetchingItems";
 
 const AdminCategoriesPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -38,12 +39,7 @@ const AdminCategoriesPage = () => {
             </div>
             <div className="w-full h-auto my-4 flex items-center justify-center">
               {isLoading ? (
-                <div className="w-full h-96 flex items-center justify-center gap-4">
-                  <Spinner className="h-12 w-12" />
-                  <Typography className="text-slate-600 font-LatoRegular">
-                    Fetching your Items ...
-                  </Typography>
-                </div>
+                <FetchingItems />
               ) : categoriesList.length > 0 ? (
                 <p>ok</p>
               ) : (
