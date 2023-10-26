@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("api/v1/genres")
+@CrossOrigin(origins = "http://localhost:5173",maxAge = 3600)
 public class GenreController {
     private static final Logger logger = Logger.getLogger(Genre.class.getName());
 

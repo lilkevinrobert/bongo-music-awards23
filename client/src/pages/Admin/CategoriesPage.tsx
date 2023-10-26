@@ -30,7 +30,7 @@ const AdminCategoriesPage = () => {
           setCategoriesList(data);
         }
       });
-  }, []);
+  }, [BASE_URL, isLoading]);
 
   return (
     <>

@@ -9,10 +9,12 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
+import { FaMusic } from "react-icons/fa6";
 import { MdAdd, MdClose, MdDelete, MdOutlineAdd } from "react-icons/md";
 import { useEffect, useState, ChangeEvent } from "react";
 import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import FetchingItems from "../../components/Spinner/FetchingItems";
+import toast, { Toaster } from "react-hot-toast";
 
 type genreType = {
   genreName: string;
@@ -23,6 +25,11 @@ type genreType = {
 
 type categoriesType = {
   categoryName: string;
+};
+
+type genreData = {
+  id: string;
+  genreName: string;
 }
 
 const genreFormData: genreType = {
@@ -49,11 +56,13 @@ const AdminGenresPage = () => {
   };
 
   useEffect(() => {
-    fetch(`${BASE_URL}/genres`)
+    fetch(`${BASE_URL}/genres/`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success) {
-          setIsLoading(!isLoading);
+        if (data.length == 0) {
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
           setGenreList(data);
         }
       });
@@ -82,7 +91,7 @@ const AdminGenresPage = () => {
 
   const handleDeleteInputField = (
     index: number,
-    e: { preventDefault: () => void; }
+    e: { preventDefault: () => void }
   ) => {
     e.preventDefault();
     const newInputFields = [...inputFields];
@@ -95,20 +104,22 @@ const AdminGenresPage = () => {
     const categoryObjects = items.map((item) => ({
       categoryName: item,
     }));
-  
+
     return categoryObjects;
   };
 
   const removeEmptyCategories = (categories: categoriesType[]) => {
     // Filter out empty category objects
-    const filteredCategories = categories.filter((category) => category.categoryName.trim() !== '');
-  
+    const filteredCategories = categories.filter(
+      (category) => category.categoryName.trim() !== ""
+    );
+
     return filteredCategories;
   };
 
-  function newGenreSubmit(e: { preventDefault: () => void; }){
-    e.preventDefault()
-    const newData  = dataToCategories(inputFields);
+  function newGenreSubmit(e: { preventDefault: () => void }) {
+    e.preventDefault();
+    const newData = dataToCategories(inputFields);
     const mergedCategories = [...genre.categories, ...newData];
     const cleanCategories = removeEmptyCategories(mergedCategories);
 
@@ -116,11 +127,33 @@ const AdminGenresPage = () => {
 
     const updatedGenre = {
       genreName: genreName,
-      categories: cleanCategories
+      categories: cleanCategories,
+    };
+
+    if (updatedGenre == null) {
+      handleOpenGenre();
+      toast.error(<p className="capitalize">All fields are required</p>);
+    } else {
+      // Send to the server
+      fetch(`${BASE_URL}/genres/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedGenre),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            toast.success(<p className="capitalize">{`Genre Added Successfully`}</p>);
+            window.setTimeout(() => window.location.reload(), 2000);
+          } else {
+            toast.error(<p className="capitalize">{`Operation Failed!`}</p>);
+          }
+        });
+
+      handleOpenGenre();
     }
-    console.log(updatedGenre)
   }
- 
+
   return (
     <>
       <Layout>
@@ -143,16 +176,42 @@ const AdminGenresPage = () => {
               </div>
             </div>
             <div className="w-full h-auto my-4 flex items-center justify-center">
-              {isLoading ? (
+              {isLoading === true ? (
                 <FetchingItems />
               ) : genreList.length > 0 ? (
-                <p>ok</p>
+                <div className="w-full h-full grid grid-cols-4 gap-2 py-4">
+                  {genreList.map((item: genreData) => {
+                    const id = item.id;
+                    const name = item.genreName;
+                    return (
+                      <Card key={id} className="group w-full h-32 rounded-md cursor-pointer hover:bg-slate-100">
+                        <CardBody className="flex flex-row items-center justify-center gap-4">
+                          <div className="flex items-center justify-center gap-4">
+                          <FaMusic className="sm:w-8 sm:h-8 lg:w-20 lg:h-16" />
+                          <Typography
+                            variant="h6"
+                            color="blue-gray"
+                            className="mb-2 capitalize"
+                          >
+                            { name }
+                          </Typography>
+                          </div>
+                          <MdDelete className="hidden group-hover:block w-14 h-10 rounded-md cursor-pointer transition ease-in-out text-red-400 hover:bg-red-500 hover:text-white" />
+                        </CardBody>
+                        <CardFooter className="pt-0 hidden">
+                          <Button className="bg-slate-600">View More</Button>
+                        </CardFooter>
+                      </Card>
+                    );
+                  })}
+                </div>
               ) : (
                 <AddEmptyState itemName="genre" />
               )}
             </div>
           </section>
         </div>
+        <Toaster position="top-center" />
       </Layout>
 
       <Dialog
