@@ -1,13 +1,13 @@
 import { MdOutlineAdd } from "react-icons/md";
 import Layout from "../../components/Layout/Layout";
 import { Button, Typography } from "@material-tailwind/react";
-import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
+import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import { useEffect, useState } from "react";
 import FetchingItems from "../../components/Spinner/FetchingItems";
 
 const AdminCategoriesPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [categoriesList, setCategoriesList] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const AdminCategoriesPage = () => {
               ) : categoriesList.length > 0 ? (
                 <p>ok</p>
               ) : (
-                <CategoryEmptyState />
+                <AddEmptyState itemName="category" />
               )}
             </div>
           </div>

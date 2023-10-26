@@ -2,12 +2,12 @@ import { Button, Typography } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
 import { MdOutlineAdd } from "react-icons/md";
 import { useEffect, useState } from "react";
-import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
+import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import FetchingItems from "../../components/Spinner/FetchingItems";
 
 const AdminGenresPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [genreList, setGenreList] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const AdminGenresPage = () => {
             ) : genreList.length > 0 ? (
               <p>ok</p>
             ) : (
-              <CategoryEmptyState />
+              <AddEmptyState itemName="genre" />
             )}
           </div>
         </section>
