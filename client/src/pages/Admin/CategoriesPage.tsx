@@ -5,8 +5,8 @@ import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
 import { useEffect, useState } from "react";
 
 const AdminCategoriesPage = () => {
-  const BASE_URL = `http://localhost:8082/api/v1`;
-  const [categories, setCategories] = useState([]);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  // const [categories, setCategories] = useState([]);
 
   useEffect(()=>{
     fetch(`${BASE_URL}/categories`).then(res=>res.json()).then(data=>{
