@@ -13,6 +13,7 @@ import {
   MdPerson4,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
+import { TbCategoryFilled } from "react-icons/tb";
 import { IoLogOut } from "react-icons/io5";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -44,19 +45,19 @@ const AdminSidebar = () => {
           </ListItem>
           </NavLink>
           <NavLink to="/admin/categories">
-            <ListItem className="gap-2 py-4 px-2">
-              <ListItemPrefix>
-                <MdCategory className="h-5 w-5" />
-              </ListItemPrefix>
-              Categories
-            </ListItem>
-          </NavLink>
           <NavLink to="/admin/genres">
             <ListItem className="gap-2 py-4 px-2">
               <ListItemPrefix>
                 <MdCategory className="h-5 w-5" />
               </ListItemPrefix>
               Genres
+            </ListItem>
+          </NavLink>
+            <ListItem className="gap-2 py-4 px-2">
+              <ListItemPrefix>
+                <TbCategoryFilled className="h-5 w-5" />
+              </ListItemPrefix>
+              Categories
             </ListItem>
           </NavLink>
           <ListItem className="gap-2 py-4 px-2">
