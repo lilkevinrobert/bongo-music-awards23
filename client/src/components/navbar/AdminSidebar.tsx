@@ -51,6 +51,14 @@ const AdminSidebar = () => {
               Categories
             </ListItem>
           </NavLink>
+          <NavLink to="/admin/genres">
+            <ListItem className="gap-2 py-2 px-2">
+              <ListItemPrefix>
+                <MdCategory className="h-5 w-5" />
+              </ListItemPrefix>
+              Genres
+            </ListItem>
+          </NavLink>
           <ListItem className="gap-2 py-2 px-2">
             <ListItemPrefix>
               <MdPerson4 className="h-5 w-5" />
