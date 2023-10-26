@@ -1,8 +1,24 @@
-import { Button, Typography } from "@material-tailwind/react";
+import { Button, Spinner, Typography } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
 import { MdOutlineAdd } from "react-icons/md";
+import { useEffect, useState } from "react";
+import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
 
 const AdminGenresPage = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const [isLoading, setIsLoading] = useState(true);
+  const [genreList, setGenreList] = useState([]);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/genres`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setIsLoading(!isLoading);
+          setGenreList(data);
+        }
+      });
+  }, []);
   return (
     <Layout>
       <div className="w-full text-black flex flex-row">
@@ -14,9 +30,25 @@ const AdminGenresPage = () => {
               </Typography>
               <Button className="flex items-center gap-2 bg-yellow-400">
                 <MdOutlineAdd className="w-4 h-4 text-slate-50" />
-                <Typography className="text-sm font-LatoRegular">Add Genre</Typography>
+                <Typography className="text-sm font-LatoRegular">
+                  Add Genre
+                </Typography>
               </Button>
             </div>
+          </div>
+          <div className="w-full h-auto my-4 flex items-center justify-center">
+            {isLoading ? (
+              <div className="w-full h-96 flex items-center justify-center gap-4">
+                <Spinner className="h-12 w-12" />
+                <Typography className="text-slate-600 font-LatoRegular">
+                  Fetching your Items ...
+                </Typography>
+              </div>
+            ) : genreList.length > 0 ? (
+              <p>ok</p>
+            ) : (
+              <CategoryEmptyState />
+            )}
           </div>
         </section>
       </div>

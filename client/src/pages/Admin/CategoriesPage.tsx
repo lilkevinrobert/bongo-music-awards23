@@ -1,18 +1,24 @@
 import { MdOutlineAdd } from "react-icons/md";
 import Layout from "../../components/Layout/Layout";
-import { Button, Typography } from "@material-tailwind/react";
+import { Button, Spinner, Typography } from "@material-tailwind/react";
 import CategoryEmptyState from "../../components/EmptyState/CategoryEmptyState";
 import { useEffect, useState } from "react";
 
 const AdminCategoriesPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  // const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [categoriesList, setCategoriesList] = useState([]);
 
-  useEffect(()=>{
-    fetch(`${BASE_URL}/categories`).then(res=>res.json()).then(data=>{
-      console.log(data)
-    })
-  }, [])
+  useEffect(() => {
+    fetch(`${BASE_URL}/categories`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setIsLoading(!isLoading);
+          setCategoriesList(data);
+        }
+      });
+  }, []);
 
   return (
     <Layout>
@@ -30,8 +36,19 @@ const AdminCategoriesPage = () => {
                 </Typography>
               </Button>
             </div>
-            <div className="w-full h-full my-4">
-              <CategoryEmptyState />
+            <div className="w-full h-auto my-4 flex items-center justify-center">
+              {isLoading ? (
+                <div className="w-full h-96 flex items-center justify-center gap-4">
+                  <Spinner className="h-12 w-12" />
+                  <Typography className="text-slate-600 font-LatoRegular">
+                    Fetching your Items ...
+                  </Typography>
+                </div>
+              ) : categoriesList.length > 0 ? (
+                <p>ok</p>
+              ) : (
+                <CategoryEmptyState />
+              )}
             </div>
           </div>
         </section>
