@@ -2,6 +2,16 @@
 version: '3.1'
 
 services:
+#  ui:
+#    image: node:alpine
+#    restart: always
+#    build:
+#      context: ./client
+#      dockerfile: Dockerfile
+#    container_name: website
+#    ports:
+#      - "80:80"
+
   db:
     image: postgres
     restart: always
