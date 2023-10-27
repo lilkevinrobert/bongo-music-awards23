@@ -4,6 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import AboutPage from "./pages/AboutPage";
 import AdminDashboardPage from "./pages/Admin/DashboardPage";
 import ContactPage from "./pages/ContactPage";
+import AdminCategoriesPage from "./pages/Admin/CategoriesPage";
+import AdminGenresPage from "./pages/Admin/GenresPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +23,14 @@ function App() {
         {
           path: "dashboard/",
           element: <AdminDashboardPage />
+        },
+        {
+          path: "categories/",
+          element: <AdminCategoriesPage />
+        },
+        {
+          path: "genres/",
+          element: <AdminGenresPage />
         }
       ]
     },
