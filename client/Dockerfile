@@ -32,7 +32,8 @@ COPY . .
 # Starting our application
 # CMD npm start
 
-RUN npm run build
+#RUN npm run build
+CMD ["npm", "start"]
 
 
 
