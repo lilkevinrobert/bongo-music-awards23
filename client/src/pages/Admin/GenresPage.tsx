@@ -196,7 +196,7 @@ const AdminGenresPage = () => {
                             { name }
                           </Typography>
                           </div>
-                          <MdDelete className="hidden group-hover:block w-14 h-10 rounded-md cursor-pointer transition ease-in-out text-red-400 hover:bg-red-500 hover:text-white" />
+                          <MdDelete className="hidden group-hover:block group-transition-all group-ease-in-out w-14 h-10 rounded-md cursor-pointer transition ease-in-out text-red-400 hover:bg-red-500 hover:text-white" />
                         </CardBody>
                         <CardFooter className="pt-0 hidden">
                           <Button className="bg-slate-600">View More</Button>
