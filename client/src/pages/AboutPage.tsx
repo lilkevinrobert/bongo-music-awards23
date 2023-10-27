@@ -1,6 +1,7 @@
-import NavBar from '../components/Navbar/NavBar'
+
 import Footer from '../components/Footer/Footer'
 import About from '../components/About/About'
+import NavBar from "../components/navbar/NavBar.tsx";
 
 const AboutPage = () => {
   return (
