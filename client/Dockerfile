@@ -14,7 +14,7 @@
 #RUN npm run build
 
 # Fetching the latest node image on alpine linux
-FROM node:alpine AS react-build
+FROM node:17-alpine AS react-build
 
 # Declaring env
 ENV NODE_ENV development
@@ -32,8 +32,7 @@ COPY . .
 # Starting our application
 # CMD npm start
 
-#RUN npm run build
-CMD ["npm", "start"]
+RUN npm run build
 
 
 
