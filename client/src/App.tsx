@@ -6,6 +6,7 @@ import AdminDashboardPage from "./pages/Admin/DashboardPage";
 import ContactPage from "./pages/ContactPage";
 import AdminCategoriesPage from "./pages/Admin/CategoriesPage";
 import AdminGenresPage from "./pages/Admin/GenresPage";
+import AdminGenrePage from "./pages/Admin/GenrePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +32,10 @@ function App() {
         {
           path: "genres/",
           element: <AdminGenresPage />
+        },
+        {
+          path: "genre/",
+          element: <AdminGenrePage />
         }
       ]
     },

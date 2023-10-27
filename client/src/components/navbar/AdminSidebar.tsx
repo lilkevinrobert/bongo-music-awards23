@@ -4,16 +4,12 @@ import {
   List,
   ListItem,
   ListItemPrefix,
-  ListItemSuffix,
-  Chip,
 } from "@material-tailwind/react";
 import {
   MdDashboard,
   MdCategory,
-  MdPerson4,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
-import { TbCategoryFilled } from "react-icons/tb";
 import { IoLogOut } from "react-icons/io5";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -44,7 +40,6 @@ const AdminSidebar = () => {
             Dashboard
           </ListItem>
           </NavLink>
-          <NavLink to="/admin/categories">
           <NavLink to="/admin/genres">
             <ListItem className="gap-2 py-4 px-2">
               <ListItemPrefix>
@@ -53,14 +48,15 @@ const AdminSidebar = () => {
               Genres
             </ListItem>
           </NavLink>
+          {/* <NavLink to="/admin/categories">
             <ListItem className="gap-2 py-4 px-2">
               <ListItemPrefix>
                 <TbCategoryFilled className="h-5 w-5" />
               </ListItemPrefix>
               Categories
             </ListItem>
-          </NavLink>
-          <ListItem className="gap-2 py-4 px-2">
+          </NavLink> */}
+          {/* <ListItem className="gap-2 py-4 px-2">
             <ListItemPrefix>
               <MdPerson4 className="h-5 w-5" />
             </ListItemPrefix>
@@ -74,7 +70,7 @@ const AdminSidebar = () => {
                 className="rounded-full"
               />
             </ListItemSuffix>
-          </ListItem>
+          </ListItem> */}
           {/* <ListItem>
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />

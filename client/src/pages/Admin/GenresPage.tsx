@@ -9,12 +9,12 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
-import { FaMusic } from "react-icons/fa6";
 import { MdAdd, MdClose, MdDelete, MdOutlineAdd } from "react-icons/md";
 import { useEffect, useState, ChangeEvent } from "react";
 import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import FetchingItems from "../../components/Spinner/FetchingItems";
 import toast, { Toaster } from "react-hot-toast";
+import GenreCard from "../../components/Cards/GenreCard";
 
 type genreType = {
   genreName: string;
@@ -28,6 +28,7 @@ type categoriesType = {
 };
 
 type genreData = {
+  categories: [];
   id: string;
   genreName: string;
 }
@@ -184,24 +185,7 @@ const AdminGenresPage = () => {
                     const id = item.id;
                     const name = item.genreName;
                     return (
-                      <Card key={id} className="group w-full h-32 rounded-md cursor-pointer hover:bg-slate-100">
-                        <CardBody className="flex flex-row items-center justify-center gap-4">
-                          <div className="flex items-center justify-center gap-4">
-                          <FaMusic className="sm:w-8 sm:h-8 lg:w-20 lg:h-16" />
-                          <Typography
-                            variant="h6"
-                            color="blue-gray"
-                            className="mb-2 capitalize"
-                          >
-                            { name }
-                          </Typography>
-                          </div>
-                          <MdDelete className="hidden group-hover:block group-transition-all group-ease-in-out w-14 h-10 rounded-md cursor-pointer transition ease-in-out text-red-400 hover:bg-red-500 hover:text-white" />
-                        </CardBody>
-                        <CardFooter className="pt-0 hidden">
-                          <Button className="bg-slate-600">View More</Button>
-                        </CardFooter>
-                      </Card>
+                      <GenreCard key={id} id={id} name={name} />
                     );
                   })}
                 </div>
