@@ -1,8 +1,7 @@
-package tz.co.bongomusic.server.controlers;
+package tz.co.bongomusic.server.controlers.admin;
 
-import javax.persistence.*;
-import javax.validation.Valid;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import tz.co.bongomusic.server.models.Category;
 import tz.co.bongomusic.server.service.CategoryService;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/api/v1/admin/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;

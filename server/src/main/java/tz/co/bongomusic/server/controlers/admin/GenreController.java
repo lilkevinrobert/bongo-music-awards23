@@ -1,7 +1,6 @@
-package tz.co.bongomusic.server.controlers;
+package tz.co.bongomusic.server.controlers.admin;
 
-import javax.persistence.*;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +11,10 @@ import tz.co.bongomusic.server.serviceImpl.GenreServiceImpl;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("api/v1/genres")
+@RequestMapping("/api/v1/admin/genres")
 @CrossOrigin(origins = "http://localhost:5173",maxAge = 3600)
 public class GenreController {
     private static final Logger logger = Logger.getLogger(Genre.class.getName());
-
 
     private final GenreServiceImpl genreService;
 
