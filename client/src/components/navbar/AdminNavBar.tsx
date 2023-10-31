@@ -6,7 +6,7 @@ const AdminNavBar = () => {
     <Navbar
     fluid
   >
-    <Navbar.Brand href="https://flowbite-react.com">
+    <Navbar.Brand href="#">
       {/* <img
         alt="Flowbite React Logo"
         className="mr-3 h-6 sm:h-9"

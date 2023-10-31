@@ -28,6 +28,7 @@ RUN npm ci
 
 # Copying all the files in our project
 COPY . .
+RUN npm cache clean --force
 
 # Starting our application
 # CMD npm start

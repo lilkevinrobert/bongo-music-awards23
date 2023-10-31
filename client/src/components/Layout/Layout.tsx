@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import AdminSidebar from "../Navbar/AdminSidebar";
+import AdminSidebar from "../navbar/AdminSidebar.tsx";
 interface LayoutProps {
   children: ReactNode;
 }
