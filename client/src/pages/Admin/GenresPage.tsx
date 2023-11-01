@@ -57,7 +57,19 @@ const AdminGenresPage = () => {
   };
 
   useEffect(() => {
-    fetch(`${BASE_URL}/genres/`)
+      const token = getDataFromLocalStorage();
+      console.log(token)
+
+      //headers
+      const headers = {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      }
+
+    fetch(`${BASE_URL}/admin/genres/`, {
+      method: "GET",
+      headers: headers,
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.length == 0) {
@@ -152,6 +164,19 @@ const AdminGenresPage = () => {
         });
 
       handleOpenGenre();
+    }
+  }
+
+  function getDataFromLocalStorage() {
+    try {
+      const storedData: string | null = localStorage.getItem("bmawards");
+      if (storedData !== null) {
+        const parsedData = JSON.parse(storedData);
+        return parsedData || {};
+      }
+    } catch (error) {
+      console.error("Error parsing data from local storage:", error);
+      return {};
     }
   }
 

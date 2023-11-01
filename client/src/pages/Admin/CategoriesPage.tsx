@@ -22,7 +22,7 @@ const AdminCategoriesPage = () => {
   const handleOpenAddCategory = () => setOpenAddCategory((cur) => !cur);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/categories`)
+    fetch(`${BASE_URL}/admin/categories`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
