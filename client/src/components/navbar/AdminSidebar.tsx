@@ -33,12 +33,12 @@ const AdminSidebar = () => {
         </div>
         <List>
           <NavLink to="/admin/dashboard">
-          <ListItem className="gap-2 py-4 px-2">
-            <ListItemPrefix>
-              <MdDashboard className="h-5 w-5" />
-            </ListItemPrefix>
-            Dashboard
-          </ListItem>
+            <ListItem className="gap-2 py-4 px-2">
+              <ListItemPrefix>
+                <MdDashboard className="h-5 w-5" />
+              </ListItemPrefix>
+              Dashboard
+            </ListItem>
           </NavLink>
           <NavLink to="/admin/genres">
             <ListItem className="gap-2 py-4 px-2">
@@ -83,12 +83,14 @@ const AdminSidebar = () => {
           </ListItemPrefix>
           Settings
         </ListItem> */}
-          <ListItem className="gap-2 py-4 px-2">
-            <ListItemPrefix>
-              <IoLogOut className="h-5 w-5" />
-            </ListItemPrefix>
-            Log Out
-          </ListItem>
+          <NavLink to="/login">
+            <ListItem className="gap-2 py-4 px-2">
+              <ListItemPrefix>
+                <IoLogOut className="h-5 w-5" />
+              </ListItemPrefix>
+              Log Out
+            </ListItem>
+          </NavLink>
         </List>
       </Card>
     </>
