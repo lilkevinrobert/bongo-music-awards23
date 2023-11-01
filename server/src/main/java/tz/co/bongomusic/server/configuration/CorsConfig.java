@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Configuration
-public class CorsConfig {
+public class CorsConfig implements WebMvcConfigurer {
 //    @Bean
 //    public CorsFilter corsFilter() {
 //        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
