@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1/admin/genres")
-@CrossOrigin(origins = "http://localhost:5173",maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class GenreController {
     private static final Logger logger = Logger.getLogger(Genre.class.getName());
 
@@ -35,6 +35,7 @@ public class GenreController {
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Iterable<Genre>> getAllGenres(){
         return ResponseEntity
                 .ok()

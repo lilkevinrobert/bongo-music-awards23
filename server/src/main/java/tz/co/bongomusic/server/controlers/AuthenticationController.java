@@ -17,19 +17,21 @@ import tz.co.bongomusic.server.service.AuthenticationService;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173",maxAge = 3600)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthenticationController {
 
 
     private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<User> signUp(@RequestBody SignUpRequest signUpRequest){
         return ResponseEntity
                 .ok(authenticationService.signUp(signUpRequest));
     }
 
     @PostMapping("/signin")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody SignInRequest signInRequest){
         return ResponseEntity
                 .ok(authenticationService.signIn(signInRequest));

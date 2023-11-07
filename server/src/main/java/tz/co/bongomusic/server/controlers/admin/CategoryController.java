@@ -11,6 +11,7 @@ import tz.co.bongomusic.server.service.CategoryService;
 
 @RestController
 @RequestMapping("/api/v1/admin/categories")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoryController {
 
     private final CategoryService categoryService;
