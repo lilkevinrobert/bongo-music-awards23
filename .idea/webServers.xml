@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="801c3fbf-3f96-43ef-a096-f4dd7dd5e47b" name="bongomusicawards" url="http://ftp.bongomusicawards.co.tz">
+        <fileTransfer host="ftp.bongomusicawards.co.tz" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,3 +1,4 @@
+/*
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -58,6 +59,126 @@ function App() {
       <RouterProvider router={router} />
     </>
   );
+}
+
+export default App;*/
+
+
+import {lazy, Suspense} from "react";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {AuthProvider} from "./context/AuthContext.tsx";
+
+
+// Lazy-loaded components
+const HomePage = lazy(() => import("./pages/HomePage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const AdminDashboardPage = lazy(() => import("./pages/Admin/DashboardPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const AdminCategoriesPage = lazy(() => import("./pages/Admin/CategoriesPage"));
+const AdminGenresPage = lazy(() => import("./pages/Admin/GenresPage"));
+const AdminGenrePage = lazy(() => import("./pages/Admin/GenrePage"));
+const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage.tsx"))
+function App() {
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <HomePage/>
+                </Suspense>
+            ),
+        },
+        {
+            path: "/login",
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <LoginPage/>
+                </Suspense>
+            ),
+        },
+        {
+            path: "/admin",
+            children: [
+                {
+                    path: "dashboard/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <AdminDashboardPage/>
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "categories/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <AdminCategoriesPage/>
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "genres/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <AdminGenresPage/>
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "genre/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <AdminGenrePage/>
+                        </Suspense>
+                    ),
+                },
+
+                {
+                    path: "artists/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ArtistsPage/>
+                        </Suspense>
+                    ),
+                },
+            ],
+        },
+        {
+            path: "/artist",
+            element: <p>Artist route</p>,
+        },
+        {
+            path: "/about",
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <AboutPage/>
+                </Suspense>
+            ),
+        },
+        {
+            path: "/contact",
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ContactPage/>
+                </Suspense>
+            ),
+        },
+    ]);
+
+    // return (
+    //     <>
+    //       <RouterProvider router={router} />
+    //     </>
+    // );
+
+
+    return (
+        <AuthProvider>
+            <>
+                <RouterProvider router={router}/>
+            </>
+        </AuthProvider>
+    );
 }
 
 export default App;
