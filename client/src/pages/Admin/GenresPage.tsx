@@ -66,7 +66,7 @@ const AdminGenresPage = () => {
         "Content-Type": "application/json",
       }
 
-    fetch(`${BASE_URL}/admin/genres/`, {
+    fetch(`${BASE_URL}/admin/genres`, {
       method: "GET",
       headers: headers,
     })
