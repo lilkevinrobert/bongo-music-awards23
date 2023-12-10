@@ -4,7 +4,7 @@ const ArtistsPage = () => {
     return (
 
         <Layout>
-            <p>
+            <p className="text-yellow-400">
                 Something
             </p>
         </Layout>
