@@ -14,5 +14,10 @@ class Category extends Model
       'name'
     ];
 
+    public function genres()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+
     public $timestamps = true;
 }

@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GenreModel;
+use App\Models\ArtistProfile;
 use Illuminate\Http\Request;
 
-class GenreModelController extends Controller
+class ArtistProfilesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
-        //
+        $artists = ArtistProfile::all();
+        return response()->json([
+            'status' => 200,
+            'data' => $artists
+        ]);
     }
 
     /**
@@ -31,10 +35,10 @@ class GenreModelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\GenreModel  $genreModel
+     * @param  \App\Models\ArtistProfile  $artistProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(GenreModel $genreModel)
+    public function show(ArtistProfile $artistProfile)
     {
         //
     }
@@ -43,10 +47,10 @@ class GenreModelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\GenreModel  $genreModel
+     * @param  \App\Models\ArtistProfile  $artistProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, GenreModel $genreModel)
+    public function update(Request $request, ArtistProfile $artistProfile)
     {
         //
     }
@@ -54,10 +58,10 @@ class GenreModelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\GenreModel  $genreModel
+     * @param  \App\Models\ArtistProfile  $artistProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GenreModel $genreModel)
+    public function destroy(ArtistProfile $artistProfile)
     {
         //
     }

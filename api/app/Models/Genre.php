@@ -13,4 +13,13 @@ class Genre extends Model
     protected $fillable = [
       'name'
     ];
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function categories(){
+        return $this->hasMany(Category::class);
+    }
 }
