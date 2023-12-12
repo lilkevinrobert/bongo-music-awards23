@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 import Layout from "../../components/Layout/Layout.tsx";
 import { Breadcrumbs, Typography } from "@material-tailwind/react";
+import DataTable from "../../components/Table/DataTable.tsx";
 
 const ArtistsPage = () => {
   return (
     <Layout>
       <div className=" text-slate-900 py-2">
-        <Breadcrumbs>
-          <NavLink to="#" className="opacity-60">
+        <Breadcrumbs separator="-">
+          <NavLink to="#" className="opacity-60 pr-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -17,15 +18,15 @@ const ArtistsPage = () => {
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
             </svg>
           </NavLink>
-          <NavLink to="#" className="opacity-60">
+          <NavLink to="#" className="opacity-60 px-2">
             <span>Admin</span>
           </NavLink>
-          <NavLink to="#">Artists</NavLink>
+          <span className="px-2">Artists</span>
         </Breadcrumbs>
       </div>
       <div className="text-slate-900 px-4">
         <Typography variant="h3">Artists</Typography>
-        table here
+        <DataTable />
       </div>
     </Layout>
   );
