@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
-import { MdOutlinePersonAdd } from "react-icons/md";
+import { MdOutlinePersonAdd, MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
 
 interface DataRow {
   stageName: string;
@@ -131,23 +131,23 @@ const DataTable: React.FC = () => {
             <th className="px-4 py-2">Genre</th>
             <th className="px-4 py-2">Phone</th>
             <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2">Action</th>
+            <th className="px-4 py-2 text-center">Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredData.map((row, index) => (
             <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <td className="border px-4 py-2">{row.stageName}</td>
-              <td className="border px-4 py-2">{row.fullName}</td>
-              <td className="border px-4 py-2">{row.genre}</td>
-              <td className="border px-4 py-2">{row.phone}</td>
-              <td className="border px-4 py-2">{row.email}</td>
+              <td className="border px-4 py-2 capitalize">{row.stageName}</td>
+              <td className="border px-4 py-2 capitalize">{row.fullName}</td>
+              <td className="border px-4 py-2 capitalize">{row.genre}</td>
+              <td className="border px-4 py-2 capitalize">{row.phone}</td>
+              <td className="border px-4 py-2 lowercase">{row.email}</td>
               <td className="border px-4 py-2">
-                <button className="bg-green-500 text-white px-2 py-1 rounded mr-1 hover:bg-green-700">
-                  Edit
+                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
+                  <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
-                <button className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">
-                  Delete
+                <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
+                  <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
                 </button>
               </td>
             </tr>
