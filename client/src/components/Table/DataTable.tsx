@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input } from "@material-tailwind/react";
+import { Button, Input, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
+import { MdOutlinePersonAdd } from "react-icons/md";
 
 interface DataRow {
   stageName: string;
@@ -99,7 +100,8 @@ const DataTable: React.FC = () => {
 
   return (
     <div className="mx-auto py-4">
-      <div className="flex flex-row items-center justify-center mb-4 w-1/4">
+      <div className="flex flex-row items-center justify-between mb-4 w-full">
+        <div className="flex flex-row items-center justify-center w-1/4">
         <Input
           type="text"
           placeholder="Search artists..."
@@ -115,6 +117,10 @@ const DataTable: React.FC = () => {
           <GiMagicBroom className="w-5 h-5" />
           Clear
         </Button>
+        </div>
+        <Button className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
+          <MdOutlinePersonAdd className="w-5 h-5" />
+          <Typography>Add</Typography></Button>
       </div>
 
       <table className="table-auto w-full bg-white border shadow">
