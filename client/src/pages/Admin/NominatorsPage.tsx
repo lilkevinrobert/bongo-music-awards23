@@ -1,7 +1,7 @@
 import { Breadcrumbs, Typography } from "@material-tailwind/react"
 import { NavLink } from "react-router-dom"
 import Layout from "../../components/Layout/Layout"
-import DataTable from "../../components/Table/ArtistsDataTable"
+import NominatorsDataTable from "../../components/Table/NominatorsDataTable"
 
 const NominatorsPage = () => {
   return (
@@ -25,8 +25,8 @@ const NominatorsPage = () => {
         </Breadcrumbs>
       </div>
       <div className="text-slate-900 px-4">
-        <Typography variant="h3">Artists</Typography>
-        <DataTable />
+        <Typography variant="h3">Nominators</Typography>
+        <NominatorsDataTable />
       </div>
     </Layout>
   )
