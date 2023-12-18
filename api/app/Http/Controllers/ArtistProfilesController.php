@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArtistProfileResource;
 use App\Models\ArtistProfile;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,8 @@ class ArtistProfilesController extends Controller
      */
     public function index()
     {
-        $artists = ArtistProfile::all();
-        return response()->json([
-            'status' => 200,
-            'data' => $artists
-        ]);
+        $artistProfiles = ArtistProfile::all();
+        return ArtistProfileResource::collection($artistProfiles);
     }
 
     /**
