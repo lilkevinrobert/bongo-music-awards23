@@ -11,7 +11,7 @@ interface DataRow {
   email: string;
 }
 
-const DataTable: React.FC = () => {
+const ArtistsDataTable: React.FC = () => {
   const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -158,4 +158,4 @@ const DataTable: React.FC = () => {
   );
 };
 
-export default DataTable;
+export default ArtistsDataTable;

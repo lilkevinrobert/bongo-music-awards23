@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Layout from "../../components/Layout/Layout.tsx";
 import { Breadcrumbs, Typography } from "@material-tailwind/react";
-import DataTable from "../../components/Table/DataTable.tsx";
+import ArtistsDataTable from "../../components/Table/ArtistsDataTable.tsx";
 
 const ArtistsPage = () => {
   return (
@@ -26,7 +26,7 @@ const ArtistsPage = () => {
       </div>
       <div className="text-slate-900 px-4">
         <Typography variant="h3">Artists</Typography>
-        <DataTable />
+        <ArtistsDataTable />
       </div>
     </Layout>
   );

@@ -1,7 +1,7 @@
 import { Breadcrumbs, Typography } from "@material-tailwind/react"
 import { NavLink } from "react-router-dom"
 import Layout from "../../components/Layout/Layout"
-import DataTable from "../../components/Table/DataTable"
+import DataTable from "../../components/Table/ArtistsDataTable"
 
 const NominatorsPage = () => {
   return (
