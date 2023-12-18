@@ -67,6 +67,7 @@ export default App;*/
 import {lazy, Suspense} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {AuthProvider} from "./context/AuthContext.tsx";
+import NominatorsPage from "./pages/Admin/NominatorsPage.tsx";
 
 
 // Lazy-loaded components
@@ -132,12 +133,19 @@ function App() {
                         </Suspense>
                     ),
                 },
-
                 {
                     path: "artists/",
                     element: (
                         <Suspense fallback={<div>Loading...</div>}>
                             <ArtistsPage/>
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "nominators/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <NominatorsPage />
                         </Suspense>
                     ),
                 },
