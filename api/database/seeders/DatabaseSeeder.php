@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ArtistProfile;
 use Illuminate\Database\Seeder;
 use \App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -17,23 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        \App\Models\User::create([
-            'firstname' => 'user',
-            'lastname' => 'user',
-            'email' => 'user@bma.com',
-            'role' => 'user',
-            'password' => Hash::make('password'),
-        ]);
-
-        // Alternatively, create a user using the DB facade
-        DB::table('users')->insert([
-            'firstname' => 'admin',
-            'lastname' => 'admin',
-            'email' => 'admin@bma.com',
-            'role' => 'admin',
-            'password' => Hash::make('password'),
+        $this->call([
+            UserSeeder::class,
+            ArtistProfile::class,
         ]);
     }
 }

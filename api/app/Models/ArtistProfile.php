@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\ArtistProfileResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +19,6 @@ class ArtistProfile extends Model
         'single_id',
         'user_id',
         'bio',
-        'email_address',
         'phone_number',
         'genre',
         'spotify_music_link',
@@ -32,6 +32,13 @@ class ArtistProfile extends Model
     ];
 
     public $timestamps = true;
+
+
+    public function getArtistProfiles(array $artistProfiles = [])
+    {
+        return new ArtistProfileResource($artistProfiles);
+
+    }
 
 
 }

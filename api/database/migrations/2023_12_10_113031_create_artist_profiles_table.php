@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('album_id')->nullable();
             $table->string('single_id')->nullable();
             $table->string('bio');
-            $table->string('email_address')->unique();
             $table->string('phone_number')->nullable();
             $table->enum('genre',['Bongo flavor', 'RNB', 'POP']);
             $table->string('spotify_music_link')->nullable();
