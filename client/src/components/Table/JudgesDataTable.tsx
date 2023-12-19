@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
-import { MdOutlinePersonAdd, MdOutlineEdit, MdOutlineDeleteOutline, MdOutlineRemoveRedEye } from "react-icons/md";
+import {
+  MdOutlinePersonAdd,
+  MdOutlineEdit,
+  MdOutlineDeleteOutline,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
 
 interface DataRow {
-  stageName: string;
   fullName: string;
-  genre: string;
+  event: string;
+  organization: string;
+  position: string;
+  expertise: string;
+  role: string;
   phone: string;
   email: string;
 }
@@ -18,25 +26,34 @@ const JudgesDataTable: React.FC = () => {
 
   const testData: DataRow[] = [
     {
-      stageName: "marioo",
       fullName: "Omary Ally Mwanga",
-      genre: "Bongo Flava",
+      event: "marioo",
+      organization: "Bongo Music Awards",
+      position: "Consultant",
+      expertise: "some expertise",
+      role: "Consultant",
       phone: "+255 762 223 093",
       email: "marioo@gmail.com",
     },
     {
-      stageName: "ali kiba",
-      fullName: "Ali Kiba",
-      genre: "Bongo Flava",
-      phone: "+255 762 523 393",
-      email: "alikiba@gmail.com",
+        fullName: "Omary Ally Mwanga",
+        event: "marioo",
+        organization: "Bongo Music Awards",
+        position: "Consultant",
+        expertise: "some expertise",
+        role: "Consultant",
+        phone: "+255 762 223 093",
+        email: "marioo@gmail.com",
     },
     {
-      stageName: "diamond_platnumz",
-      fullName: "Naseeb Abdul Juma",
-      genre: "Bongo Flava",
-      phone: "+255 754 123 456",
-      email: "diamond_platnumz@gmail.com",
+        fullName: "Omary Ally Mwanga",
+        event: "marioo",
+        organization: "Bongo Music Awards",
+        position: "Consultant",
+        expertise: "some expertise",
+        role: "Consultant",
+        phone: "+255 762 223 093",
+        email: "marioo@gmail.com",
     },
   ];
 
@@ -74,33 +91,37 @@ const JudgesDataTable: React.FC = () => {
     <div className="mx-auto py-4">
       <div className="flex flex-row items-center justify-between mb-4 w-full">
         <div className="flex flex-row items-center justify-center w-1/4">
-        <Input
-          type="text"
-          placeholder="Search artists..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 border rounded w-4/4"
-          crossOrigin={undefined}
-        />
-        <Button
-          className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
-          onClick={() => setSearchTerm("")}
-        >
-          <GiMagicBroom className="w-5 h-5" />
-          Clear
-        </Button>
+          <Input
+            type="text"
+            placeholder="Search artists..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="p-2 border rounded w-4/4"
+            crossOrigin={undefined}
+          />
+          <Button
+            className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+            onClick={() => setSearchTerm("")}
+          >
+            <GiMagicBroom className="w-5 h-5" />
+            Clear
+          </Button>
         </div>
         <Button className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
           <MdOutlinePersonAdd className="w-5 h-5" />
-          <Typography>Add</Typography></Button>
+          <Typography>Add</Typography>
+        </Button>
       </div>
 
       <table className="table-auto w-full bg-white border shadow">
         <thead>
           <tr className="bg-gray-200 text-left">
-            <th className="px-4 py-2">Stage Name</th>
             <th className="px-4 py-2">Full Name</th>
-            <th className="px-4 py-2">Genre</th>
+            <th className="px-4 py-2">Event</th>
+            <th className="px-4 py-2">Organization</th>
+            <th className="px-4 py-2">Position</th>
+            <th className="px-4 py-2">Expertise</th>
+            <th className="px-4 py-2">Role</th>
             <th className="px-4 py-2">Phone</th>
             <th className="px-4 py-2">Email</th>
             <th className="px-4 py-2 text-center">Action</th>
@@ -109,9 +130,12 @@ const JudgesDataTable: React.FC = () => {
         <tbody>
           {filteredData.map((row, index) => (
             <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <td className="border px-4 py-2 capitalize">{row.stageName}</td>
               <td className="border px-4 py-2 capitalize">{row.fullName}</td>
-              <td className="border px-4 py-2 capitalize">{row.genre}</td>
+              <td className="border px-4 py-2 capitalize">{row.event}</td>
+              <td className="border px-4 py-2 capitalize">{row.organization}</td>
+              <td className="border px-4 py-2 capitalize">{row.position}</td>
+              <td className="border px-4 py-2 capitalize">{row.expertise}</td>
+              <td className="border px-4 py-2 capitalize">{row.role}</td>
               <td className="border px-4 py-2 capitalize">{row.phone}</td>
               <td className="border px-4 py-2 lowercase">{row.email}</td>
               <td className="border px-4 py-2">
