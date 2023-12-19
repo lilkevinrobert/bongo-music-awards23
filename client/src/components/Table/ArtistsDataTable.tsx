@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
-import { MdOutlinePersonAdd, MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
+import { MdOutlinePersonAdd, MdOutlineEdit, MdOutlineDeleteOutline, MdOutlineRemoveRedEye } from "react-icons/md";
 
 interface DataRow {
   stageName: string;
@@ -143,6 +143,9 @@ const ArtistsDataTable: React.FC = () => {
               <td className="border px-4 py-2 capitalize">{row.phone}</td>
               <td className="border px-4 py-2 lowercase">{row.email}</td>
               <td className="border px-4 py-2">
+                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
+                  <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                </button>
                 <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                   <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
