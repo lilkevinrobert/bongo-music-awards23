@@ -69,6 +69,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {AuthProvider} from "./context/AuthContext.tsx";
 import NominatorsPage from "./pages/Admin/NominatorsPage.tsx";
 import JudgesPage from "./pages/Admin/JudgesPage.tsx";
+import ArtistPage from "./pages/Admin/ArtistPage.tsx";
 
 
 // Lazy-loaded components
@@ -80,7 +81,8 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminCategoriesPage = lazy(() => import("./pages/Admin/CategoriesPage"));
 const AdminGenresPage = lazy(() => import("./pages/Admin/GenresPage"));
 const AdminGenrePage = lazy(() => import("./pages/Admin/GenrePage"));
-const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage.tsx"))
+const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage.tsx"));
+
 function App() {
     const router = createBrowserRouter([
         {
@@ -143,6 +145,14 @@ function App() {
                     ),
                 },
                 {
+                    path: "artists/:artistId",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ArtistPage />
+                        </Suspense>
+                    ),
+                },
+                {
                     path: "nominators/",
                     element: (
                         <Suspense fallback={<div>Loading...</div>}>
@@ -156,7 +166,7 @@ function App() {
                         <Suspense fallback={<div>Loading...</div>}>
                             <JudgesPage />
                         </Suspense>
-                    ),
+                    )
                 },
             ],
         },

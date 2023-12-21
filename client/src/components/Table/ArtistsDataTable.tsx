@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Dialog,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
-import { MdOutlinePersonAdd, MdOutlineEdit, MdOutlineDeleteOutline, MdOutlineRemoveRedEye } from "react-icons/md";
+import {
+  MdOutlinePersonAdd,
+  MdOutlineEdit,
+  MdOutlineDeleteOutline,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
+import { NavLink } from "react-router-dom";
+import AddArtistForm from "../Forms/AddArtistForm";
 
 interface DataRow {
   stageName: string;
@@ -15,6 +27,10 @@ const ArtistsDataTable: React.FC = () => {
   const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Add Artist Form Handling
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
 
   const testData: DataRow[] = [
     {
@@ -99,65 +115,83 @@ const ArtistsDataTable: React.FC = () => {
   }, [searchTerm, data]);
 
   return (
-    <div className="mx-auto py-4">
-      <div className="flex flex-row items-center justify-between mb-4 w-full">
-        <div className="flex flex-row items-center justify-center w-1/4">
-        <Input
-          type="text"
-          placeholder="Search artists..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="p-2 border rounded w-4/4"
-          crossOrigin={undefined}
-        />
-        <Button
-          className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
-          onClick={() => setSearchTerm("")}
-        >
-          <GiMagicBroom className="w-5 h-5" />
-          Clear
-        </Button>
+    <>
+      <div className="mx-auto py-4">
+        <div className="flex flex-row items-center justify-between mb-4 w-full">
+          <div className="flex flex-row items-center justify-center w-1/4">
+            <Input
+              type="text"
+              placeholder="Search artists..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="p-2 border rounded w-4/4"
+              crossOrigin={undefined}
+            />
+            <Button
+              className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+              onClick={() => setSearchTerm("")}
+            >
+              <GiMagicBroom className="w-5 h-5" />
+              Clear
+            </Button>
+          </div>
+          <Button
+            onClick={handleOpen}
+            className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950"
+          >
+            <MdOutlinePersonAdd className="w-5 h-5" />
+            <Typography>Add</Typography>
+          </Button>
+          <Dialog
+            size="xs"
+            open={open}
+            handler={handleOpen}
+            className="bg-transparent shadow-none"
+          >
+            <div className="h-full border-red-400 flex items-center">
+              <AddArtistForm closeModal={handleOpen} />
+            </div>
+          </Dialog>
         </div>
-        <Button className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
-          <MdOutlinePersonAdd className="w-5 h-5" />
-          <Typography>Add</Typography></Button>
-      </div>
 
-      <table className="table-auto w-full bg-white border shadow">
-        <thead>
-          <tr className="bg-gray-200 text-left">
-            <th className="px-4 py-2">Stage Name</th>
-            <th className="px-4 py-2">Full Name</th>
-            <th className="px-4 py-2">Genre</th>
-            <th className="px-4 py-2">Phone</th>
-            <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((row, index) => (
-            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <td className="border px-4 py-2 capitalize">{row.stageName}</td>
-              <td className="border px-4 py-2 capitalize">{row.fullName}</td>
-              <td className="border px-4 py-2 capitalize">{row.genre}</td>
-              <td className="border px-4 py-2 capitalize">{row.phone}</td>
-              <td className="border px-4 py-2 lowercase">{row.email}</td>
-              <td className="border px-4 py-2 opacity-80">
-                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
-                  <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
-                </button>
-                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
-                  <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
-                </button>
-                <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
-                  <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
-                </button>
-              </td>
+        <table className="table-auto w-full bg-white border shadow">
+          <thead>
+            <tr className="bg-gray-200 text-left">
+              <th className="px-4 py-2">Stage Name</th>
+              <th className="px-4 py-2">Full Name</th>
+              <th className="px-4 py-2">Genre</th>
+              <th className="px-4 py-2">Phone</th>
+              <th className="px-4 py-2">Email</th>
+              <th className="px-4 py-2 text-center">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {filteredData.map((row, index) => (
+              <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+                <td className="border px-4 py-2 capitalize">{row.stageName}</td>
+                <td className="border px-4 py-2 capitalize">{row.fullName}</td>
+                <td className="border px-4 py-2 capitalize">{row.genre}</td>
+                <td className="border px-4 py-2 capitalize">{row.phone}</td>
+                <td className="border px-4 py-2 lowercase">{row.email}</td>
+                <td className="border px-4 py-2 opacity-80">
+                  <NavLink to={`../artists/${row.stageName}`}>
+                    <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
+                      <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                    </button>
+                  </NavLink>
+                  <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
+                    <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
+                  </button>
+                  <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
+                    <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

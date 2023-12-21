@@ -28,10 +28,10 @@ const AdminSidebar = () => {
             id="te-logo"
             className="mr-2 w-6"
             src="https://tecdn.b-cdn.net/img/logo/te-transparent-noshadows.png"
-            alt="TE Logo"
+            alt="BMA Logo"
             draggable="false"
           />
-          <span>TW elements</span>
+          <span>BMA elements</span>
         </a>
         <ul
           className="relative m-0 list-none px-[0.2rem] pb-12"

@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 
 interface DataRow {
+  id: string;
   fullName: string;
   event: string;
   organization: string;
@@ -26,6 +27,7 @@ const JudgesDataTable: React.FC = () => {
 
   const testData: DataRow[] = [
     {
+      id: "jjsu403b53b3cyqxc",
       fullName: "Omary Ally Mwanga",
       event: "marioo",
       organization: "Bongo Music Awards",
@@ -36,24 +38,26 @@ const JudgesDataTable: React.FC = () => {
       email: "marioo@gmail.com",
     },
     {
-        fullName: "Omary Ally Mwanga",
-        event: "marioo",
-        organization: "Bongo Music Awards",
-        position: "Consultant",
-        expertise: "some expertise",
-        role: "Consultant",
-        phone: "+255 762 223 093",
-        email: "marioo@gmail.com",
+      id: "jjsu40332b53b3cyqxc",
+      fullName: "Omary Ally Mwanga",
+      event: "marioo",
+      organization: "Bongo Music Awards",
+      position: "Consultant",
+      expertise: "some expertise",
+      role: "Consultant",
+      phone: "+255 762 223 093",
+      email: "marioo@gmail.com",
     },
     {
-        fullName: "Omary Ally Mwanga",
-        event: "marioo",
-        organization: "Bongo Music Awards",
-        position: "Consultant",
-        expertise: "some expertise",
-        role: "Consultant",
-        phone: "+255 762 223 093",
-        email: "marioo@gmail.com",
+      id: "jjsu403b53b3cyqxc",
+      fullName: "Omary Ally Mwanga",
+      event: "marioo",
+      organization: "Bongo Music Awards",
+      position: "Consultant",
+      expertise: "some expertise",
+      role: "Consultant",
+      phone: "+255 762 223 093",
+      email: "marioo@gmail.com",
     },
   ];
 
@@ -132,7 +136,9 @@ const JudgesDataTable: React.FC = () => {
             <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
               <td className="border px-4 py-2 capitalize">{row.fullName}</td>
               <td className="border px-4 py-2 capitalize">{row.event}</td>
-              <td className="border px-4 py-2 capitalize">{row.organization}</td>
+              <td className="border px-4 py-2 capitalize">
+                {row.organization}
+              </td>
               <td className="border px-4 py-2 capitalize">{row.position}</td>
               <td className="border px-4 py-2 capitalize">{row.expertise}</td>
               <td className="border px-4 py-2 capitalize">{row.role}</td>
