@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input, Typography } from "@material-tailwind/react";
+import {Button, Dialog, Input, Typography} from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
 import {
   MdOutlinePersonAdd,
@@ -7,6 +7,7 @@ import {
   MdOutlineDeleteOutline,
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
+import AddJudgeForm from "../Forms/AddJudgeForm.tsx";
 
 interface DataRow {
   id: string;
@@ -24,6 +25,10 @@ const JudgesDataTable: React.FC = () => {
   const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Add Judge Form Handling
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
 
   const testData: DataRow[] = [
     {
@@ -111,10 +116,24 @@ const JudgesDataTable: React.FC = () => {
             Clear
           </Button>
         </div>
-        <Button className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
+        <Button
+            onClick={handleOpen}
+            className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
           <MdOutlinePersonAdd className="w-5 h-5" />
           <Typography>Add</Typography>
         </Button>
+
+        <Dialog
+            size="xs"
+            open={open}
+            handler={handleOpen}
+            className="bg-transparent shadow-none"
+        >
+          <div className="h-full border-red-400 flex items-center">
+            <AddJudgeForm closeModal={handleOpen} />
+          </div>
+        </Dialog>
+
       </div>
 
       <table className="table-auto w-full bg-white border shadow">

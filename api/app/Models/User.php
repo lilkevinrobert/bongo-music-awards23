@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -18,9 +19,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'firstname',
-        'middlename',
-        'lastname',
+        'first_name',
+        'middle_name',
+        'last_name',
         'email',
         'role',
         'password',
@@ -46,4 +47,28 @@ class User extends Authenticatable
     ];
 
     public function getFullNameAttribute(){return ucfirst($this->firstname) . " " . ucfirst($this->middlename) . " " . ucfirst($this->lastname);}
+
+    public static function validate($input, $id = null)
+    {
+        $rules = [ # place-holder for validation rules
+            'firstname' => ['required', 'min:2', 'max:50'],
+            'lastname' => ['required', 'min:2', 'max:50'],
+            'middlename' => ['nullable'],
+            'email' => ['required','email'],
+            'password' => ['required'],
+        ];
+
+        $nice_names = [ # Friendly names
+            'firstname' => 'Firstname',
+            'lastname' => 'Lastname',
+            'email' => 'Email',
+            'password' => 'Password',
+        ];
+
+        # validation code
+        $validator = Validator::make($input, $rules);
+        $validator->setAttributeNames($nice_names);
+
+        return $validator;
+    }
 }

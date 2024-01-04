@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ArtistProfilesController;
+use App\Http\Controllers\NominatorsController;
+use App\Http\Controllers\JudgeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,6 +44,21 @@ Route::group(['prefix'=>'events'], function () {
 
 Route::group(['prefix'=>'artists'], function () {
     Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
+    Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
+
+});
+
+
+
+
+Route::group(['prefix'=>'nominators'], function () {
+    Route::get('/',[NominatorsController::class,'index']); //All available nominators in the system
+
+});
+
+
+Route::group(['prefix'=>'judges'], function () {
+    Route::get('/',[JudgeController::class,'index']); //All available judges in the system
 
 });
 

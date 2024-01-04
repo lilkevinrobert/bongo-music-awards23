@@ -104,6 +104,27 @@ class UserSeeder extends Seeder
 
 
 
+        /**
+         * Nominators Seeding.
+         * */
+        \App\Models\User::create([
+            'firstname' => 'Juma',
+            'middlename'=>'Hassan',
+            'lastname' => 'Mbarook',
+            'email' => 'jmbarook@gmail.com',
+            'role' => 'nominator',
+            'password' => Hash::make('password'),
+        ]);
+
+        \App\Models\User::create([
+            'firstname' => 'Farid',
+            'middlename'=>'Hashimu',
+            'lastname' => 'Mbonde',
+            'email' => 'faridmbonde@gmail.com',
+            'role' => 'nominator',
+            'password' => Hash::make('password'),
+        ]);
+
 
     }
 }

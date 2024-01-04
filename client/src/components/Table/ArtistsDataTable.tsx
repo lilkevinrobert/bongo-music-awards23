@@ -14,6 +14,7 @@ import {
 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import AddArtistForm from "../Forms/AddArtistForm";
+import axios from "../../api/axios.ts";
 
 interface DataRow {
   stageName: string;
@@ -32,7 +33,7 @@ const ArtistsDataTable: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
-  const testData: DataRow[] = [
+/*  const testData: DataRow[] = [
     {
       stageName: "marioo",
       fullName: "Omary Ally Mwanga",
@@ -82,7 +83,7 @@ const ArtistsDataTable: React.FC = () => {
       phone: "+255 712 345 678",
       email: "vanessa_mdee@gmail.com",
     },
-  ];
+  ];*/
 
   useEffect(() => {
     // Assuming fetchData is an async function fetching data from the API - USE THIS APPROACH!!
@@ -97,11 +98,17 @@ const ArtistsDataTable: React.FC = () => {
     //     console.error('Error fetching data:', error);
     //   }
     // };
-    const fetchData = () => {
-      setData(testData);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/artists");
+        setData(response.data);
+        setFilteredData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
-    fetchData();
+    fetchData().then(r => console.log(r));
   }, []); // Fetch data on component mount
 
   useEffect(() => {

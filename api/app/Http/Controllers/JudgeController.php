@@ -2,57 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ArtistProfileResource;
+use App\Http\Resources\JudgeResource;
 use App\Models\ArtistProfile;
+use App\Models\Judge;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use \Illuminate\Database\QueryException;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
-use function PHPUnit\Framework\isEmpty;
 
-
-class ArtistProfilesController extends Controller
+class JudgeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @return
      */
     public function index()
     {
-        $artistProfiles = ArtistProfile::all();
-        return ArtistProfileResource::collection($artistProfiles);
+        $judgesProfiles = Judge::all();
+        return JudgeResource::collection($judgesProfiles);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return JsonResponse
+     * @param
+     * @return
      */
     public function store(Request $request)
     {
-
-        /**
-         * CREATING ARTIST Profile
-         * Validating artist inputs
-         *
-         */
-        $validator = ArtistProfile::validate($request->all());
-        if ($validator->fails()) {
+        $validator = Judge::validate($request->all());
+        if ($validator->fails()){
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $validator->messages(),
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
-
-        /**
-         * CREATING ARTIST USER
-         * Validating user inputs
-         */
 
         $userValidator = User::validate($request->all());
         if ($userValidator->fails()) {
@@ -62,11 +50,12 @@ class ArtistProfilesController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
 
+
         try {
 
             DB::beginTransaction();
-            $user = User::create($userValidator->safe()->merge(['role' => 'artist', 'password' => Hash::make($userValidator->validated()['password'])])->all());
-            $artist_profile = ArtistProfile::create($validator->safe()->merge(['user_id' => $user->id, 'created_by' => auth()->id() ?: 1])->all());
+            $user = User::create($userValidator->safe()->merge(['role' => 'judge', 'password' => Hash::make($userValidator->validated()['password'])])->all());
+            $judge = Judge::create($validator->safe()->merge(['user_id' => $user->id, 'created_by' => auth()->id() ?: 1])->all());
 
             DB::commit();
             return response()->json([
@@ -86,10 +75,10 @@ class ArtistProfilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\ArtistProfile $artistProfile
+     * @param  \App\Models\Judge  $judge
      * @return \Illuminate\Http\Response
      */
-    public function show(ArtistProfile $artistProfile)
+    public function show(Judge $judge)
     {
         //
     }
@@ -97,11 +86,11 @@ class ArtistProfilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\ArtistProfile $artistProfile
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Judge  $judge
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ArtistProfile $artistProfile)
+    public function update(Request $request, Judge $judge)
     {
         //
     }
@@ -109,10 +98,10 @@ class ArtistProfilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\ArtistProfile $artistProfile
+     * @param  \App\Models\Judge  $judge
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArtistProfile $artistProfile)
+    public function destroy(Judge $judge)
     {
         //
     }
