@@ -127,6 +127,13 @@ class ArtistProfilesController extends Controller
     public function show(ArtistProfile $artistProfile, $id)
     {
         $artistProfiles = ArtistProfile::find($id);
+        if(!isset($artistProfiles)){
+            return response()->json([
+                'status' => ResponseAlias::HTTP_NOT_FOUND,
+                'error' => 'Resource not found.',
+            ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
+        }
+
         return new ArtistProfileResource($artistProfiles);
     }
 
