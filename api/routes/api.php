@@ -43,6 +43,7 @@ Route::group(['prefix'=>'events'], function () {
 
 
 Route::group(['prefix'=>'artists'], function () {
+    Route::post('/register',[ArtistProfilesController::class,'registerUser']); // Register new user from
     Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
     Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
 

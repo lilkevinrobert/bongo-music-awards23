@@ -27,6 +27,43 @@ class ArtistProfilesController extends Controller
         return ArtistProfileResource::collection($artistProfiles);
     }
 
+    public function registerUser(Request $request){
+        $validator = User::validate($request->all());
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $validator->messages(),
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $data = [
+                'first_name' => $request->input('firstname'),
+                'last_name' => $request->input('lastname'),
+                'email' => $request->input('email'),
+                'role' => 'Artist',
+                'password' => Hash::make($request->input('password')),
+            ];
+
+            $user = User::create($data);
+
+            DB::commit();
+            return response()->json([
+                'status' => ResponseAlias::HTTP_CREATED,
+                'data' => $user,
+            ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+
+        } catch (QueryException|\Exception $e) {
+            return response()->json([
+                'error' => 'Something went wrong while creating the user. Please try again later.',
+                'message' => $e->getMessage()],
+                ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *
