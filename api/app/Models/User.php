@@ -51,16 +51,16 @@ class User extends Authenticatable
     public static function validate($input, $id = null)
     {
         $rules = [ # place-holder for validation rules
-            'firstname' => ['required', 'min:2', 'max:50'],
-            'lastname' => ['required', 'min:2', 'max:50'],
-            'middlename' => ['nullable'],
+            'first_name' => ['required', 'min:2', 'max:50'],
+            'last_name' => ['required', 'min:2', 'max:50'],
+            'middle_name' => ['nullable'],
             'email' => ['required','email'],
             'password' => ['required'],
         ];
 
         $nice_names = [ # Friendly names
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
+            'first_name' => 'Firstname',
+            'last_name' => 'Lastname',
             'email' => 'Email',
             'password' => 'Password',
         ];

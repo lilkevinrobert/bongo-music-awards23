@@ -46,9 +46,9 @@ class ArtistProfile extends Model
             'stage_name' => ['required', 'min:2', 'max:50'],
             'bio' => ['required',],
             'phone_number' => ['required'],
-            'genre' => ['required'],
-            'date_of_birth' => ['required'],
-            'place_of_birth' => ['required'],
+            'genre' => ['nullable'],
+            'date_of_birth' => ['nullable'],
+            'place_of_birth' => ['nullable'],
         ];
 
         $nice_names = [ # Friendly names
