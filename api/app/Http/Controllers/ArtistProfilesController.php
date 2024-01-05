@@ -102,7 +102,7 @@ class ArtistProfilesController extends Controller
         try {
 
             DB::beginTransaction();
-            $user = User::create($userValidator->safe()->merge(['role' => 'artist', 'password' => Hash::make($userValidator->validated()['password'])])->all());
+            $user = User::create($userValidator->safe()->merge(['role' => 'artist', 'password' => Hash::make($userValidator->validated()['last_name'])])->all());
             $artist_profile = ArtistProfile::create($validator->safe()->merge(['user_id' => $user->id, 'created_by' => auth()->id() ?: 1])->all());
 
             DB::commit();
