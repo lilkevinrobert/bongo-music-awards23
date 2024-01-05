@@ -55,7 +55,7 @@ class User extends Authenticatable
             'last_name' => ['required', 'min:2', 'max:50'],
             'middle_name' => ['nullable'],
             'email' => ['required','email'],
-            'password' => ['required'],
+            'password' => ['nullable'],
         ];
 
         $nice_names = [ # Friendly names
