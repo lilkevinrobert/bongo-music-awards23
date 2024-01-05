@@ -28,25 +28,16 @@ const Register = () => {
                         setPassword("");
 
                         window.setTimeout(() => toast.success(<p
-                            className="capitalize">{`Artist Created successful...`}</p>), 2000)
+                            className="capitalize">{`Account Created successful...`}</p>), 2000)
                         setLoading(false);
-
-
                         navigate('/admin/dashboard')
                     })
                     .catch((error) => {
                         console.log(error);
-                        window.setTimeout(() => toast.error(<p className="capitalize">{`Failed to Create Account...`}</p>), 1000)
+                        window.setTimeout(() => toast.error(<p className="capitalize">{`Failed to create Account...`}</p>), 1000)
                         setLoading(false);
                     })
-
             })
-        // try{
-        //
-        //
-        // }catch (error){
-        //     console.log(error);
-        // }
     }
 
 

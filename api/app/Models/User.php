@@ -46,7 +46,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getFullNameAttribute(){return ucfirst($this->firstname) . " " . ucfirst($this->middlename) . " " . ucfirst($this->lastname);}
+    public function getFullNameAttribute(){return ucfirst($this->first_name) . " " . ucfirst($this->middle_name) . " " . ucfirst($this->last_name);}
 
     public static function validate($input, $id = null)
     {
