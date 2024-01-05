@@ -19,7 +19,7 @@ class ArtistProfileResource extends JsonResource
         return [
             'id' => $this->id,
             'stage_name' => $this->stage_name,
-            'fullname' => $this->getFullName($this->user_id),
+       //     'fullname' => $this->getFullName($this->user_id),
             'genre' => $this->genre,
             'phone' => $this->phone_number,
             'email' => User::where('id', $this->user_id)->select('email')->first()['email'],

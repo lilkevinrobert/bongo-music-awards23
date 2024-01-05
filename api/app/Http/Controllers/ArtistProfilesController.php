@@ -123,12 +123,11 @@ class ArtistProfilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\ArtistProfile $artistProfile
-     * @return \Illuminate\Http\Response
      */
-    public function show(ArtistProfile $artistProfile)
+    public function show(ArtistProfile $artistProfile, $id)
     {
-        //
+        $artistProfiles = ArtistProfile::find($id);
+        return new ArtistProfileResource($artistProfiles);
     }
 
     /**
