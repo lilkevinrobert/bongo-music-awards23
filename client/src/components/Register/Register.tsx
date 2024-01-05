@@ -1,5 +1,5 @@
 import {Button, Card, Typography, Input} from '@material-tailwind/react'
-import  {useState} from "react";
+import {useState} from "react";
 import axios from "../../api/axios.ts";
 import toast, {Toaster} from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
@@ -37,7 +37,13 @@ const Register = () => {
                         window.setTimeout(() => toast.error(<p className="capitalize">{`Failed to create Account...`}</p>), 1000)
                         setLoading(false);
                     })
-            })
+            }).catch((errors) => {
+                console.log(errors)
+                window.setTimeout(() => toast.error(<p
+                    className="capitalize">{`Failed to Create artist...`}</p>), 1000)
+                //stop the spinner or progress indicator with the error message.
+                setLoading(false);
+            });
     }
 
 
