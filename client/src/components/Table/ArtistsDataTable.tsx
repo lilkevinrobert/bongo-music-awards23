@@ -17,8 +17,8 @@ import AddArtistForm from "../Forms/AddArtistForm";
 import axios from "../../api/axios.ts";
 
 interface DataRow {
-    stageName: string;
-    fullName: string;
+    stage_name: string;
+    fullname: string;
     genre: string;
     phone: string;
     email: string;
@@ -102,8 +102,8 @@ const ArtistsDataTable: React.FC = () => {
             await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')
                 .then(async () => {
                     const response = await axios.get("https://api.bongomusicawards.co.tz/api/artists");
-                    setData(response.data);
-                    setFilteredData(response.data);
+                    setData(response.data.data);
+                    setFilteredData(response.data.data);
                 }).catch((error) => {
                     console.error("Error fetching data:", error);
                 });
@@ -113,14 +113,19 @@ const ArtistsDataTable: React.FC = () => {
         fetchData().then(r => console.log(r));
     }, []); // Fetch data on component mount
 
+
+    /*
+    * This code must be un commented to enable search */
+
     useEffect(() => {
         // Filter data based on the search term
-        const filtered = data.filter((row) => {
-            return Object.values(row).some((value) =>
-                value.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-        });
-        setFilteredData(filtered);
+        // const filtered = data.filter((row) => {
+        //     return Object.values(row).some((value) =>
+        //         value.toLowerCase().includes(searchTerm.toLowerCase())
+        //     );
+        // });
+        console.log(data);
+        //setFilteredData(filtered);
     }, [searchTerm, data]);
 
     return (
@@ -177,13 +182,13 @@ const ArtistsDataTable: React.FC = () => {
                     <tbody>
                     {filteredData.map((row, index) => (
                         <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-                            <td className="border px-4 py-2 capitalize">{row.stageName}</td>
-                            <td className="border px-4 py-2 capitalize">{row.fullName}</td>
+                            <td className="border px-4 py-2 capitalize">{row.stage_name}</td>
+                            <td className="border px-4 py-2 capitalize">{row.fullname}</td>
                             <td className="border px-4 py-2 capitalize">{row.genre}</td>
                             <td className="border px-4 py-2 capitalize">{row.phone}</td>
                             <td className="border px-4 py-2 lowercase">{row.email}</td>
                             <td className="border px-4 py-2 opacity-80">
-                                <NavLink to={`../artists/${row.stageName}`}>
+                                <NavLink to={`../artists/${row.stage_name}`}>
                                     <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                                         <MdOutlineRemoveRedEye
                                             className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out"/>
