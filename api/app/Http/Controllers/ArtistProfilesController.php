@@ -41,8 +41,8 @@ class ArtistProfilesController extends Controller
             DB::beginTransaction();
 
             $data = [
-                'first_name' => $request->input('firstname'),
-                'last_name' => $request->input('lastname'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
                 'role' => 'Artist',
                 'password' => Hash::make($request->input('password')),
