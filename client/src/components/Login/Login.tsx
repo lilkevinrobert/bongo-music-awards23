@@ -60,7 +60,7 @@ const Login = () => {
     };
 
     const getUser = async () => {
-        const {data} = await axios.get("/api/user");
+        const {data} = await axios.get("/user");
         console.log(data)
     }
 
@@ -90,7 +90,7 @@ const Login = () => {
                             navigate('/admin/dashboard')
                         }
 
-                        if (role == 'artist'){
+                        if (role == 'Artist'){
                             navigate('/artist/dashboard')
                         }
                         if (role == 'nominator'){
