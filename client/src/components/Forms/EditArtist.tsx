@@ -44,7 +44,7 @@ const EditArtist: React.FC<FormProps> = ({closeModal}) => {
         e.preventDefault();
         await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')
             .then(() => {
-                axios.post('https://api.bongomusicawards.co.tz/api/artists', formData)
+                axios.post(`https://api.bongomusicawards.co.tz/api/artists/${1}`, formData)
                     .then((response) => {
                         console.log(response);
                         closeModal();
@@ -79,30 +79,12 @@ const EditArtist: React.FC<FormProps> = ({closeModal}) => {
         <Card className="mx-auto w-3/4  rounded-lg shadow-lg">
             <form className="w-full px-8 mx-auto my-6" onSubmit={handleSubmit}>
                 <div className="flex flex-row items-center justify-between my-4  uppercase font-semibold">
-                    <Typography variant="h4">New Artist</Typography>
+                    <Typography variant="h4">Edit Artist</Typography>
                     <MdClose
                         className="w-6 h-6 cursor-pointer rounded-full transition ease-in-out hover:bg-slate-950 hover:text-white"
                         onClick={closeModal}
                     />
                 </div>
-
-
-                {/*        <div className="mb-4 w-full">
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium text-gray-700">
-            First Name
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            required
-            value={formData.firstName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border rounded-md bg-transparent"
-          />
-        </div>*/}
 
 
                 <div className="mb-4 flex items-center gap-12 justify-between ">

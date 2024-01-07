@@ -15,6 +15,8 @@ import {
 import {NavLink} from "react-router-dom";
 import AddArtistForm from "../Forms/AddArtistForm";
 import axios from "../../api/axios.ts";
+import EditArtist from "../Forms/EditArtist.tsx";
+// import EditArtist from "../Forms/EditArtist.tsx";
 
 interface DataRow {
     stage_name: string;
@@ -31,7 +33,10 @@ const ArtistsDataTable: React.FC = () => {
 
     // Add Artist Form Handling
     const [open, setOpen] = React.useState(false);
+    const [editOpen, serEditOpen] = React.useState(false)
     const handleOpen = () => setOpen((cur) => !cur);
+    const handleEdit = () => serEditOpen((c) => !c);
+
 
     /*  const testData: DataRow[] = [
         {
@@ -99,9 +104,9 @@ const ArtistsDataTable: React.FC = () => {
         //   }
         // };
         const fetchData = async () => {
-            await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')
+            await axios.get('http://localhost:8000/sanctum/csrf-cookie')
                 .then(async () => {
-                    const response = await axios.get("https://api.bongomusicawards.co.tz/api/artists");
+                    const response = await axios.get("http://localhost:8000/api/artists/");
                     setData(response.data.data);
                     setFilteredData(response.data.data);
                 }).catch((error) => {
@@ -166,6 +171,17 @@ const ArtistsDataTable: React.FC = () => {
                             <AddArtistForm closeModal={handleOpen}/>
                         </div>
                     </Dialog>
+
+                    <Dialog
+                        size="xs"
+                        open={editOpen}
+                        handler={handleEdit}
+                        className="bg-transparent shadow-none">
+                        <div className="h-full border-red-400 flex items-center">
+                            <EditArtist closeModal={handleEdit} />
+                            {/*how to pass props*/}
+                        </div>
+                    </Dialog>
                 </div>
 
                 <table className="table-auto w-full bg-white border shadow">
@@ -194,7 +210,7 @@ const ArtistsDataTable: React.FC = () => {
                                             className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out"/>
                                     </button>
                                 </NavLink>
-                                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
+                                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group" onClick={handleEdit}>
                                     <MdOutlineEdit
                                         className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out"/>
                                 </button>

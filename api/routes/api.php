@@ -48,6 +48,12 @@ Route::group(['prefix'=>'artists'], function () {
     Route::get('/{id}',[ArtistProfilesController::class,'show']); //All available artist in the system
     Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
 
+    Route::group(['prefix'=>'info'], function () {
+        Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
+
+    });
+
+
 });
 
 

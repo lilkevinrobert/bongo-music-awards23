@@ -7,8 +7,8 @@ import {PropagateLoader} from "react-spinners";
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
+    const [first_name, setFirstname] = useState("");
+    const [last_name, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword]= useState("");
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Register = () => {
         setLoading(true);
         await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')
             .then(()=>{
-                 axios.post('https://api.bongomusicawards.co.tz/api/artists/register', {firstname, lastname, email, password})
+                 axios.post('https://api.bongomusicawards.co.tz/api/artists/register', {first_name, last_name, email, password})
                     .then((response) => {
                         console.log(response);
                         window.setTimeout(() => toast.success(<p className="capitalize">{`Registering...`}</p>), 2000)
@@ -30,7 +30,7 @@ const Register = () => {
                         window.setTimeout(() => toast.success(<p
                             className="capitalize">{`Account Created successful...`}</p>), 2000)
                         setLoading(false);
-                        navigate('/admin/dashboard')
+                        navigate('/login')
                     })
                     .catch((error) => {
                         console.log(error);
@@ -54,9 +54,9 @@ const Register = () => {
             </Typography>
             <form onSubmit={handleRegister} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                 <div className="mb-4 flex flex-col gap-6">
-                    <Input color="black" crossOrigin={undefined} value={firstname} onChange={(e)=> setFirstname(e.target.value)} className="my-1 rounded-md"
+                    <Input color="black" crossOrigin={undefined} value={first_name} onChange={(e)=> setFirstname(e.target.value)} className="my-1 rounded-md"
                            placeholder="Enter Your firstname"/>
-                    <Input color="black" crossOrigin={undefined} value={lastname} onChange={(e) => setLastname(e.target.value) } className="my-1 rounded-md"
+                    <Input color="black" crossOrigin={undefined} value={last_name} onChange={(e) => setLastname(e.target.value) } className="my-1 rounded-md"
                            placeholder="Enter Your lastname"/>
                     <Input color="black" crossOrigin={undefined} value={email} onChange={(e) => setEmail(e.target.value)} className="my-1 rounded-md"
                            placeholder="Enter Your Email Address" type='email'/>

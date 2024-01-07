@@ -70,6 +70,7 @@ import {AuthProvider} from "./context/AuthContext.tsx";
 import NominatorsPage from "./pages/Admin/NominatorsPage.tsx";
 import JudgesPage from "./pages/Admin/JudgesPage.tsx";
 import ArtistPage from "./pages/Admin/ArtistPage.tsx";
+import ArtistDashboardPage from "./pages/artist/ArtistDashboardPage.tsx";
 
 
 // Lazy-loaded components
@@ -109,6 +110,14 @@ function App() {
                     element: (
                         <Suspense fallback={<div>Loading...</div>}>
                             <AdminDashboardPage/>
+                        </Suspense>
+                    ),
+                },{
+                    path: "awards/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            {/*<AdminAwardsPage/>*/}
+                            <p>awards</p>
                         </Suspense>
                     ),
                 },
@@ -172,7 +181,33 @@ function App() {
         },
         {
             path: "/artist",
-            element: <p>Artist route</p>,
+            children: [
+                {
+                    path: "dashboard/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ArtistDashboardPage/>
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "artists/",
+                    element: (
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ArtistsPage/>
+                        </Suspense>
+                    ),
+                },
+                // {
+                //     path: "artists/:artistId",
+                //     element: (
+                //         <Suspense fallback={<div>Loading...</div>}>
+                //             <ArtistPage />
+                //         </Suspense>
+                //     ),
+                // },
+
+            ],
         },
         {
             path: "/about",

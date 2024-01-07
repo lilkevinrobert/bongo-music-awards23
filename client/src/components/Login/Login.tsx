@@ -44,6 +44,7 @@ const errorsFormData: Errors = {
 const Login = () => {
     //const BASE_URL = import.meta.env.VITE_BASE_URL;
     const [loginData, setLoginData] = useState(loginFormData);
+    const [role, setRole] = useState('');
 
     const [errors] = useState<Errors>(errorsFormData);
     //const {login} = useAuthContext();
@@ -66,11 +67,12 @@ const Login = () => {
 
     const handleLogin = async (event: any) => {
         event.preventDefault();
-        window.setTimeout(() => toast.success(<p
-            className="capitalize">{`Authenticating...`}</p>), 1000)
         // login(loginData)
         await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')
             .then(() => {
+                window.setTimeout(() => toast.success(<p
+                    className="capitalize">{`Authenticating...`}</p>), 1000)
+
                 axios.post('https://api.bongomusicawards.co.tz/login', loginData)
                     .then((response) => {
                         console.log(response);
@@ -82,7 +84,22 @@ const Login = () => {
                         console.log("Response:Token "+response.data.data.token)
 
                         getUser();
-                        navigate('/admin/dashboard')
+                        setRole(response.data.data.role)
+
+                        if(role == 'admin'){
+                            navigate('/admin/dashboard')
+                        }
+
+                        if (role == 'artist'){
+                            navigate('/artist/dashboard')
+                        }
+                        if (role == 'nominator'){
+                            navigate('/nominator/dashboard')
+                        }
+
+                        if (role == 'judge'){
+                            navigate('/judge/dashboard')
+                        }
                     })
                     .catch((errors) => {
                         if (errors.response.status === 422) {
@@ -90,7 +107,10 @@ const Login = () => {
                             //setErrors(errors.response.data.errors)
                         }
                     })
-            });
+            }).catch(() => {
+                window.setTimeout(() => toast.error(<p
+                    className="capitalize">{`Failed to login...Try again`}</p>), 1000)
+            })
 
     }
 
