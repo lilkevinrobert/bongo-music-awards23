@@ -84,6 +84,7 @@ const AdminCategoriesPage = lazy(() => import("./pages/Admin/CategoriesPage"));
 const AdminGenresPage = lazy(() => import("./pages/Admin/GenresPage"));
 const AdminGenrePage = lazy(() => import("./pages/Admin/GenrePage"));
 const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage.tsx"));
+const RecoveryPage = lazy(() => import("./pages/RecoveryPage.tsx"));
 
 function App() {
     const router = createBrowserRouter([
@@ -100,6 +101,14 @@ function App() {
             element: (
                 <Suspense fallback={<Loading />}>
                     <LoginPage/>
+                </Suspense>
+            ),
+        },
+        {
+            path: "/recovery",
+            element: (
+                <Suspense fallback={<Loading />}>
+                    <RecoveryPage />
                 </Suspense>
             ),
         },
