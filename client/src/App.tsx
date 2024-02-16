@@ -67,6 +67,7 @@ export default App;*/
 import {lazy, Suspense} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {AuthProvider} from "./context/AuthContext.tsx";
+import Loading from "./components/Loading/Loading.tsx";
 import NominatorsPage from "./pages/Admin/NominatorsPage.tsx";
 import JudgesPage from "./pages/Admin/JudgesPage.tsx";
 import ArtistPage from "./pages/Admin/ArtistPage.tsx";
@@ -89,7 +90,7 @@ function App() {
         {
             path: "/",
             element: (
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loading />}>
                     <HomePage/>
                 </Suspense>
             ),
@@ -97,7 +98,7 @@ function App() {
         {
             path: "/login",
             element: (
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loading />}>
                     <LoginPage/>
                 </Suspense>
             ),
@@ -108,14 +109,14 @@ function App() {
                 {
                     path: "dashboard/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <AdminDashboardPage/>
                         </Suspense>
                     ),
                 },{
                     path: "awards/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             {/*<AdminAwardsPage/>*/}
                             <p>awards</p>
                         </Suspense>
@@ -124,7 +125,7 @@ function App() {
                 {
                     path: "categories/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <AdminCategoriesPage/>
                         </Suspense>
                     ),
@@ -132,7 +133,7 @@ function App() {
                 {
                     path: "genres/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <AdminGenresPage/>
                         </Suspense>
                     ),
@@ -140,7 +141,7 @@ function App() {
                 {
                     path: "genre/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <AdminGenrePage/>
                         </Suspense>
                     ),
@@ -148,7 +149,7 @@ function App() {
                 {
                     path: "artists/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <ArtistsPage/>
                         </Suspense>
                     ),
@@ -156,7 +157,7 @@ function App() {
                 {
                     path: "artists/:artistId",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <ArtistPage />
                         </Suspense>
                     ),
@@ -164,7 +165,7 @@ function App() {
                 {
                     path: "nominators/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <NominatorsPage />
                         </Suspense>
                     ),
@@ -172,7 +173,7 @@ function App() {
                 {
                     path: "judges/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <JudgesPage />
                         </Suspense>
                     )
@@ -185,7 +186,7 @@ function App() {
                 {
                     path: "dashboard/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <ArtistDashboardPage/>
                         </Suspense>
                     ),
@@ -193,7 +194,7 @@ function App() {
                 {
                     path: "artists/",
                     element: (
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<Loading />}>
                             <ArtistsPage/>
                         </Suspense>
                     ),
@@ -212,7 +213,7 @@ function App() {
         {
             path: "/about",
             element: (
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loading />}>
                     <AboutPage/>
                 </Suspense>
             ),
@@ -220,7 +221,7 @@ function App() {
         {
             path: "/contact",
             element: (
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<Loading />}>
                     <ContactPage/>
                 </Suspense>
             ),
