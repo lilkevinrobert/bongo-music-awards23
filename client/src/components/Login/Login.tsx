@@ -10,7 +10,7 @@ import {
 import React, { useState} from "react";
 import toast, {Toaster} from "react-hot-toast";
 import axios from "../../api/axios.ts";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 
 
@@ -167,9 +167,11 @@ const Login = () => {
                         >
                             Log In
                         </Button>
-                        <Typography variant="small" className="mt-6 flex justify-center">
+                        <NavLink to="/recovery">
+                        <Typography variant="small" className="mt-6 flex justify-center transition-all ease-in-out hover:underline hover:underline-offset-4">
                             Forgot Password?
                         </Typography>
+                        </NavLink>
                     </CardFooter>
                 </form>
             </Card>
