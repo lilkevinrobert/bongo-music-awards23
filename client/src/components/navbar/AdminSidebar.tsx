@@ -182,7 +182,7 @@ const AdminSidebar = () => {
         </ul>
       </nav>
       <MdOutlineMenu
-        className="text-slate-900 text-2xl m-2 transition duration-150 ease-in-out cursor-pointer"
+        className="text-slate-900 text-2xl my-2 mx-1 transition duration-150 ease-in-out cursor-pointer"
         data-te-sidenav-toggle-ref
         data-te-target="#sidenav-8"
         aria-controls="#sidenav-8"

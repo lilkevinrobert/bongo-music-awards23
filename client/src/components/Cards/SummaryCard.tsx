@@ -28,7 +28,7 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
     }
   }
 
-  const countColorHandler = () => {
+  const colorHandler = () => {
     switch(type){
       case "users":
         return "text-blue-500 font-LatoBold text-2xl self-end"
@@ -44,12 +44,29 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
         return "text-cyan-500 font-LatoBold text-2xl self-end"
     }
   }
+
+  const bgColorHandler = () => {
+    switch(type){
+      case "users":
+        return "bg-blue-50"
+      case "events":
+        return "bg-green-50"
+      case "genres":
+        return "bg-purple-50"
+      case "categories":
+        return "bg-red-50"
+      case "nominators":
+        return "bg-yellow-50"
+      default:
+        return "bg-cyan-50"
+    }
+  }
   return (
-    <Card className="w-4/6 px-4 flex flex-row items-center justify-between bg-white text-slate-800 shadow-md rounded-lg py-6">
+    <Card className={`w-4/6 px-4 flex flex-row items-center justify-between ${bgColorHandler()} text-slate-800 shadow-md rounded-lg py-6`}>
       { iconHandler() }
       <div className="flex flex-col items-center">
         <Typography className="text-base capitalize">{title}</Typography>
-        <Typography className={countColorHandler()}>{count}</Typography>
+        <Typography className={colorHandler()}>{count}</Typography>
       </div>
     </Card>
   );
