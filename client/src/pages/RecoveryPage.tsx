@@ -17,9 +17,10 @@ const RecoveryPage = () => {
             Password Recovery
           </Typography>
         </div>
+        <Typography className="text-sm font-LatoLight w-full py-4">We'll send password reset instructions to the email address associated with your account.</Typography>
         <form className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Typography>Email</Typography>
+            <Typography>Email Address</Typography>
             <Input
               placeholder="Enter your recovery email"
               crossOrigin={undefined}
@@ -30,6 +31,11 @@ const RecoveryPage = () => {
             Proceed
           </Button>
         </form>
+        <div className="text-center">
+            <NavLink to="/">
+        <Typography className="py-4 text-sm font-LatoRegular text-blue-600">Back Home</Typography>
+        </NavLink>
+        </div>
         <Typography className="text-center text-xs font-light text-slate-400 py-4">
           &copy; {getYear()}
         </Typography>
