@@ -1,5 +1,4 @@
 import { Button, Input, Typography } from "@material-tailwind/react";
-import { NavLink } from "react-router-dom";
 
 const RecoveryPage = () => {
   const getYear = () => {
