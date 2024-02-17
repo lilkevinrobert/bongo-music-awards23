@@ -21,16 +21,16 @@ const Footer = () => {
             </h2>
             <div className="self-start text-black font-LatoRegular text-shadow-md antialiased flex flex-col py-4 gap-2">
               <div className="flex items-center justify-start gap-4">
-                <MdPhone className="w-6 h-6" />
-                <Typography>+255 714 456 680</Typography>
+                <MdPhone className="text-2xl text-slate-950" />
+                <Typography className="text-slate-950">+255 714 456 680</Typography>
               </div>
               <div className="flex items-center justify-start gap-4">
-                <HiMiniGlobeAlt className="w-6 h-6" />
-                <Typography>josia@bma.com</Typography>
+                <HiMiniGlobeAlt className="text-2xl text-slate-950" />
+                <Typography className="text-slate-950">josia@bma.com</Typography>
               </div>
               <div className="flex items-center justify-start gap-4">
-                <MdLocationPin className="w-6 h-6" />
-                <Typography>Bagamoyo Rd, Dar es Salaam</Typography>
+                <MdLocationPin className="text-2xl text-slate-950" />
+                <Typography className="text-slate-950">Bagamoyo Rd, Dar es Salaam</Typography>
               </div>
             </div>
           </div>
