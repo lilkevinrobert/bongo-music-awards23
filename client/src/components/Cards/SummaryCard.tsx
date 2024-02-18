@@ -15,7 +15,7 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
     switch(type){
       case "users":
         return <div className="hidden sm:block bg-blue-200 p-2 rounded"><LuUsers className="text-blue-600 text-2xl" /></div>
-      case "events":
+      case "active_events":
         return <div className="hidden sm:block bg-green-200 p-2 rounded"><MdOutlineEventNote className="text-green-600 text-2xl" /></div>
       case "genres":
         return <div className="hidden sm:block bg-purple-200 p-2 rounded"><MdOutlineCategory className="text-purple-600 text-2xl" /></div>
@@ -32,7 +32,7 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
     switch(type){
       case "users":
         return "text-blue-500 font-LatoBold text-2xl self-end"
-      case "events":
+      case "active_events":
         return "text-green-500 font-LatoBold text-2xl self-end"
       case "genres":
         return "text-purple-500 font-LatoBold text-2xl self-end"
@@ -49,7 +49,7 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
     switch(type){
       case "users":
         return "bg-blue-50"
-      case "events":
+      case "active_events":
         return "bg-green-50"
       case "genres":
         return "bg-purple-50"
@@ -65,7 +65,7 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
     <Card className={`w-6/6 px-4 flex flex-row items-center justify-center gap-2 md:justify-between ${bgColorHandler()} text-slate-800 shadow-md rounded-lg py-6`}>
       { iconHandler() }
       <div className="flex flex-col items-center">
-        <Typography className="text-sm md:text-base capitalize">{title}</Typography>
+        <Typography className="text-sm md:text-base capitalize">{title == 'active_events' ? 'active events' : title }</Typography>
         <Typography className={colorHandler()}>{count}</Typography>
       </div>
     </Card>

@@ -15,7 +15,6 @@ function useFetch<T>(url: string): FetchState<T> {
         const fetchData = async () => {
             try {
                 const response = await fetch(url);
-                console.log(response);
                 const result:T = await response.json();
                 setData(result);
             } catch (error: any) {
