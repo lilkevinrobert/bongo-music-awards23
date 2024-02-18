@@ -16,7 +16,7 @@ const AdminDashboardPage = () => {
         </section>
 
         {/* Summary Cards */}
-        <div className="flex items-center gap-4 py-4">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-6 py-4">
           <SummaryCard count={355} title="users" type="users" />
           <SummaryCard count={2} title="active events" type="events" />
           <SummaryCard count={15} title="genres" type="genres" />
