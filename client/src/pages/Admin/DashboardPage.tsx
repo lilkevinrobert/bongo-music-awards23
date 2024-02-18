@@ -1,9 +1,6 @@
 import { Typography } from "@material-tailwind/react";
-import { MdNotifications } from "react-icons/md";
 import Layout from "../../components/Layout/Layout";
-import UpcomingEvent from "../../components/Events/UpcomingEvent";
 import SummaryCard from "../../components/Cards/SummaryCard";
-import InfoActionCard from "../../components/Cards/InfoActionCard";
 
 const AdminDashboardPage = () => {
   const dateToday = () => {

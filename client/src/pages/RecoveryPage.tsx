@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Button, Input, Typography } from "@material-tailwind/react";
 
 const RecoveryPage = () => {

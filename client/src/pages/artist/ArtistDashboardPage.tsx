@@ -16,9 +16,9 @@ const ArtistDashboard = () => {
                         <MdNotifications className="w-6 h-6 self-baseline text-slate-500" />
                     </div>
                     <div className="flex flex-row gap-2 py-6">
-                        <SummaryCard count={4} event="Categories" />
-                        <SummaryCard count={4} event="Categories" />
-                        <SummaryCard count={4} event="Categories" />
+                        <SummaryCard count={4} title="Categories" type="categories" />
+                        <SummaryCard count={4} title="Categories" type="categories" />
+                        <SummaryCard count={4} title="Categories" type="categories" />
                     </div>
                 </section>
                 {/*<section className="w-4/12 min-h-screen p-8 bg-slate-400 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 ">*/}
