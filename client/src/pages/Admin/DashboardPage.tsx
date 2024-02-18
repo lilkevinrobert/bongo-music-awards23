@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import useFetch from "../../hooks/useFetch";
 import { BsDatabaseDown } from "react-icons/bs";
+import LoadingSummaryCard from "../../components/Loading/LoadingSummaryCard";
 
 interface SummaryCount {
   users: number;
@@ -38,7 +39,14 @@ const AdminDashboardPage = () => {
         {/* Summary Cards */}
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-6 py-4">
           {summaryCountLoading ? (
-            <p>Loading...</p>
+            <>
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            </>
           ) : (
             (summaryCountError == null && summaryCountData !== null) &&
             Object.keys(summaryCountData).map((key) => (

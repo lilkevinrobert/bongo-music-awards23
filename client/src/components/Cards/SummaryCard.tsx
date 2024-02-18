@@ -62,7 +62,7 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
     }
   }
   return (
-    <Card className={`w-6/6 px-4 flex flex-row items-center justify-center gap-2 md:justify-between ${bgColorHandler()} text-slate-800 shadow-md rounded-lg py-6`}>
+    <Card className={`w-6/6 px-4 py-6 flex flex-row items-center justify-center gap-2 md:justify-between ${bgColorHandler()} text-slate-800 shadow-md rounded-lg`}>
       { iconHandler() }
       <div className="flex flex-col items-center">
         <Typography className="text-sm md:text-base capitalize">{title == 'active_events' ? 'active events' : title }</Typography>
