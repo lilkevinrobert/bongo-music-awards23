@@ -1,31 +1,25 @@
 import { NavLink } from "react-router-dom";
 import Layout from "../../components/Layout/Layout.tsx";
 import { Breadcrumbs, Typography } from "@material-tailwind/react";
+import { AiFillHome } from "react-icons/ai";
 import ArtistsDataTable from "../../components/Table/ArtistsDataTable.tsx";
 
 const ArtistsPage = () => {
   return (
     <Layout>
-      <div className=" text-slate-900 py-2">
+      <div className=" text-slate-900 pb-2">
         <Breadcrumbs separator="-">
           <NavLink to="../dashboard" className="opacity-60 pr-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-            </svg>
+            <AiFillHome className="text-lg" />
           </NavLink>
           <NavLink to="../dashboard" className="opacity-60 px-2">
-            <span>Admin</span>
+            <Typography className="capitalize font-LatoRegular text-gray-500">home</Typography>
           </NavLink>
-          <span className="px-2">Artists</span>
+          <Typography className="px-2 font-LatoRegular text-gray-300">Artists</Typography>
         </Breadcrumbs>
       </div>
       <div className="text-slate-900 px-4">
-        <Typography variant="h3">Artists</Typography>
+        <Typography variant="h4">Artists</Typography>
         <ArtistsDataTable />
       </div>
     </Layout>

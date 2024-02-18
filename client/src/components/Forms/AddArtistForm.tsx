@@ -107,16 +107,16 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
 
                 <div className="mb-4 flex items-center gap-12 justify-between ">
                     <div className="w-1/2">
-                        <label htmlFor="firstname" className="block text-sm font-medium text-gray-700"> First
-                            Name</label>
+                        <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">
+                            First Name</label>
                         <input type="text" id="first_name" name="first_name" required value={formData.first_name}
-                               onChange={handleChange} className="mt-1 p-2 border rounded-md w-full"/>
+                               onChange={handleChange} className="mt-1 p-2 border font-LatoRegular rounded-md w-full"/>
                     </div>
 
                     <div className="w-1/2">
                         <label htmlFor="input2" className="block text-sm font-medium text-gray-600">Middle Name</label>
                         <input type="text" id="middle_name" name="middle_name" value={formData.middle_name}
-                               onChange={handleChange} className="mt-1 p-2 border rounded-md  w-full"/>
+                               onChange={handleChange} className="mt-1 p-2 border font-LatoRegular rounded-md  w-full"/>
                     </div>
                 </div>
 
@@ -136,7 +136,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.last_name}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
                     <div className="w-1/2">
@@ -153,7 +153,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.stage_name}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
                 </div>
@@ -174,7 +174,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.phone_number}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
 
@@ -193,7 +193,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
                 </div>
@@ -278,7 +278,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                               id="bio"
                               name="bio"
                               required
-                              className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                              className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
                     />
                 </div>
 
@@ -286,7 +286,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                     <div className="flex items-center gap-12 justify-between">
                         <div className="flex items-center gap-2">
                             <MdOutlineInfo className="w-5 h-5 text-red-500"/>
-                            <Typography className="text-red-500">
+                            <Typography className="text-red-500 font-LatoRegular">
                                 All fields are required
                             </Typography>
                         </div>

@@ -126,7 +126,6 @@ function App() {
                     path: "awards/",
                     element: (
                         <Suspense fallback={<Loading />}>
-                            {/*<AdminAwardsPage/>*/}
                             <p>awards</p>
                         </Suspense>
                     ),
