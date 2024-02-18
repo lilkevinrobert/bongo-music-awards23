@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import useFetch from "../../hooks/useFetch";
 import LoadingSummaryCard from "../../components/Loading/LoadingSummaryCard";
+import AdminHomeBarChart from "../../components/Charts/AdminHomeBarChart";
 
 interface SummaryCount {
   users: number;
@@ -55,6 +56,9 @@ const AdminDashboardPage = () => {
         </div>
 
         {/* Chart & Recents */}
+        <div className="grid grid-cols-2 my-4 h-96 bg-transparent">
+              <AdminHomeBarChart />
+        </div>
       </div>
     </Layout>
   );
