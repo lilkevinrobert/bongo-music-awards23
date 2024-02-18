@@ -2,7 +2,6 @@ import { Typography } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
 import SummaryCard from "../../components/Cards/SummaryCard";
 import useFetch from "../../hooks/useFetch";
-import { BsDatabaseDown } from "react-icons/bs";
 import LoadingSummaryCard from "../../components/Loading/LoadingSummaryCard";
 
 interface SummaryCount {
