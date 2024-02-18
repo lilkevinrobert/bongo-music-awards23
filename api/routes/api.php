@@ -6,6 +6,7 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\NominatorsController;
 use App\Http\Controllers\JudgeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,21 @@ use App\Http\Controllers\JudgeController;
 //
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+/**
+ * Admin dashboard, item counts
+ */
+Route::group(['prefix'=>'admin'], function () {
+
+
+    /**
+     * Admin dashboard, item counts
+     */
+    Route::group(['prefix' => 'counts'], function () {
+        Route::get('/',[AdminController::class,'counts']);
+    });
 });
 
 Route::group(['prefix'=>'events'], function () {
