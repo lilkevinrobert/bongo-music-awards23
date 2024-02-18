@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Typography } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
 import SummaryCard from "../../components/Cards/SummaryCard";
 
 const AdminDashboardPage = () => {
+  const [counts, setCounts] = useState<object>({})
   const dateToday = () => {
     const date = new Date();
     return date.toDateString()
   }
+
   return (
     <Layout>
       <div className="text-slate-950 px-4">
