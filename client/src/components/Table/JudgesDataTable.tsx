@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import {Button, Dialog, Input, Typography} from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
 import {
@@ -169,9 +170,11 @@ const JudgesDataTable: React.FC = () => {
               <td className="border px-4 py-2 capitalize">{row.phone}</td>
               <td className="border px-4 py-2 lowercase">{row.email}</td>
               <td className="border px-4 py-2 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
+                <NavLink to={row.id}>
                 <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                   <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
+                </NavLink>
                 <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
                   <MdOutlineDeleteOutline className="text-xl text-red-500 group-hover:text-white transition ease-in-out" />
                 </button>

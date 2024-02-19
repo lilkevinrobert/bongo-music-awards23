@@ -5,7 +5,7 @@ interface LayoutProps {
 }
 const Layout:React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="h-screen w-full bg-white flex flex-row">
+    <div className="min-h-screen min-w-screen bg-white flex flex-row">
       <AdminSidebar />
       <section className="w-full bg-transparent">{children}</section>
     </div>
