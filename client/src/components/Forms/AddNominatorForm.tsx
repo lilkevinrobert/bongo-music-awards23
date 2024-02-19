@@ -51,7 +51,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
     };
 
     return (
-        <Card className="mx-auto w-3/4  rounded-lg shadow-lg">
+        <Card className="mx-auto w-3/4  rounded-lg shadow-lg bg-gray-200 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300">
             <form className="w-full px-8 mx-auto my-6" onSubmit={handleSubmit}>
                 <div className="flex flex-row items-center justify-between my-4  uppercase font-semibold">
                     <Typography variant="h4">New Nominator</Typography>
@@ -64,12 +64,12 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                 <div className="mb-4 flex items-center gap-12 justify-between ">
                     <div className="w-1/2">
                         <label htmlFor="firstname" className="block text-sm font-medium text-gray-700"> First Name</label>
-                        <input type="text" id="firstName" name="firstName" required  value={formData.firstName} onChange={handleChange} className="mt-1 p-2 border rounded-md w-full"/>
+                        <input type="text" id="firstName" name="firstName" required  value={formData.firstName} onChange={handleChange} className="mt-1 p-2 border rounded-md w-full font-LatoRegular"/>
                     </div>
 
                     <div className="w-1/2">
                         <label htmlFor="input2" className="block text-sm font-medium text-gray-600">Middle Name</label>
-                        <input type="text" id="middleName" name="middleName" value={formData.middleName} onChange={handleChange} className="mt-1 p-2 border rounded-md  w-full"/>
+                        <input type="text" id="middleName" name="middleName" value={formData.middleName} onChange={handleChange} className="mt-1 p-2 border rounded-md  w-full font-LatoRegular"/>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.lastName}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
 
@@ -108,7 +108,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
                 </div>
@@ -131,7 +131,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.phone}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
 
@@ -149,7 +149,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.organization}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
                 </div>
@@ -170,7 +170,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.position}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
 
@@ -188,7 +188,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.expertise}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
                 </div>
@@ -240,7 +240,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.event_id}
 
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         >
                             <option value="">Select an event</option>
                             <option className="py-8"  value="1">Bongo Music Award 2024 </option>
@@ -264,7 +264,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.role}
 
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         >
                             <option value="">Select an role</option>
                             <option className="py-8"  value="1">Judge </option>
@@ -288,7 +288,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                               id="bio"
                               name="bio"
                               required
-                              className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                              className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                     />
                 </div>
 
@@ -297,7 +297,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                     <div className="flex items-center gap-12 justify-between">
                         <div className="flex items-center gap-2">
                             <MdOutlineInfo className="w-5 h-5 text-red-500" />
-                            <Typography className="text-red-500">
+                            <Typography className="text-red-500 font-LatoRegular">
                                 All fields are required
                             </Typography>
                         </div>

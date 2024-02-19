@@ -78,14 +78,17 @@ const NominatorsDataTable: React.FC = () => {
       <div className="flex flex-row items-center justify-between mb-4 w-full">
         <div className="flex flex-row items-center justify-center w-1/4">
           <Input
+          size="md"
             type="text"
             placeholder="Search nominator..."
+            variant="outlined"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="p-2 border rounded w-4/4"
             crossOrigin={undefined}
           />
           <Button
+          size="sm"
             className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
             onClick={() => setSearchTerm("")}
           >
@@ -94,6 +97,7 @@ const NominatorsDataTable: React.FC = () => {
           </Button>
         </div>
         <Button
+        size="sm"
             onClick={handleOpen}
             className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
           <MdOutlinePersonAdd className="w-5 h-5" />
@@ -114,7 +118,7 @@ const NominatorsDataTable: React.FC = () => {
 
       <table className="table-auto overflow-x-auto w-full bg-white border shadow">
         <thead>
-          <tr className="bg-gray-200 text-left">
+          <tr className="bg-gray-200 text-left font-LatoBold">
             <th className="hidden lg:table-cell px-4 py-2">SN</th>
             <th className="px-4 py-2">Full Name</th>
             <th className="px-4 py-2">Event</th>
@@ -124,7 +128,7 @@ const NominatorsDataTable: React.FC = () => {
             <th className="px-4 py-2 text-center"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="font-LatoRegular">
           {filteredData.map((row, index) => (
             <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
               <td className="hidden lg:table-cell border px-4 py-2 capitalize">{index+1}</td>
@@ -134,14 +138,14 @@ const NominatorsDataTable: React.FC = () => {
               <td className="border px-4 py-2 capitalize">{row.phone}</td>
               <td className="border px-4 py-2 lowercase">{row.email}</td>
               <td className="border px-4 py-2 opacity-80">
-              <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
+              {/* <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                   <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
-                </button>
+                </button> */}
                 <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
-                  <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
+                  <MdOutlineEdit className="text-lg text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
                 <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
-                  <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
+                  <MdOutlineDeleteOutline className="text-lg text-red-500 group-hover:text-white transition ease-in-out" />
                 </button>
               </td>
             </tr>
