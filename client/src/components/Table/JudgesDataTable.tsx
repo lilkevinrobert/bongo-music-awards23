@@ -55,14 +55,14 @@ const JudgesDataTable: React.FC = () => {
     },
     {
       id: "jjsu403b53b3cyqxc",
-      fullName: "Omary Ally Mwanga",
-      event: "marioo",
+      fullName: "Joshua Haroun",
+      event: "BMA 24",
       organization: "Bongo Music Awards",
       position: "Consultant",
       expertise: "some expertise",
       role: "Consultant",
-      phone: "+255 762 223 093",
-      email: "marioo@gmail.com",
+      phone: "+255 762 223 043",
+      email: "joshua@gmail.com",
     },
   ];
 
@@ -101,27 +101,32 @@ const JudgesDataTable: React.FC = () => {
       <div className="flex flex-row items-center justify-between mb-4 w-full">
         <div className="flex flex-row items-center justify-center w-1/4">
           <Input
+          size="md"
             type="text"
-            placeholder="Search artists..."
+            placeholder="Search judge..."
+            variant="outlined"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="p-2 border rounded w-4/4"
             crossOrigin={undefined}
           />
-          <Button
-            className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
-            onClick={() => setSearchTerm("")}
-          >
-            <GiMagicBroom className="w-5 h-5" />
-            Clear
-          </Button>
+         <Button
+              size="sm"
+              className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+              onClick={() => setSearchTerm("")}
+            >
+              <GiMagicBroom className="text-lg font-LatoRegular" />
+              Clear
+            </Button>
         </div>
         <Button
+            size="sm"
             onClick={handleOpen}
-            className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950">
-          <MdOutlinePersonAdd className="w-5 h-5" />
-          <Typography>Add</Typography>
-        </Button>
+            className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950"
+          >
+            <MdOutlinePersonAdd className="w-5 h-5" />
+            <Typography className=" font-LatoRegular">Add</Typography>
+          </Button>
 
         <Dialog
             size="xs"
@@ -138,7 +143,7 @@ const JudgesDataTable: React.FC = () => {
 
       <table className="table-auto w-full bg-white border shadow">
         <thead>
-          <tr className="bg-gray-200 text-left">
+          <tr className="bg-gray-200 text-left font-LatoBold">
             <th className="px-4 py-2">Full Name</th>
             <th className="px-4 py-2">Event</th>
             <th className="px-4 py-2">Organization</th>
@@ -147,12 +152,12 @@ const JudgesDataTable: React.FC = () => {
             <th className="px-4 py-2">Role</th>
             <th className="px-4 py-2">Phone</th>
             <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2 text-center">Action</th>
+            <th className="px-4 py-2 text-center w-1/12">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="font-LatoRegular">
           {filteredData.map((row, index) => (
-            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+            <tr key={index} className={`${index % 2 === 0 ? "bg-gray-100" : ""} group/actions`}>
               <td className="border px-4 py-2 capitalize">{row.fullName}</td>
               <td className="border px-4 py-2 capitalize">{row.event}</td>
               <td className="border px-4 py-2 capitalize">
@@ -163,15 +168,12 @@ const JudgesDataTable: React.FC = () => {
               <td className="border px-4 py-2 capitalize">{row.role}</td>
               <td className="border px-4 py-2 capitalize">{row.phone}</td>
               <td className="border px-4 py-2 lowercase">{row.email}</td>
-              <td className="border px-4 py-2 opacity-80">
-                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
-                  <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
-                </button>
+              <td className="border px-4 py-2 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
                 <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
-                  <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
+                  <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
                 <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
-                  <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
+                  <MdOutlineDeleteOutline className="text-xl text-red-500 group-hover:text-white transition ease-in-out" />
                 </button>
               </td>
             </tr>

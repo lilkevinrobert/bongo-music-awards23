@@ -10,7 +10,7 @@ const JudgesPage = () => {
     <Layout>
       <BreadcrumbLevel1 currentPage='judges' />
       <div className="text-slate-900 px-4">
-        <Typography variant="h3">Judges</Typography>
+        <Typography variant="h4">Judges</Typography>
         <JudgesDataTable />
       </div>
     </Layout>

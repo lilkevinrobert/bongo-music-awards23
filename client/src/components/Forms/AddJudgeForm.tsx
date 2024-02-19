@@ -21,7 +21,6 @@ interface FormProps {
 }
 
 const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
-
     const [formData, setFormData] = useState<FormData>({
         firstName: "",
         middleName: "",
@@ -65,12 +64,12 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                 <div className="mb-4 flex items-center gap-12 justify-between ">
                     <div className="w-1/2">
                         <label htmlFor="firstname" className="block text-sm font-medium text-gray-700"> First Name</label>
-                        <input type="text" id="firstName" name="firstName" required  value={formData.firstName} onChange={handleChange} className="mt-1 p-2 border rounded-md w-full"/>
+                        <input type="text" id="firstName" name="firstName" required  value={formData.firstName} onChange={handleChange} className="mt-1 p-2 border rounded-md w-full font-LatoRegular"/>
                     </div>
 
                     <div className="w-1/2">
                         <label htmlFor="input2" className="block text-sm font-medium text-gray-600">Middle Name</label>
-                        <input type="text" id="middleName" name="middleName" value={formData.middleName} onChange={handleChange} className="mt-1 p-2 border rounded-md  w-full"/>
+                        <input type="text" id="middleName" name="middleName" value={formData.middleName} onChange={handleChange} className="mt-1 p-2 border rounded-md  w-full font-LatoRegular"/>
                     </div>
                 </div>
 
@@ -91,7 +90,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.lastName}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
 
@@ -109,7 +108,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
                 </div>
@@ -132,7 +131,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.phone}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
 
@@ -150,7 +149,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.organization}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
                 </div>
@@ -171,7 +170,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.position}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
 
@@ -189,7 +188,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.expertise}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         />
                     </div>
                 </div>
@@ -241,7 +240,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.event_id}
   //
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         >
                             <option value="">Select an event</option>
                             <option className="py-8"  value="1">Bongo Music Award 2024 </option>
@@ -265,7 +264,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                             required
                             value={formData.role}
 
-                            className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                            className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                         >
                             <option value="">Select an role</option>
                             <option className="py-8"  value="1">Judge </option>
@@ -274,11 +273,6 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                         </select>
                     </div>
                 </div>
-
-
-
-
-
 
                 <div className="mb-4 w-full">
                     <label
@@ -292,7 +286,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                               id="bio"
                               name="bio"
                               required
-                              className="mt-1 p-2 w-full border rounded-md bg-transparent"
+                              className="mt-1 p-2 w-full border rounded-md bg-transparent font-LatoRegular"
                     />
                 </div>
 
@@ -301,7 +295,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
                     <div className="flex items-center gap-12 justify-between">
                         <div className="flex items-center gap-2">
                             <MdOutlineInfo className="w-5 h-5 text-red-500" />
-                            <Typography className="text-red-500">
+                            <Typography className="font-LatoRegular text-red-500">
                                 All fields are required
                             </Typography>
                         </div>

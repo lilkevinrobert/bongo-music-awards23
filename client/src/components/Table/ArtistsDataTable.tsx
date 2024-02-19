@@ -137,7 +137,7 @@ const ArtistsDataTable: React.FC = () => {
             <Input
               size="md"
               type="text"
-              placeholder="Search artists..."
+              placeholder="Search artist..."
               variant="outlined"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -196,9 +196,9 @@ const ArtistsDataTable: React.FC = () => {
               <th className="px-4 py-2 text-center">Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="font-LatoRegular">
             {filteredData.map((row, index) => (
-              <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+              <tr key={index} className={`${index % 2 === 0 ? "bg-gray-100" : ""} group/actions`}>
                 <td className="border px-4 py-2 capitalize">
                   {row.stage_name}
                 </td>
@@ -206,7 +206,7 @@ const ArtistsDataTable: React.FC = () => {
                 <td className="border px-4 py-2 capitalize">{row.genre}</td>
                 <td className="border px-4 py-2 capitalize">{row.phone}</td>
                 <td className="border px-4 py-2 lowercase">{row.email}</td>
-                <td className="border px-4 py-2 opacity-80">
+                <td className="border px-4 py-2 opacity-80 transition-all ease-linear group-hover/actions:block">
                   <NavLink to={`../artists/${row.stage_name}`}>
                     <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                       <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
