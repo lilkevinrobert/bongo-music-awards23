@@ -6,7 +6,6 @@ import {
   MdOutlinePersonAdd,
   MdOutlineEdit,
   MdOutlineDeleteOutline,
-  MdOutlineRemoveRedEye,
 } from "react-icons/md";
 import AddJudgeForm from "../Forms/AddJudgeForm.tsx";
 

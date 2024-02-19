@@ -5,7 +5,6 @@ import {
   MdOutlinePersonAdd,
   MdOutlineEdit,
   MdOutlineDeleteOutline,
-  MdOutlineRemoveRedEye,
 } from "react-icons/md";
 import AddNominatorForm from "../Forms/AddNominatorForm.tsx";
 
