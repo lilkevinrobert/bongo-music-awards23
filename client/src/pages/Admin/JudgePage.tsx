@@ -28,7 +28,7 @@ const JudgePage: React.FC = () => {
     expertise: "music industry",
     event: "bongo music awards 2024",
     role: "judge",
-    bio: "a very long bio here",
+    bio: "a seasoned music industry professional with over two decades of experience. As an A&R executive at Warner Chappell, he has discovered and nurtured emerging talent, helping artists reach their full potential. John's passion lies in bridging the gap between creativity and business acumen, ensuring artists thrive in a competitive landscape.",
   };
   return (
     <Layout>
@@ -134,7 +134,13 @@ const JudgePage: React.FC = () => {
                 />
               </div>
               <div className="py-2 mb-4">
-                <Button size="sm" fullWidth className="bg-green-500 capitalize transition ease-in-out hover:bg-green-700">saves changes</Button>
+                <Button
+                  size="sm"
+                  fullWidth
+                  className="bg-green-500 capitalize transition ease-in-out hover:bg-green-700"
+                >
+                  saves changes
+                </Button>
               </div>
             </div>
           </Card>
@@ -145,10 +151,17 @@ const JudgePage: React.FC = () => {
               <Typography>Bio</Typography>
               <textarea
                 className="rounded mt-4 border-slate-300 font-LatoRegular"
-                value={data.bio}
-              ></textarea>
-                 <div className="pt-4">
-                <Button size="sm" className="bg-green-500 float-right capitalize transition ease-in-out hover:bg-green-700">saves changes</Button>
+                rows={4} cols={50}
+              >
+                {data.bio}
+              </textarea>
+              <div className="pt-4">
+                <Button
+                  size="sm"
+                  className="bg-green-500 float-right capitalize transition ease-in-out hover:bg-green-700"
+                >
+                  saves changes
+                </Button>
               </div>
             </Card>
             <Card className="bg-white h-fit px-6 py-8 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 rounded-lg flex flex-col gap-4">
@@ -173,7 +186,12 @@ const JudgePage: React.FC = () => {
                 />
               </div>
               <div className="pt-4">
-                <Button size="sm" className="bg-green-500 float-right capitalize transition ease-in-out hover:bg-green-700">saves changes</Button>
+                <Button
+                  size="sm"
+                  className="bg-green-500 float-right capitalize transition ease-in-out hover:bg-green-700"
+                >
+                  saves changes
+                </Button>
               </div>
             </Card>
           </div>
