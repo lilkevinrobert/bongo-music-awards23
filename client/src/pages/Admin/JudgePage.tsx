@@ -1,7 +1,7 @@
 import React from "react";
-import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1";
 import Layout from "../../components/Layout/Layout";
 import { Button, Card, Typography } from "@material-tailwind/react";
+import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 
 interface judgeData {
   firstname: string;
@@ -32,7 +32,7 @@ const JudgePage: React.FC = () => {
   };
   return (
     <Layout>
-      <BreadcrumbLevel1 currentPage="judge" />
+      <BreadcrumbLevel2 previousPage="judges" currentPage="judge" />
       <div className="text-slate-900 px-4 h-auto">
         <Typography variant="h5" className="capitalize">
           edit judge details
