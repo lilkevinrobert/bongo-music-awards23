@@ -51,7 +51,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="firstname"
-                  className="h-10 border-slate-200 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.firstname}
                 />
               </div>
@@ -62,7 +62,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="firstname"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.firstname}
                 />
               </div>
@@ -71,7 +71,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="lastname"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.lastname}
                 />
               </div>
@@ -80,7 +80,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="role"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.role}
                 />
               </div>
@@ -109,7 +109,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="organization"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.organization}
                 />
               </div>
@@ -120,7 +120,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="position"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.position}
                 />
               </div>
@@ -129,7 +129,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="phone"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.phone}
                 />
               </div>
@@ -144,7 +144,7 @@ const JudgePage: React.FC = () => {
             <Card className="bg-white h-fit px-6 py-8 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-300 rounded-lg">
               <Typography>Bio</Typography>
               <textarea
-                className="rounded mt-4 font-LatoRegular"
+                className="rounded mt-4 border-slate-300 font-LatoRegular"
                 value={data.bio}
               ></textarea>
                  <div className="pt-4">
@@ -159,7 +159,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="expertise"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.expertise}
                 />
               </div>
@@ -168,7 +168,7 @@ const JudgePage: React.FC = () => {
                 <input
                   type="text"
                   name="event"
-                  className="h-10 rounded-lg font-LatoRegular pl-4"
+                  className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
                   value={data.event}
                 />
               </div>
