@@ -3,14 +3,14 @@ import { Button, Typography } from "@material-tailwind/react";
 
 const Banner = () => {
   return (
-    <div className="w-full h-screen bg-gradient-to-r from-yellow-200 to-yellow-100 font-LatoBold p-16 md:p-32 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-0 md:justify-between">
-      <div className="flex flex-col items-center justify-center h-1/2">
-        <h2 className="text-slate-900 text-3xl md:text-6xl font-LatoRegular mb-2">
+    <div className="w-full h-screen bg-gradient-to-r from-yellow-200 to-yellow-100 font-LatoBold p-16 md:p-32 flex flex-col md:flex-row items-center justify-center gap-0 md:gap-0 md:justify-between">
+      <div className="flex flex-col items-center justify-center bg-transparent h-fit">
+        <Typography variant="h2" className="text-slate-900 text-xl md:text-6xl font-LatoBold md:font-LatoRegular mb-2">
           Bongo Music Awards 2023
-        </h2>
-        <h1 className="text-slate-900 text-6xl md:text-8xl font-LatoBold capitalize">
+        </Typography>
+        <Typography variant="h3" className="text-slate-900 text-4xl md:text-6xl lg:text-8xl font-LatoBold capitalize">
           Hii Imeenda!
-        </h1>
+        </Typography>
         <div className="my-8">
           <Button
             type="button"
@@ -21,7 +21,7 @@ const Banner = () => {
           </Button>
         </div>
       </div>
-      <div className="h-1/2">
+      <div className="h-fit bg-transparent">
         <img
           src={SampleImage}
           alt="event artwork"
