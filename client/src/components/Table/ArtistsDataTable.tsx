@@ -9,7 +9,6 @@ import {
 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import AddArtistForm from "../Forms/AddArtistForm";
-import axios from "../../api/axios.ts";
 import EditArtist from "../Forms/EditArtist.tsx";
 import useFetch from "../../hooks/useFetch.ts";
 import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
