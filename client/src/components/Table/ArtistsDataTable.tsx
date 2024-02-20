@@ -21,6 +21,7 @@ interface DataRow {
   genre: string;
   phone: string;
   email: string;
+  user_id: string;
 }
 
 interface ArtistsData {
@@ -145,7 +146,7 @@ const ArtistsDataTable: React.FC = () => {
                   <td className="border px-4 py-2 capitalize">{row.phone}</td>
                   <td className="border px-4 py-2 lowercase">{row.email}</td>
                   <td className="border px-4 py-2 opacity-80 transition-all ease-linear group-hover/actions:block">
-                    <NavLink to={`../artists/${row.stage_name}`}>
+                    <NavLink to={`../artists/${row.user_id}`}>
                       <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                         <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
                       </button>
