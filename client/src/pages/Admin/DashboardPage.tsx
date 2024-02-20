@@ -48,10 +48,19 @@ const AdminDashboardPage = () => {
             <LoadingSummaryCard />
             </>
           ) : (
-            (summaryCountError == null && summaryCountData !== null) &&
+            (summaryCountError == null && summaryCountData !== null) ?
             Object.keys(summaryCountData).map((key) => (
               <SummaryCard key={key} count={summaryCountData[key as keyof SummaryCount]} title={key} type={key} />
-            ))
+            )) : (
+              <>
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            <LoadingSummaryCard />
+            </>
+            )
           )}
         </div>
 
