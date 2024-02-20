@@ -18,14 +18,13 @@ import Errors from "../Errors/Errors.tsx";
 
 interface DataRow {
   stage_name: string;
-  fullname: string;
   genre: string;
   phone: string;
   email: string;
 }
 
 interface ArtistsData {
-  data: []
+  data: [];
 }
 interface FetchResult {
   data: ArtistsData | null;
@@ -35,7 +34,6 @@ interface FetchResult {
 
 const ArtistsDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -54,26 +52,24 @@ const ArtistsDataTable: React.FC = () => {
 
   useEffect(() => {
     // Filter data based on the search term
-    // const filtered = data.filter((row) => {
-    //     return Object.values(row).some((value) =>
-    //         value.toLowerCase().includes(searchTerm.toLowerCase())
-    //     );
-    // });
-    console.log(data);
-    console.log(artistsDataError);
-    //setFilteredData(filtered);
-  }, [searchTerm, data]);
+    const filtered = artistsData?.data.filter((row) => {
+      return Object.values(row).some((value) =>
+        typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }) ?? [];
+    setFilteredData(filtered)
+  }, [searchTerm, artistsData]);
 
   return (
     <>
       {artistsDataLoading ? (
-         <LoadingTable />
-      ) : artistsDataError  ? (
+        <LoadingTable />
+      ) : artistsDataError ? (
         <Errors errorName={artistsDataError?.name} />
       ) : artistsData?.data.length === 0 ? (
         <AddEmptyState itemName="artist" />
-        ) : (
-          <div className="mx-auto py-4">
+      ) : (
+        <div className="mx-auto py-4">
           <div className="flex flex-row items-center justify-between mb-4 w-full">
             <div className="flex flex-row items-center justify-between w-auto">
               <input
@@ -128,11 +124,10 @@ const ArtistsDataTable: React.FC = () => {
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
                 <th className="px-4 py-2">Stage Name</th>
-                <th className="px-4 py-2">Full Name</th>
                 <th className="px-4 py-2">Genre</th>
                 <th className="px-4 py-2">Phone</th>
                 <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2 text-center">Action</th>
+                <th className="px-4 py-2 text-center w-40"></th>
               </tr>
             </thead>
             <tbody className="font-LatoRegular text-sm">
@@ -145,9 +140,6 @@ const ArtistsDataTable: React.FC = () => {
                 >
                   <td className="border px-4 py-2 capitalize">
                     {row.stage_name}
-                  </td>
-                  <td className="border px-4 py-2 capitalize">
-                    {row.fullname}
                   </td>
                   <td className="border px-4 py-2 capitalize">{row.genre}</td>
                   <td className="border px-4 py-2 capitalize">{row.phone}</td>
