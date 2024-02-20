@@ -151,7 +151,7 @@ const JudgesDataTable: React.FC = () => {
             <th className="px-4 py-2 text-center w-1/12">Action</th>
           </tr>
         </thead>
-        <tbody className="font-LatoRegular">
+        <tbody className="font-LatoRegular text-sm">
           {filteredData.map((row, index) => (
             <tr
               key={index}

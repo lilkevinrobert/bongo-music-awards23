@@ -125,7 +125,7 @@ const NominatorsDataTable: React.FC = () => {
             <th className="px-4 py-2 text-center"></th>
           </tr>
         </thead>
-        <tbody className="font-LatoRegular">
+        <tbody className="font-LatoRegular text-sm">
           {filteredData.map((row, index) => (
             <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
               <td className="hidden lg:table-cell border px-4 py-2 capitalize">{index+1}</td>

@@ -193,7 +193,7 @@ const ArtistsDataTable: React.FC = () => {
               <th className="px-4 py-2 text-center">Action</th>
             </tr>
           </thead>
-          <tbody className="font-LatoRegular">
+          <tbody className="font-LatoRegular text-sm">
             {filteredData.map((row, index) => (
               <tr key={index} className={`${index % 2 === 0 ? "bg-gray-100" : ""} group/actions`}>
                 <td className="border px-4 py-2 capitalize">
