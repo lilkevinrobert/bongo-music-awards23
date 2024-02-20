@@ -1,4 +1,4 @@
-import {Card, Typography} from "@material-tailwind/react";
+import {Button, Card, Typography} from "@material-tailwind/react";
 import React, {useState, ChangeEvent, FormEvent} from "react";
 import {MdClose, MdOutlineInfo} from "react-icons/md";
 import axios from "../../api/axios.ts";
@@ -74,49 +74,29 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
         console.log("Form submitted:", formData);
     };
     return (
-
-
-        <Card className="mx-auto w-3/4  rounded-lg shadow-lg">
-            <form className="w-full px-8 mx-auto my-6" onSubmit={handleSubmit}>
-                <div className="flex flex-row items-center justify-between my-4  uppercase font-semibold">
-                    <Typography variant="h4">New Artist</Typography>
+        <Card className="mx-auto w-3/4  rounded-md shadow-lg bg-white border border-gray-300">
+            <form className="w-full px-8 mx-auto my-8" onSubmit={handleSubmit}>
+                <div className="flex flex-row items-center justify-between mb-4 uppercase font-semibold">
+                    <Typography variant="h4" className="text-2xl">New Artist</Typography>
                     <MdClose
-                        className="w-6 h-6 cursor-pointer rounded-full transition ease-in-out hover:bg-slate-950 hover:text-white"
+                        className="text-2xl cursor-pointer rounded-full transition ease-in-out hover:bg-slate-950 hover:text-white"
                         onClick={closeModal}
                     />
                 </div>
 
-
-                {/*        <div className="mb-4 w-full">
-          <label
-            htmlFor="firstName"
-            className="block text-sm font-medium text-gray-700">
-            First Name
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            required
-            value={formData.firstName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border rounded-md bg-transparent"
-          />
-        </div>*/}
-
-
                 <div className="mb-4 flex items-center gap-12 justify-between ">
                     <div className="w-1/2">
-                        <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="firstname" className="block text-sm font-LatoBold text-gray-700">
                             First Name</label>
                         <input type="text" id="first_name" name="first_name" required value={formData.first_name}
-                               onChange={handleChange} className="mt-1 p-2 border font-LatoRegular rounded-md w-full"/>
+                               onChange={handleChange}
+                               className="h-10 mt-1 p-2 pl-4 border border-gray-400 font-LatoRegular rounded-md w-full"/>
                     </div>
 
                     <div className="w-1/2">
-                        <label htmlFor="input2" className="block text-sm font-medium text-gray-600">Middle Name</label>
+                        <label htmlFor="input2" className="block text-sm font-LatoBold text-gray-600">Middle Name</label>
                         <input type="text" id="middle_name" name="middle_name" value={formData.middle_name}
-                               onChange={handleChange} className="mt-1 p-2 border font-LatoRegular rounded-md  w-full"/>
+                               onChange={handleChange} className="h-10 mt-1 p-2 pl-4 border border-gray-400 font-LatoRegular rounded-md  w-full"/>
                     </div>
                 </div>
 
@@ -125,7 +105,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                     <div className=" w-1/2">
                         <label
                             htmlFor="last_name"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-LatoBold text-gray-700"
                         >
                             Last Name
                         </label>
@@ -136,13 +116,13 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.last_name}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
+                            className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
                     <div className="w-1/2">
                         <label
                             htmlFor="stage_name"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-LatoBold text-gray-700"
                         >
                             Stage Name
                         </label>
@@ -153,7 +133,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.stage_name}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
+                            className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
                 </div>
@@ -163,7 +143,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                     <div className="mb-4 w-1/2">
                         <label
                             htmlFor="phone"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-LatoBold text-gray-700"
                         >
                             Phone
                         </label>
@@ -174,7 +154,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.phone_number}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
+                            className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
 
@@ -182,7 +162,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                     <div className="mb-4 w-1/2">
                         <label
                             htmlFor="email"
-                            className="block text-sm font-medium text-gray-700"
+                            className="block text-sm font-LatoBold text-gray-700"
                         >
                             Email
                         </label>
@@ -193,83 +173,15 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
+                            className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
                         />
                     </div>
                 </div>
 
-
-                {/*        <div className="mb-4 w-full">
-          <label
-            htmlFor="middleName"
-            className="block text-sm font-medium text-gray-700">
-            Middle Name
-          </label>
-          <input
-            type="text"
-            id="middleName"
-            name="middleName"
-            required
-            value={formData.middleName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border rounded-md bg-transparent"
-          />
-        </div>*/}
-                {/*<div className="mb-4 w-full">
-          <label
-            htmlFor="lastName"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Last Name
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            required
-            value={formData.lastName}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border rounded-md bg-transparent"
-          />
-        </div>*/}
-                {/*<div className="mb-4 w-full">*/}
-                {/*  <label*/}
-                {/*    htmlFor="stageName"*/}
-                {/*    className="block text-sm font-medium text-gray-700"*/}
-                {/*  >*/}
-                {/*    Stage Name*/}
-                {/*  </label>*/}
-                {/*  <input*/}
-                {/*    type="text"*/}
-                {/*    id="stageName"*/}
-                {/*    name="stageName"*/}
-                {/*    required*/}
-                {/*    value={formData.stageName}*/}
-                {/*    onChange={handleChange}*/}
-                {/*    className="mt-1 p-2 w-full border rounded-md bg-transparent"*/}
-                {/*  />*/}
-                {/*</div>*/}
-                {/*        <div className="mb-4 w-full">
-          <label
-            htmlFor="phone"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            required
-            value={formData.phone}
-            onChange={handleChange}
-            className="mt-1 p-2 w-full border rounded-md bg-transparent"
-          />
-        </div>*/}
                 <div className="mb-4 w-full">
                     <label
                         htmlFor="bio"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-LatoBold text-gray-700"
                     >
                         Biography
                     </label>
@@ -278,7 +190,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                               id="bio"
                               name="bio"
                               required
-                              className="mt-1 p-2 w-full border font-LatoRegular rounded-md bg-transparent"
+                              className="mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
                     />
                 </div>
 
@@ -291,13 +203,21 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                             </Typography>
                         </div>
 
-                        <div>
-                            <button
+                        <div className="flex flex-row items-center gap-4">
+                        <Button
+                                type="button"
+                                variant="outlined"
+                                onClick={closeModal}
+                                className="px-4 py-2 border border-slate-300 border-transparent bg-yellow-100 text-yellow-500 font-LatoBold rounded-md hover:bg-slate-900 hover:text-yellow-300 transition-all ease-in-out"
+                            >
+                                Cancel
+                            </Button>
+                            <Button
                                 type="submit"
                                 className="px-4 py-2 bg-yellow-300 text-slate-950 font-LatoBold rounded-md hover:bg-slate-900 hover:text-yellow-300 transition-all ease-in-out"
                             >
                                 Submit
-                            </button>
+                            </Button>
                         </div>
                     </div>
 

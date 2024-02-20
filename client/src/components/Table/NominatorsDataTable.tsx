@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Button, Dialog, Input, Typography} from "@material-tailwind/react";
+import {Button, Dialog, Typography} from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
 import {
   MdOutlinePersonAdd,
@@ -100,7 +100,8 @@ const NominatorsDataTable: React.FC = () => {
           <MdOutlinePersonAdd className="text-lg" />
           <Typography className=" font-LatoRegular">Add</Typography>
         </Button>
-
+      </div>
+      {/* Add Nominator form */}
         <Dialog
             size="xs"
             open={open}
@@ -111,7 +112,6 @@ const NominatorsDataTable: React.FC = () => {
             <AddNominatorForm closeModal={handleOpen} />
           </div>
         </Dialog>
-      </div>
 
       <table className="table-auto overflow-x-auto w-full bg-white border shadow">
         <thead>

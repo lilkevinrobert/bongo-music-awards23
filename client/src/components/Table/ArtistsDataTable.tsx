@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Dialog, Input, Typography } from "@material-tailwind/react";
+import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
 import {
   MdOutlinePersonAdd,
