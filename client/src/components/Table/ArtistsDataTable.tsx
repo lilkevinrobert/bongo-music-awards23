@@ -13,6 +13,7 @@ import EditArtist from "../Forms/EditArtist.tsx";
 import useFetch from "../../hooks/useFetch.ts";
 import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
 import LoadingTable from "../Loading/LoadingTable.tsx";
+import Errors from "../Errors/Errors.tsx";
 // import EditArtist from "../Forms/EditArtist.tsx";
 
 interface DataRow {
@@ -68,7 +69,7 @@ const ArtistsDataTable: React.FC = () => {
       {artistsDataLoading ? (
          <LoadingTable />
       ) : artistsDataError  ? (
-        <p>network error</p>
+        <Errors errorName={artistsDataError?.name} />
       ) : artistsData?.data.length === 0 ? (
         <AddEmptyState itemName="artist" />
         ) : (

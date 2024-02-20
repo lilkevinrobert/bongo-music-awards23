@@ -82,11 +82,11 @@ const JudgesDataTable: React.FC = () => {
 
   // Get data
   const {
-    data: artistsData,
-    loading: artistsDataLoading,
-    error: artistsDataError,
+    data: judgesData,
+    loading: judgesDataLoading,
+    error: judgesDataError,
   }: FetchResult = useFetch(`${BASE_URL}/judges`);
-  console.log(artistsDataError?.name);
+  console.log(judgesDataError?.name);
 
   useEffect(() => {
     // Assuming fetchData is an async function fetching data from the API - USE THIS APPROACH!!
@@ -120,11 +120,11 @@ const JudgesDataTable: React.FC = () => {
 
   return (
     <>
-      {artistsDataLoading ? (
+      {judgesDataLoading ? (
         <LoadingTable />
-      ) : artistsDataError ? (
-        <Errors errorName={ artistsDataError?.name } />
-      ) : artistsData?.data.length === 0 ? (
+      ) : judgesDataError ? (
+        <Errors errorName={ judgesDataError?.name } />
+      ) : judgesData?.data.length === 0 ? (
         <AddEmptyState itemName="artist" />
       ) : (
         <div className="mx-auto py-4">

@@ -6,7 +6,11 @@ import {
   MdOutlineEdit,
   MdOutlineDeleteOutline,
 } from "react-icons/md";
+import useFetch from "../../hooks/useFetch.ts";
 import AddNominatorForm from "../Forms/AddNominatorForm.tsx";
+import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
+import Errors from "../Errors/Errors.tsx";
+import LoadingTable from "../Loading/LoadingTable.tsx";
 
 interface DataRow {
   fullName: string;
@@ -17,6 +21,7 @@ interface DataRow {
 }
 
 const NominatorsDataTable: React.FC = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,6 +46,23 @@ const NominatorsDataTable: React.FC = () => {
       email: "banza@gmail.com",
     },
   ];
+
+  interface NominatorsData {
+    data: [];
+  }
+  interface FetchResult {
+    data: NominatorsData | null;
+    loading: boolean;
+    error: Error | null;
+  }
+
+    // Get data
+    const {
+      data: nominatorsData,
+      loading: nominatorsDataLoading,
+      error: nominatorsDataError,
+    }: FetchResult = useFetch(`${BASE_URL}/nominators`);
+    console.log(nominatorsDataError?.name);
 
   useEffect(() => {
     // Assuming fetchData is an async function fetching data from the API - USE THIS APPROACH!!
@@ -73,6 +95,14 @@ const NominatorsDataTable: React.FC = () => {
   }, [searchTerm, data]);
 
   return (
+    <>
+     {nominatorsDataLoading ? (
+        <LoadingTable />
+      ) : nominatorsDataError ? (
+        <Errors errorName={ nominatorsDataError?.name } />
+      ) : nominatorsData?.data.length === 0 ? (
+        <AddEmptyState itemName="nominator" />
+      ) : (
     <div className="mx-auto py-4">
       <div className="flex flex-row items-center justify-between mb-4 w-full">
       <div className="flex flex-row items-center justify-between w-auto">
@@ -150,6 +180,8 @@ const NominatorsDataTable: React.FC = () => {
         </tbody>
       </table>
     </div>
+    )}
+    </>
   );
 };
 
