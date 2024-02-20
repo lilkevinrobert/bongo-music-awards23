@@ -133,34 +133,31 @@ const ArtistsDataTable: React.FC = () => {
     <>
       <div className="mx-auto py-4">
         <div className="flex flex-row items-center justify-between mb-4 w-full">
-          <div className="flex flex-row items-center justify-center w-1/4">
-            <Input
-              size="md"
-              type="text"
-              placeholder="Search artist..."
-              variant="outlined"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-4 border-none rounded w-4/4"
-              crossOrigin={undefined}
-            />
-            <Button
-              size="sm"
-              className="ml-2 bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
-              onClick={() => setSearchTerm("")}
-            >
-              <GiMagicBroom className="text-lg font-LatoRegular" />
-              Clear
-            </Button>
-          </div>
+        <div className="flex flex-row items-center justify-between w-auto">
+          <input
+            type="text"
+            placeholder="Search artist..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="p-4 border border-gray-500 rounded-md w-4/4 h-8 font-LatoRegular"
+          />
           <Button
             size="sm"
-            onClick={handleOpen}
-            className="flex items-center justify-center gap-2 bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950"
+            className="ml-2 rounded-md bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+            onClick={() => setSearchTerm("")}
           >
-            <MdOutlinePersonAdd className="w-5 h-5" />
-            <Typography className=" font-LatoRegular">Add</Typography>
+            <GiMagicBroom className="text-lg font-LatoRegular" />
+            Clear
           </Button>
+        </div>
+        <Button
+          size="sm"
+          onClick={handleOpen}
+          className="flex items-center justify-center gap-2 rounded-md bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950"
+        >
+          <MdOutlinePersonAdd className="text-lg" />
+          <Typography className=" font-LatoRegular">Add</Typography>
+        </Button>
           <Dialog
             size="xs"
             open={open}
