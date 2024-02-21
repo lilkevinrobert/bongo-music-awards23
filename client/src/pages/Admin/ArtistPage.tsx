@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, Dialog, Typography } from "@material-tailwind/react";
 import Layout from "../../components/Layout/Layout";
 import { MdOutlineModeEdit } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 import TopographyBackground from "/topography.svg";
 import EditArtist from "../../components/Forms/EditArtist";
@@ -63,14 +63,14 @@ const ArtistPage: React.FC = () => {
     singles: [],
   };
 
-  useEffect(() => {
-    // Get data about the artist here..
-    const fetchData = () => {
-      setData(testData);
-    };
+  // useEffect(() => {
+  //   // Get data about the artist here..
+  //   const fetchData = () => {
+  //     setData(testData);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Layout>
