@@ -30,10 +30,10 @@ export interface ArtistData {
 }
 
 const ArtistPage: React.FC = () => {
-  const [data, setData] = useState<ArtistData>();
+  // const [data, setData] = useState<ArtistData>();
 
   // Form State
-  const [openEdit, setOpenEdit] = React.useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   // Form handling
   const handleEdit = () => setOpenEdit((c) => !c);
