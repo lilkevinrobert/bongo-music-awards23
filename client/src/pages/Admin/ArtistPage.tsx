@@ -118,7 +118,7 @@ const ArtistPage: React.FC = () => {
                     name="profile_pic"
                     className="h-10 rounded-lg bg-yellow-100 font-LatoRegular"
                   />
-                  <Button size="md" className=" font-LatoRegular capitalize">
+                  <Button size="md" className="capitalize transition ease-in-out hover:bg-slate-800">
                     Save
                   </Button>
                 </div>
@@ -170,7 +170,7 @@ const ArtistPage: React.FC = () => {
           <Card className="bg-white col-span-2 h-fit px-8 py-8 rounded-lg shadow-md">
               <Typography>Bio</Typography>
               <textarea
-                className="rounded mt-4 border-slate-300 font-LatoRegular"
+                className="rounded mt-4 border-slate-200 font-LatoRegular"
                 rows={4} cols={50}
               >
                 jjksdjks sknasankjn kana jknagklk nakkjkkjr jd ajhriij eij eijoajosij ij ajhfhrha nksnds. hdfshi, jksduhdskj kjweui uihfa674 773j
@@ -178,7 +178,7 @@ const ArtistPage: React.FC = () => {
               <div className="pt-4">
                 <Button
                   size="sm"
-                  className="float-right capitalize transition ease-in-out hover:bg-green-700"
+                  className="float-right capitalize transition ease-in-out hover:bg-slate-800"
                 >
                   saves changes
                 </Button>
