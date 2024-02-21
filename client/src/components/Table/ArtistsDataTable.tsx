@@ -38,7 +38,7 @@ const ArtistsDataTable: React.FC = () => {
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Add Artist Form Handling
+  // Artist Form Handling
   const [open, setOpen] = React.useState(false);
   const [editOpen, serEditOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);

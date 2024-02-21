@@ -225,7 +225,7 @@ const AddArtistForm: React.FC<FormProps> = ({closeModal}) => {
                 <Toaster position="top-center"/>
 
                 {loading && (
-                    <div className="flex items-center justify-center mt-4">
+                    <div className="flex items-center justify-center  mt-4">
                         <PropagateLoader color="#36d7b7"/>
                     </div>
                 )}
