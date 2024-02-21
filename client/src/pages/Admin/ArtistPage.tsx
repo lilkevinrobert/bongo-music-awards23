@@ -62,6 +62,7 @@ const ArtistPage: React.FC = () => {
     albums: [],
     singles: [],
   };
+  console.log(testData)
 
   // useEffect(() => {
   //   // Get data about the artist here..
