@@ -17,7 +17,11 @@ import Errors from "../Errors/Errors.tsx";
 // import EditArtist from "../Forms/EditArtist.tsx";
 
 interface DataRow {
+  id: number;
   stage_name: string;
+  first_name: string;
+  middle_name: string | null;
+  last_name: string;
   genre: string;
   phone: string;
   email: string;
@@ -50,6 +54,7 @@ const ArtistsDataTable: React.FC = () => {
     loading: artistsDataLoading,
     error: artistsDataError,
   }: FetchResult = useFetch(`${BASE_URL}/artists`);
+  console.log(artistsData)
 
   useEffect(() => {
     // Filter data based on the search term
@@ -125,6 +130,7 @@ const ArtistsDataTable: React.FC = () => {
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
                 <th className="px-4 py-2">Stage Name</th>
+                <th className="px-4 py-2">Full Name</th>
                 <th className="px-4 py-2">Genre</th>
                 <th className="px-4 py-2">Phone</th>
                 <th className="px-4 py-2">Email</th>
@@ -141,6 +147,9 @@ const ArtistsDataTable: React.FC = () => {
                 >
                   <td className="border px-4 py-2 capitalize">
                     {row.stage_name}
+                  </td>
+                  <td className="border px-4 py-2 capitalize">
+                    {`${row.first_name} ${row.middle_name != null ? row.middle_name : "" } ${row.last_name}`}
                   </td>
                   <td className="border px-4 py-2 capitalize">{row.genre}</td>
                   <td className="border px-4 py-2 capitalize">{row.phone}</td>
