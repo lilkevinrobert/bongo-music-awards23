@@ -22,9 +22,9 @@ const AdminSidebar = () => {
         data-te-sidenav-position="absolute"
         data-te-sidenav-accordion="true"
       >
-        <a
+        <NavLink
           className="mb-3 flex items-center justify-center border-b-2 border-solid border-gray-100 py-6 outline-none"
-          href="#!"
+          to="/admin/dashboard"
           data-te-ripple-init
           data-te-ripple-color="primary"
         >
@@ -35,7 +35,7 @@ const AdminSidebar = () => {
           >
             bongo <span className="text-yellow-400">music awards</span>
           </Typography>
-        </a>
+        </NavLink>
         <ul
           className="relative m-0 list-none px-[0.2rem] pb-12"
           data-te-sidenav-menu-ref

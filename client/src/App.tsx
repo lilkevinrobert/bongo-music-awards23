@@ -72,6 +72,7 @@ import NominatorsPage from "./pages/Admin/NominatorsPage.tsx";
 import JudgesPage from "./pages/Admin/JudgesPage.tsx";
 import ArtistPage from "./pages/Admin/ArtistPage.tsx";
 import ArtistDashboardPage from "./pages/artist/ArtistDashboardPage.tsx";
+import JudgePage from "./pages/Admin/JudgePage.tsx";
 
 
 // Lazy-loaded components
@@ -183,6 +184,14 @@ function App() {
                     element: (
                         <Suspense fallback={<Loading />}>
                             <JudgesPage />
+                        </Suspense>
+                    )
+                },
+                {
+                    path: "judges/:judgeId",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <JudgePage />
                         </Suspense>
                     )
                 },

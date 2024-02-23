@@ -1,19 +1,20 @@
 import {Dropdown, Navbar} from "flowbite-react";
-import {Button} from "@material-tailwind/react";
+import {Button, Typography} from "@material-tailwind/react";
 import {NavLink} from "react-router-dom";
 
 const NavBar = () => {
     return (
         <Navbar fluid className="font-LatoBold">
             <Navbar.Brand href="../">
-                <h3 className="self-center whitespace-nowrap text-xl text-slate-900 dark:text-white">
+                <Typography variant="h3" className="self-center whitespace-nowrap text-base md:text-lg lg:text-xl text-slate-900 dark:text-white">
                     Bongo <span className="text-yellow-400"> Music Awards</span>
-                </h3>
+                </Typography>
             </Navbar.Brand>
             <div className="flex md:order-2">
                 <NavLink to="../../login">
                     <Button
                         type="button"
+                        size="md"
                         className="bg-yellow-400 hover:bg-slate-900 transition ease-in-out rounded-3xl"
                     >
                         Login
@@ -22,10 +23,6 @@ const NavBar = () => {
                 <Navbar.Toggle/>
             </div>
             <Navbar.Collapse>
-                {/*<Navbar.Link active href="./" className="text-yellow-400">*/}
-                {/*    <p>Home</p>*/}
-                {/*</Navbar.Link>*/}
-
                 <Navbar.Link>
                     <Dropdown label="Genres & Categories" inline>
                         <Dropdown.Item href="./">Bongo flavor</Dropdown.Item>
