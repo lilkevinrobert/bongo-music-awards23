@@ -245,13 +245,6 @@ function App() {
         },
     ]);
 
-    // return (
-    //     <>
-    //       <RouterProvider router={router} />
-    //     </>
-    // );
-
-
     return (
         <AuthProvider>
             <>
