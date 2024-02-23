@@ -30,18 +30,26 @@ class Judge extends Model
 
     public static function validate($input, $id = null)
     {
-        $rules = [ # place-holder for validation rules
+        $rules = [
+            # place-holder for user validation rules
+            'first_name' => ['required', 'min:2', 'max:50'],
+            'middle_name' => ['nullable'],
+            'last_name' => ['required', 'min:2', 'max:50'],
+            'email' => ['required','email'],
+
+            # place-holder for judge validation rules
             'organization' => ['required', 'min:2', 'max:50'],
             'bio' => ['required',],
             'phone_number' => ['required'],
             'position' => ['required'],
             'expertise' => ['required'],
-            'role' => ['required'],
+            'event_id' => ['required']
         ];
 
         $nice_names = [ # Friendly names
             'bio' => 'Judge biography',
             'phone_number' => 'Phone number',
+            'event_id' => 'event id'
         ];
 
         # validation code
