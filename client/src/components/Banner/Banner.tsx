@@ -1,6 +1,5 @@
 import AnimatedImage from "../Animated/AnimatedImage";
 import AnimatedText from "../Animated/AnimatedText";
-import AnimatedTextCharacter from "../Animated/AnimatedTextCharacter";
 import SampleImage from "/vite.svg";
 import { Button, Typography } from "@material-tailwind/react";
 
