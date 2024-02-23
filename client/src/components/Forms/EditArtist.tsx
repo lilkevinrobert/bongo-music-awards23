@@ -190,12 +190,12 @@ const EditArtist: React.FC<FormProps> = ({closeModal}) => {
                 <div className="mt-4">
                     <div className="flex items-center gap-12 justify-between">
                         <div className="flex items-center gap-2">
-                            <MdOutlineInfo className="w-5 h-5 text-red-500"/>
-                            <Typography className="text-red-500 font-LatoRegular">
+                            <MdOutlineInfo className="w-5 h-5 text-transparent md:text-red-500"/>
+                            <Typography className="text-transparent md:text-red-500 font-LatoRegular">
                                 All fields are required
                             </Typography>
                         </div>
-                        <div className="flex flex-row items-center gap-2">
+                        <div className="flex flex-row items-center justify-center gap-2">
                             <Button
                                 size="sm"
                                 type="button"

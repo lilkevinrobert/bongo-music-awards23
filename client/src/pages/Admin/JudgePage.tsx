@@ -88,7 +88,7 @@ const JudgePage: React.FC = () => {
                 <Button
                   size="sm"
                   fullWidth
-                  className="bg-green-500 capitalize transition ease-in-out hover:bg-green-700"
+                  className="bg-yellow-500 capitalize transition ease-in-out hover:bg-yellow-700"
                 >
                   saves changes
                 </Button>
@@ -137,7 +137,7 @@ const JudgePage: React.FC = () => {
                 <Button
                   size="sm"
                   fullWidth
-                  className="bg-green-500 capitalize transition ease-in-out hover:bg-green-700"
+                  className="bg-yellow-500 capitalize transition ease-in-out hover:bg-yellow-700"
                 >
                   saves changes
                 </Button>
@@ -158,7 +158,7 @@ const JudgePage: React.FC = () => {
               <div className="pt-4">
                 <Button
                   size="sm"
-                  className="bg-green-500 float-right capitalize transition ease-in-out hover:bg-green-700"
+                  className="bg-yellow-500 float-right capitalize transition ease-in-out hover:bg-yellow-700"
                 >
                   saves changes
                 </Button>
@@ -188,7 +188,7 @@ const JudgePage: React.FC = () => {
               <div className="pt-4">
                 <Button
                   size="sm"
-                  className="bg-green-500 float-right capitalize transition ease-in-out hover:bg-green-700"
+                  className="bg-yellow-500 float-right capitalize transition ease-in-out hover:bg-yellow-700"
                 >
                   saves changes
                 </Button>
