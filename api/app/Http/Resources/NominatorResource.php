@@ -32,7 +32,7 @@ class NominatorResource extends JsonResource
     private function getFullName($user_id)
     {
         $names = User::where('id', $user_id)
-            ->select(['firstname', 'middlename', 'lastname'])
+            ->select(['first_name', 'middle_name', 'last_name'])
             ->limit(1)
             ->first();
         return $names->full_name;

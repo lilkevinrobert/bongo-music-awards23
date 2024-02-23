@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class Judge extends Model
 {
     protected $table = 'judges';
+
     protected $fillable = [
         'profile_image_url',
         'user_id',

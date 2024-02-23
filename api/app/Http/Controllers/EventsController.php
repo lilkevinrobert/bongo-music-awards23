@@ -73,7 +73,7 @@ class EventsController extends Controller
 
     public function eventGenres(Request $request, $eventId){
         $genres = Event::find($eventId)->genres;
-        dd($genres);
+
     }
 
     public function eventGenresCategories(Request $request)
