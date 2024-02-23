@@ -4,6 +4,7 @@ import Layout from "../../components/Layout/Layout";
 import { MdDelete, MdOutlineModeEdit } from "react-icons/md";
 import { FaLink, FaSpotify, FaYoutube } from "react-icons/fa";
 import { SiApplemusic } from "react-icons/si";
+import { IoIosWarning } from "react-icons/io";
 import { useState } from "react";
 import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 import TopographyBackground from "/topography.svg";
@@ -34,11 +35,13 @@ export interface ArtistData {
 const ArtistPage: React.FC = () => {
   // const [data, setData] = useState<ArtistData>();
 
-  // Form State
+  // Dialog State
   const [openEdit, setOpenEdit] = useState(false);
+  const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
 
-  // Form handling
+  // Dialog handling
   const handleEdit = () => setOpenEdit((c) => !c);
+  const handleConfirmDelete = () => setOpenConfirmDelete((c) => !c);
 
   const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
@@ -197,35 +200,43 @@ const ArtistPage: React.FC = () => {
                 </Button>
               </div>
             </Card>
-            <div className="flex flex-row-reverse items-center gap-4">
+            <div className="flex flex-col md:flex-row-reverse items-center gap-4">
               {/* Social Links */}
-              <Card className="w-1/2 bg-white h-fit px-6 py-8 rounded-sm shadow-md">
+              <Card className="w-full md:w-1/2 bg-white h-fit px-6 py-8 rounded-sm shadow-md">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     Social Links
                   </Typography>
                 </div>
                 <div className="space-y-2">
-                  <div className="flex flex-row items-center gap-2">
+                  <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <FaYoutube className="text-xl text-red-500" />
-                    <Typography className="font-LatoRegular text-sm">{testData.youtubeMusicLink}</Typography>
+                    <Typography className="font-LatoRegular text-xs md:text-sm">
+                      {testData.youtubeMusicLink}
+                    </Typography>
                   </div>
-                  <div className="flex flex-row items-center gap-2">
+                  <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <FaSpotify className="text-xl text-green-500" />
-                    <Typography className="font-LatoRegular text-sm">{testData.spotifyMusicLink}</Typography>
+                    <Typography className="font-LatoRegular text-xs md:text-sm">
+                      {testData.spotifyMusicLink}
+                    </Typography>
                   </div>
-                  <div className="flex flex-row items-center gap-2">
+                  <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <SiApplemusic className="text-xl text-red-500" />
-                    <Typography className="font-LatoRegular text-sm">{testData.appleMusicLink}</Typography>
+                    <Typography className="font-LatoRegular text-xs md:text-sm">
+                      {testData.appleMusicLink}
+                    </Typography>
                   </div>
-                  <div className="flex flex-row items-center gap-2">
+                  <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <FaLink className="text-xl text-gray-500" />
-                    <Typography className="font-LatoRegular text-sm">{testData.boomPlayMusicLink}</Typography>
+                    <Typography className="font-LatoRegular text-xs md:text-sm">
+                      {testData.boomPlayMusicLink}
+                    </Typography>
                   </div>
                 </div>
               </Card>
               {/* Delete Account */}
-              <Card className="w-1/2 bg-white h-fit px-8 py-8 rounded-sm shadow-md">
+              <Card className="w-full md:w-1/2 bg-white h-fit px-8 py-8 rounded-sm shadow-md">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     delete account
@@ -236,16 +247,21 @@ const ArtistPage: React.FC = () => {
                 </div>
                 <Typography
                   as="p"
-                  className="text-sm font-LatoRegular text-red-700"
+                  className="text-sm font-LatoRegular text-yellow-700"
                 >
                   Once you delete this account, all of its resources and data
                   will be permanently deleted.
                 </Typography>
-                <div className="flex items-center justify-between">
-                  <Typography className="font-LatoRegular text-sm text-red-700">This action is irreversible.</Typography>
-                <Button className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-red-600 hover:bg-red-800">
-                  <MdDelete className="text-lg text-white" /> delete account
-                </Button>
+                <div className="flex flex-col md:flex-row items-center justify-between my-2">
+                  <Typography className="font-LatoRegular text-sm text-yellow-700">
+                    This action is irreversible.
+                  </Typography>
+                  <Button
+                    onClick={handleConfirmDelete}
+                    className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-yellow-600 hover:bg-yellow-800"
+                  >
+                    <MdDelete className="hidden lg:block text-lg text-white" /> delete account
+                  </Button>
                 </div>
               </Card>
             </div>
@@ -254,6 +270,48 @@ const ArtistPage: React.FC = () => {
       </div>
 
       {/* Dialogs */}
+      <Dialog
+        size="xs"
+        open={openConfirmDelete}
+        handler={handleConfirmDelete}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+        className="bg-transparent shadow-none flex items-center justify-center"
+      >
+        <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-md shadow-md">
+            <Typography className="text-slate-900 font-LatoBold">
+              Are you sure you want to Delete?
+            </Typography>
+            <div className="flex flex-row items-center justify-center py-4">
+              <IoIosWarning className="text-3xl text-yellow-400" />
+              <Typography className="text-slate-900 font-LatoRegular">
+                This action is irreversible
+              </Typography>
+            </div>
+            <div className="flex items-center justify-center mt-4 bg-transparent">
+              <Button
+                size="sm"
+                type="button"
+                onClick={() => handleConfirmDelete()}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-LatoBold py-2 px-4 rounded mr-2 transition ease-in-out"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                type="button"
+                // onClick={handleDelete}
+                className="bg-red-500 hover:bg-red-600 text-white font-LatoBold py-2 px-4 rounded"
+              >
+                Confirm Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Dialog>
       <Dialog
         size="xs"
         open={openEdit}
