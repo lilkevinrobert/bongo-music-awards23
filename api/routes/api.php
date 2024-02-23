@@ -83,7 +83,9 @@ Route::group(['prefix'=>'nominators'], function () {
 
 Route::group(['prefix'=>'judges'], function () {
     Route::get('/',[JudgeController::class,'index']); //All available judges in the system
-
+    Route::post('/',[JudgeController::class,'store']);
+    Route::get('/{id}',[JudgeController::class,'show']);
+    Route::delete('/{id}',[JudgeController::class,'destroy']);
 });
 
 
