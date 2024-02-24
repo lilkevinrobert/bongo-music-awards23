@@ -13,10 +13,9 @@ import LoadingTable from "../Loading/LoadingTable.tsx";
 import useFetch from "../../hooks/useFetch.ts";
 import Errors from "../Errors/Errors.tsx";
 
-interface DataRow {
-  id: string;
-  fullName: string;
-  event: string;
+type DataRow = {
+  id: number;
+  fullname: string;
   organization: string;
   position: string;
   expertise: string;
@@ -36,7 +35,6 @@ interface FetchResult {
 
 const JudgesDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -44,79 +42,23 @@ const JudgesDataTable: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
-  const testData: DataRow[] = [
-    {
-      id: "jjsu403b53b3cyqxc",
-      fullName: "Omary Ally Mwanga",
-      event: "marioo",
-      organization: "Bongo Music Awards",
-      position: "Consultant",
-      expertise: "some expertise",
-      role: "Consultant",
-      phone: "+255 762 223 093",
-      email: "marioo@gmail.com",
-    },
-    {
-      id: "jjsu40332b53b3cyqxc",
-      fullName: "Omary Ally Mwanga",
-      event: "marioo",
-      organization: "Bongo Music Awards",
-      position: "Consultant",
-      expertise: "some expertise",
-      role: "Consultant",
-      phone: "+255 762 223 093",
-      email: "marioo@gmail.com",
-    },
-    {
-      id: "jjsu403b53b3cyqxc",
-      fullName: "Joshua Haroun",
-      event: "BMA 24",
-      organization: "Bongo Music Awards",
-      position: "Consultant",
-      expertise: "some expertise",
-      role: "Consultant",
-      phone: "+255 762 223 043",
-      email: "joshua@gmail.com",
-    },
-  ];
-
   // Get data
   const {
     data: judgesData,
     loading: judgesDataLoading,
     error: judgesDataError,
   }: FetchResult = useFetch(`${BASE_URL}/judges`);
-  console.log(judgesDataError?.name);
-
-  useEffect(() => {
-    // Assuming fetchData is an async function fetching data from the API - USE THIS APPROACH!!
-    // const fetchData = async () => {
-    //   try {
-    //     // Replace with actual API endpoint
-    //     const response = await fetch('https://api.example.com/data');
-    //     const result = await response.json();
-    //     setData(result);
-    //     setFilteredData(result);
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-    const fetchData = () => {
-      setData(testData);
-    };
-
-    fetchData();
-  }, []); // Fetch data on component mount
+  console.log(judgesData);
 
   useEffect(() => {
     // Filter data based on the search term
-    const filtered = data.filter((row) => {
+    const filtered = judgesData?.data.filter((row) => {
       return Object.values(row).some((value) =>
-        value.toLowerCase().includes(searchTerm.toLowerCase())
+        typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())
       );
-    });
-    setFilteredData(filtered);
-  }, [searchTerm, data]);
+    }) ?? [];
+    setFilteredData(filtered)
+  }, [searchTerm, judgesData]);
 
   return (
     <>
@@ -125,7 +67,7 @@ const JudgesDataTable: React.FC = () => {
       ) : judgesDataError ? (
         <Errors errorName={ judgesDataError?.name } />
       ) : judgesData?.data.length === 0 ? (
-        <AddEmptyState itemName="artist" />
+        <AddEmptyState itemName="judge" />
       ) : (
         <div className="mx-auto py-4">
           <div className="flex flex-row items-center justify-between mb-4 w-full">
@@ -171,7 +113,6 @@ const JudgesDataTable: React.FC = () => {
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
                 <th className="px-4 py-2">Full Name</th>
-                <th className="px-4 py-2">Event</th>
                 <th className="px-4 py-2">Organization</th>
                 <th className="px-4 py-2">Position</th>
                 <th className="px-4 py-2">Expertise</th>
@@ -190,9 +131,8 @@ const JudgesDataTable: React.FC = () => {
                   } group/actions`}
                 >
                   <td className="border px-4 py-2 capitalize">
-                    {row.fullName}
+                    {row.fullname}
                   </td>
-                  <td className="border px-4 py-2 capitalize">{row.event}</td>
                   <td className="border px-4 py-2 capitalize">
                     {row.organization}
                   </td>
@@ -206,7 +146,7 @@ const JudgesDataTable: React.FC = () => {
                   <td className="border px-4 py-2 capitalize">{row.phone}</td>
                   <td className="border px-4 py-2 lowercase">{row.email}</td>
                   <td className="border px-4 py-2 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
-                    <NavLink to={row.id}>
+                    <NavLink to={`${row.id}`}>
                       <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                         <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />
                       </button>

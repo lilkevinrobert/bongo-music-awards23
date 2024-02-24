@@ -16,7 +16,7 @@ import LoadingTable from "../Loading/LoadingTable.tsx";
 import Errors from "../Errors/Errors.tsx";
 // import EditArtist from "../Forms/EditArtist.tsx";
 
-interface DataRow {
+type DataRow = {
   id: number;
   stage_name: string;
   first_name: string;
@@ -54,7 +54,6 @@ const ArtistsDataTable: React.FC = () => {
     loading: artistsDataLoading,
     error: artistsDataError,
   }: FetchResult = useFetch(`${BASE_URL}/artists`);
-  console.log(artistsData)
 
   useEffect(() => {
     // Filter data based on the search term
