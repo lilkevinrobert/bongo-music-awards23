@@ -96,10 +96,31 @@ class JudgeController extends Controller
     public function show($id)
     {
         $judge = Judge::find($id);
-
         if ($judge){
+
+            $user = User::where('id', $judge->user_id)
+                ->select(['first_name', 'middle_name', 'last_name','email'])
+                ->limit(1)
+                ->first();
+
+            $data  = [
+                'first_name' => $user->first_name,
+                'middle_name' => $user->middle_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'organization' => $judge->organization,
+                'position' => $judge->position,
+                'expertise' => $judge->expertise,
+                'profile_image_url' => $judge->profile_image_url,
+                'phone_number' => $judge->phone_number,
+                'role' => $judge->role,
+                'bio' => $judge->bio,
+                'user_id' => $judge->user_id,
+                'event' => 'Bongo Music Awards 2024' // retrieving the event selected
+            ];
+
             return \response()->json([
-                'data' => $judge,
+                'data' => $data,
                 'message' => 'Successful'
             ]);
         }
