@@ -92,7 +92,7 @@ const JudgePage: React.FC = () => {
                     <input
                       type="file"
                       name="profile_pic"
-                      className="h-10 rounded-sm bg-green-200 font-LatoRegular"
+                      className="h-10 rounded-md bg-green-200 font-LatoRegular"
                     />
                     <Button
                       size="md"
