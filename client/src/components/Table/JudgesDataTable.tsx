@@ -48,7 +48,6 @@ const JudgesDataTable: React.FC = () => {
     loading: judgesDataLoading,
     error: judgesDataError,
   }: FetchResult = useFetch(`${BASE_URL}/judges`);
-  console.log(judgesData);
 
   useEffect(() => {
     // Filter data based on the search term
@@ -112,14 +111,14 @@ const JudgesDataTable: React.FC = () => {
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
-                <th className="px-4 py-2">Full Name</th>
-                <th className="px-4 py-2">Organization</th>
-                <th className="px-4 py-2">Position</th>
-                <th className="px-4 py-2">Expertise</th>
-                <th className="px-4 py-2">Role</th>
-                <th className="px-4 py-2">Phone</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2 text-center w-1/12">Action</th>
+                <th className="px-4 py-1">Full Name</th>
+                <th className="px-4 py-1">Organization</th>
+                <th className="px-4 py-1">Position</th>
+                <th className="px-4 py-1">Expertise</th>
+                <th className="px-4 py-1">Role</th>
+                <th className="px-4 py-1">Phone</th>
+                <th className="px-4 py-1">Email</th>
+                <th className="px-4 py-1 text-center w-1/12">Action</th>
               </tr>
             </thead>
             <tbody className="font-LatoRegular text-sm">
@@ -127,25 +126,25 @@ const JudgesDataTable: React.FC = () => {
                 <tr
                   key={index}
                   className={`${
-                    index % 2 === 0 ? "bg-gray-100" : ""
+                    index % 2 === 0 ? "bg-gray-50" : ""
                   } group/actions`}
                 >
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.fullname}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.organization}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.position}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.expertise}
                   </td>
-                  <td className="border px-4 py-2 capitalize">{row.role}</td>
-                  <td className="border px-4 py-2 capitalize">{row.phone}</td>
-                  <td className="border px-4 py-2 lowercase">{row.email}</td>
-                  <td className="border px-4 py-2 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
+                  <td className="border px-4 py-1 capitalize">{row.role}</td>
+                  <td className="border px-4 py-1 capitalize">{row.phone}</td>
+                  <td className="border px-4 py-1 lowercase">{row.email}</td>
+                  <td className="border px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
                     <NavLink to={`${row.id}`}>
                       <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                         <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />

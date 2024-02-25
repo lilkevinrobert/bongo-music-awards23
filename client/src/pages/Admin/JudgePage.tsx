@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import { Button, Card, Typography } from "@material-tailwind/react";
+import { Button, Card, Dialog, Typography } from "@material-tailwind/react";
 import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
@@ -8,9 +8,15 @@ import Errors from "../../components/Errors/Errors";
 import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import LoadingProfile from "../../components/Loading/LoadingProfile";
 import TopographyDarkBackground from "/topography-dark.svg";
+import { MdDelete } from "react-icons/md";
+import { IoIosWarning } from "react-icons/io";
 
 type Data = {
   id: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  email: string;
   profile_image_url: string;
   organization: string;
   position: string;
@@ -19,7 +25,7 @@ type Data = {
   role: string;
   bio: string;
   user_id: number;
-  event_id: number;
+  event: string;
   created_at: string;
   updated_at: string;
 };
@@ -39,13 +45,18 @@ const JudgePage: React.FC = () => {
   const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
 
+  // Dialog state
+  const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
+
+  // Dialog handling
+  const handleConfirmDelete = () => setOpenConfirmDelete((c) => !c);
+  
   // Get data
   const {
     data: judgeData,
     loading: judgeDataLoading,
     error: judgeDataError,
   }: FetchResult = useFetch(`${BASE_URL}/judges/${judgeId}`);
-  console.log(judgeData);
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="judges" currentPage="judge" />
@@ -118,7 +129,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="firstname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value=""
+                      value={judgeData?.data.first_name}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -129,7 +140,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="firstname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value=""
+                      value={judgeData?.data.middle_name ? judgeData?.data.first_name : ""}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -140,7 +151,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="lastname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value=""
+                      value={judgeData?.data.last_name}
                     />
                   </div>
                   <div className="py-2">
@@ -209,6 +220,7 @@ const JudgePage: React.FC = () => {
 
             {/* Bio, Expertise, Role & Event */}
             <div className="w-full flex flex-col gap-4">
+              {/* Bio */}
               <Card className="bg-white h-fit px-6 py-8 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-100 rounded-lg">
                 <Typography>Bio</Typography>
                 <textarea
@@ -226,6 +238,7 @@ const JudgePage: React.FC = () => {
                   </Button>
                 </div>
               </Card>
+              {/* Expertise, Role and Event */}
               <Card className="bg-white h-fit px-6 py-8 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-100 rounded-lg flex flex-col gap-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col">
@@ -257,7 +270,7 @@ const JudgePage: React.FC = () => {
                     type="text"
                     name="event"
                     className="h-10 border-slate-200 rounded-lg font-LatoRegular pl-4"
-                    value=""
+                    value={judgeData?.data.event}
                   />
                 </div>
                 <div className="pt-4">
@@ -269,10 +282,84 @@ const JudgePage: React.FC = () => {
                   </Button>
                 </div>
               </Card>
+
+              {/* Delete Account */}
+              <Card className="w-full md:w-1/2 bg-white h-fit px-8 py-8 rounded-sm shadow-md">
+                <div className="py-2">
+                  <Typography className="capitalize font-LatoBold">
+                    delete account
+                  </Typography>
+                  <Typography className="text-sm font-LatoRegular">
+                    Permanently delete this account
+                  </Typography>
+                </div>
+                <Typography
+                  as="p"
+                  className="text-sm font-LatoRegular text-green-700"
+                >
+                  Once you delete this account, all of its resources and data
+                  will be permanently deleted.
+                </Typography>
+                <div className="flex flex-col md:flex-row items-center justify-between my-2">
+                  <Typography className="font-LatoRegular text-sm text-green-700">
+                    This action is irreversible.
+                  </Typography>
+                  <Button
+                    onClick={handleConfirmDelete}
+                    className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-green-600 hover:bg-green-800"
+                  >
+                    <MdDelete className="hidden lg:block text-lg text-white" /> delete account
+                  </Button>
+                </div>
+              </Card>
             </div>
           </div>
         </div>
       )}
+
+      {/* Dialogs */}
+      <Dialog
+        size="xs"
+        open={openConfirmDelete}
+        handler={handleConfirmDelete}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+        className="bg-transparent shadow-none flex items-center justify-center"
+      >
+        <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-8 rounded-md shadow-md">
+            <Typography className="text-slate-900 font-LatoBold">
+              Are you sure you want to Delete?
+            </Typography>
+            <div className="flex flex-row items-center justify-center py-4">
+              <IoIosWarning className="text-3xl text-yellow-400" />
+              <Typography className="text-slate-900 font-LatoRegular">
+                This action is irreversible
+              </Typography>
+            </div>
+            <div className="flex items-center justify-center mt-4 bg-transparent">
+              <Button
+                size="sm"
+                type="button"
+                onClick={() => handleConfirmDelete()}
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-LatoBold py-2 px-4 rounded mr-2 transition ease-in-out"
+              >
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                type="button"
+                // onClick={handleDelete}
+                className="bg-red-500 hover:bg-red-600 text-white font-LatoBold py-2 px-4 rounded"
+              >
+                Confirm Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Dialog>
     </Layout>
   );
 };

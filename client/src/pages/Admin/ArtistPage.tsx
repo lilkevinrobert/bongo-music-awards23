@@ -69,15 +69,6 @@ const ArtistPage: React.FC = () => {
   };
   console.log(testData);
 
-  // useEffect(() => {
-  //   // Get data about the artist here..
-  //   const fetchData = () => {
-  //     setData(testData);
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="artists" currentPage="artist" />
