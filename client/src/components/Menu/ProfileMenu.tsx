@@ -27,21 +27,21 @@ const ProfileMenu = () => {
       </MenuHandler>
       <MenuList className="py-2">
         <MenuItem className="flex items-center gap-2 group">
-          <FaRegCircleUser className="text-lg text-slate-500 group-hover:text-slate-900" />
+          <FaRegCircleUser className="text-lg text-slate-500 transition ease-in-out group-hover:text-slate-900" />
 
           <Typography
             variant="small"
-            className="text-md text-slate-500 font-LatoRegular capitalize"
+            className="text-md text-slate-500 font-LatoRegular capitalize transition ease-in-out group-hover:text-slate-900"
           >
             My Profile
           </Typography>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem className="flex items-center gap-2 ">
-          <MdLogout className="text-lg text-slate-500" />
+        <MenuItem className="flex items-center gap-2 group">
+          <MdLogout className="text-lg text-slate-500 transition ease-in-out group-hover:text-slate-900" />
           <Typography
             variant="small"
-            className="text-md text-slate-500 font-LatoRegular capitalize"
+            className="text-md text-slate-500 font-LatoRegular capitalize transition ease-in-out group-hover:text-slate-900"
           >
             logout
           </Typography>

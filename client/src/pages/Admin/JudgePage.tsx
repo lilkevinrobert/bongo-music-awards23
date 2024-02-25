@@ -305,10 +305,12 @@ const JudgePage: React.FC = () => {
                     This action is irreversible.
                   </Typography>
                   <Button
+                  size="sm"
                     onClick={handleConfirmDelete}
                     className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-green-600 hover:bg-green-800"
                   >
-                    <MdDelete className="hidden lg:block text-lg text-white" /> delete account
+                    <MdDelete className="hidden lg:block text-3xl text-white" />
+                    <Typography className="text-sm font-LatoBold">delete account</Typography>
                   </Button>
                 </div>
               </Card>

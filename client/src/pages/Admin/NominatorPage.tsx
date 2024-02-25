@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Layout from '../../components/Layout/Layout';
-import BreadcrumbLevel2 from '../../components/Breadcrumbs/BreadcrumbLevel2';
-import useFetch from '../../hooks/useFetch';
-import { Typography, Dialog } from '@material-tailwind/react';
-import { Card, Button } from 'flowbite-react';
-import { IoIosWarning } from 'react-icons/io';
-import { MdDelete } from 'react-icons/md';
-import AddEmptyState from '../../components/EmptyState/AddEmptyState';
-import Errors from '../../components/Errors/Errors';
-import LoadingProfile from '../../components/Loading/LoadingProfile';
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
+import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
+import useFetch from "../../hooks/useFetch";
+import { Typography, Dialog } from "@material-tailwind/react";
+import { Card, Button } from "flowbite-react";
+import { IoIosWarning } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import AddEmptyState from "../../components/EmptyState/AddEmptyState";
+import Errors from "../../components/Errors/Errors";
+import LoadingProfile from "../../components/Loading/LoadingProfile";
 import TopographyDarkBackground from "/topography-dark.svg";
 
 type Data = {
-    id: number;
-    first_name: string;
-    middle_name: string;
-    last_name: string;
-    email: string;
-    profile_image_url: string;
-    organization: string;
-    position: string;
-    expertise: string;
-    phone_number: string;
-    role: string;
-    bio: string;
-    user_id: number;
-    event: string;
-    created_at: string;
-    updated_at: string;
-  };
-  
-  interface NominatorData {
-    data: Data;
-  }
-  interface FetchResult {
-    data: NominatorData | null;
-    loading: boolean;
-    error: Error | null;
-  }
+  id: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  email: string;
+  profile_image_url: string;
+  organization: string;
+  position: string;
+  expertise: string;
+  phone_number: string;
+  role: string;
+  bio: string;
+  user_id: number;
+  event: string;
+  created_at: string;
+  updated_at: string;
+};
+
+interface NominatorData {
+  data: Data;
+}
+interface FetchResult {
+  data: NominatorData | null;
+  loading: boolean;
+  error: Error | null;
+}
 
 const NominatorPage: React.FC = () => {
-    const BASE_URL = import.meta.env.VITE_BASE_URL;
-    const { nominatorId } = useParams();
-    const imgLink =
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const { nominatorId } = useParams();
+  const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
 
   // Dialog state
@@ -52,18 +52,18 @@ const NominatorPage: React.FC = () => {
   // Dialog handling
   const handleConfirmDelete = () => setOpenConfirmDelete((c) => !c);
 
-    // Get data
-    const {
-        data: nominatorData,
-        loading: nominatorDataLoading,
-        error: nominatorDataError,
-      }: FetchResult = useFetch(`${BASE_URL}/judges/${nominatorId}`);
-    
-      console.log(nominatorData)
-    return (
-        <Layout>
-            <BreadcrumbLevel2 previousPage='nominators' currentPage='nominator' />
-            {nominatorDataLoading ? (
+  // Get data
+  const {
+    data: nominatorData,
+    loading: nominatorDataLoading,
+    error: nominatorDataError,
+  }: FetchResult = useFetch(`${BASE_URL}/nominators/${nominatorId}`);
+
+  console.log(nominatorData);
+  return (
+    <Layout>
+      <BreadcrumbLevel2 previousPage="nominators" currentPage="nominator" />
+      {nominatorDataLoading ? (
         <LoadingProfile />
       ) : nominatorDataError ? (
         <Errors errorName={nominatorDataError?.name} />
@@ -72,11 +72,11 @@ const NominatorPage: React.FC = () => {
           nominatorData?.data !== undefined &&
           Object.keys(nominatorData?.data).length > 0
         ) ? (
-        <AddEmptyState itemName="judge" />
+        <AddEmptyState itemName="nominator" />
       ) : (
         <div className="text-slate-900 px-4 h-auto">
           <Typography variant="h5" className="capitalize">
-            edit judge details
+            edit nominator details
           </Typography>
           {/* Details */}
           <div className="w-full h-full my-4 flex flex-col md:grid grid-cols-2 gap-6">
@@ -97,10 +97,10 @@ const NominatorPage: React.FC = () => {
                 />
                 <div className="px-6 pt-14 pb-4">
                   <Typography className="text-lg font-LatoBold">
-                    Judge photo
+                    nominator photo
                   </Typography>
                   <Typography className="text-md font-LatoRegular">
-                    This will be displayed on judge&apos;s profile
+                    This will be displayed on nominator&apos;s profile
                   </Typography>
                   <div className="flex flex-row items-center py-4 gap-2">
                     <input
@@ -143,7 +143,11 @@ const NominatorPage: React.FC = () => {
                       type="text"
                       name="firstname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={nominatorData?.data.middle_name ? nominatorData?.data.first_name : ""}
+                      value={
+                        nominatorData?.data.middle_name
+                          ? nominatorData?.data.first_name
+                          : ""
+                      }
                     />
                   </div>
                   <div className="flex flex-col">
@@ -234,7 +238,7 @@ const NominatorPage: React.FC = () => {
                   <Button
                     size="sm"
                     className="bg-transparent capitalize float-right transition ease-in-out text-green-500 hover:text-green-100 border border-green-500 hover:bg-green-700"
-                    >
+                  >
                     save changes
                   </Button>
                 </div>
@@ -278,7 +282,7 @@ const NominatorPage: React.FC = () => {
                   <Button
                     size="sm"
                     className="bg-transparent capitalize float-right transition ease-in-out text-green-500 hover:text-green-100 border border-green-500 hover:bg-green-700"
-                    >
+                  >
                     save changes
                   </Button>
                 </div>
@@ -309,7 +313,8 @@ const NominatorPage: React.FC = () => {
                     onClick={handleConfirmDelete}
                     className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-green-600 hover:bg-green-800"
                   >
-                    <MdDelete className="hidden lg:block text-lg text-white" /> delete account
+                    <MdDelete className="hidden lg:block text-lg text-white" />{" "}
+                    delete account
                   </Button>
                 </div>
               </Card>
@@ -361,9 +366,8 @@ const NominatorPage: React.FC = () => {
           </div>
         </div>
       </Dialog>
-            
-        </Layout>
-    );
+    </Layout>
+  );
 };
 
 export default NominatorPage;
