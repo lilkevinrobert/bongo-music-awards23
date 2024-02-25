@@ -265,10 +265,6 @@ const ArtistPage: React.FC = () => {
         size="xs"
         open={openConfirmDelete}
         handler={handleConfirmDelete}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-        }}
         className="bg-transparent shadow-none flex items-center justify-center"
       >
         <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex items-center justify-center">
