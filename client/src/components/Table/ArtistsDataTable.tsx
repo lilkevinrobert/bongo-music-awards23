@@ -128,12 +128,12 @@ const ArtistsDataTable: React.FC = () => {
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
-                <th className="px-4 py-2">Stage Name</th>
-                <th className="px-4 py-2">Full Name</th>
-                <th className="px-4 py-2">Genre</th>
-                <th className="px-4 py-2">Phone</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2 text-center w-40"></th>
+                <th className="px-4 py-1">Stage Name</th>
+                <th className="px-4 py-1">Full Name</th>
+                <th className="px-4 py-1">Genre</th>
+                <th className="px-4 py-1">Phone</th>
+                <th className="px-4 py-1">Email</th>
+                <th className="px-4 py-1 text-center w-40"></th>
               </tr>
             </thead>
             <tbody className="font-LatoRegular text-sm">
@@ -144,16 +144,16 @@ const ArtistsDataTable: React.FC = () => {
                     index % 2 === 0 ? "bg-gray-100" : ""
                   } group/actions`}
                 >
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.stage_name}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {`${row.first_name} ${row.middle_name != null ? row.middle_name : "" } ${row.last_name}`}
                   </td>
-                  <td className="border px-4 py-2 capitalize">{row.genre}</td>
-                  <td className="border px-4 py-2 capitalize">{row.phone}</td>
-                  <td className="border px-4 py-2 lowercase">{row.email}</td>
-                  <td className="border px-4 py-2 opacity-80 transition-all ease-linear group-hover/actions:block">
+                  <td className="border px-4 py-1 capitalize">{row.genre}</td>
+                  <td className="border px-4 py-1 capitalize">{row.phone}</td>
+                  <td className="border px-4 py-1 lowercase">{row.email}</td>
+                  <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
                     <NavLink to={`../artists/${row.user_id}`}>
                       <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                         <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
