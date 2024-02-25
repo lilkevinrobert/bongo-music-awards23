@@ -11,18 +11,29 @@ import AddNominatorForm from "../Forms/AddNominatorForm.tsx";
 import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
 import Errors from "../Errors/Errors.tsx";
 import LoadingTable from "../Loading/LoadingTable.tsx";
+import { NavLink } from "react-router-dom";
 
-interface DataRow {
-  fullName: string;
+type DataRow = {
+  id: number;
+  fullname: string;
   event: string;
   role: string;
   phone: string;
   email: string;
+  user_id: string;
+}
+
+interface NominatorsData {
+  data: [];
+}
+interface FetchResult {
+  data: NominatorsData | null;
+  loading: boolean;
+  error: Error | null;
 }
 
 const NominatorsDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const [data, setData] = useState<DataRow[]>([]);
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -30,69 +41,22 @@ const NominatorsDataTable: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
-  const testData: DataRow[] = [
-    {
-      fullName: "Juma Abdul Aziz",
-      event: "bongo music 2024",
-      role: "Nominator",
-      phone: "+255 762 223 093",
-      email: "jabaziz@gmail.com",
-    },
-    {
-      fullName: "Banza Stone",
-      event: "bongo music 2024",
-      role: "Nominator",
-      phone: "+255 762 523 393",
-      email: "banza@gmail.com",
-    },
-  ];
-
-  interface NominatorsData {
-    data: [];
-  }
-  interface FetchResult {
-    data: NominatorsData | null;
-    loading: boolean;
-    error: Error | null;
-  }
-
     // Get data
     const {
       data: nominatorsData,
       loading: nominatorsDataLoading,
       error: nominatorsDataError,
     }: FetchResult = useFetch(`${BASE_URL}/nominators`);
-    console.log(nominatorsDataError?.name);
 
-  useEffect(() => {
-    // Assuming fetchData is an async function fetching data from the API - USE THIS APPROACH!!
-    // const fetchData = async () => {
-    //   try {
-    //     // Replace with actual API endpoint
-    //     const response = await fetch('https://api.example.com/data');
-    //     const result = await response.json();
-    //     setData(result);
-    //     setFilteredData(result);
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-    const fetchData = () => {
-      setData(testData);
-    };
-
-    fetchData();
-  }, []); // Fetch data on component mount
-
-  useEffect(() => {
-    // Filter data based on the search term
-    const filtered = data.filter((row) => {
-      return Object.values(row).some((value) =>
-        value.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    });
-    setFilteredData(filtered);
-  }, [searchTerm, data]);
+    useEffect(() => {
+      // Filter data based on the search term
+      const filtered = nominatorsData?.data.filter((row) => {
+        return Object.values(row).some((value) =>
+          typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }) ?? [];
+      setFilteredData(filtered)
+    }, [searchTerm, nominatorsData]);
 
   return (
     <>
@@ -146,35 +110,39 @@ const NominatorsDataTable: React.FC = () => {
       <table className="table-auto overflow-x-auto w-full bg-white border shadow">
         <thead>
           <tr className="bg-gray-200 text-left font-LatoBold">
-            <th className="hidden lg:table-cell px-4 py-2">SN</th>
-            <th className="px-4 py-2">Full Name</th>
-            <th className="px-4 py-2">Event</th>
-            <th className="hidden lg:table-cell px-4 py-2">Role</th>
-            <th className="px-4 py-2">Phone</th>
-            <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2 text-center"></th>
+            <th className="hidden lg:table-cell px-4 py-1">SN</th>
+            <th className="px-4 py-1">Full Name</th>
+            <th className="px-4 py-1">Event</th>
+            <th className="hidden lg:table-cell px-4 py-1">Role</th>
+            <th className="px-4 py-1">Phone</th>
+            <th className="px-4 py-1">Email</th>
+            <th className="px-4 py-1 text-center w-1/12"></th>
           </tr>
         </thead>
         <tbody className="font-LatoRegular text-sm">
           {filteredData.map((row, index) => (
-            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
-              <td className="hidden lg:table-cell border px-4 py-2 capitalize">{index+1}</td>
-              <td className="border px-4 py-2 capitalize">{row.fullName}</td>
-              <td className="border px-4 py-2 capitalize">{row.event}</td>
-              <td className="hidden lg:table-cell border px-4 py-2 capitalize">{row.role}</td>
-              <td className="border px-4 py-2 capitalize">{row.phone}</td>
-              <td className="border px-4 py-2 lowercase">{row.email}</td>
-              <td className="border px-4 py-2 opacity-80">
-              {/* <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
-                  <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
-                </button> */}
-                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
-                  <MdOutlineEdit className="text-lg text-green-500 group-hover:text-white transition ease-in-out" />
-                </button>
-                <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
-                  <MdOutlineDeleteOutline className="text-lg text-red-500 group-hover:text-white transition ease-in-out" />
-                </button>
-              </td>
+            <tr
+                  key={index}
+                  className={`${
+                    index % 2 === 0 ? "bg-gray-50" : ""
+                  } group/actions`}
+                >
+              <td className="hidden lg:table-cell border px-4 py-1 capitalize">{index+1}</td>
+              <td className="border px-4 py-1 capitalize">{row.fullname}</td>
+              <td className="border px-4 py-1 capitalize">{row.event}</td>
+              <td className="hidden lg:table-cell border px-4 py-1 capitalize">{row.role}</td>
+              <td className="border px-4 py-1 capitalize">{row.phone}</td>
+              <td className="border px-4 py-1 lowercase">{row.email}</td>
+              <td className="border px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
+                    <NavLink to={`${row.user_id}`}>
+                      <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
+                        <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />
+                      </button>
+                    </NavLink>
+                    <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
+                      <MdOutlineDeleteOutline className="text-xl text-red-500 group-hover:text-white transition ease-in-out" />
+                    </button>
+                  </td>
             </tr>
           ))}
         </tbody>

@@ -118,7 +118,7 @@ const JudgesDataTable: React.FC = () => {
                 <th className="px-4 py-1">Role</th>
                 <th className="px-4 py-1">Phone</th>
                 <th className="px-4 py-1">Email</th>
-                <th className="px-4 py-1 text-center w-1/12">Action</th>
+                <th className="px-4 py-1 text-center w-1/12"></th>
               </tr>
             </thead>
             <tbody className="font-LatoRegular text-sm">
