@@ -77,7 +77,7 @@ Route::group(['prefix'=>'artists'], function () {
 
 Route::group(['prefix'=>'nominators'], function () {
     Route::get('/',[NominatorsController::class,'index']); //All available nominators in the system
-
+    Route::get('/{id}',[NominatorsController::class, 'show']);
 });
 
 
