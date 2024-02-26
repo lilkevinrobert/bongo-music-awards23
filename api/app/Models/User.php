@@ -23,6 +23,7 @@ class User extends Authenticatable
         'middle_name',
         'last_name',
         'email',
+        'gender',
         'role',
         'password',
     ];
@@ -54,6 +55,7 @@ class User extends Authenticatable
             'first_name' => ['required', 'min:2', 'max:50'],
             'last_name' => ['required', 'min:2', 'max:50'],
             'middle_name' => ['nullable'],
+            'gender' => ['required'],
             'email' => ['required','email'],
             'password' => ['nullable'],
         ];

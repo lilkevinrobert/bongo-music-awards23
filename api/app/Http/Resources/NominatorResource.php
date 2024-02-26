@@ -25,6 +25,7 @@ class NominatorResource extends JsonResource
             'role' => $this->getNominatorInformation($this->user_id)->role,
             'phone' => $this->phone_number,
             'email' => $this->getNominatorInformation($this->user_id)->email,
+            'gender' => $this->getNominatorInformation($this->user_id)->gender,
             'user_id' => $this->user_id,
         ];
     }
@@ -48,7 +49,7 @@ class NominatorResource extends JsonResource
 
     private function getNominatorInformation($user_id){
         $userInfo = User::where('id',$user_id)
-            ->select(['role','email'])
+            ->select(['role','email','gender'])
             ->limit(1)
             ->first();
         return $userInfo;
