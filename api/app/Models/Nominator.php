@@ -19,7 +19,6 @@ class Nominator extends Model
         'position',
         'expertise',
         'phone_number',
-        'role',
         'bio',
         'created_by'
     ];

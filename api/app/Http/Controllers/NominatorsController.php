@@ -40,7 +40,7 @@ class NominatorsController extends Controller
         $nominator = Nominator::find($id);
         if($nominator) {
             $user = User::where('id', $nominator->user_id)
-                ->select(['first_name', 'middle_name', 'last_name','email'])
+                ->select(['first_name', 'middle_name', 'last_name','email'.'role'])
                 ->limit(1)
                 ->first();
 
@@ -55,9 +55,9 @@ class NominatorsController extends Controller
                 'expertise' => $nominator->expertise,
                 'profile_image_url' => $nominator->profile_image_url,
                 'phone_number' => $nominator->phone_number,
-                'role' => $nominator->role,
+                'role' => $user->role,
                 'bio' => $nominator->bio,
-                'user_id' => $nominator->user_id,
+                'user_id' => (int) $nominator->user_id,
                 'event' => 'Bongo Music Awards 2024' // retrieving the event selected
             ];
 
