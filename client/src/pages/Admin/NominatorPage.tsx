@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
-import { Button, Card, Dialog, Typography } from "@material-tailwind/react";
 import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 import useFetch from "../../hooks/useFetch";
-import { useParams } from "react-router-dom";
-import Errors from "../../components/Errors/Errors";
+import { Typography, Dialog } from "@material-tailwind/react";
+import { Card, Button } from "flowbite-react";
+import { IoIosWarning } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 import AddEmptyState from "../../components/EmptyState/AddEmptyState";
+import Errors from "../../components/Errors/Errors";
 import LoadingProfile from "../../components/Loading/LoadingProfile";
 import TopographyDarkBackground from "/topography-dark.svg";
-import { MdDelete } from "react-icons/md";
-import { IoIosWarning } from "react-icons/io";
 
 type Data = {
   id: number;
@@ -30,18 +31,18 @@ type Data = {
   updated_at: string;
 };
 
-interface JudgeData {
+interface NominatorData {
   data: Data;
 }
 interface FetchResult {
-  data: JudgeData | null;
+  data: NominatorData | null;
   loading: boolean;
   error: Error | null;
 }
 
-const JudgePage: React.FC = () => {
+const NominatorPage: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
-  const { judgeId } = useParams();
+  const { nominatorId } = useParams();
   const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
 
@@ -50,30 +51,32 @@ const JudgePage: React.FC = () => {
 
   // Dialog handling
   const handleConfirmDelete = () => setOpenConfirmDelete((c) => !c);
-  
+
   // Get data
   const {
-    data: judgeData,
-    loading: judgeDataLoading,
-    error: judgeDataError,
-  }: FetchResult = useFetch(`${BASE_URL}/judges/${judgeId}`);
+    data: nominatorData,
+    loading: nominatorDataLoading,
+    error: nominatorDataError,
+  }: FetchResult = useFetch(`${BASE_URL}/nominators/${nominatorId}`);
+
+  console.log(nominatorData);
   return (
     <Layout>
-      <BreadcrumbLevel2 previousPage="judges" currentPage="judge" />
-      {judgeDataLoading ? (
+      <BreadcrumbLevel2 previousPage="nominators" currentPage="nominator" />
+      {nominatorDataLoading ? (
         <LoadingProfile />
-      ) : judgeDataError ? (
-        <Errors errorName={judgeDataError?.name} />
+      ) : nominatorDataError ? (
+        <Errors errorName={nominatorDataError?.name} />
       ) : !(
-          judgeData?.data !== null &&
-          judgeData?.data !== undefined &&
-          Object.keys(judgeData?.data).length > 0
+          nominatorData?.data !== null &&
+          nominatorData?.data !== undefined &&
+          Object.keys(nominatorData?.data).length > 0
         ) ? (
-        <AddEmptyState itemName="judge" />
+        <AddEmptyState itemName="nominator" />
       ) : (
         <div className="text-slate-900 px-4 h-auto">
           <Typography variant="h5" className="capitalize">
-            edit judge details
+            edit nominator details
           </Typography>
           {/* Details */}
           <div className="w-full h-full my-4 flex flex-col md:grid grid-cols-2 gap-6">
@@ -94,10 +97,10 @@ const JudgePage: React.FC = () => {
                 />
                 <div className="px-6 pt-14 pb-4">
                   <Typography className="text-lg font-LatoBold">
-                    Judge photo
+                    nominator photo
                   </Typography>
                   <Typography className="text-md font-LatoRegular">
-                    This will be displayed on judge&apos;s profile
+                    This will be displayed on nominator&apos;s profile
                   </Typography>
                   <div className="flex flex-row items-center py-4 gap-2">
                     <input
@@ -129,7 +132,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="firstname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.first_name}
+                      value={nominatorData?.data.first_name}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -140,7 +143,11 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="firstname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.middle_name ? judgeData?.data.first_name : ""}
+                      value={
+                        nominatorData?.data.middle_name
+                          ? nominatorData?.data.first_name
+                          : ""
+                      }
                     />
                   </div>
                   <div className="flex flex-col">
@@ -151,13 +158,12 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="lastname"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.last_name}
+                      value={nominatorData?.data.last_name}
                     />
                   </div>
                   <div className="py-2">
                     <Button
                       size="sm"
-                      fullWidth
                       className="bg-transparent capitalize transition ease-in-out text-green-500 hover:text-green-100 border border-green-500 hover:bg-green-700"
                     >
                       save changes
@@ -180,7 +186,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="organization"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.organization}
+                      value={nominatorData?.data.organization}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -191,7 +197,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="position"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.position}
+                      value={nominatorData?.data.position}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -202,13 +208,12 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="phone"
                       className="h-10 border-slate-300 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.phone_number}
+                      value={nominatorData?.data.phone_number}
                     />
                   </div>
                   <div className="py-2 mb-4">
                     <Button
                       size="sm"
-                      fullWidth
                       className="bg-transparent capitalize transition ease-in-out text-green-500 hover:text-green-100 border border-green-500 hover:bg-green-700"
                     >
                       save changes
@@ -227,13 +232,13 @@ const JudgePage: React.FC = () => {
                   className="rounded mt-4 border-slate-200 font-LatoRegular"
                   rows={4}
                   cols={50}
-                  value={judgeData?.data.bio}
+                  value={nominatorData?.data.bio}
                 ></textarea>
                 <div className="pt-4">
                   <Button
                     size="sm"
                     className="bg-transparent capitalize float-right transition ease-in-out text-green-500 hover:text-green-100 border border-green-500 hover:bg-green-700"
-                    >
+                  >
                     save changes
                   </Button>
                 </div>
@@ -249,7 +254,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="expertise"
                       className="h-10 border-slate-200 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.expertise}
+                      value={nominatorData?.data.expertise}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -260,7 +265,7 @@ const JudgePage: React.FC = () => {
                       type="text"
                       name="role"
                       className="h-10 border-slate-200 rounded-lg font-LatoRegular pl-4"
-                      value={judgeData?.data.role}
+                      value={nominatorData?.data.role}
                     />
                   </div>
                 </div>
@@ -270,14 +275,14 @@ const JudgePage: React.FC = () => {
                     type="text"
                     name="event"
                     className="h-10 border-slate-200 rounded-lg font-LatoRegular pl-4"
-                    value={judgeData?.data.event}
+                    value={nominatorData?.data.event}
                   />
                 </div>
                 <div className="pt-4">
                   <Button
                     size="sm"
                     className="bg-transparent capitalize float-right transition ease-in-out text-green-500 hover:text-green-100 border border-green-500 hover:bg-green-700"
-                    >
+                  >
                     save changes
                   </Button>
                 </div>
@@ -305,12 +310,11 @@ const JudgePage: React.FC = () => {
                     This action is irreversible.
                   </Typography>
                   <Button
-                  size="sm"
                     onClick={handleConfirmDelete}
                     className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-green-600 hover:bg-green-800"
                   >
-                    <MdDelete className="hidden lg:block text-3xl text-white" />
-                    <Typography className="text-sm font-LatoBold">delete account</Typography>
+                    <MdDelete className="hidden lg:block text-lg text-white" />{" "}
+                    delete account
                   </Button>
                 </div>
               </Card>
@@ -324,6 +328,10 @@ const JudgePage: React.FC = () => {
         size="xs"
         open={openConfirmDelete}
         handler={handleConfirmDelete}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
         className="bg-transparent shadow-none flex items-center justify-center"
       >
         <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex items-center justify-center">
@@ -362,4 +370,4 @@ const JudgePage: React.FC = () => {
   );
 };
 
-export default JudgePage;
+export default NominatorPage;

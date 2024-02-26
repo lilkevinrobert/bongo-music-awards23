@@ -12,6 +12,7 @@ import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
 import LoadingTable from "../Loading/LoadingTable.tsx";
 import useFetch from "../../hooks/useFetch.ts";
 import Errors from "../Errors/Errors.tsx";
+import { IoIosWarning } from "react-icons/io";
 
 type DataRow = {
   id: number;
@@ -22,7 +23,7 @@ type DataRow = {
   role: string;
   phone: string;
   email: string;
-}
+};
 
 interface JudgesData {
   data: [];
@@ -37,10 +38,18 @@ const JudgesDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [deleteItem, setDeleteItem] = useState<DataRow>();
 
-  // Add Judge Form Handling
+  // Judge Form Handling
   const [open, setOpen] = React.useState(false);
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
+  const handleConfirmDelete = (rowData: DataRow | undefined) => {
+    if (rowData) {
+      setDeleteItem(rowData);
+    }
+    setConfirmDeleteOpen((c) => !c);
+  };
 
   // Get data
   const {
@@ -48,16 +57,18 @@ const JudgesDataTable: React.FC = () => {
     loading: judgesDataLoading,
     error: judgesDataError,
   }: FetchResult = useFetch(`${BASE_URL}/judges`);
-  console.log(judgesData);
 
   useEffect(() => {
     // Filter data based on the search term
-    const filtered = judgesData?.data.filter((row) => {
-      return Object.values(row).some((value) =>
-        typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }) ?? [];
-    setFilteredData(filtered)
+    const filtered =
+      judgesData?.data.filter((row) => {
+        return Object.values(row).some(
+          (value) =>
+            typeof value === "string" &&
+            value.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }) ?? [];
+    setFilteredData(filtered);
   }, [searchTerm, judgesData]);
 
   return (
@@ -65,7 +76,7 @@ const JudgesDataTable: React.FC = () => {
       {judgesDataLoading ? (
         <LoadingTable />
       ) : judgesDataError ? (
-        <Errors errorName={ judgesDataError?.name } />
+        <Errors errorName={judgesDataError?.name} />
       ) : judgesData?.data.length === 0 ? (
         <AddEmptyState itemName="judge" />
       ) : (
@@ -97,6 +108,7 @@ const JudgesDataTable: React.FC = () => {
               <Typography className=" font-LatoRegular">Add</Typography>
             </Button>
 
+            {/* Dialogs */}
             <Dialog
               size="xs"
               open={open}
@@ -107,19 +119,65 @@ const JudgesDataTable: React.FC = () => {
                 <AddJudgeForm closeModal={handleOpen} />
               </div>
             </Dialog>
+            <Dialog
+              size="xs"
+              open={confirmDeleteOpen}
+              handler={handleConfirmDelete}
+              className="bg-transparent shadow-none flex flex-row items-center justify-center"
+            >
+              <div className="h-full border-red-400 flex items-center">
+                <div className="bg-white p-8 rounded-md shadow-md">
+                  <Typography className="text-slate-900 font-LatoBold text-center">
+                    Are you sure you want to Delete?
+                  </Typography>
+                  <div className="flex flex-col items-center justify-center py-4">
+                    <IoIosWarning className="text-4xl text-yellow-400" />
+                    <div className="flex flex-col items-center justify-center">
+                      <Typography className="text-slate-900 font-LatoRegular">
+                        This action is irreversible
+                      </Typography>
+                      <Typography className="text-slate-900 font-LatoRegular">
+                        You are about to delete an acount for
+                      </Typography>
+                      <span className="text-slate-900 uppercase font-LatoBold">
+                        {deleteItem && deleteItem?.fullname}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center mt-4 bg-transparent">
+                    <Button
+                      size="sm"
+                      type="button"
+                      onClick={() => handleConfirmDelete(undefined)}
+                      className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-LatoBold py-2 px-4 rounded mr-2 transition ease-in-out"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      size="sm"
+                      type="button"
+                      // onClick={handleDelete}
+                      className="bg-red-500 hover:bg-red-600 text-white font-LatoBold py-2 px-4 rounded"
+                    >
+                      Confirm Delete
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Dialog>
           </div>
 
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
-                <th className="px-4 py-2">Full Name</th>
-                <th className="px-4 py-2">Organization</th>
-                <th className="px-4 py-2">Position</th>
-                <th className="px-4 py-2">Expertise</th>
-                <th className="px-4 py-2">Role</th>
-                <th className="px-4 py-2">Phone</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2 text-center w-1/12">Action</th>
+                <th className="px-4 py-1">Full Name</th>
+                <th className="px-4 py-1">Organization</th>
+                <th className="px-4 py-1">Position</th>
+                <th className="px-4 py-1">Expertise</th>
+                <th className="px-4 py-1">Role</th>
+                <th className="px-4 py-1">Phone</th>
+                <th className="px-4 py-1">Email</th>
+                <th className="px-4 py-1 text-center w-1/12"></th>
               </tr>
             </thead>
             <tbody className="font-LatoRegular text-sm">
@@ -127,31 +185,34 @@ const JudgesDataTable: React.FC = () => {
                 <tr
                   key={index}
                   className={`${
-                    index % 2 === 0 ? "bg-gray-100" : ""
+                    index % 2 === 0 ? "bg-gray-50" : ""
                   } group/actions`}
                 >
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.fullname}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.organization}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.position}
                   </td>
-                  <td className="border px-4 py-2 capitalize">
+                  <td className="border px-4 py-1 capitalize">
                     {row.expertise}
                   </td>
-                  <td className="border px-4 py-2 capitalize">{row.role}</td>
-                  <td className="border px-4 py-2 capitalize">{row.phone}</td>
-                  <td className="border px-4 py-2 lowercase">{row.email}</td>
-                  <td className="border px-4 py-2 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
+                  <td className="border px-4 py-1 capitalize">{row.role}</td>
+                  <td className="border px-4 py-1 capitalize">{row.phone}</td>
+                  <td className="border px-4 py-1 lowercase">{row.email}</td>
+                  <td className="border px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
                     <NavLink to={`${row.id}`}>
                       <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                         <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />
                       </button>
                     </NavLink>
-                    <button className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group">
+                    <button
+                      onClick={() => handleConfirmDelete(row)}
+                      className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group"
+                    >
                       <MdOutlineDeleteOutline className="text-xl text-red-500 group-hover:text-white transition ease-in-out" />
                     </button>
                   </td>
