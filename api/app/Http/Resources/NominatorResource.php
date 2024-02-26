@@ -26,7 +26,7 @@ class NominatorResource extends JsonResource
             'phone' => $this->phone_number,
             'email' => $this->getNominatorInformation($this->user_id)->email,
             'gender' => $this->getNominatorInformation($this->user_id)->gender,
-            'user_id' => $this->user_id,
+            'user_id' => (int) $this->user_id,
         ];
     }
 

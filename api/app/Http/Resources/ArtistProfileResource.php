@@ -29,7 +29,7 @@ class ArtistProfileResource extends JsonResource
             'phone' => $this->phone_number,
             'gender' =>  User::where('id', $this->user_id)->select('gender')->first()['gender'],
             'email' => User::where('id', $this->user_id)->select('email')->first()['email'],
-            'user_id' => $this->user_id,
+            'user_id' => (int) $this->user_id,
         ];
     }
 
