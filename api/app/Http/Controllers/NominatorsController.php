@@ -40,7 +40,7 @@ class NominatorsController extends Controller
         $nominator = Nominator::find($id);
         if($nominator) {
             $user = User::where('id', $nominator->user_id)
-                ->select(['first_name', 'middle_name', 'last_name','email'.'role'])
+                ->select(['first_name', 'middle_name', 'last_name','email','role'])
                 ->limit(1)
                 ->first();
 
