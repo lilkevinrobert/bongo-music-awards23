@@ -40,16 +40,9 @@ class JudgeController extends Controller
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $validator->messages(),
-            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
-
-//        $userValidator = User::validate($request->all());
-//        if ($userValidator->fails()) {
-//            return response()->json([
-//                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
-//                'message' => $userValidator->messages(),
-//            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
-//        }
 
 
         try {
@@ -63,6 +56,8 @@ class JudgeController extends Controller
                 'role' => 'judge',
                 'password' => Hash::make($validator->validated()['last_name'])
             ]);
+
+            //saving the image to the database.
 
             $judge = Judge::create([
                 'profile_image_url' => 'No Image URl available',
