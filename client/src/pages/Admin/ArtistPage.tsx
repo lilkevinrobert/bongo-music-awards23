@@ -91,7 +91,7 @@ const ArtistPage: React.FC = () => {
         <div className="w-full h-auto grid grid-cols-1 md:grid-cols-3 my-4 gap-6">
           <div className="w-full md:w-auto mx-2 md:mx-0 flex flex-col items-center gap-4">
             {/* profile photo */}
-            <Card className="relative w-full h-fit rounded-sm shadow-md bg-white">
+            <Card className="relative w-full h-fit rounded-lg bg-white">
               {/* background pattern */}
               <img
                 className={`w-full h-28 rounded-t-lg object-cover object-center bg-yellow-200`}
@@ -116,7 +116,7 @@ const ArtistPage: React.FC = () => {
                   <input
                     type="file"
                     name="profile_pic"
-                    className="h-10 rounded-sm bg-yellow-100 font-LatoRegular"
+                    className="h-10 rounded-lg bg-yellow-100 font-LatoRegular"
                   />
                   <Button
                     size="md"
@@ -129,7 +129,7 @@ const ArtistPage: React.FC = () => {
             </Card>
 
             {/* artist summary */}
-            <Card className="bg-white w-full h-fit rounded-sm shadow-lg px-6 py-6">
+            <Card className="bg-white w-full h-fit rounded-lg px-6 py-6">
               <Typography className="text-lg capitalize font-LatoBold py-4">
                 artist information
               </Typography>
@@ -171,7 +171,7 @@ const ArtistPage: React.FC = () => {
 
           <div className="col-span-2 space-y-6">
             {/* Bio */}
-            <Card className="bg-white h-fit px-8 py-8 rounded-sm shadow-md">
+            <Card className="bg-white h-fit px-8 py-8 rounded-lg">
               <Typography>Bio</Typography>
               <textarea
                 className="rounded mt-4 border-slate-200 font-LatoRegular"
@@ -193,7 +193,7 @@ const ArtistPage: React.FC = () => {
             </Card>
             <div className="flex flex-col md:flex-row-reverse items-center gap-4">
               {/* Social Links */}
-              <Card className="w-full md:w-1/2 bg-white h-fit px-6 py-8 rounded-sm shadow-md">
+              <Card className="w-full md:w-1/2 bg-white h-fit px-6 py-8 rounded-lg">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     Social Links
@@ -227,7 +227,7 @@ const ArtistPage: React.FC = () => {
                 </div>
               </Card>
               {/* Delete Account */}
-              <Card className="w-full md:w-1/2 bg-white h-fit px-8 py-8 rounded-sm shadow-md">
+              <Card className="w-full md:w-1/2 bg-white h-fit px-8 py-8 rounded-lg">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     delete account

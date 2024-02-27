@@ -73,7 +73,7 @@ const JudgePage: React.FC = () => {
       ) : (
         <div className="text-slate-900 px-4 h-auto">
           <Typography variant="h5" className="capitalize">
-            edit judge details
+            judge management
           </Typography>
           {/* Details */}
           <div className="w-full h-full my-4 flex flex-col md:grid grid-cols-2 gap-6">
@@ -115,8 +115,11 @@ const JudgePage: React.FC = () => {
                 </div>
               </Card>
 
+              {/* <div>
+                
+              </div> */}
               {/* Personal Information */}
-              <Card className="w-full h-fit px-6 py-8 bg-white bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-100 shadow-lg rounded-lg">
+              <Card className="w-full h-fit col-span-2 px-6 py-8 bg-white rounded-lg">
                 <Typography className="capitalize pb-4">
                   Personal information
                 </Typography>
@@ -167,7 +170,7 @@ const JudgePage: React.FC = () => {
               </Card>
 
               {/* Contact Informtion */}
-              <Card className="bg-white h-fit px-6 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-100 shadow-lg rounded-lg">
+              <Card className="bg-white col-span-2 h-fit px-6 rounded-lg">
                 <Typography className="capitalize px-0 py-8">
                   Contact information
                 </Typography>
@@ -221,7 +224,7 @@ const JudgePage: React.FC = () => {
             {/* Bio, Expertise, Role & Event */}
             <div className="w-full flex flex-col gap-4">
               {/* Bio */}
-              <Card className="bg-white h-fit px-6 py-8 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-100 rounded-lg">
+              <Card className="bg-white h-fit px-6 py-8 rounded-lg">
                 <Typography>Bio</Typography>
                 <textarea
                   className="rounded mt-4 border-slate-200 font-LatoRegular"
@@ -239,7 +242,7 @@ const JudgePage: React.FC = () => {
                 </div>
               </Card>
               {/* Expertise, Role and Event */}
-              <Card className="bg-white h-fit px-6 py-8 bg-opacity-25 backdrop-filter backdrop-blur-md border border-gray-100 rounded-lg flex flex-col gap-4">
+              <Card className="bg-white h-fit px-6 py-8 rounded-lg flex flex-col gap-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col">
                     <label className="mb-2 font-LatoBold capitalize">
@@ -284,7 +287,7 @@ const JudgePage: React.FC = () => {
               </Card>
 
               {/* Delete Account */}
-              <Card className="w-full md:w-1/2 bg-white h-fit px-8 py-8 rounded-sm shadow-md">
+              <Card className="w-full bg-white h-fit px-8 py-8 rounded-lg shadow-md">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     delete account
