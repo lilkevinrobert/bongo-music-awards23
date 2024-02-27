@@ -12,9 +12,15 @@ class Nominator extends Model
     protected $table = 'nominators';
 
     protected $fillable = [
+        'profile_image_url',
         'user_id',
         'event_id',
+        'organization',
+        'position',
+        'expertise',
         'phone_number',
+        'bio',
+        'created_by'
     ];
 
     public $timestamps = true;

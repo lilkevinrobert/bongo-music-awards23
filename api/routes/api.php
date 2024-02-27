@@ -74,13 +74,15 @@ Route::group(['prefix'=>'artists'], function () {
 
 
 
-
+// Nominators Endpoints
 Route::group(['prefix'=>'nominators'], function () {
     Route::get('/',[NominatorsController::class,'index']); //All available nominators in the system
-
+    Route::get('/{id}',[NominatorsController::class, 'show']);
+    Route::delete('/{id}',[NominatorsController::class, 'destroy']);
+    Route::put('/{id}',[NominatorsController::class, 'update']);
 });
 
-
+// Judges Endpoints
 Route::group(['prefix'=>'judges'], function () {
     Route::get('/',[JudgeController::class,'index']); //All available judges in the system
     Route::post('/',[JudgeController::class,'store']);

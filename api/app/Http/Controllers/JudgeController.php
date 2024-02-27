@@ -40,16 +40,9 @@ class JudgeController extends Controller
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $validator->messages(),
-            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
-
-//        $userValidator = User::validate($request->all());
-//        if ($userValidator->fails()) {
-//            return response()->json([
-//                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
-//                'message' => $userValidator->messages(),
-//            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
-//        }
 
 
         try {
@@ -60,9 +53,12 @@ class JudgeController extends Controller
                 'middle_name' => $validator->validated()['middle_name'],
                 'last_name' => $validator->validated()['last_name'],
                 'email' => $validator->validated()['email'],
+                'gender' => $validator->validated()['gender'],
                 'role' => 'judge',
                 'password' => Hash::make($validator->validated()['last_name'])
             ]);
+
+            //saving the image to the database.
 
             $judge = Judge::create([
                 'profile_image_url' => 'No Image URl available',
@@ -99,7 +95,7 @@ class JudgeController extends Controller
         if ($judge){
 
             $user = User::where('id', $judge->user_id)
-                ->select(['first_name', 'middle_name', 'last_name','email'])
+                ->select(['first_name', 'middle_name', 'last_name','email','gender'])
                 ->limit(1)
                 ->first();
 
@@ -108,6 +104,7 @@ class JudgeController extends Controller
                 'first_name' => $user->first_name,
                 'middle_name' => $user->middle_name,
                 'last_name' => $user->last_name,
+                'gender' => $user->gender,
                 'email' => $user->email,
                 'organization' => $judge->organization,
                 'position' => $judge->position,
@@ -141,17 +138,27 @@ class JudgeController extends Controller
      */
     public function update(Request $request, Judge $judge)
     {
-
+        dd($judge);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Judge  $judge
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Judge $judge)
+    public function destroy($id)
     {
-        //
+        $judge = Judge::find($id);
+        if ($judge) {
+            Judge::destroy($id);
+            return response()->json([
+                'message' => 'Judge removed successful',
+                'status' => ResponseAlias::HTTP_OK,
+            ], ResponseAlias::HTTP_OK);
+
+        }
+
+        return response()->json([
+            'message' => 'Judge with id '.$id.' Not Found',
+            'status' => ResponseAlias::HTTP_OK,
+        ], ResponseAlias::HTTP_OK);
     }
 }
