@@ -13,6 +13,9 @@ import LoadingTable from "../Loading/LoadingTable.tsx";
 import useFetch from "../../hooks/useFetch.ts";
 import Errors from "../Errors/Errors.tsx";
 import { IoIosWarning } from "react-icons/io";
+import AnimatedDelete from "../Animated/AnimatedDelete.tsx";
+import FailedCard from "../Cards/FailedCard.tsx";
+import SuccessCard from "../Cards/SuccessCard.tsx";
 
 type DataRow = {
   id: number;
@@ -23,6 +26,7 @@ type DataRow = {
   role: string;
   phone: string;
   email: string;
+  user_id: string;
 };
 
 interface JudgesData {
@@ -34,19 +38,33 @@ interface FetchResult {
   error: Error | null;
 }
 
+type DeleteResponseState<T> = {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+};
+
 const JudgesDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [deleteId, setDeleteId] = useState("");
   const [deleteItem, setDeleteItem] = useState<DataRow>();
 
   // Judge Form Handling
   const [open, setOpen] = React.useState(false);
   const [confirmDeleteOpen, setConfirmDeleteOpen] = React.useState(false);
+  const [deleteProgressOpen, setDeleteProgressOpen] = React.useState(false);
+  const [deleteErrorOpen, setDeleteErrorOpen] = React.useState(false);
+  const [deleteSuccessOpen, setDeleteSuccessOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
+  const handleDeleteProgress = () => setDeleteProgressOpen((cur) => !cur);
+  const handleDeleteError = () => setDeleteErrorOpen((cur) => !cur);
+  const handleDeleteSuccess = () => setDeleteSuccessOpen((cur) => !cur);
   const handleConfirmDelete = (rowData: DataRow | undefined) => {
     if (rowData) {
       setDeleteItem(rowData);
+      setDeleteId(rowData.user_id);
     }
     setConfirmDeleteOpen((c) => !c);
   };
@@ -70,6 +88,27 @@ const JudgesDataTable: React.FC = () => {
       }) ?? [];
     setFilteredData(filtered);
   }, [searchTerm, judgesData]);
+
+  function handleDeleteConfirmation() {
+    handleConfirmDelete(undefined); // Close delete confirmation dialog
+    handleDeleteProgress(); // Open delete progress
+    handleDeleteConfirmationClick(deleteId);
+  }
+
+  const handleDeleteConfirmationClick = async (id: string) => {
+    // Send delete request
+    const response = await fetch(`${BASE_URL}/judges/8788`, {
+      method: "DELETE",
+    });
+    const {status} = await response.json();
+    if(status !== 200){
+      handleDeleteProgress(); // Close delete progress dialog
+      handleDeleteError(); // Show error dialog
+    }else{
+      handleDeleteProgress();
+      handleDeleteSuccess(); // Show error dialog
+    }
+  }
 
   return (
     <>
@@ -109,6 +148,7 @@ const JudgesDataTable: React.FC = () => {
             </Button>
 
             {/* Dialogs */}
+            {/* Add Judge Dialog */}
             <Dialog
               size="xs"
               open={open}
@@ -119,6 +159,7 @@ const JudgesDataTable: React.FC = () => {
                 <AddJudgeForm closeModal={handleOpen} />
               </div>
             </Dialog>
+            {/* Confirm Delete Dialog */}
             <Dialog
               size="xs"
               open={confirmDeleteOpen}
@@ -156,13 +197,54 @@ const JudgesDataTable: React.FC = () => {
                     <Button
                       size="sm"
                       type="button"
-                      // onClick={handleDelete}
+                      onClick={handleDeleteConfirmation}
                       className="bg-red-500 hover:bg-red-600 text-white font-LatoBold py-2 px-4 rounded"
                     >
                       Confirm Delete
                     </Button>
                   </div>
                 </div>
+              </div>
+            </Dialog>
+
+            {/* Delete Progress Dialog */}
+            <Dialog
+              size="xs"
+              open={deleteProgressOpen}
+              handler={handleDeleteProgress}
+              className="bg-transparent shadow-none"
+            >
+              <div className="h-full border-red-400 flex flex-col items-center justify-center">
+                <AnimatedDelete />
+              </div>
+            </Dialog>
+
+            {/* Action failed Dialog */}
+            <Dialog
+              size="xs"
+              open={deleteErrorOpen}
+              handler={handleDeleteError}
+              className="bg-transparent shadow-none"
+            >
+              <div className="h-full border-red-400 flex flex-col items-center justify-center">
+                <FailedCard
+                  message="failed to delete"
+                  onTrigger={handleDeleteError}
+                />
+              </div>
+            </Dialog>
+            {/* Action Successful */}
+            <Dialog
+              size="xs"
+              open={deleteSuccessOpen}
+              handler={handleDeleteSuccess}
+              className="bg-transparent shadow-none"
+            >
+              <div className="h-full border-red-400 flex flex-col items-center justify-center">
+                <SuccessCard
+                  message="Delete confirmed"
+                  onTrigger={handleDeleteSuccess}
+                />
               </div>
             </Dialog>
           </div>
@@ -203,7 +285,7 @@ const JudgesDataTable: React.FC = () => {
                   <td className="border px-4 py-1 capitalize">{row.role}</td>
                   <td className="border px-4 py-1 capitalize">{row.phone}</td>
                   <td className="border px-4 py-1 lowercase">{row.email}</td>
-                  <td className="border px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
+                  <td className="px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
                     <NavLink to={`${row.id}`}>
                       <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                         <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />

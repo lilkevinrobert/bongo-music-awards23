@@ -1,37 +1,36 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-const useDelete = (
-  url: string
-): [boolean, boolean, () => Promise<boolean>] => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+export interface DeleteState {
+  isLoading: boolean;
+  error: Error | null;
+  isSuccess: boolean | null; // Add isSuccess flag
+}
 
-  const sendDeleteRequest = async (): Promise<boolean> => {
-    setLoading(true);
-    setError(false);
+const useDelete = () => {
+  const [deleteRequestState, setDeleteRequestState] = useState<DeleteState>({
+    isLoading: false,
+    error: null,
+    isSuccess: null, // Initialize isSuccess to null
+  });
+
+  const deleteRequest = async (url: string) => {
+    setDeleteRequestState({ ...deleteRequestState, isLoading: true, isSuccess: null }); // Reset isSuccess
     try {
       const response = await fetch(url, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        method: 'DELETE',
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to delete data");
+      if (response.status !== 200) {
+        throw new Error('Failed to delete resource');
       }
-
-      // Handle successful response
-      setLoading(false);
-      return true; // Success
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-      return false; // Failure
+      setDeleteRequestState({ ...deleteRequestState, isLoading: false, isSuccess: true });
+      return response;
+    } catch (error: any) {
+      setDeleteRequestState({ ...deleteRequestState, isLoading: false, error, isSuccess: false });
     }
   };
 
-  return [loading, error, sendDeleteRequest];
+  return { deleteRequest, ...deleteRequestState };
 };
 
 export default useDelete;
