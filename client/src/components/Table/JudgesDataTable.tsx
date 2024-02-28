@@ -58,7 +58,7 @@ const JudgesDataTable: React.FC = () => {
   const handleConfirmDelete = (rowData: DataRow | undefined) => {
     if (rowData) {
       setDeleteItem(rowData);
-      setDeleteId(rowData.user_id);
+      setDeleteId(rowData.id.toString());
     }
     setConfirmDeleteOpen((c) => !c);
   };
@@ -95,12 +95,13 @@ const JudgesDataTable: React.FC = () => {
       method: "DELETE",
     });
     const {status} = await response.json();
-    if(status !== 200){
-      handleDeleteProgress(); // Close delete progress dialog
-      handleDeleteError(); // Show error dialog
-    }else{
+    if(status == 200){
       handleDeleteProgress();
       handleDeleteSuccess(); // Show error dialog
+      window.location.reload();
+    }else {
+      handleDeleteProgress(); // Close delete progress dialog
+      handleDeleteError(); // Show error dialog
     }
   }
 
