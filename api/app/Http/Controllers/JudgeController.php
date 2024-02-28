@@ -158,7 +158,7 @@ class JudgeController extends Controller
 
         return response()->json([
             'message' => 'Judge with id '.$id.' Not Found',
-            'status' => ResponseAlias::HTTP_OK,
-        ], ResponseAlias::HTTP_OK);
+            'status' => ResponseAlias::HTTP_NOT_FOUND,
+        ], ResponseAlias::HTTP_NOT_FOUND);
     }
 }
