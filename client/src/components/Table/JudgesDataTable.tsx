@@ -97,7 +97,7 @@ const JudgesDataTable: React.FC = () => {
 
   const handleDeleteConfirmationClick = async (id: string) => {
     // Send delete request
-    const response = await fetch(`${BASE_URL}/judges/8788`, {
+    const response = await fetch(`${BASE_URL}/judges/${id}`, {
       method: "DELETE",
     });
     const {status} = await response.json();
