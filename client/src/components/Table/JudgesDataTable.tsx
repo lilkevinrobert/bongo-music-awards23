@@ -38,12 +38,6 @@ interface FetchResult {
   error: Error | null;
 }
 
-type DeleteResponseState<T> = {
-  data: T | null;
-  loading: boolean;
-  error: Error | null;
-};
-
 const JudgesDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
