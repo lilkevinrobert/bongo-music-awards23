@@ -74,6 +74,7 @@ import ArtistPage from "./pages/Admin/ArtistPage.tsx";
 import ArtistDashboardPage from "./pages/artist/ArtistDashboardPage.tsx";
 import JudgePage from "./pages/Admin/JudgePage.tsx";
 import NominatorPage from "./pages/Admin/NominatorPage.tsx";
+import AdminProfilePage from "./pages/Admin/ProfilePage.tsx";
 
 
 // Lazy-loaded components
@@ -201,6 +202,14 @@ function App() {
                     element: (
                         <Suspense fallback={<Loading />}>
                             <JudgePage />
+                        </Suspense>
+                    )
+                },
+                {
+                    path: "profile",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <AdminProfilePage />
                         </Suspense>
                     )
                 },
