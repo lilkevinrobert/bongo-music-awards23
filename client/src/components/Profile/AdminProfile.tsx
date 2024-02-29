@@ -5,11 +5,11 @@ import TopographyDarkBackground from "/topography-dark.svg";
 
 const AdminProfile: React.FC = () => {
   const imgLink =
-    "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
+  "https://images.unsplash.com/photo-1513152697235-fe74c283646a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMHBob3RvfGVufDB8fDB8fHww";
 
   return (
     <div className="w-full h-auto grid grid-cols-2 gap-2 bg-transparent">
-      <div className="w-full flex flex-col gap-4">
+      <div className="w-full flex flex-col gap-0">
         <Card className="relative w-full h-fit rounded-t-lg shadow-md bg-white col-span-2">
           {/* background pattern */}
           <img
@@ -47,7 +47,7 @@ const AdminProfile: React.FC = () => {
           </div>
         </Card>
         {/* Delete Account */}
-        <Card className="w-full bg-white h-fit px-8 py-2 rounded-b-lg shadow-md">
+        <Card className="w-full bg-white h-fit px-6 py-2 rounded-b-lg shadow-md">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     delete account

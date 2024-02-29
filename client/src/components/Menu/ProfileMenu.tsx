@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const ProfileMenu = () => {
   const imgLink =
@@ -26,15 +27,17 @@ const ProfileMenu = () => {
         />
       </MenuHandler>
       <MenuList className="py-2">
-        <MenuItem className="flex items-center gap-2 group">
+        <MenuItem>
+          <NavLink to="/admin/profile" className="flex items-center gap-2 group">
           <FaRegCircleUser className="text-lg text-slate-500 transition ease-in-out group-hover:text-slate-900" />
 
           <Typography
             variant="small"
             className="text-md text-slate-500 font-LatoRegular capitalize transition ease-in-out group-hover:text-slate-900"
           >
-            My Profile
+            Profile
           </Typography>
+          </NavLink>
         </MenuItem>
         <hr className="my-2 border-blue-gray-50" />
         <MenuItem className="flex items-center gap-2 group">
