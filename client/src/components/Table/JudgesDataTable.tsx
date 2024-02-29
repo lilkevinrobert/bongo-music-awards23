@@ -228,7 +228,7 @@ const JudgesDataTable: React.FC = () => {
                 />
               </div>
             </Dialog>
-            {/* Action Successful */}
+            {/* Action Successful Dialog */}
             <Dialog
               size="xs"
               open={deleteSuccessOpen}
