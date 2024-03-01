@@ -7,7 +7,9 @@ interface FormData {
   first_name: string;
   middle_name: string;
   last_name: string;
+  gender: string;
   email: string;
+  event: number;
   phone_number: string;
   organization: string;
   position: string;
@@ -28,14 +30,11 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => { console.log(data)
     // Send POST request
     try {
       const response = await fetch(`${BASE_URL}/judges/`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(data),
       });
       const result = await response.json();
@@ -105,6 +104,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
           </div>
         </div>
 
+
         <div className="flex items-center gap-12 justify-between">
           <div className="mb-4 w-1/2">
             <label
@@ -149,6 +149,49 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
             {errors.email && (
               <p className="text-md font-LatoRegular text-red-500">
                 {errors.email.message}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="mb-4 flex items-center gap-12 justify-between ">
+          <div className="w-1/2">
+            <label
+              htmlFor="first_name"
+              className="block text-sm font-LatoBold text-gray-700"
+            >
+              Gender
+            </label>
+            <input
+              type="text"
+              id="gender"
+              {...register("gender", {
+                required: "* Gender is required",
+              })}
+              className="h-10 mt-1 p-2 pl-4 border-gray-400 rounded-md w-full font-LatoRegular"
+            />
+            {errors.gender && (
+              <p className="text-md font-LatoRegular text-red-500">
+                {errors.gender.message}
+              </p>
+            )}
+          </div>
+
+          <div className="w-1/2">
+            <label
+              htmlFor="middle_name"
+              className="block text-sm font-LatoBold text-gray-600"
+            >
+              Event
+            </label>
+            <input
+              type="text"
+              id="event"
+              {...register("event", { required: "* Event is required" })}
+              className="h-10 mt-1 p-2 pl-4 border-gray-400 rounded-md  w-full font-LatoRegular"
+            />
+               {errors.event && (
+              <p className="text-md font-LatoRegular text-red-500">
+                {errors.event.message}
               </p>
             )}
           </div>

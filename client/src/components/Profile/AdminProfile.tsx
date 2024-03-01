@@ -2,13 +2,14 @@ import React from "react";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import { MdDelete } from "react-icons/md";
 import TopographyDarkBackground from "/topography-dark.svg";
+import EditAdminProfile from "../Forms/EditAdminProfile";
 
 const AdminProfile: React.FC = () => {
   const imgLink =
   "https://images.unsplash.com/photo-1513152697235-fe74c283646a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMHBob3RvfGVufDB8fDB8fHww";
 
   return (
-    <div className="w-full h-auto grid grid-cols-2 gap-2 bg-transparent">
+    <div className="w-full h-auto grid grid-cols-2 gap-4 bg-transparent">
       <div className="w-full flex flex-col gap-0">
         <Card className="relative w-full h-fit rounded-t-lg shadow-md bg-white col-span-2">
           {/* background pattern */}
@@ -77,7 +78,9 @@ const AdminProfile: React.FC = () => {
                 </div>
               </Card>
       </div>
-      <div className="w-full">edit form here</div>
+      <div className="w-full">
+        <EditAdminProfile />
+      </div>
     </div>
   );
 };
