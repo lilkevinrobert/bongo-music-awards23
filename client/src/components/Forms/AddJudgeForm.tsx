@@ -153,7 +153,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
         <div className="mb-4 flex items-center gap-12 justify-between ">
           <div className="w-1/2">
             <label
-              htmlFor="first_name"
+              htmlFor="gender"
               className="block text-sm font-LatoBold text-gray-700"
             >
               Gender
@@ -175,7 +175,7 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
 
           <div className="w-1/2">
             <label
-              htmlFor="middle_name"
+              htmlFor="event"
               className="block text-sm font-LatoBold text-gray-600"
             >
               Event

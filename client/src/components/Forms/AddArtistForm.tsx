@@ -1,9 +1,8 @@
 import { Button, Card, Typography } from "@material-tailwind/react";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { MdClose, MdOutlineInfo } from "react-icons/md";
-import axios from "../../api/axios.ts";
 import { PropagateLoader } from "react-spinners";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface FormData {
@@ -22,7 +21,11 @@ interface FormProps {
 
 const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
   const [loading, setLoading] = useState(false);
-  const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const [formData, setFormData] = useState<FormData>({
     first_name: "",
     middle_name: "",
@@ -97,7 +100,10 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
   };
   return (
     <Card className="mx-auto w-3/4  rounded-md shadow-lg bg-white border border-gray-300">
-      <form className="w-full px-8 mx-auto my-8" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full px-8 mx-auto my-8"
+      >
         <div className="flex flex-row items-center justify-between mb-4 uppercase font-semibold">
           <Typography variant="h4" className="text-2xl">
             New Artist
@@ -124,7 +130,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
               })}
               className="h-10 mt-1 p-2 pl-4 border border-gray-400 font-LatoRegular rounded-md w-full"
             />
-              {errors.first_name && (
+            {errors.first_name && (
               <p className="text-md font-LatoRegular text-red-500">
                 {errors.first_name.message}
               </p>
@@ -161,7 +167,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
               {...register("last_name", { required: "* Lastname is required" })}
               className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
             />
-              {errors.last_name && (
+            {errors.last_name && (
               <p className="text-md font-LatoRegular text-red-500">
                 {errors.last_name.message}
               </p>
@@ -177,10 +183,12 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
             <input
               type="text"
               id="stage_name"
-              {...register("stage_name", { required: "* Stage name is required" })}
+              {...register("stage_name", {
+                required: "* Stage name is required",
+              })}
               className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
             />
-              {errors.stage_name && (
+            {errors.stage_name && (
               <p className="text-md font-LatoRegular text-red-500">
                 {errors.stage_name.message}
               </p>
@@ -199,10 +207,12 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
             <input
               type="tel"
               id="phone_number"
-              {...register("phone_number", { required: "* Phone number is required" })}
+              {...register("phone_number", {
+                required: "* Phone number is required",
+              })}
               className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
             />
-             {errors.phone_number && (
+            {errors.phone_number && (
               <p className="text-md font-LatoRegular text-red-500">
                 {errors.phone_number.message}
               </p>
@@ -219,10 +229,17 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
             <input
               type="text"
               id="email"
-              {...register("email", { required: "* Email is required" })}
+              {...register("email", {
+                required: "* Email is required",
+                pattern: {
+                  value:
+                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                  message: "Invalid email format",
+                },
+              })}
               className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
             />
-                  {errors.email && (
+            {errors.email && (
               <p className="text-md font-LatoRegular text-red-500">
                 {errors.email.message}
               </p>
@@ -243,11 +260,11 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
             {...register("bio", { required: "* Biography is required" })}
             className="mt-1 p-2 pl-4 w-full border border-gray-400 font-LatoRegular rounded-md bg-transparent"
           />
-                     {errors.bio && (
-              <p className="text-md font-LatoRegular text-red-500">
-                {errors.bio.message}
-              </p>
-            )}
+          {errors.bio && (
+            <p className="text-md font-LatoRegular text-red-500">
+              {errors.bio.message}
+            </p>
+          )}
         </div>
 
         <div className="mt-4">
