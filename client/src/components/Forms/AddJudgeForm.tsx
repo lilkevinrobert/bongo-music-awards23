@@ -64,7 +64,6 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
             onClick={closeModal}
           />
         </div>
-
         <div className="mb-4 flex items-center gap-12 justify-between ">
           <div className="w-1/2">
             <label
@@ -103,8 +102,6 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
             />
           </div>
         </div>
-
-
         <div className="flex items-center gap-12 justify-between">
           <div className="mb-4 w-1/2">
             <label
