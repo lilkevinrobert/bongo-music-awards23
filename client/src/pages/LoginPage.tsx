@@ -9,6 +9,7 @@ import {
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import { NavLink } from "react-router-dom";
+import TextLogo from "../components/Logo/TextLogo";
 
 const LoginPage = () => {
   const data = [
@@ -28,9 +29,7 @@ const LoginPage = () => {
       <div className="w-full lg:w-1/2 shadow-none">
         <div className="w-full flex flex-row items-center justify-center my-4">
           <NavLink to="/">
-          <Typography variant="h4" className="text-slate-900 capitalize">
-            Bongo music Awards
-          </Typography>
+            <TextLogo />
           </NavLink>
         </div>
         <Tabs id="custom-animation" value="html">
