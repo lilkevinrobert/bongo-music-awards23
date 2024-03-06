@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   const data = [
@@ -26,9 +27,11 @@ const LoginPage = () => {
     <section className="px-4 w-full h-screen flex flex-col items-center justify-center bg-white">
       <div className="w-full lg:w-1/2 shadow-none">
         <div className="w-full flex flex-row items-center justify-center my-4">
+          <NavLink to="/">
           <Typography variant="h4" className="text-slate-900 capitalize">
             Bongo music Awards
           </Typography>
+          </NavLink>
         </div>
         <Tabs id="custom-animation" value="html">
           <TabsHeader className="text-slate-900 bg-gradient-to-r from-yellow-400 to-white">
