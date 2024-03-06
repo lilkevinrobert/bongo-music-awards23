@@ -124,17 +124,15 @@ const Login = () => {
       <Card className="w-96 shadow-none">
         <form onSubmit={handleLogin}>
           <CardHeader className="flex flex-col items-center justify-center shadow-none">
-            <Typography className="self-start pl-2">
+            <Typography className="self-start pl-2 text-gray-800">
               Enter account credentials to login.
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4 my-2">
+          <CardBody className="flex flex-col gap-4 my-1">
             <div>
-              <Input
-                color="black"
-                crossOrigin={undefined}
-                className="my-1 rounded-md"
-                placeholder="Enter Your Email Address"
+              <input
+                className="pl-4 rounded-lg w-full font-LatoRegular border border-gray-500"
+                placeholder="Enter your Email Address"
                 type="email"
                 name="email"
                 onChange={inputHandler}
@@ -147,13 +145,11 @@ const Login = () => {
             </div>
 
             <div>
-              <Input
-                color="black"
-                crossOrigin={undefined}
-                className="my-1 rounded-md"
+              <input
                 placeholder="Enter Your Password"
                 type="password"
                 name="password"
+                className="pl-4 rounded-lg w-full font-LatoRegular border border-gray-500"
                 onChange={inputHandler}
               />
               {errors?.password?.length > 0 && (
@@ -167,7 +163,7 @@ const Login = () => {
             <Button
               variant="gradient"
               fullWidth
-              className="bg-slate-900 hover:bg-yellow-400 transition ease-in-out"
+              className="bg-slate-900 hover:bg-yellow-500 transition ease-in-out"
               onClick={handleLogin}
             >
               Log In
@@ -175,7 +171,7 @@ const Login = () => {
             <NavLink to="/recovery">
               <Typography
                 variant="small"
-                className="mt-6 flex justify-center transition-all ease-in-out hover:underline hover:underline-offset-4"
+                className="mt-6 flex justify-center font-LatoRegular transition-all ease-in-out hover:underline hover:underline-offset-4"
               >
                 Forgot Password?
               </Typography>
