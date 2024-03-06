@@ -1,83 +1,80 @@
-import {
-  Typography,
-  Input,
-  Button,
-  Textarea,
-} from "@material-tailwind/react";
+import { Typography, Button } from "@material-tailwind/react";
 
 const ContactForm = () => {
   return (
-    <section className="w-full lg:w-8/12 h-auto py-4 px-8 bg-slate-50 text-slate-900">
+    <section className="w-full lg:w-8/12 h-auto py-6 px-8 bg-transparent text-slate-900">
       <form className="w-full flex flex-col">
-        <Typography variant="h5" className="capitalize pb-4">
+        <Typography
+          variant="h5"
+          className="capitalize pb-4 text-xl font-LatoBold"
+        >
           contact information
         </Typography>
-        <div className="mb-1 grid grid-cols-2 gap-6">
+        <div className="mb-1 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="mb-1 w-full">
-            <Typography variant="h6" className="mb-3 text-slate-500">
+            <Typography
+              variant="h6"
+              className="mb-3 text-slate-800 font-LatoBold"
+            >
               First name
             </Typography>
-            <Input
-              size="lg"
-              placeholder=""
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
+            <input
+              type="text"
+              placeholder="Your First name"
+              className="w-full rounded-lg border border-slate-600 font-LatoRegular"
             />
           </div>
           <div className="mb-1 w-full">
-            <Typography variant="h6" className="mb-3 text-slate-500">
+            <Typography
+              variant="h6"
+              className="mb-3 text-slate-800 font-LatoBold"
+            >
               Last name
             </Typography>
-            <Input
-              size="lg"
-              placeholder=""
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
+            <input
+              type="text"
+              placeholder="Your Last name"
+              className="w-full rounded-lg border border-slate-600 font-LatoRegular"
             />
           </div>
           <div className="mb-1 w-full">
-            <Typography variant="h6" className="mb-3 text-slate-500">
+            <Typography
+              variant="h6"
+              className="mb-3 text-slate-800 font-LatoBold"
+            >
               Email
             </Typography>
-            <Input
-              size="lg"
-              placeholder=""
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="w-full rounded-lg border border-slate-600 font-LatoRegular"
             />
           </div>
           <div className="mb-1 w-full">
-            <Typography variant="h6" className="mb-3 text-slate-500">
+            <Typography
+              variant="h6"
+              className="mb-3 text-slate-800 font-LatoBold"
+            >
               Phone number
             </Typography>
-            <Input
+            <input
               type="tel"
-              size="lg"
-              placeholder=""
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-              crossOrigin={undefined}
+              placeholder="Your phone number"
+              className="w-full rounded-lg border border-slate-600 font-LatoRegular"
             />
           </div>
         </div>
         <div>
-          <Typography variant="h5" className="py-6">
+          <Typography variant="h5" className="py-6 text-xl font-LatoBold">
             How can we help you?
           </Typography>
-          <Textarea size="lg" label="" />
+          <textarea className="w-full rounded-lg border border-slate-600 font-LatoRegular" />
         </div>
-        <Button fullWidth className="w-1/3 self-end py-4 my-6 bg-slate-800 hover:bg-yellow-400 transition ease-in-out">
+        <Button
+          fullWidth
+          size="md"
+          className="w-auto my-4 self-end transition ease-in-out bg-slate-800 hover:bg-yellow-600"
+        >
           get in touch
         </Button>
       </form>
