@@ -47,7 +47,9 @@ const AddJudgeForm: React.FC<FormProps> = ({ closeModal }) => {
     //     handleDeleteProgress(); // Close delete progress dialog
     //     handleDeleteError(); // Show error dialog
     //   }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+    }
   };
   return (
     <Card className="mx-auto w-3/4  rounded-lg shadow-lg bg-white border border-gray-300">
