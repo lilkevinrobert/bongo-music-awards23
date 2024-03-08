@@ -9,31 +9,46 @@ import { useState } from "react";
 import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 import TopographyBackground from "/topography.svg";
 import EditArtist from "../../components/Forms/EditArtist";
+import useFetch from "../../hooks/useFetch";
+import AddEmptyState from "../../components/EmptyState/AddEmptyState";
+import LoadingProfile from "../../components/Loading/LoadingProfile";
+import Errors from "../../components/Errors/Errors";
+import { useParams } from "react-router-dom";
+import { PiWarningFill } from "react-icons/pi";
+import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 
-export interface ArtistData {
-  stageName: string;
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  profileImage: string;
-  bio: string;
+type DataRow = {
+  id: number;
+  stage_name: string;
+  first_name: string;
+  middle_name: string | null;
+  last_name: string;
   genre: string;
   phone: string;
+  gender: string;
   email: string;
-  spotifyMusicLink: string;
-  appleMusicLink: string;
-  youtubeMusicLink: string;
-  boomPlayMusicLink: string;
-  dateOfBirth: string;
-  placeOfBirth: string;
-  awardsWon: string[];
-  createdBy: string;
-  albums: string[];
-  singles: string[];
+  user_id: string;
+  social_links: {
+    youtubeMusicLink: string | null;
+    spotifyMusicLink: string | null;
+    appleMusicLink: string | null;
+    boomPlayMusicLink: string | null;
+  } | null;
+};
+
+interface ArtistData {
+  data: DataRow;
+}
+
+interface FetchResult {
+  data: ArtistData | null;
+  loading: boolean;
+  error: Error | null;
 }
 
 const ArtistPage: React.FC = () => {
-  // const [data, setData] = useState<ArtistData>();
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const { artistId } = useParams();
 
   // Dialog State
   const [openEdit, setOpenEdit] = useState(false);
@@ -46,33 +61,34 @@ const ArtistPage: React.FC = () => {
   const imgLink =
     "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
 
-  const testData: ArtistData = {
-    firstName: "Rajab",
-    middleName: "Abdul",
-    lastName: "Kahali",
-    stageName: "Harmonize",
-    profileImage: "",
-    bio: "Harmonize is a Tanzanian singer, songwriter and entrepreneur.",
-    genre: "Bongo Flava",
-    phone: "+255 755 789 123",
-    email: "harmonize@gmail.com",
-    spotifyMusicLink: "https://open.spotify.com/artist/sample-artist-id",
-    appleMusicLink: "https://music.apple.com/us/artist/sample-artist/123456789",
-    youtubeMusicLink: "https://music.youtube.com/channel/sample-channel-id",
-    boomPlayMusicLink: "Link-to-boom-play-music",
-    dateOfBirth: "March 15 1990",
-    placeOfBirth: "Chitohori",
-    awardsWon: [],
-    createdBy: "Admin",
-    albums: [],
-    singles: [],
-  };
-  console.log(testData);
+  // Get Data
+  const {
+    data: artistData,
+    loading: artistDataLoading,
+    error: artistDataError,
+  }: FetchResult = useFetch(`${BASE_URL}/artists/${artistId}`);
 
+  const fullName = `${artistData?.data?.first_name} ${artistData?.data?.middle_name} ${artistData?.data?.last_name}`
+  const stageName = `${artistData?.data?.stage_name}`;
+  const phoneNumber = `${artistData?.data?.phone}`;
+  const gender = `${artistData?.data?.gender}`;
+  const genre = `${artistData?.data?.genre}`;
+  const email = `${artistData?.data?.email}`;
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="artists" currentPage="artist" />
-      <div className="h-auto text-slate-900 px-4">
+      {artistDataLoading ? (
+        <LoadingProfile />
+      ) : artistDataError ? (
+        <Errors errorName={artistDataError?.name} />
+      ) : !(
+          artistData?.data !== null &&
+          artistData?.data !== undefined &&
+          Object.keys(artistData?.data).length > 0
+        ) ? (
+        <AddEmptyState itemName="artist" />
+      ) : (
+<div className="h-auto text-slate-900 px-4">
         <div className="flex items-center justify-between">
           <Typography variant="h4" className="text-sm md:text-xl capitalize">
             Artist management
@@ -106,11 +122,11 @@ const ArtistPage: React.FC = () => {
                 alt="profile pic"
               />
               <div className="px-6 pt-14 pb-4">
-                <Typography className="text-lg font-LatoBold">
-                  Artist photo
+                <Typography className="text-lg font-LatoBold capitalize">
+                  { fullName }
                 </Typography>
                 <Typography className="text-md font-LatoRegular">
-                  This will be displayed on artist&apos;s profile
+                  This photo will be displayed on artist&apos;s profile
                 </Typography>
                 <div className="flex flex-row items-center py-4 gap-2">
                   <input
@@ -133,29 +149,22 @@ const ArtistPage: React.FC = () => {
               <Typography className="text-lg capitalize font-LatoBold py-4">
                 artist information
               </Typography>
+              <div className="space-y-1">
               <div className="flex flex-row items-center gap-6">
                 <Typography className="text-sm md:text-md capitalize font-LatoBold">
                   full name:
                 </Typography>
 
                 <Typography className="text-sm font-LatoRegular">
-                  Hamza Jumah Shekilango
+                  { fullName }
                 </Typography>
               </div>
               <div className="flex flex-row items-center gap-3">
                 <Typography className="text-sm md:text-md capitalize font-LatoBold">
                   stage name:
                 </Typography>
-                <Typography className="text-sm font-LatoRegular">
-                  zaju the great
-                </Typography>
-              </div>
-              <div className="flex flex-row items-center gap-11 md:gap-12">
-                <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                  phone:
-                </Typography>
-                <Typography className="text-sm font-LatoRegular">
-                  +255 743 471 652
+                <Typography className="text-sm font-LatoRegular capitalize">
+                  { stageName }
                 </Typography>
               </div>
               <div className="flex flex-row items-center gap-12 md:gap-14">
@@ -163,8 +172,33 @@ const ArtistPage: React.FC = () => {
                   email:
                 </Typography>
                 <Typography className="text-sm font-LatoRegular">
-                  zaju@gmail.com
+                  { email }
                 </Typography>
+              </div>
+              <div className="flex flex-row items-center gap-11 md:gap-12">
+                <Typography className="text-sm md:text-md capitalize font-LatoBold">
+                  phone:
+                </Typography>
+                <Typography className="text-sm font-LatoRegular">
+                  { phoneNumber }
+                </Typography>
+              </div>
+              <div className="flex flex-row items-center gap-11 md:gap-10">
+                <Typography className="text-sm md:text-md capitalize font-LatoBold">
+                  Gender:
+                </Typography>
+                <Typography className="text-sm font-LatoRegular">
+                  { gender }
+                </Typography>
+              </div>
+              <div className="flex flex-row items-center gap-11 md:gap-12">
+                <Typography className="text-sm md:text-md capitalize font-LatoBold">
+                  Genre:
+                </Typography>
+                <Typography className="text-sm font-LatoRegular">
+                  { genre }
+                </Typography>
+              </div>
               </div>
             </Card>
           </div>
@@ -178,9 +212,7 @@ const ArtistPage: React.FC = () => {
                 rows={4}
                 cols={50}
               >
-                jjksdjks sknasankjn kana jknagklk nakkjkkjr jd ajhriij eij
-                eijoajosij ij ajhfhrha nksnds. hdfshi, jksduhdskj kjweui
-                uihfa674 773j
+                some cool bio
               </textarea>
               <div className="pt-4">
                 <Button
@@ -191,9 +223,11 @@ const ArtistPage: React.FC = () => {
                 </Button>
               </div>
             </Card>
-            <div className="flex flex-col md:flex-row-reverse items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-4">
               {/* Social Links */}
-              <Card className="w-full md:w-1/2 bg-white h-fit px-6 py-8 rounded-lg">
+              {
+                artistData?.data?.social_links ? (
+                  <Card className="w-full md:w-1/2 bg-white h-fit px-6 py-8 rounded-lg">
                 <div className="py-2">
                   <Typography className="capitalize font-LatoBold">
                     Social Links
@@ -203,29 +237,42 @@ const ArtistPage: React.FC = () => {
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <FaYoutube className="text-xl text-red-500" />
                     <Typography className="font-LatoRegular text-xs md:text-sm">
-                      {testData.youtubeMusicLink}
+                      {artistData?.data?.social_links?.youtubeMusicLink}
                     </Typography>
                   </div>
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <FaSpotify className="text-xl text-green-500" />
                     <Typography className="font-LatoRegular text-xs md:text-sm">
-                      {testData.spotifyMusicLink}
+                      {artistData?.data?.social_links?.spotifyMusicLink}
                     </Typography>
                   </div>
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <SiApplemusic className="text-xl text-red-500" />
                     <Typography className="font-LatoRegular text-xs md:text-sm">
-                      {testData.appleMusicLink}
+                      {artistData?.data?.social_links?.appleMusicLink}
                     </Typography>
                   </div>
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-2">
                     <FaLink className="text-xl text-gray-500" />
                     <Typography className="font-LatoRegular text-xs md:text-sm">
-                      {testData.boomPlayMusicLink}
+                      {artistData?.data?.social_links?.boomPlayMusicLink}
                     </Typography>
                   </div>
                 </div>
               </Card>
+                ) : (
+                  <Card className="w-full md:w-1/2 bg-white h-1/2 px-6 py-8 rounded-lg flex flex-col items-center justify-center gap-4 self-baseline">
+                    <PiWarningFill className="text-7xl text-gray-700" />
+                    <div className="flex flex-row items-center gap-4">
+                      <FaInstagram className="text-2xl text-gray-700" />
+                      <FaFacebook className="text-2xl text-gray-700" />
+                      <FaXTwitter className="text-2xl text-gray-700" />
+                    </div>
+                    <Typography className="font-LatoBold">No social links yet! </Typography>
+                  </Card>
+                )
+              }
+              
               {/* Delete Account */}
               <Card className="w-full md:w-1/2 bg-white h-fit px-8 py-8 rounded-lg">
                 <div className="py-2">
@@ -259,6 +306,7 @@ const ArtistPage: React.FC = () => {
           </div>
         </div>
       </div>
+      )}
 
       {/* Dialogs */}
       <Dialog
