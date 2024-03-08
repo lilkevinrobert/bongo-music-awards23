@@ -4,7 +4,6 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-  Typography,
 } from "@material-tailwind/react";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";

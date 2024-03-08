@@ -1,5 +1,5 @@
 import { Button, Card, Typography } from "@material-tailwind/react";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState } from "react";
 import { MdClose, MdOutlineInfo } from "react-icons/md";
 import { PropagateLoader } from "react-spinners";
 import { Toaster } from "react-hot-toast";
@@ -36,19 +36,10 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
     bio: "",
   });
 
-  const handleChange = <T extends HTMLInputElement | HTMLTextAreaElement>(
-    e: ChangeEvent<T>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true); // Start the loading indicator
     console.log(data);
+    setFormData(data)
     // e.preventDefault();
     // await axios
     //   .get("https://api.bongomusicawards.co.tz/sanctum/csrf-cookie")

@@ -1,5 +1,5 @@
 import { Button, Card, Typography } from "@material-tailwind/react";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState } from "react";
 import { MdClose, MdOutlineInfo } from "react-icons/md";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 
@@ -42,18 +42,9 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
     bio: "",
   });
 
-  const handleChange = <T extends HTMLInputElement | HTMLTextAreaElement>(
-    e: ChangeEvent<T>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const onSubmit: SubmitHandler<FormData> = (data) => {
     // Add form submission logic here
+    setFormData(data);
     console.log("Form submitted:", data);
   };
 

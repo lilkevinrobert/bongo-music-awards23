@@ -1,9 +1,8 @@
 import { Button, Card, Typography } from "@material-tailwind/react";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState } from "react";
 import { MdClose, MdOutlineInfo } from "react-icons/md";
-import axios from "../../api/axios.ts";
 import { PropagateLoader } from "react-spinners";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface FormData {
@@ -37,16 +36,9 @@ const EditArtist: React.FC<FormProps> = ({ closeModal }) => {
     bio: "",
   });
 
-  // const handleChange = <T extends HTMLInputElement | HTMLTextAreaElement>(e: ChangeEvent<T>) => {
-  //     const {name, value} = e.target;
-  //     setFormData((prevData) => ({
-  //         ...prevData,
-  //         [name]: value,
-  //     }));
-  // };
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true); // Start the loading indicator
+    setFormData(data);
     console.log(data);
     // e.preventDefault();
     // await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')

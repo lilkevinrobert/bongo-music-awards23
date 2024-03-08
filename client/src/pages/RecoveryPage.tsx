@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Button, Input, Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import TextLogo from "../components/Logo/TextLogo";
 
 const RecoveryPage = () => {
