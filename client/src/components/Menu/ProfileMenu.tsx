@@ -10,7 +10,11 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-const ProfileMenu = () => {
+interface ProfileMenuProps {
+  profileAddress: string;
+}
+
+const ProfileMenu = ( { profileAddress }:ProfileMenuProps ) => {
   const imgLink =
     "https://images.unsplash.com/photo-1513152697235-fe74c283646a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMHBob3RvfGVufDB8fDB8fHww";
 
@@ -28,7 +32,7 @@ const ProfileMenu = () => {
       </MenuHandler>
       <MenuList className="py-2">
         <MenuItem>
-          <NavLink to="/admin/profile" className="flex items-center gap-2 group">
+          <NavLink to={profileAddress} className="flex items-center gap-2 group">
           <FaRegCircleUser className="text-lg text-slate-500 transition ease-in-out group-hover:text-slate-900" />
 
           <Typography

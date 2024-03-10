@@ -26,7 +26,7 @@ const BreadcrumbLevel2 = ({ previousPage, currentPage }:BreadcrumbLevel2Props) =
       </Breadcrumbs>
       </div>
       <div className="py-2 pr-4">
-        <ProfileMenu />
+        <ProfileMenu profileAddress="/admin/profile"/>
       </div>
     </div>
   );
