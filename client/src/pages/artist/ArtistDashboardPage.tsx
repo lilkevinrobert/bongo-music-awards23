@@ -4,7 +4,6 @@ const ArtistDashboard = () => {
     return (
         <ArtistLayout>
             <div className="w-full text-black flex flex-row bg-red-500">
-                
                 <p>Dashboard</p>
             </div>
         </ArtistLayout>
