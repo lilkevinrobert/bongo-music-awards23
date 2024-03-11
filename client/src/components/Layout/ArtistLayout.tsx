@@ -10,11 +10,11 @@ const ArtistLayout: React.FC<LayoutProps> = ({ children }) => {
       <div className="bg-transparent w-full">
         <div className="bg-transparent flex flex-row items-center justify-between">
           <ArtistSidebar />
-          <div className="mx-1 md:mx-2 lg:mx-3">
+          <div className="mx-1 md:mx-2 lg:mx-6">
             <ProfileMenu profileAddress="/artist/profile" />
           </div>
         </div>
-        <section className="w-full bg-transparent px-1 md:px-2 lg:px-3">{children}</section>
+        <section className="w-full bg-transparent px-1 md:px-2 lg:px-6">{children}</section>
       </div>
     </div>
   );

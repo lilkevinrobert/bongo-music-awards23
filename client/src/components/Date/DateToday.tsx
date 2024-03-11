@@ -24,7 +24,7 @@ const DateToday = () => {
     }
   }
   return (
-    <Card className="py-4 px-8 my-2 flex flex-col-reverse md:flex-row-reverse items-center justify-between rounded-md">
+    <Card className="py-4 px-2 my-2 flex flex-col-reverse md:flex-row-reverse items-center justify-between rounded-md">
       <div className="flex flex-col">
         <Typography className="text-base font-LatoRegular">
           Today is <span className="font-LatoBold capitalize">{ resolveDay(day) }</span>
