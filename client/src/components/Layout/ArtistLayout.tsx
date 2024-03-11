@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 const ArtistLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="h-screen w-full bg-slate-50 flex flex-row">
+    <div className="h-auto w-full bg-slate-50 flex flex-row">
       <div className="bg-transparent w-full">
         <div className="bg-transparent flex flex-row items-center justify-between">
           <ArtistSidebar />
