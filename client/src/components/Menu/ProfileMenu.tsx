@@ -25,12 +25,12 @@ const ProfileMenu = ( { profileAddress }:ProfileMenuProps ) => {
           size="sm"
           variant="circular"
           withBorder={true}
-          alt="profile_pic"
-          className="cursor-pointer border-slate-300"
+          alt="DP"
+          className="cursor-pointer border-slate-300 text-xs text-center font-LatoRegular rounded-full"
           src={imgLink}
         />
       </MenuHandler>
-      <MenuList className="py-2">
+      <MenuList className="py-2 pr-4">
         <MenuItem>
           <NavLink to={profileAddress} className="flex items-center gap-2 group">
           <FaRegCircleUser className="text-lg text-slate-500 transition ease-in-out group-hover:text-slate-900" />

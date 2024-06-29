@@ -20,7 +20,7 @@ const AdminProfile: React.FC = () => {
           />
           {/* Profile picture */}
           <img
-            className=" h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md"
+            className="h-28 w-28 bg-amber-300 rounded-3xl object-cover object-center text-sm font-LatoRegular absolute top-10 ml-6 border-4 border-white shadow-md"
             src={imgLink}
             loading="lazy"
             alt="profile pic"
@@ -73,15 +73,15 @@ const AdminProfile: React.FC = () => {
       <Card className="px-6 py-4 gap-2 rounded-lg">
         <Typography>Edit Profile Photo</Typography>
         <div className="flex flex-col items-center gap-2">
-          <img src={imgLink} alt="profile_photo" className="rounded-md w-auto h-56" />
+          <img src={imgLink} alt="profile_photo" className="rounded-md w-auto h-56 bg-amber-300 text-sm font-LatoRegular" />
           <input
             type="file"
             name="profile_pic"
-            className="h-10 rounded-md bg-amber-200 font-LatoRegular"
+            className="h-10 mt-2 rounded-md bg-amber-200 font-LatoRegular"
           />
           <Button
             size="sm"
-            className="capitalize transition ease-in-out hover:bg-slate-800"
+            className="mt-2 capitalize transition ease-in-out hover:bg-slate-800"
           >
             save changes
           </Button>

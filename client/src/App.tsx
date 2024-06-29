@@ -20,8 +20,8 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminCategoriesPage = lazy(() => import("./pages/Admin/CategoriesPage"));
 const AdminGenresPage = lazy(() => import("./pages/Admin/GenresPage"));
 const AdminGenrePage = lazy(() => import("./pages/Admin/GenrePage"));
-const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage.tsx"));
-const RecoveryPage = lazy(() => import("./pages/RecoveryPage.tsx"));
+const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage"));
+const RecoveryPage = lazy(() => import("./pages/RecoveryPage"));
 
 function App() {
     const router = createBrowserRouter([

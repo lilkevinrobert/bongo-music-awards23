@@ -207,7 +207,7 @@ const ArtistsDataTable: React.FC = () => {
                   <td className="border px-4 py-1 capitalize">
                     {row.stage_name}
                   </td>
-                  <td className="border px-4 py-1 capitalize">
+                  <td className="border px-4 py-1 capitalize font-normal">
                     {`${row.first_name} ${
                       row.middle_name != null ? row.middle_name : ""
                     } ${row.last_name}`}

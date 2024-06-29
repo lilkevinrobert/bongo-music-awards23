@@ -1,8 +1,13 @@
 import { Typography } from "@material-tailwind/react"
-const TextLogo = () => {
+
+interface TextSize {
+  textSize: string;
+}
+
+const TextLogo = ({ textSize }: TextSize ) => {
     return(
         <>
-        <Typography className="text-2xl text-center text-slate-900">
+        <Typography className={`${textSize} text-center text-slate-900`}>
           Bongo <span className="text-yellow-400"> Music Awards</span>
         </Typography>
       </>

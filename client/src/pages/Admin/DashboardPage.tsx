@@ -4,6 +4,7 @@ import SummaryCard from "../../components/Cards/SummaryCard";
 import useFetch from "../../hooks/useFetch";
 import LoadingSummaryCard from "../../components/Loading/LoadingSummaryCard";
 import AdminHomeBarChart from "../../components/Charts/AdminHomeBarChart";
+import AdminMobileSidebar from "../../components/navbar/AdminMobileSidebar";
 
 interface SummaryCount {
   users: number;
@@ -30,38 +31,44 @@ const AdminDashboardPage = () => {
     <Layout>
       <div className="text-slate-950 px-4">
         <section className="py-2 flex flex-row items-center justify-between">
+          <div className="flex items-center gap-1">
+            <AdminMobileSidebar />
           <Typography variant="h6">Admin Dashboard</Typography>
+          </div>
           <Typography className="text-base font-LatoRegular">
             {dateToday()}
           </Typography>
         </section>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-6 py-4">
-          {summaryCountLoading ? (
-            <>
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            </>
-          ) : (
-            (summaryCountError == null && summaryCountData !== null) ?
-            Object.keys(summaryCountData).map((key) => (
-              <SummaryCard key={key} count={summaryCountData[key as keyof SummaryCount]} title={key} type={key} />
-            )) : (
+        <div>
+          <h3 className="capitalize text-lg">overview</h3>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-6 py-4">
+            {summaryCountLoading ? (
               <>
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            <LoadingSummaryCard />
-            </>
-            )
-          )}
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              </>
+            ) : (
+              (summaryCountError == null && summaryCountData !== null) ?
+              Object.keys(summaryCountData).map((key) => (
+                <SummaryCard key={key} count={summaryCountData[key as keyof SummaryCount]} title={key} type={key} />
+              )) : (
+                <>
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              <LoadingSummaryCard />
+              </>
+              )
+            )}
+          </div>
         </div>
 
         {/* Chart & Recents */}

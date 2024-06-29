@@ -1,7 +1,7 @@
-import Layout from "../../components/Layout/Layout.tsx";
+import Layout from "../../components/Layout/Layout";
 import { Typography } from "@material-tailwind/react";
-import ArtistsDataTable from "../../components/Table/ArtistsDataTable.tsx";
-import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1.tsx";
+import ArtistsDataTable from "../../components/Table/ArtistsDataTable";
+import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1";
 
 const ArtistsPage = () => {
   return (
