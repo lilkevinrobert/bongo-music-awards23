@@ -49,7 +49,7 @@ const AdminMobileSidebar = () => {
               className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <MdOutlineHome className="text-lg text-gray-400 mr-2" />
+              <MdOutlineHome className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="../dashboard"
                 className="hover:text-yellow-400 font-LatoBold"
@@ -69,7 +69,7 @@ const AdminMobileSidebar = () => {
               className="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear  active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuUsers2 className="text-lg text-gray-400 mr-2" />
+              <LuUsers2 className="text-lg text-gray-800 mr-2" />
               <span
                 className="font-LatoBold group-[&[data-te-sidenav-slim-collapsed='true']]:data-[te-sidenav-slim='false']:hidden"
                 data-te-sidenav-slim="false"
@@ -132,7 +132,7 @@ const AdminMobileSidebar = () => {
               className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuAward className="text-lg text-gray-400 mr-2" />
+              <LuAward className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="#"
                 className="hover:text-yellow-400 capitalize font-LatoBold"
@@ -148,7 +148,7 @@ const AdminMobileSidebar = () => {
               className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuBox className="text-lg text-gray-400 mr-2" />
+              <LuBox className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="#"
                 className="hover:text-yellow-400 capitalize font-LatoBold"
@@ -168,7 +168,7 @@ const AdminMobileSidebar = () => {
               className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <HiOutlineTicket className="text-lg text-gray-400 mr-2" />
+              <HiOutlineTicket className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="#"
                 className="hover:text-yellow-400 capitalize font-LatoBold"
@@ -183,7 +183,7 @@ const AdminMobileSidebar = () => {
               className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuMessageSquare className="text-lg text-gray-400 mr-2" />
+              <LuMessageSquare className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="#"
                 className="hover:text-yellow-400 uppercase font-LatoBold"
@@ -198,7 +198,7 @@ const AdminMobileSidebar = () => {
               className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuLogOut className="text-lg text-gray-400 mr-2" />
+              <LuLogOut className="text-lg text-gray-600 mr-2" />
               <NavLink to="../../login" className="font-LatoBold">
                 Logout
               </NavLink>
