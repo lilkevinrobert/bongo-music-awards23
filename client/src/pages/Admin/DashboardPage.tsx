@@ -33,7 +33,7 @@ const AdminDashboardPage = () => {
         <section className="py-2 flex flex-row items-center justify-between">
           <div className="flex items-center gap-1">
             <AdminMobileSidebar />
-          <Typography variant="h6">Admin Dashboard</Typography>
+            <Typography variant="h6">Admin Dashboard</Typography>
           </div>
           <Typography className="text-base font-LatoRegular">
             {dateToday()}
@@ -42,38 +42,42 @@ const AdminDashboardPage = () => {
 
         {/* Summary Cards */}
         <div>
-          <h3 className="capitalize text-lg">overview</h3>
+          <h3 className="capitalize text-lg pl-1">overview</h3>
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-6 py-4">
             {summaryCountLoading ? (
               <>
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
               </>
-            ) : (
-              (summaryCountError == null && summaryCountData !== null) ?
+            ) : summaryCountError == null && summaryCountData !== null ? (
               Object.keys(summaryCountData).map((key) => (
-                <SummaryCard key={key} count={summaryCountData[key as keyof SummaryCount]} title={key} type={key} />
-              )) : (
-                <>
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
-              <LoadingSummaryCard />
+                <SummaryCard
+                  key={key}
+                  count={summaryCountData[key as keyof SummaryCount]}
+                  title={key}
+                  type={key}
+                />
+              ))
+            ) : (
+              <>
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
+                <LoadingSummaryCard />
               </>
-              )
             )}
           </div>
         </div>
 
         {/* Chart & Recents */}
         <div className="grid grid-cols-2 my-4 h-96 bg-transparent">
-              <AdminHomeBarChart />
+          <AdminHomeBarChart />
         </div>
       </div>
     </Layout>
