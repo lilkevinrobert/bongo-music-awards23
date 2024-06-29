@@ -1,19 +1,24 @@
 import { useEffect } from "react";
 import { initTE, Ripple, Sidenav } from "tw-elements";
-import { Typography } from '@material-tailwind/react'
-import { Navbar } from 'flowbite-react'
-import { HiOutlineTicket } from 'react-icons/hi2'
-import { LuUsers2, LuAward, LuBox, LuMessageSquare, LuLogOut } from 'react-icons/lu'
-import { MdOutlineHome, MdOutlineMenu } from 'react-icons/md'
-import { NavLink } from 'react-router-dom'
+import { Typography } from "@material-tailwind/react";
+import { HiOutlineTicket } from "react-icons/hi2";
+import {
+  LuUsers2,
+  LuAward,
+  LuBox,
+  LuMessageSquare,
+  LuLogOut,
+} from "react-icons/lu";
+import { MdOutlineHome, MdOutlineMenu } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const AdminMobileSidebar = () => {
-    useEffect(() => {
-        initTE({ Sidenav, Ripple });
-      }, []);
+  useEffect(() => {
+    initTE({ Sidenav, Ripple });
+  }, []);
   return (
     <div>
-              <nav
+      <nav
         id="sidenav-8"
         className="absolute left-0 top-0 z-[1035] h-full w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
         data-te-sidenav-init
@@ -32,7 +37,7 @@ const AdminMobileSidebar = () => {
             draggable="false"
             className="text-slate-900 capitalize"
           >
-            bongo <span className="text-yellow-400">music awards!</span>
+            bongo <span className="text-yellow-400">music awards</span>
           </Typography>
         </NavLink>
         <ul
@@ -98,11 +103,9 @@ const AdminMobileSidebar = () => {
                   className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-yellow-400 group hover:text-white hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                   data-te-sidenav-link-ref
                 >
-                  <Navbar.Link className="group-hover:text-white transition ease-in-out">
                     <NavLink to="../artists" className="font-LatoBold">
                       Artists
                     </NavLink>
-                  </Navbar.Link>
                 </a>
               </li>
               <li className="relative">
@@ -110,11 +113,9 @@ const AdminMobileSidebar = () => {
                   className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-yellow-400 group hover:text-white hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                   data-te-sidenav-link-ref
                 >
-                  <Navbar.Link className="group-hover:text-white transition ease-in-out">
                     <NavLink to="../judges" className="font-LatoBold">
                       Judges
                     </NavLink>
-                  </Navbar.Link>
                 </a>
               </li>
 
@@ -123,11 +124,9 @@ const AdminMobileSidebar = () => {
                   className="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-yellow-400 group hover:text-white hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                   data-te-sidenav-link-ref
                 >
-                  <Navbar.Link className="group-hover:text-white transition ease-in-out">
                     <NavLink to="../nominators" className="font-LatoBold">
                       Nominators
                     </NavLink>
-                  </Navbar.Link>
                 </a>
               </li>
             </ul>
@@ -213,7 +212,7 @@ const AdminMobileSidebar = () => {
           </li>
         </ul>
       </nav>
-        <MdOutlineMenu
+      <MdOutlineMenu
         className="lg:hidden text-slate-900 text-2xl my-2 mx-1 transition duration-150 ease-in-out cursor-pointer"
         data-te-sidenav-toggle-ref
         data-te-target="#sidenav-8"
@@ -221,7 +220,7 @@ const AdminMobileSidebar = () => {
         aria-haspopup="true"
       />
     </div>
-  )
-}
+  );
+};
 
-export default AdminMobileSidebar
+export default AdminMobileSidebar;
