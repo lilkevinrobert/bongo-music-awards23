@@ -9,6 +9,7 @@ import ArtistDashboardPage from "./pages/artist/ArtistDashboardPage.tsx";
 import JudgePage from "./pages/Admin/JudgePage.tsx";
 import NominatorPage from "./pages/Admin/NominatorPage.tsx";
 import AdminProfilePage from "./pages/Admin/ProfilePage.tsx";
+import AdminAwardsPage from "./pages/Admin/AdminAwardsPage.tsx";
 
 
 // Lazy-loaded components
@@ -63,7 +64,7 @@ function App() {
                     path: "awards/",
                     element: (
                         <Suspense fallback={<Loading />}>
-                            <p>awards</p>
+                            <AdminAwardsPage />
                         </Suspense>
                     ),
                 },

@@ -139,7 +139,7 @@ const AdminSidebar = () => {
             >
               <LuAward className="text-lg text-gray-600 mr-2" />
               <NavLink
-                to="#"
+                to="../awards"
                 className="hover:text-yellow-400 capitalize font-LatoBold"
               >
                 awards

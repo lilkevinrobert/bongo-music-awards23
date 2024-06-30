@@ -5,6 +5,7 @@ import { FaArrowDownLong } from "react-icons/fa6";
 import AddArtistForm from "../Forms/AddArtistForm";
 import AddNominatorForm from "../Forms/AddNominatorForm";
 import AddJudgeForm from "../Forms/AddJudgeForm";
+import AddCategoryForm from "../Forms/AddCategoryForm";
 
 type AddEmptyStateProps = {
   itemName: string;
@@ -15,11 +16,13 @@ const AddEmptyState = ({ itemName }: AddEmptyStateProps) => {
   const [openArtistDialog, setOpenArtistDialog] = useState(false);
   const [openNominatorDialog, setOpenNominatorDialog] = useState(false);
   const [openJudgeDialog, setOpenJudgeDialog] = useState(false);
+  const [openCategoryDialog, setOpenCategoryDialog] = useState(false);
 
   // dialogs handlers
   const handleOpenArtistDialog = () => setOpenArtistDialog((cur) => !cur);
   const handleOpenNominatorDialog = () => setOpenNominatorDialog((cur) => !cur);
   const handleOpenJudgeDialog = () => setOpenJudgeDialog((cur) => !cur);
+  const handleOpenCategoryDialog = () => setOpenCategoryDialog((cur) => !cur);
   const dialogSelector = () => {
     switch(itemName){
       case "artist":
@@ -30,6 +33,9 @@ const AddEmptyState = ({ itemName }: AddEmptyStateProps) => {
         return;
       case "judge":
         handleOpenJudgeDialog()
+        return;
+      case "category":
+        handleOpenCategoryDialog()
         return;
       default:
         return;
@@ -81,6 +87,16 @@ const AddEmptyState = ({ itemName }: AddEmptyStateProps) => {
         >
           <div className="h-full border-red-400 flex items-center">
             <AddJudgeForm closeModal={handleOpenJudgeDialog} />
+          </div>
+        </Dialog>
+      <Dialog
+            size="xs"
+            open={openCategoryDialog}
+            handler={handleOpenCategoryDialog}
+            className="bg-transparent shadow-none"
+        >
+          <div className="h-full border-red-400 flex items-center">
+            <AddCategoryForm closeModal={handleOpenCategoryDialog} />
           </div>
         </Dialog>
     </>
