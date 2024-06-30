@@ -7,6 +7,7 @@ import {
   LuBox,
   LuMessageSquare,
   LuLogOut,
+  LuMusic2,
 } from "react-icons/lu";
 import { MdOutlineHome } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -15,17 +16,17 @@ const AdminSidebar = () => {
   const [showSubMenu, setShowSubMenu] = useState(false);
   const showSubMenuHandler = () => setShowSubMenu(!showSubMenu);
   return (
-    <div className="w-auto lg:w-80 bg-white hidden lg:flex flex-col items-center justify-normal">
-      <nav
+    <div className="w-auto lg:w-80 bg-transparent hidden lg:flex flex-col items-center justify-normal">
+      <nav  
         id="sidenav-8"
-        className="absolute left-0 top-0 z-[1035] h-full w-64 shadow-md data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+        className="fixed left-0 top-0 z-[1035] bg-transparent h-full w-64 shadow-md data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
         data-te-sidenav-init
         data-te-sidenav-hidden="true"
         data-te-sidenav-position="absolute"
         data-te-sidenav-accordion="true"
       >
         <NavLink
-          className="mb-3 flex items-center justify-center border-b-2 border-solid border-gray-100 py-6 outline-none"
+          className="mb-3 flex items-center justify-start ml-6 border-b-2 border-solid border-gray-100 py-6 outline-none"
           to="/admin/dashboard"
           data-te-ripple-init
           data-te-ripple-color="primary"
@@ -33,8 +34,9 @@ const AdminSidebar = () => {
           <Typography
             id="te-logo"
             draggable="false"
-            className="text-slate-900 capitalize"
+            className="text-slate-900 capitalize flex items-center justify-center gap-1"
           >
+            <LuMusic2 />
             bongo <span className="text-yellow-400">music awards</span>
           </Typography>
         </NavLink>
@@ -68,7 +70,7 @@ const AdminSidebar = () => {
               data-te-sidenav-link-ref
               onClick={showSubMenuHandler}
             >
-              <LuUsers2 className="text-lg text-gray-800 mr-2" />
+              <LuUsers2 className="text-lg text-gray-600 mr-2" />
               <span
                 className="font-LatoBold group-[&[data-te-sidenav-slim-collapsed='true']]:data-[te-sidenav-slim='false']:hidden"
                 data-te-sidenav-slim="false"
@@ -77,7 +79,7 @@ const AdminSidebar = () => {
               </span>
               <span
                 className={`absolute right-0 ml-auto mr-[0.5rem] ${
-                  showSubMenu ? "" : "rotate-180"
+                  showSubMenu ? "rotate-180" : ""
                 } transition-transform duration-300 ease-linear motion-reduce:transition-none [&>svg]:text-gray-600 dark:[&>svg]:text-gray-300`}
                 data-te-sidenav-rotate-icon-ref
               >
@@ -97,7 +99,7 @@ const AdminSidebar = () => {
             </a>
             <ul
               className={`!visible relative m-0 ${
-                showSubMenu ? "hidden" : "data-[te-collapse-show]:block"
+                showSubMenu ? "data-[te-collapse-show]:block" : "hidden"
               } list-none p-0`}
               data-te-sidenav-collapse-ref
             >

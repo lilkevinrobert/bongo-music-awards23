@@ -15,9 +15,11 @@ const BreadcrumbLevel2 = ({
 }: BreadcrumbLevel2Props) => {
   const navigate = useNavigate();
   return (
-    <div className=" text-slate-900 pb-2 flex flex-row items-center justify-between">
+    <div className=" text-slate-900 pb-0 flex flex-row items-center justify-between">
       <div className="self-baseline flex flex-row items-center mt-2">
-        <AdminMobileSidebar />
+        <div className="lg:hidden">
+          <AdminMobileSidebar />
+        </div>
         <Breadcrumbs separator="/">
           <NavLink to="../dashboard" className="opacity-60 pr-2">
             <AiFillHome className="text-md" />

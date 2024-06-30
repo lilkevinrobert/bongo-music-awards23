@@ -26,7 +26,7 @@ const ProfileMenu = ( { profileAddress }:ProfileMenuProps ) => {
           variant="circular"
           withBorder={true}
           alt="DP"
-          className="cursor-pointer border-slate-300 text-xs text-center font-LatoRegular rounded-full"
+          className="cursor-pointer border-gray-700 text-xs text-center font-LatoRegular rounded-full"
           src={imgLink}
         />
       </MenuHandler>

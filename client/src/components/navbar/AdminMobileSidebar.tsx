@@ -17,17 +17,17 @@ const AdminMobileSidebar = () => {
     initTE({ Sidenav, Ripple });
   }, []);
   return (
-    <div>
+    <>
       <nav
         id="sidenav-8"
-        className="absolute left-0 top-0 z-[1035] h-full w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+        className="absolute left-0 top-0 z-[1035] h-full w-60 -translate-x-full overflow-visible shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 bg-white dark:bg-zinc-800"
         data-te-sidenav-init
         data-te-sidenav-hidden="true"
         data-te-sidenav-position="absolute"
         data-te-sidenav-accordion="true"
       >
         <NavLink
-          className="mb-3 flex items-center justify-center border-b-2 border-solid border-gray-100 py-6 outline-none"
+          className="flex items-center justify-center border-b-2 border-solid border-gray-100 py-6 outline-none bg-white"
           to="/admin/dashboard"
           data-te-ripple-init
           data-te-ripple-color="primary"
@@ -41,7 +41,7 @@ const AdminMobileSidebar = () => {
           </Typography>
         </NavLink>
         <ul
-          className="relative m-0 list-none px-[0.2rem] pb-12"
+          className="relative m-0 list-none px-[0.2rem] pb-12 bg-white"
           data-te-sidenav-menu-ref
         >
           <li className="relative">
@@ -213,7 +213,7 @@ const AdminMobileSidebar = () => {
         aria-controls="#sidenav-8"
         aria-haspopup="true"
       />
-    </div>
+    </>
   );
 };
 

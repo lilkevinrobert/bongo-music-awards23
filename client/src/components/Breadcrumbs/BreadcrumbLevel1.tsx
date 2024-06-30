@@ -10,9 +10,11 @@ interface BreadcrumbLevel1Props {
 
 const BreadcrumbLevel1 = ({ currentPage }: BreadcrumbLevel1Props) => {
   return (
-    <div className="text-slate-900 pb-2 flex flex-row items-center justify-between bg-transparent">
+    <div className="top-0 sticky z-[1035] pb-0 flex flex-row items-center justify-between bg-white text-slate-900">
       <div className="self-baseline flex flex-row items-center mt-2">
-        <AdminMobileSidebar />
+        <div className="lg:hidden">
+          <AdminMobileSidebar />
+        </div>
         <Breadcrumbs separator="/">
           <NavLink to="../dashboard" className="opacity-60 pr-2">
             <AiFillHome className="text-md" />
