@@ -80,7 +80,7 @@ const AdminDashboardPage = () => {
         </div>
 
         {/* Chart & Recents */}
-        <div className="grid grid-cols-2 my-4 h-96 bg-transparent">
+        <div className="grid grid-cols-1 my-4 h-96 bg-transparent">
           <AdminHomeBarChart />
         </div>
       </div>

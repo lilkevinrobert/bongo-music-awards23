@@ -29,7 +29,7 @@ const data: Data[] = [
 const AdminHomeBarChart: React.FC = () => {
   return (
     <div className="flex flex-col">
-      <Typography variant="h6" className="capitalize text-slate-700 my-2">
+      <Typography variant="h3" className="capitalize text-lg text-slate-700 my-2">
         votes by category
       </Typography>
       <ResponsiveContainer className="w-auto h-full">
@@ -37,7 +37,7 @@ const AdminHomeBarChart: React.FC = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="category" hide />
           <YAxis hide />
-          <Bar dataKey="votes" fill="#808080" barSize={55} />
+          <Bar dataKey="votes" fill="#808080" barSize={30} />
           <Tooltip
             contentStyle={{
               backgroundColor: "rgba(255, 255, 255, 0.3)",
