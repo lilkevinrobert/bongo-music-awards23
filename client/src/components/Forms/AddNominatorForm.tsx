@@ -55,20 +55,22 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
       className="w-full px-12 mx-auto my-6" 
       >
         <div className="flex flex-row items-center justify-between my-4  uppercase font-semibold">
-          <Typography variant="h4" className="text-2xl">
+          <Typography variant="h4" className="text-2xl capitalize font-LatoBold text-gray-900">
             New Nominator
           </Typography>
-          <MdClose
-            className="text-2xl cursor-pointer rounded-full transition ease-in-out hover:bg-slate-950 hover:text-white"
-            onClick={closeModal}
-          />
+          <div className="bg-gray-100 rounded">
+            <MdClose
+              className="w-6 h-6 cursor-pointer rounded transition ease-in-out hover:bg-slate-800 hover:text-white"
+              onClick={closeModal}
+            />
+            </div>
         </div>
 
         <div className="mb-4 flex items-center gap-12 justify-between ">
           <div className="w-1/2">
             <label
               htmlFor="first_name"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900 font-LatoBold"
             >First Name
             </label>
             <input
@@ -77,7 +79,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               {...register("first_name", {
                 required: "* Firstname is required",
               })}
-              className="h-8 mt-1 p-2 pl-4 border border-gray-400 rounded-md w-full font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 border border-gray-300 rounded-md w-full font-LatoRegular"
             />
               {errors.first_name && (
               <p className="text-md font-LatoRegular text-red-500">
@@ -89,7 +91,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="w-1/2">
             <label
               htmlFor="middle_name"
-              className="block text-sm font-LatoBold text-gray-600"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Middle Name
             </label>
@@ -99,7 +101,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               {...register("middle_name", {
                 required: false,
               })}
-              className="h-8 mt-1 p-2 pl-4 border border-gray-400 rounded-md  w-full font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 border border-gray-300 rounded-md  w-full font-LatoRegular"
             />
           </div>
         </div>
@@ -108,7 +110,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="last_name"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Lastname
             </label>
@@ -118,7 +120,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               {...register("last_name", {
                 required: "* Lastname is required",
               })}
-              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             />
                   {errors.last_name && (
               <p className="text-md font-LatoRegular text-red-500">
@@ -130,7 +132,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="email"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Email
             </label>
@@ -145,7 +147,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
                   message: "Invalid email format",
                 },
               })}
-              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             />
                  {errors.email && (
               <p className="text-md font-LatoRegular text-red-500">
@@ -159,7 +161,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="phone"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Phone
             </label>
@@ -167,7 +169,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               type="tel"
               id="phone"
               {...register("phone", { required: "* Phone is required" })}
-              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             />
             {errors.phone && (
                 <p className="text-md font-LatoRegular text-red-500">
@@ -179,7 +181,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="organization"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Organization
             </label>
@@ -187,7 +189,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               type="text"
               id="organization"
               {...register("organization", { required: "* Organization is required" })}
-              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             />
             {errors.organization && (
                 <p className="text-md font-LatoRegular text-red-500">
@@ -201,7 +203,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="phone"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Position
             </label>
@@ -209,7 +211,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               type="text"
               id="position"
               {...register("position", { required: "* Position is required" })}
-              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             />
             {errors.position && (
                 <p className="text-md font-LatoRegular text-red-500">
@@ -221,7 +223,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="expertise"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Expertise
             </label>
@@ -229,7 +231,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               type="text"
               id="expertise"
               {...register("expertise", { required: "* Expertise is required" })}
-              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-8 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             />
             {errors.expertise && (
                 <p className="text-md font-LatoRegular text-red-500">
@@ -243,7 +245,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="event_id"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Event
             </label>
@@ -252,7 +254,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               control={control}
               render={({ field }) => (
                 <select {...field}
-                className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+                className="h-10 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
                 >
                   <option value="">Select Event</option>
                   <option value="bma2023">Bongo Music Awards 2024</option>
@@ -265,7 +267,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
           <div className="mb-4 w-1/2">
             <label
               htmlFor="role"
-              className="block text-sm font-LatoBold text-gray-700"
+              className="block text-sm font-LatoBold text-gray-900"
             >
               Role
             </label>
@@ -274,7 +276,7 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               name="role"
               required
               value={formData.role}
-              className="h-10 mt-1 p-2 pl-4 w-full border border-gray-400 rounded-md bg-transparent font-LatoRegular"
+              className="h-10 mt-1 p-2 pl-4 w-full border border-gray-300 rounded-md bg-transparent font-LatoRegular"
             >
               <option value="">Select a role</option>
               <option className="py-8" value="1">
@@ -290,14 +292,14 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
         <div className="mb-4 w-full">
           <label
             htmlFor="bio"
-            className="block text-sm font-LatoBold text-gray-700"
+            className="block text-sm font-LatoBold text-gray-900"
           >
             Biography
           </label>
           <textarea
             id="bio"
             {...register("bio", { required: "A bio is required" })}
-            className="mt-1 p-2 pl-4 w-full border-gray-400 rounded-md bg-transparent font-LatoRegular"
+            className="mt-1 p-2 pl-4 w-full border-gray-300 rounded-md bg-transparent font-LatoRegular"
           />
           {errors.bio && (
             <p className="text-md font-LatoRegular text-red-500">
@@ -315,18 +317,18 @@ const AddNominatorForm: React.FC<FormProps> = ({ closeModal }) => {
               </Typography>
             </div>
 
-            <div className="flex flex-row items-center gap-4">
+            <div className="flex flex-row items-center gap-1">
               <Button
                 type="button"
                 variant="outlined"
                 onClick={closeModal}
-                className="px-4 py-2 border border-transparent bg-yellow-100 text-yellow-500 font-LatoBold rounded-md hover:bg-slate-900 hover:text-yellow-300 transition-all ease-in-out"
+                className="bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800 font-LatoBold py-2 px-4 rounded transition ease-in-out"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
-                className="px-4 py-2 bg-yellow-300 text-slate-950 font-LatoBold rounded-md hover:bg-slate-900 hover:text-yellow-300 transition-all ease-in-out"
+                className="px-4 py-2 bg-gray-900 border text-white font-LatoBold rounded-md hover:bg-yellow-400 hover:text-gray-900 transition-all ease-in-out"
               >
                 Submit
               </Button>
