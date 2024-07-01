@@ -34,10 +34,9 @@ const AdminHomeBarChart: React.FC = () => {
       </Typography>
       <ResponsiveContainer className="w-auto h-full">
         <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid stroke="#36454F" strokeDasharray="5 5" />
           <XAxis dataKey="category" hide />
           <YAxis hide />
-          <Bar dataKey="votes" fill="#808080" barSize={30} />
           <Tooltip
             contentStyle={{
               backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -48,6 +47,7 @@ const AdminHomeBarChart: React.FC = () => {
               border: "1px solid rgba(255, 255, 255, 0.3)"
             }}
           />
+          <Bar dataKey="votes" fill="#36454F" barSize={50} />
         </BarChart>
       </ResponsiveContainer>
     </div>
