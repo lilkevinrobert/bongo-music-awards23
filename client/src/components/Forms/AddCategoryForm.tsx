@@ -3,7 +3,7 @@ import { MdClose } from "react-icons/md";
 
 interface FormProps {
     closeModal: () => void;
-  }
+}
 
 const AddCategoryForm = ({ closeModal }:FormProps) => {
   return (

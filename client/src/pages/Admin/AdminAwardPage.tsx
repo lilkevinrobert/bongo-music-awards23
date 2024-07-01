@@ -17,15 +17,15 @@ const AdminAwardPage = () => {
             </div>
             <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
                 <Typography className="capitalize">date</Typography>
-                <input type="date" className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded" placeholder="Enter a date" />
+                <input type="date" className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded" />
             </div>
             <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
                 <Typography className="capitalize">time</Typography>
-                <input type="time" className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded" placeholder="Enter a date" />
+                <input type="time" className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded" />
             </div>
             <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
                 <Typography className="capitalize">poster</Typography>
-                <input type="file" className="w-full h-[4rem] border-gray-300 font-LatoRegular text-sm rounded" placeholder="Enter a date" />
+                <input type="file" className="w-full h-full border-gray-300 font-LatoRegular text-sm rounded" />
             </div>
             <Button variant="outlined" className="w-full md:w-auto float-right font-LatoRegular text-sm capitalize hover:bg-amber-400 transition ease-in-out">save changes</Button>
         </form>
