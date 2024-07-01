@@ -11,7 +11,8 @@ const AdminProfile: React.FC = () => {
   return (
     <div className="w-full h-auto grid grid-cols-1 lg:grid-cols-2 gap-4 bg-transparent">
       <div className="w-full flex flex-col gap-0">
-        <Card className="relative w-full h-fit rounded-t-lg shadow-md bg-white col-span-2">
+        {/* Intro Card */}
+        <Card className="relative w-full h-fit rounded-t-lg rounded-b-none shadow-md bg-white col-span-2">
           {/* background pattern */}
           <img
             className={`w-full h-28 rounded-t-lg object-cover object-center bg-amber-300`}
@@ -41,7 +42,7 @@ const AdminProfile: React.FC = () => {
         </Card>
 
         {/* Delete Account */}
-        <Card className="w-full bg-white h-fit px-6 py-2 rounded-b-lg shadow-md">
+        <Card className="w-full bg-white h-fit px-6 py-2 rounded-t-none rounded-b-lg shadow-md">
           <div className="py-2">
             <Typography className="capitalize font-LatoBold">
               delete account
@@ -60,7 +61,7 @@ const AdminProfile: React.FC = () => {
             </Typography>
             <Button
               size="sm"
-              className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out bg-red-600 hover:bg-red-800"
+              className="flex flex-row items-center gap-2 capitalize my-2 transition ease-in-out rounded-full bg-red-600 hover:bg-red-800"
             >
               <MdDelete className="hidden lg:block text-xl text-white" />
               <Typography className="text-sm font-LatoBold">
@@ -71,7 +72,7 @@ const AdminProfile: React.FC = () => {
         </Card>
       </div>
       <Card className="px-6 py-4 gap-2 rounded-lg">
-        <Typography>Edit Profile Photo</Typography>
+        <Typography className="font-LatoBold text-left text-lg">Edit Profile Photo</Typography>
         <div className="flex flex-col items-center gap-2">
           <img src={imgLink} alt="profile_photo" className="rounded-md w-auto h-56 bg-amber-300 text-sm font-LatoRegular" />
           <input
@@ -81,7 +82,7 @@ const AdminProfile: React.FC = () => {
           />
           <Button
             size="sm"
-            className="mt-2 capitalize transition ease-in-out hover:bg-slate-800"
+            className="mt-2 capitalize transition ease-in-out hover:bg-slate-800 rounded-full"
           >
             save changes
           </Button>

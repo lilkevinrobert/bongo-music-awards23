@@ -8,7 +8,7 @@ const ProfilePage = () => {
         <Layout>
             <BreadcrumbLevel1 currentPage="profile" />
             <div className="text-slate-900 px-4 h-auto">
-                <Typography>My Profile</Typography>
+                <Typography variant="h4" className="text-lg font-LatoBold">My Profile</Typography>
                 <div className="py-4">
                 <AdminProfile />
                 </div>

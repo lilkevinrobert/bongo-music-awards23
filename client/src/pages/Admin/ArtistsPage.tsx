@@ -8,7 +8,7 @@ const ArtistsPage = () => {
     <Layout>
       <BreadcrumbLevel1 currentPage="artists" />
       <div className="text-slate-900 px-4">
-        <Typography variant="h4" className="text-xl">Artists</Typography>
+        <Typography variant="h4" className="text-lg font-LatoBold">Artists</Typography>
         <ArtistsDataTable />
       </div>
     </Layout>

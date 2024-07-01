@@ -8,7 +8,7 @@ const NominatorsPage = () => {
     <Layout>
       <BreadcrumbLevel1 currentPage="nominators" />
       <div className="text-slate-900 px-4">
-      <Typography variant="h4" className="text-xl">Nominators</Typography>
+      <Typography variant="h4" className="text-lg font-LatoBold">Nominators</Typography>
         <NominatorsDataTable />
       </div>
     </Layout>
