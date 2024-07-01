@@ -40,6 +40,7 @@ const AdminSidebar = () => {
         data-te-sidenav-position="absolute"
         data-te-sidenav-accordion="true"
       >
+        {/* Logo */}
         <NavLink
           className="mb-3 flex items-center justify-start ml-6 border-b-2 border-solid border-gray-100 py-6 outline-none"
           to="/admin/dashboard"
@@ -49,12 +50,14 @@ const AdminSidebar = () => {
           <Typography
             id="te-logo"
             draggable="false"
-            className="text-slate-900 capitalize flex items-center justify-center gap-1"
+            className="text-slate-900 text-lg font-LatoBold capitalize flex items-center justify-center gap-1"
           >
             <LuMusic2 />
-            bongo <span className="text-yellow-400">music awards</span>
+            bongo <span className="text-amber-500">music awards</span>
           </Typography>
         </NavLink>
+
+        {/* Nav Links */}
         <ul
           className="relative m-0 list-none px-[0.2rem] pb-12"
           data-te-sidenav-menu-ref
