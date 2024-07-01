@@ -2,7 +2,7 @@ import { Button, Card, Typography } from "@material-tailwind/react";
 
 const EditAdminProfile = () => {
   return (
-    <Card className="rounded-lg px-6 py-6">
+    <Card className="rounded-none border-none shadow-none px-6 py-6">
       <Typography className="text-slate-800 text-lg pb-3 capitalize font-LatoBold">
         edit profile details
       </Typography>
