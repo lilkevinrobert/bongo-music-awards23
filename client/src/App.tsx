@@ -10,6 +10,7 @@ import JudgePage from "./pages/Admin/JudgePage.tsx";
 import NominatorPage from "./pages/Admin/NominatorPage.tsx";
 import AdminProfilePage from "./pages/Admin/ProfilePage.tsx";
 import AdminAwardsPage from "./pages/Admin/AdminAwardsPage.tsx";
+import AdminAwardPage from "./pages/Admin/AdminAwardPage.tsx";
 
 
 // Lazy-loaded components
@@ -60,11 +61,20 @@ function App() {
                             <AdminDashboardPage/>
                         </Suspense>
                     ),
-                },{
+                },
+                {
                     path: "awards/",
                     element: (
                         <Suspense fallback={<Loading />}>
                             <AdminAwardsPage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "awards/:awardId",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <AdminAwardPage />
                         </Suspense>
                     ),
                 },

@@ -3,12 +3,14 @@ import AwardsCard from "../Cards/AwardsCard";
 const AllAwards = () => {
   const allAwards = [
     {
+      id: "jsia3ua3z",
       date: "Sunday, 30 June",
       time: "08:00 pm",
       title: "Bongo Music Awards 2024",
       location: "Dar es Salaam, TZ",
     },
     {
+      id: "jsia3ua3z",
       date: "Saturday, 16 September",
       time: "08:00 pm",
       title: "Bongo Music Awards 2023",

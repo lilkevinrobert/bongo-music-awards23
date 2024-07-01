@@ -6,9 +6,11 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { FaLocationDot } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 
 interface AwardsCardContent {
   content: {
+    id: string;
     date: string;
     time: string;
     title: string;
@@ -39,6 +41,7 @@ const AwardsCard = ({ content }: AwardsCardContent) => {
         </div>
       </CardBody>
       <CardFooter className="bg-transparent p-4">
+        <NavLink to={`../awards/${content.id}`}>
         <Button
           variant="outlined"
           fullWidth
@@ -46,6 +49,7 @@ const AwardsCard = ({ content }: AwardsCardContent) => {
         >
           view
         </Button>
+        </NavLink>
       </CardFooter>
     </Card>
   );

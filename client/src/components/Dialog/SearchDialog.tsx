@@ -16,7 +16,7 @@ const SearchDialog = ({ closeModal }: FormProps) => {
       <input
         type="search"
         placeholder="Search Award Events here..."
-        className="w-full border-white pl-6 font-LatoRegular text-black bg-transparent active:border-gray-900"
+        className="w-full border-white pl-6 font-LatoRegular text-black rounded-l-lg bg-transparent active:border-gray-900"
       />
         <Button className="font-LatoRegular capitalize rounded-l-none rounded-r-lg">search</Button>
       </div>
