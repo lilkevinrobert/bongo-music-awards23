@@ -12,6 +12,21 @@ import {
 import { MdOutlineHome } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
+// Active Link Styling
+export function handleActiveAdminLinkColor(state: boolean) {
+  if (state) {
+    return {
+      color: "#242424",
+      backgroundColor: "#F0F0F0",
+      borderRadius: "0px",
+    };
+  } else {
+    return {
+      color: "#4a5568",
+    };
+  }
+}
+
 const AdminSidebar = () => {
   const [showSubMenu, setShowSubMenu] = useState(false);
   const showSubMenuHandler = () => setShowSubMenu(!showSubMenu);
@@ -46,14 +61,15 @@ const AdminSidebar = () => {
         >
           <li className="relative">
             <a
-              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex cursor-pointer items-center truncate rounded-[5px] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <MdOutlineHome className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="../dashboard"
-                className="hover:text-yellow-400 font-LatoBold"
+                style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                className="w-full text-gray-600 hover:text-yellow-400 font-LatoBold flex px-6 py-[0.45rem]"
               >
+              <MdOutlineHome className="text-xl mr-2" />
                 Dashboard
               </NavLink>
             </a>
@@ -64,9 +80,10 @@ const AdminSidebar = () => {
             </span>
           </li>
 
+          {/* Users */}
           <li className="relative">
             <a
-              className="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear  active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear  active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
               onClick={showSubMenuHandler}
             >
@@ -106,7 +123,8 @@ const AdminSidebar = () => {
               <li className="relative">
                 <NavLink
                   to="../artists"
-                  className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-yellow-400 group hover:text-white hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                  style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                  className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 group hover:text-white hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                 >
                   Artists
                 </NavLink>
@@ -114,7 +132,8 @@ const AdminSidebar = () => {
               <li className="relative">
                 <NavLink
                   to="../judges"
-                  className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-yellow-400 group hover:text-white hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                  style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                  className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 group hover:text-white hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                 >
                   Judges
                 </NavLink>
@@ -123,7 +142,8 @@ const AdminSidebar = () => {
               <li className="relative">
                 <NavLink
                   to="../nominators"
-                  className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-yellow-400 group hover:text-white hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                  style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                  className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 group hover:text-white hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                 >
                   Nominators
                 </NavLink>
@@ -134,14 +154,15 @@ const AdminSidebar = () => {
           {/* Awards */}
           <li className="relative">
             <a
-              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex cursor-pointer items-center truncate rounded-[5px] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuAward className="text-lg text-gray-600 mr-2" />
               <NavLink
                 to="../awards"
-                className="hover:text-yellow-400 capitalize font-LatoBold"
+                style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                className="w-full text-gray-600 hover:text-yellow-400 capitalize font-LatoBold flex px-6 py-[0.45rem]"
               >
+              <LuAward className="text-lg  mr-2" />
                 awards
               </NavLink>
             </a>
@@ -150,14 +171,15 @@ const AdminSidebar = () => {
           {/*Voting*/}
           <li className="relative">
             <a
-              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex cursor-pointer items-center truncate rounded-[5px] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
-              <LuBox className="text-lg text-gray-600 mr-2" />
               <NavLink
-                to="#"
-                className="hover:text-yellow-400 capitalize font-LatoBold"
+                to="../voting"
+                style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                className="w-full text-gray-600 hover:text-yellow-400 capitalize font-LatoBold flex px-6 py-[0.45rem]"
               >
+              <LuBox className="text-lg mr-2" />
                 voting
               </NavLink>
             </a>
@@ -170,7 +192,7 @@ const AdminSidebar = () => {
             </span>
 
             <a
-              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
               <HiOutlineTicket className="text-lg text-gray-600 mr-2" />
@@ -185,7 +207,7 @@ const AdminSidebar = () => {
 
           <li className="relative">
             <a
-              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
               <LuMessageSquare className="text-lg text-gray-600 mr-2" />
@@ -200,7 +222,7 @@ const AdminSidebar = () => {
 
           <li className="relative">
             <a
-              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-yellow-400 hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              className="flex cursor-pointer items-center truncate rounded-[5px] px-6 py-[0.45rem] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
             >
               <LuLogOut className="text-lg text-gray-600 mr-2" />
