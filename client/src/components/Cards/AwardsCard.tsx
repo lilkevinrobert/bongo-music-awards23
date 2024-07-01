@@ -44,8 +44,9 @@ const AwardsCard = ({ content }: AwardsCardContent) => {
         <NavLink to={`../awards/${content.id}`}>
         <Button
           variant="outlined"
+          size="sm"
           fullWidth
-          className="capitalize rounded-xl border-gray-500 hover:text-white hover:bg-gray-700 transition ease-linear"
+          className="capitalize rounded-full border-gray-500 hover:text-white hover:bg-gray-700 transition ease-linear"
         >
           view
         </Button>

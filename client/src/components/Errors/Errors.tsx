@@ -50,7 +50,7 @@ const Errors: React.FC<ErrorsProps> = ({ errorName }) => {
             <Button
               size="sm"
               onClick={() => navigate(-1)}
-              className="capitalize flex flex-row items-center gap-2"
+              className="capitalize flex flex-row items-center gap-2 rounded-full"
             >
               <MdOutlineArrowBack className="text-lg" />
               <span className="font-LatoRegular">Go back</span>

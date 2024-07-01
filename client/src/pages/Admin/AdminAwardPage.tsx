@@ -27,7 +27,7 @@ const AdminAwardPage = () => {
                 <Typography className="capitalize">poster</Typography>
                 <input type="file" className="w-full h-full border-gray-300 font-LatoRegular text-sm rounded" />
             </div>
-            <Button variant="outlined" className="w-full md:w-auto float-right font-LatoRegular text-sm capitalize hover:bg-amber-400 transition ease-in-out">save changes</Button>
+            <Button variant="outlined" size="sm" className="w-full md:w-auto float-right font-LatoRegular text-sm capitalize rounded-full hover:bg-amber-400 transition ease-in-out">save changes</Button>
         </form>
     </Layout>
   )
