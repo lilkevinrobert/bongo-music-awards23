@@ -5,6 +5,23 @@ import { IoAdd } from "react-icons/io5";
 import MiniFooter from "../../components/Footer/MiniFooter";
 
 const AdminAwardPage = () => {
+  const sponsorsList = [
+    {
+      id: "eiow3oie4xc",
+      name: "Sponsor's name",
+      logo: "sponsor's logo",
+    },
+    {
+      id: "eiow3oie4xc",
+      name: "Sponsor's name",
+      logo: "sponsor's logo",
+    },
+    {
+      id: "eiow3oie4xc",
+      name: "Sponsor's name",
+      logo: "sponsor's logo",
+    },
+  ];
   const categoriesList: string[] = [
     "Bongo Flava",
     "Taarab",
@@ -15,7 +32,7 @@ const AdminAwardPage = () => {
     "Religious Songs",
     "Dancers",
     "Best Performer of the Year",
-    "Honorary Awards"
+    "Honorary Awards",
   ];
   return (
     <Layout>
@@ -78,69 +95,31 @@ const AdminAwardPage = () => {
           sponsors
         </Typography>
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 py-4">
-          {/* Awards Sponsor's card */}
-          <Card className="w-full h-auto shadow-none">
-            <div className="w-full h-32">
-              <img
-                src="#"
-                alt="sponsor"
-                loading="lazy"
-                className="bg-gray-200 h-full object-cover font-LatoRegular text-gray-900 rounded"
-              />
-            </div>
-            <p className="text-gray-900 text-base font-LatoBold">
-              Sponsor's name
-            </p>
-            <Button
-              size="sm"
-              variant="outlined"
-              className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
-            >
-              remove
-            </Button>
-          </Card>
-          <Card className="w-full h-auto shadow-none">
-            <div className="w-full h-32">
-              <img
-                src="#"
-                alt="sponsor"
-                loading="lazy"
-                className="bg-gray-200 h-full object-cover font-LatoRegular text-gray-900 rounded"
-              />
-            </div>
-            <p className="text-gray-900 text-base font-LatoBold">
-              Sponsor's name
-            </p>
-            <Button
-              size="sm"
-              variant="outlined"
-              className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
-            >
-              remove
-            </Button>
-          </Card>
-          <Card className="w-full h-auto shadow-none">
-            <div className="w-full h-32">
-              <img
-                src="#"
-                alt="sponsor"
-                loading="lazy"
-                className="bg-gray-200 h-full object-cover font-LatoRegular text-gray-900 rounded"
-              />
-            </div>
-            <p className="text-gray-900 text-base font-LatoBold">
-              Sponsor's name
-            </p>
-            <Button
-              size="sm"
-              variant="outlined"
-              className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
-            >
-              remove
-            </Button>
-          </Card>
-          <div className="w-full h-48 transition ease-in-out cursor-pointer rounded bg-transparent group hover:bg-gray-200 border-2 border-dashed border-spacing-4 border-gray-200 flex flex-col items-center justify-center">
-            <IoAdd className=" text-9xl text-gray-100" />
+            {/* Awards Sponsor's card list */}
+          {sponsorsList.map((sponsor, i) => (
+            <Card className="w-full h-auto shadow-none">
+              <div className="w-full h-32">
+                <img
+                  src="#"
+                  alt={sponsor.name}
+                  loading="lazy"
+                  className="bg-gray-200 h-full object-cover font-LatoRegular text-gray-900 rounded"
+                />
+              </div>
+              <p className="text-gray-900 text-base font-LatoBold">
+                {sponsor.name}
+              </p>
+              <Button
+                size="sm"
+                variant="outlined"
+                className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
+              >
+                remove
+              </Button>
+            </Card>
+          ))}
+          <div className="w-full h-48 transition ease-in-out cursor-pointer group rounded bg-transparent border-2 border-dashed border-spacing-4 border-gray-300 hover:border-gray-400 flex flex-col items-center justify-center">
+            <IoAdd className=" text-9xl text-gray-300 group-hover:text-gray-400 transition ease-in-out" />
           </div>
         </div>
       </section>
