@@ -1,5 +1,7 @@
 import { Card, Typography } from "@material-tailwind/react";
 import { FaArrowUp } from "react-icons/fa";
+import AwardsEventBarChart from "../Charts/AwardsEventBarChart";
+import AwardsEventPieChart from "../Charts/AwardsEventPieChart";
 
 const AdminNominationsView = () => {
   const nominations = [
@@ -70,8 +72,19 @@ const AdminNominationsView = () => {
   };
   return (
     <>
+      <div>
+        <Typography className="text-base text-gray-800 font-LatoBold uppercase py-2 border-2 border-l-amber-300 border-t-transparent border-b-transparent border-r-transparent pl-2 my-2">
+          trend
+        </Typography>
+        <div className="bg-stone-50 h-fit lg:h-96 rounded grid grid-cols-1 lg:grid-cols-2">
+          <AwardsEventBarChart />
+          <div className="h-96 w-full">
+            <AwardsEventPieChart />
+          </div>
+        </div>
+      </div>
       {nominations.map((nomination, i) => (
-        <div key={i} className="py-2">
+        <div key={i} className="py-6">
           <div className="flex flex-row items-center justify-between">
             <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
               {nomination.category}
