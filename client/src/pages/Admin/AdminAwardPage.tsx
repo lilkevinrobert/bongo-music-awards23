@@ -12,10 +12,13 @@ import Layout from "../../components/Layout/Layout";
 import { IoAdd } from "react-icons/io5";
 import MiniFooter from "../../components/Footer/MiniFooter";
 import { useState } from "react";
+import EditAwardForm from "../../components/Forms/EditAwardForm";
 
 const AdminAwardPage = () => {
   const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
   const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
+  const [openCategoriesDialog, setOpenCategoriesDialog] = useState(false);
+  const handleOpenCategoriesDialog = () => setOpenCategoriesDialog((cur) => !cur);
 
   // Data from API...
   const sponsorsList = [
@@ -51,57 +54,9 @@ const AdminAwardPage = () => {
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="awards" currentPage={"award"} />
-      <form className="bg-transparent px-4 pb-4 space-y-4">
-        <Typography className="text-lg text-gray-900 font-LatoBold capitalize">
-          basic details
-        </Typography>
-        <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
-          <Typography className="capitalize">title</Typography>
-          <input
-            type="text"
-            className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded"
-            placeholder="Name of Award Event"
-          />
-        </div>
-        <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
-          <Typography className="capitalize">location</Typography>
-          <input
-            type="text"
-            className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded"
-            placeholder="Enter a Location"
-          />
-        </div>
-        <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
-          <Typography className="capitalize">date</Typography>
-          <input
-            type="date"
-            className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded"
-          />
-        </div>
-        <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
-          <Typography className="capitalize">time</Typography>
-          <input
-            type="time"
-            className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded"
-          />
-        </div>
-        <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
-          <Typography className="capitalize">poster</Typography>
-          <input
-            type="file"
-            className="w-full h-full border-gray-300 font-LatoRegular text-sm rounded"
-          />
-        </div>
-        <div className="w-full flex items-end justify-end">
-          <Button
-            variant="outlined"
-            size="sm"
-            className="w-full md:w-auto font-LatoRegular text-sm capitalize rounded-full hover:bg-amber-400 transition ease-in-out"
-          >
-            save changes
-          </Button>
-        </div>
-      </form>
+      <div className="px-4 pb-4">
+        <EditAwardForm />
+      </div>
       <hr className="mt-4" />
       {/* Sponsors section */}
       <section className="px-4 py-4">
@@ -155,7 +110,7 @@ const AdminAwardPage = () => {
               {category}
             </Typography>
           ))}
-          <span className="w-8 h-8 flex flex-col items-center justify-center rounded-full cursor-pointer shadow transiton ease-in-out bg-gray-900 hover:bg-gray-950">
+          <span onClick={handleOpenCategoriesDialog} className="w-8 h-8 flex flex-col items-center justify-center rounded-full cursor-pointer shadow transiton ease-in-out bg-gray-900 hover:bg-gray-950">
             <IoAdd className="text-white text-lg" />
           </span>
         </div>
@@ -191,7 +146,7 @@ const AdminAwardPage = () => {
             </Typography>
 
             {/* Available Sponsor's */}
-            <div className="grid grid-cols-2 gap-2 bg-gray-100 rounded p-4">
+            <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded p-4">
               <div className="font-LatoRegular w-full">
                 <Checkbox
                   label="Sponsor One"
@@ -223,6 +178,82 @@ const AdminAwardPage = () => {
             </div>
             <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
             <Button variant="filled" onClick={handleOpenSponsorsDialog} className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800">
+              cancel
+            </Button>
+            <Button variant="filled" className="rounded-full font-LatoBold">
+              Add
+            </Button>
+            </CardFooter>
+          </CardBody>
+        </Card>
+      </Dialog>
+      <Dialog
+        size="xs"
+        open={openCategoriesDialog}
+        handler={handleOpenCategoriesDialog}
+        className="bg-transparent shadow-none"
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+      >
+        <Card className="mx-auto w-full max-w-[24rem]">
+          <CardBody className="flex flex-col gap-4">
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className="font-LatoBold"
+            >
+              Add Awards Categories
+            </Typography>
+            <Typography
+              className="mb-3 font-LatoRegular"
+              variant="paragraph"
+              color="gray"
+            >
+              Select appropriate categories:
+            </Typography>
+
+            {/* Available Categories */}
+            <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded p-4">
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Bongo Flava"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="R&B"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Taarab"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Singeli"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Reggae/Dance Hall"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+            </div>
+            <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
+            <Button variant="filled" onClick={handleOpenCategoriesDialog} className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800">
               cancel
             </Button>
             <Button variant="filled" className="rounded-full font-LatoBold">
