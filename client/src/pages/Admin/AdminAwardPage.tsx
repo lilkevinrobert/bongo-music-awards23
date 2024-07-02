@@ -1,10 +1,23 @@
-import { Button, Card, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Checkbox,
+  Dialog,
+  Typography,
+} from "@material-tailwind/react";
 import BreadcrumbLevel2 from "../../components/Breadcrumbs/BreadcrumbLevel2";
 import Layout from "../../components/Layout/Layout";
 import { IoAdd } from "react-icons/io5";
 import MiniFooter from "../../components/Footer/MiniFooter";
+import { useState } from "react";
 
 const AdminAwardPage = () => {
+  const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
+  const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
+
+  // Data from API...
   const sponsorsList = [
     {
       id: "eiow3oie4xc",
@@ -34,6 +47,7 @@ const AdminAwardPage = () => {
     "Best Performer of the Year",
     "Honorary Awards",
   ];
+
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="awards" currentPage={"award"} />
@@ -95,9 +109,9 @@ const AdminAwardPage = () => {
           sponsors
         </Typography>
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 py-4">
-            {/* Awards Sponsor's card list */}
+          {/* Awards Sponsor's card list */}
           {sponsorsList.map((sponsor, i) => (
-            <Card className="w-full h-auto shadow-none">
+            <Card key={i} className="w-full h-auto shadow-none">
               <div className="w-full h-32">
                 <img
                   src="#"
@@ -118,7 +132,10 @@ const AdminAwardPage = () => {
               </Button>
             </Card>
           ))}
-          <div className="w-full h-48 transition ease-in-out cursor-pointer group rounded bg-transparent border-2 border-dashed border-spacing-4 border-gray-300 hover:border-gray-400 flex flex-col items-center justify-center">
+          <div
+            onClick={handleOpenSponsorsDialog}
+            className="w-full h-48 transition ease-in-out cursor-pointer group rounded bg-transparent border-2 border-dashed border-spacing-4 border-gray-300 hover:border-gray-400 flex flex-col items-center justify-center"
+          >
             <IoAdd className=" text-9xl text-gray-300 group-hover:text-gray-400 transition ease-in-out" />
           </div>
         </div>
@@ -144,6 +161,77 @@ const AdminAwardPage = () => {
         </div>
       </section>
       <MiniFooter />
+
+      {/* Dialogs */}
+      <Dialog
+        size="xs"
+        open={openSponsorsDialog}
+        handler={handleOpenSponsorsDialog}
+        className="bg-transparent shadow-none"
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+      >
+        <Card className="mx-auto w-full max-w-[24rem]">
+          <CardBody className="flex flex-col gap-4">
+            <Typography
+              variant="h6"
+              color="blue-gray"
+              className="font-LatoBold"
+            >
+              Add Awards Sponsor(s)
+            </Typography>
+            <Typography
+              className="mb-3 font-LatoRegular"
+              variant="paragraph"
+              color="gray"
+            >
+              Select appropriate sponsor form the list below.
+            </Typography>
+
+            {/* Available Sponsor's */}
+            <div className="grid grid-cols-2 gap-2 bg-gray-100 rounded p-4">
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Sponsor One"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Sponsor Two"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Sponsor Three"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+              <div className="font-LatoRegular w-full">
+                <Checkbox
+                  label="Sponsor Four"
+                  crossOrigin={undefined}
+                  className="mr-2"
+                />
+              </div>
+            </div>
+            <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
+            <Button variant="filled" onClick={handleOpenSponsorsDialog} className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800">
+              cancel
+            </Button>
+            <Button variant="filled" className="rounded-full font-LatoBold">
+              Add
+            </Button>
+            </CardFooter>
+          </CardBody>
+        </Card>
+      </Dialog>
     </Layout>
   );
 };

@@ -82,7 +82,7 @@ const Footer = () => {
                 </Typography>
               </div>
               <div className="flex items-center justify-start gap-4">
-                <HiMiniGlobeAlt className="text-2xl text-slate-950 opacity-70 opacity-70" />
+                <HiMiniGlobeAlt className="text-2xl text-slate-950 opacity-70" />
                 <Typography className="text-slate-950 opacity-70">
                   josia@bma.com
                 </Typography>
