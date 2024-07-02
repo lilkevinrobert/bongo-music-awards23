@@ -13,12 +13,14 @@ import { IoAdd } from "react-icons/io5";
 import MiniFooter from "../../components/Footer/MiniFooter";
 import { useState } from "react";
 import EditAwardForm from "../../components/Forms/EditAwardForm";
+import AdminNominationsView from "../../components/Nomination/AdminNominationsView";
 
 const AdminAwardPage = () => {
   const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
   const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
   const [openCategoriesDialog, setOpenCategoriesDialog] = useState(false);
-  const handleOpenCategoriesDialog = () => setOpenCategoriesDialog((cur) => !cur);
+  const handleOpenCategoriesDialog = () =>
+    setOpenCategoriesDialog((cur) => !cur);
 
   // Data from API...
   const sponsorsList = [
@@ -110,10 +112,17 @@ const AdminAwardPage = () => {
               {category}
             </Typography>
           ))}
-          <span onClick={handleOpenCategoriesDialog} className="w-8 h-8 flex flex-col items-center justify-center rounded-full cursor-pointer shadow transiton ease-in-out bg-gray-900 hover:bg-gray-950">
+          <span
+            onClick={handleOpenCategoriesDialog}
+            className="w-8 h-8 flex flex-col items-center justify-center rounded-full cursor-pointer shadow transiton ease-in-out bg-gray-900 hover:bg-gray-950"
+          >
             <IoAdd className="text-white text-lg" />
           </span>
         </div>
+      </section>
+      <section className="px-4 py-4">
+        <Typography className="text-lg text-gray-900 font-LatoBold capitalize">Nominations</Typography>
+        <AdminNominationsView />
       </section>
       <MiniFooter />
 
@@ -177,18 +186,22 @@ const AdminAwardPage = () => {
               </div>
             </div>
             <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
-            <Button variant="filled" onClick={handleOpenSponsorsDialog} className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800">
-              cancel
-            </Button>
-            <Button variant="filled" className="rounded-full font-LatoBold">
-              Add
-            </Button>
+              <Button
+                variant="filled"
+                onClick={handleOpenSponsorsDialog}
+                className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800"
+              >
+                cancel
+              </Button>
+              <Button variant="filled" className="rounded-full font-LatoBold">
+                Save &nbsp; Changes
+              </Button>
             </CardFooter>
           </CardBody>
         </Card>
       </Dialog>
       <Dialog
-        size="xs"
+        size="md"
         open={openCategoriesDialog}
         handler={handleOpenCategoriesDialog}
         className="bg-transparent shadow-none"
@@ -253,12 +266,16 @@ const AdminAwardPage = () => {
               </div>
             </div>
             <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
-            <Button variant="filled" onClick={handleOpenCategoriesDialog} className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800">
-              cancel
-            </Button>
-            <Button variant="filled" className="rounded-full font-LatoBold">
-              Add
-            </Button>
+              <Button
+                variant="filled"
+                onClick={handleOpenCategoriesDialog}
+                className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800"
+              >
+                cancel
+              </Button>
+              <Button variant="filled" className="rounded-full font-LatoBold">
+                Save &nbsp; Changes
+              </Button>
             </CardFooter>
           </CardBody>
         </Card>

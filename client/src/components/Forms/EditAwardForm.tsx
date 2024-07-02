@@ -48,7 +48,7 @@ const EditAwardForm = () => {
             size="sm"
             className="w-full md:w-auto font-LatoRegular text-sm capitalize rounded-full text-white hover:text-gray-900 bg-gray-900 hover:bg-amber-400 transition ease-in-out"
           >
-            save changes
+            save &nbsp; changes
           </Button>
         </div>
       </form>
