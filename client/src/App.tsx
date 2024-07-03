@@ -11,6 +11,7 @@ import NominatorPage from "./pages/Admin/NominatorPage.tsx";
 import AdminProfilePage from "./pages/Admin/ProfilePage.tsx";
 import AdminAwardsPage from "./pages/Admin/AdminAwardsPage.tsx";
 import AdminAwardPage from "./pages/Admin/AdminAwardPage.tsx";
+import ErrorHandler from "./components/Errors/ErrorHandler.tsx";
 
 
 // Lazy-loaded components
@@ -29,6 +30,8 @@ function App() {
     const router = createBrowserRouter([
         {
             path: "/",
+            index: true,
+            errorElement: <ErrorHandler />,
             element: (
                 <Suspense fallback={<Loading />}>
                     <HomePage/>
@@ -56,6 +59,7 @@ function App() {
             children: [
                 {
                     path: "dashboard/",
+                    index: true,
                     element: (
                         <Suspense fallback={<Loading />}>
                             <AdminDashboardPage/>
