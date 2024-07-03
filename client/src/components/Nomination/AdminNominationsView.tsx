@@ -100,10 +100,10 @@ const AdminNominationsView = () => {
                 key={ind}
                 className="h-fit w-full bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
               >
-                <Typography className="font-LatoBold text-gray-950 text-pretty normal-case">
+                <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
                   "{nominee.song}"
                 </Typography>
-                <Typography className="font-LatoRegular text-gray-900 text-pretty normal-case">
+                <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
                   ~ {nominee.artist}
                 </Typography>
               </Card>
