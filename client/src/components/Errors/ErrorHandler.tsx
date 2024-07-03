@@ -6,7 +6,7 @@ const ErrorHandler = () => {
   const error: any = useRouteError();
   const navigate = useNavigate();
   return (
-    <div className="relative w-screen h-screen flex flex-col items-center justify-center bg-white">
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-white">
       <div className="flex flex-col items-center z-20">
         <Typography className="text-gray-900 text-9xl font-LatoBold">
           {error.status}
@@ -30,14 +30,7 @@ const ErrorHandler = () => {
           </div>
         </div>
       </div>
-      <div className="absolute top-0 flex flex-row items-center justify-center gap-10">
-      <span className="text-amber-50 font-LatoBold text-[15rem] animate-bounce">{error.status}</span>
-      <span className="text-amber-50 font-LatoBold text-[15rem] animate-bounce">{error.status}</span>
-      </div>
-      <div className="absolute -rotate-180 flex flex-row items-center justify-center gap-10 mt-28">
-      <span className="text-amber-50 font-LatoBold text-[15rem] animate-none">{error.status}</span>
-      <span className="text-amber-50 font-LatoBold text-[15rem] animate-none">{error.status}</span>
-      </div>
+      
     </div>
   );
 };
