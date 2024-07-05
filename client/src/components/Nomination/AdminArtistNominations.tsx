@@ -113,9 +113,6 @@ const AdminArtistNominations = () => {
   ];
   return (
     <div className="bg-transparent">
-      <Typography variant="h6" className="capitalize font-LatoBold text-base text-gray-900">
-        award nominations
-      </Typography>
       <div>
         {nominations.map((item, i) => (
           <Accordion
