@@ -1,5 +1,5 @@
 import { Typography } from "@material-tailwind/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiOutlineTicket } from "react-icons/hi2";
 import {
   LuUsers2,
@@ -29,10 +29,13 @@ export function handleActiveAdminLinkColor(state: boolean) {
 
 const AdminSidebar = () => {
   const [showSubMenu, setShowSubMenu] = useState(false);
-  const showSubMenuHandler = () => setShowSubMenu(!showSubMenu);
+  const showSubMenuHandler = () => {
+    setShowSubMenu(!showSubMenu)
+  };
+
   return (
     <div className="w-auto lg:w-80 bg-transparent hidden lg:flex flex-col items-center justify-normal">
-      <nav  
+      <nav
         id="sidenav-8"
         className="fixed left-0 top-0 z-[1035] bg-transparent h-full w-64 shadow-md data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
         data-te-sidenav-init
@@ -69,10 +72,10 @@ const AdminSidebar = () => {
             >
               <NavLink
                 to="../dashboard"
-                style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                 className="w-full text-gray-600 hover:text-yellow-400 font-LatoBold flex px-6 py-[0.45rem]"
               >
-              <MdOutlineHome className="text-xl mr-2" />
+                <MdOutlineHome className="text-xl mr-2" />
                 Dashboard
               </NavLink>
             </a>
@@ -89,6 +92,7 @@ const AdminSidebar = () => {
               className="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear  active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
               data-te-sidenav-link-ref
               onClick={showSubMenuHandler}
+              id="users"
             >
               <LuUsers2 className="text-lg text-gray-600 mr-2" />
               <span
@@ -126,7 +130,7 @@ const AdminSidebar = () => {
               <li className="relative">
                 <NavLink
                   to="../artists"
-                  style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                  style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                   className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 group hover:text-white hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                 >
                   Artists
@@ -135,7 +139,7 @@ const AdminSidebar = () => {
               <li className="relative">
                 <NavLink
                   to="../judges"
-                  style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                  style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                   className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 group hover:text-white hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                 >
                   Judges
@@ -145,7 +149,7 @@ const AdminSidebar = () => {
               <li className="relative">
                 <NavLink
                   to="../nominators"
-                  style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                  style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                   className="font-LatoRegular flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 group hover:text-white hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
                 >
                   Nominators
@@ -162,10 +166,10 @@ const AdminSidebar = () => {
             >
               <NavLink
                 to="../awards"
-                style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                 className="w-full text-gray-600 hover:text-yellow-400 capitalize font-LatoBold flex px-6 py-[0.45rem]"
               >
-              <LuAward className="text-lg  mr-2" />
+                <LuAward className="text-lg  mr-2" />
                 awards
               </NavLink>
             </a>
@@ -179,10 +183,10 @@ const AdminSidebar = () => {
             >
               <NavLink
                 to="../voting"
-                style={({isActive})=> handleActiveAdminLinkColor(isActive)}
+                style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                 className="w-full text-gray-600 hover:text-yellow-400 capitalize font-LatoBold flex px-6 py-[0.45rem]"
               >
-              <LuBox className="text-lg mr-2" />
+                <LuBox className="text-lg mr-2" />
                 voting
               </NavLink>
             </a>
