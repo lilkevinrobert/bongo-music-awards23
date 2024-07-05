@@ -17,7 +17,7 @@ const Banner = () => {
         src={TopographyDarkBackground}
         loading="lazy"
       />
-      <div className=" z-10 flex flex-col items-center justify-center bg-transparent h-fit">
+      <div className="z-10 flex flex-col items-center justify-center bg-transparent h-fit">
         <Typography
           variant="h2"
           className="hidden text-slate-900 text-xl md:text-6xl font-LatoBold md:font-LatoRegular mb-2"
@@ -66,7 +66,7 @@ const Banner = () => {
           </Button>
         </div>
       </div>
-      <div className=" z-10 h-fit bg-transparent">
+      <div className="z-10 h-fit bg-transparent">
         <AnimatedImage
           src={SampleImage}
           className="text-red-600 w-64 h-72 md:w-96"

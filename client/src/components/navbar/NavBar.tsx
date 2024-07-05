@@ -22,7 +22,7 @@ const NavBar = () => {
                 </NavLink>
                 <Navbar.Toggle/>
             </div>
-            <Navbar.Collapse>
+            <Navbar.Collapse className="z-20">
                 <Navbar.Link>
                     <Dropdown label="Genres & Categories" inline>
                         <Dropdown.Item href="./">Bongo flavor</Dropdown.Item>
