@@ -17,6 +17,9 @@ const ArtistNominationsPage = () => {
         <Typography variant="h4" className="text-lg font-LatoBold capitalize">
           artist nominations
         </Typography>
+        <Typography variant="h4" className="text-lg font-LatoRegular capitalize">
+          ~ Stage Name
+        </Typography>
 
         <div className="my-2">
           <AdminArtistNominations />
