@@ -110,7 +110,7 @@ const AdminNominationsView = () => {
                     ~ {nominee.artist}
                   </Typography>
                 </div>
-                <NavLink to="/admin/artists/3">
+                <NavLink to={`/admin/artists/${nominee.id}/nominations`}>
                 <RxDotsVertical />
                 </NavLink>
               </Card>

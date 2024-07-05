@@ -18,7 +18,9 @@ const ArtistNominationsPage = () => {
           artist nominations
         </Typography>
 
-        <AdminArtistNominations />
+        <div className="my-2">
+          <AdminArtistNominations />
+        </div>
       </div>
       <MiniFooter />
     </Layout>

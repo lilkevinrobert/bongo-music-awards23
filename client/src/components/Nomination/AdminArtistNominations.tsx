@@ -18,7 +18,7 @@ const Icon = ({ open }: IconArgs) => {
       viewBox="0 0 24 24"
       strokeWidth={2}
       stroke="currentColor"
-      className={`${open ? "rotate-180" : ""} h-5 w-5 transition-transform`}
+      className={`${open ? "rotate-180" : ""} h-5 w-5 transition-transform mr-2`}
     >
       <path
         strokeLinecap="round"
@@ -112,23 +112,24 @@ const AdminArtistNominations = () => {
     },
   ];
   return (
-    <div className="bg-transparent">
+    <div className="bg-gray-50">
       <div>
         {nominations.map((item, i) => (
           <Accordion
             key={i}
             open={open.includes(i + 1)}
             icon={<Icon open={open.includes(i + 1)} />}
+            className="hover:bg-amber-50"
           >
             <AccordionHeader
               onClick={() => openHandler(i+1)}
               className="font-LatoBold text-base"
             >
-              <div className="flex items-center gap-2 pl-2 border-2 border-transparent border-l-gray-800 border-r-transparent">
+              <div className="flex items-center gap-2 pl-2 border-2 border-transparent border-l-gray-700 border-r-transparent">
                 <Typography className="text-gray-800">{item.awards}</Typography>
                 {item.isActive ? (
-                  <div className="text-sm text-green-400 font-LatoRegular flex items-center gap-1 animate-pulse">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div className="text-xs md:text-sm text-green-400 font-LatoRegular flex items-center gap-1">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                     <span>on going now</span>
                   </div>
                 ) : (
@@ -136,7 +137,7 @@ const AdminArtistNominations = () => {
                 )}
               </div>
             </AccordionHeader>
-            <AccordionBody className="grid grid-cols-4 gap-2 bg-gray-50 px-4">
+            <AccordionBody className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 bg-white px-4">
               {item.nominations.map((nomination, indx) => (
                 <div
                   key={indx}
