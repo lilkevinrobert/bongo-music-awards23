@@ -12,6 +12,7 @@ import AdminProfilePage from "./pages/Admin/ProfilePage.tsx";
 import AdminAwardsPage from "./pages/Admin/AdminAwardsPage.tsx";
 import AdminAwardPage from "./pages/Admin/AdminAwardPage.tsx";
 import ErrorHandler from "./components/Errors/ErrorHandler.tsx";
+import ArtistNominationsPage from "./pages/Admin/ArtistNominationsPage.tsx";
 
 
 // Lazy-loaded components
@@ -119,6 +120,14 @@ function App() {
                     element: (
                         <Suspense fallback={<Loading />}>
                             <ArtistPage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "artists/:artistId/nominations",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <ArtistNominationsPage />
                         </Suspense>
                     ),
                 },

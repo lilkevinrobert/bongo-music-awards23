@@ -13,7 +13,7 @@ import useFetch from "../../hooks/useFetch";
 import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import LoadingProfile from "../../components/Loading/LoadingProfile";
 import Errors from "../../components/Errors/Errors";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { PiWarningFill } from "react-icons/pi";
 import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { IoAdd } from "react-icons/io5";
@@ -94,20 +94,30 @@ const ArtistPage: React.FC = () => {
             >
               Artist management
             </Typography>
-            <Button
-              size="sm"
-              onClick={handleEdit}
-              className="flex items-center gap-2 bg-amber-300 hover:bg-amber-400 transition 
-            ease-in-out text-slate-900 font-LatoRegular rounded-full"
-            >
-              <MdOutlineModeEdit className="text-lg" />
-              <Typography
-                variant="paragraph"
-                className="font-LatoRegular text-sm"
+            <div className="flex flex-row items-center gap-2">
+              <NavLink to={`/admin/artists/${artistId}/nominations`}>
+                <Button
+                  size="sm"
+                  className="capitalize rounded-full font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+                >
+                  nominations
+                </Button>
+              </NavLink>
+              <Button
+                size="sm"
+                onClick={handleEdit}
+                className="flex items-center gap-2 bg-amber-300 hover:bg-amber-400 transition 
+            ease-in-out text-slate-900 font-LatoRegular rounded-full capitalize"
               >
-                Edit
-              </Typography>
-            </Button>
+                <MdOutlineModeEdit className="text-lg" />
+                <Typography
+                  variant="paragraph"
+                  className="font-LatoRegular text-sm"
+                >
+                  Edit
+                </Typography>
+              </Button>
+            </div>
           </div>
 
           <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2 my-4 gap-6 bg-transparent">
@@ -332,15 +342,6 @@ const ArtistPage: React.FC = () => {
                 </Card>
               </div>
             </div>
-              <hr className="col-span-2" />
-            {/* Nominations */}
-            <div className="col-span-2 px-1">
-              <AdminArtistNominations />
-            </div>
-
-            <div className="col-span-2">
-            <MiniFooter />
-            </div>
           </div>
         </div>
       ) : !(
@@ -356,22 +357,25 @@ const ArtistPage: React.FC = () => {
               variant="h4"
               className="text-sm md:text-xl capitalize font-LatoBold"
             >
-              Artist management
+              Artist managementia
             </Typography>
-            <Button
-              size="sm"
-              onClick={handleEdit}
-              className="flex items-center gap-2 bg-amber-300 hover:bg-amber-400 transition 
+            <div>
+              <Button className="bg-gray-900">nominations</Button>
+              <Button
+                size="sm"
+                onClick={handleEdit}
+                className="flex items-center gap-2 bg-amber-300 hover:bg-amber-400 transition 
             ease-in-out text-slate-900 font-LatoRegular rounded-full"
-            >
-              <MdOutlineModeEdit className="text-lg" />
-              <Typography
-                variant="paragraph"
-                className="font-LatoRegular text-sm"
               >
-                Edit
-              </Typography>
-            </Button>
+                <MdOutlineModeEdit className="text-lg" />
+                <Typography
+                  variant="paragraph"
+                  className="font-LatoRegular text-sm"
+                >
+                  Edit
+                </Typography>
+              </Button>
+            </div>
           </div>
 
           <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2 my-4 gap-6 bg-transparent">

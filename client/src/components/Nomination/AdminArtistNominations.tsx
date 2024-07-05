@@ -113,7 +113,7 @@ const AdminArtistNominations = () => {
   ];
   return (
     <div className="bg-transparent">
-      <Typography variant="h6" className="capitalize font-LatoBold text-base">
+      <Typography variant="h6" className="capitalize font-LatoBold text-base text-gray-900">
         award nominations
       </Typography>
       <div>
@@ -128,7 +128,7 @@ const AdminArtistNominations = () => {
               className="font-LatoBold text-base"
             >
               <div className="flex items-center gap-2 pl-2 border-2 border-transparent border-l-gray-800 border-r-transparent">
-                {item.awards}
+                <Typography className="text-gray-800">{item.awards}</Typography>
                 {item.isActive ? (
                   <div className="text-sm text-green-400 font-LatoRegular flex items-center gap-1 animate-pulse">
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
