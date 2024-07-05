@@ -70,7 +70,7 @@ const Footer = () => {
     <footer className="relative w-full bg-white">
       <div className="mx-auto w-full max-w-7xl py-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <div className="bg-transprent flex flex-col items-center md:items-start justify-center">
+          <div className="bg-transprent flex flex-col items-start px-6 md:px-0 md:items-start justify-center">
             <Typography variant="h5" className="mb-6 text-slate-900 font-LatoBold">
               Bongo Music Awards
             </Typography>
