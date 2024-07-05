@@ -137,7 +137,7 @@ const AdminAwardPage = () => {
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <Card className="mx-auto w-full max-w-[24rem]">
+        <Card className="mx-auto w-full max-w-[24rem] rounded-md">
           <CardBody className="flex flex-col gap-4">
             <Typography
               variant="h6"
@@ -185,7 +185,7 @@ const AdminAwardPage = () => {
                 />
               </div>
             </div>
-            <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
+            <CardFooter className="py-0 flex flex-row items-center justify-center gap-2">
               <Button
                 variant="filled"
                 onClick={handleOpenSponsorsDialog}
@@ -210,7 +210,7 @@ const AdminAwardPage = () => {
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <Card className="mx-auto w-full max-w-[24rem]">
+        <Card className="mx-auto w-full max-w-[24rem] rounded-md">
           <CardBody className="flex flex-col gap-4">
             <Typography
               variant="h6"
@@ -265,7 +265,7 @@ const AdminAwardPage = () => {
                 />
               </div>
             </div>
-            <CardFooter className="py-0 flex flex-row items-center justify-end gap-2">
+            <CardFooter className="py-0 flex flex-row items-center justify-center gap-2">
               <Button
                 variant="filled"
                 onClick={handleOpenCategoriesDialog}

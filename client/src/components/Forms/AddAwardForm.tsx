@@ -7,7 +7,7 @@ interface FormProps {
 
 const AddAwardForm = ({ closeModal }: FormProps) => {
   return (
-    <Card className="mx-auto w-full max-w-[24rem]">
+    <Card className="mx-auto w-full max-w-[24rem] rounded-md">
       <form>
         <CardBody className="flex flex-col gap-4">
           <div className="flex flex-row items-center justify-between my-4 font-semibold">
