@@ -1,7 +1,9 @@
 import { Card, Typography } from "@material-tailwind/react";
 import { FaArrowUp } from "react-icons/fa";
+import { RxDotsVertical } from "react-icons/rx";
 import AwardsEventBarChart from "../Charts/AwardsEventBarChart";
 import AwardsEventPieChart from "../Charts/AwardsEventPieChart";
+import { NavLink } from "react-router-dom";
 
 const AdminNominationsView = () => {
   const nominations = [
@@ -98,14 +100,19 @@ const AdminNominationsView = () => {
             {nomination.nominees.map((nominee, ind) => (
               <Card
                 key={ind}
-                className="h-fit w-full bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
+                className="h-fit w-full flex flex-row items-center justify-between bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
               >
-                <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
-                  "{nominee.song}"
-                </Typography>
-                <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
-                  ~ {nominee.artist}
-                </Typography>
+                <div>
+                  <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
+                    "{nominee.song}"
+                  </Typography>
+                  <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
+                    ~ {nominee.artist}
+                  </Typography>
+                </div>
+                <NavLink to="/admin/artists/232">
+                <RxDotsVertical />
+                </NavLink>
               </Card>
             ))}
           </div>
