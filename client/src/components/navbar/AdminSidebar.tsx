@@ -1,5 +1,5 @@
 import { Typography } from "@material-tailwind/react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { HiOutlineTicket } from "react-icons/hi2";
 import {
   LuUsers2,
