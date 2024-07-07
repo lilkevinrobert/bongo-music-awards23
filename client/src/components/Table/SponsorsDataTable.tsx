@@ -71,7 +71,7 @@ const SponsorsDataTable = () => {
         />
         <Button
           size="sm"
-          className="ml-2 rounded-full font-LatoRegular bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+          className="ml-2 rounded-full font-LatoRegular capitalize bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
           onClick={() => setSearchTerm("")}
         >
           Clear
