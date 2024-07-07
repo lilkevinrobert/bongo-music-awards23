@@ -155,7 +155,7 @@ const AdminAwardPage = () => {
             </Typography>
 
             {/* Available Sponsor's */}
-            <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded p-4">
+            <div className="grid grid-cols-2 gap-2 bg-transparent border rounded p-4">
               <div className="font-LatoRegular w-full">
                 <Checkbox
                   label="Sponsor One"
@@ -228,7 +228,7 @@ const AdminAwardPage = () => {
             </Typography>
 
             {/* Available Categories */}
-            <div className="grid grid-cols-2 gap-2 bg-gray-50 rounded p-4">
+            <div className="grid grid-cols-2 gap-2 bg-transparent border rounded p-4">
               <div className="font-LatoRegular w-full">
                 <Checkbox
                   label="Bongo Flava"
