@@ -144,7 +144,7 @@ const AdminArtistNominations = () => {
                   className="w-full flex flex-row justify-between bg-stone-50 shadow"
                 >
                   <div className="w-full py-2 px-4 border-2 border-stone-100 border-l-amber-300 border-r-transparent">
-                    <Typography className="font-LatoBold uppercase underline underline-offset-2">
+                    <Typography className="font-LatoBold uppercase text-amber-600">
                       {nomination.category}
                     </Typography>
                     <Typography className="font-LatoBold capitalize">
@@ -154,7 +154,7 @@ const AdminArtistNominations = () => {
                       ~ {nomination.nomination.artist}
                     </Typography>
                   </div>
-                  <div className="w-fit h-full self-end flex flex-col items-center justify-center px-2 py-4 text-gray-900 bg-amber-300">
+                  <div className="w-fit h-full self-end flex flex-col items-center justify-center px-2 py-4 text-gray-900 bg-amber-200">
                     <span className="font-LatoBold text-lg">
                       {nomination.nomination.votes}
                     </span>

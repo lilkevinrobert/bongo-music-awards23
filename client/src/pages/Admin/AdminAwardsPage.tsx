@@ -43,7 +43,7 @@ const AdminAwardsPage = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="text-slate-600">
           <AdminAwardsTabs />
         </div>
       </div>
