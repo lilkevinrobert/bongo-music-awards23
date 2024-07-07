@@ -10,6 +10,7 @@ import { IoAdd } from "react-icons/io5";
 import { useState } from "react";
 import AddSponsorForm from "../../components/Forms/AddSponsorForm";
 import SponsorsDataTable from "../../components/Table/SponsorsDataTable";
+import MiniFooter from "../../components/Footer/MiniFooter";
 
 const AdminSponsorsPage = () => {
   const [open, setOpen] = useState(false);
@@ -33,6 +34,7 @@ const AdminSponsorsPage = () => {
       <div className="bg-transparent px-2 md:px-4 py-4">
         <SponsorsDataTable />
       </div>
+      <MiniFooter />
 
       {/* Dialogs */}
       <Dialog
