@@ -92,7 +92,7 @@ const SponsorsDataTable = () => {
               key={index}
               className={`${index % 2 === 0 ? "bg-gray-50" : ""} group/actions`}
             >
-              <td className="hidden md:block border px-4 py-1 capitalize">{row.name}</td>
+              <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">{row.name}</td>
               <td className="border px-4 py-1 capitalize font-normal">
                 <img
                   src={row.logo}

@@ -30,7 +30,7 @@ const AdminSponsorsPage = () => {
           <IoAdd className="text-lg" /> new
         </Button>
       </div>
-      <div className="bg-transparent px-4 py-4">
+      <div className="bg-transparent px-2 md:px-4 py-4">
         <SponsorsDataTable />
       </div>
 
