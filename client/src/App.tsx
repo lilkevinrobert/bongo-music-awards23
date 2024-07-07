@@ -13,6 +13,7 @@ import AdminAwardsPage from "./pages/Admin/AdminAwardsPage.tsx";
 import AdminAwardPage from "./pages/Admin/AdminAwardPage.tsx";
 import ErrorHandler from "./components/Errors/ErrorHandler.tsx";
 import ArtistNominationsPage from "./pages/Admin/ArtistNominationsPage.tsx";
+import AdminAwardCategoryPage from "./pages/Admin/AdminAwardCategoryPage.tsx";
 
 
 // Lazy-loaded components
@@ -82,6 +83,14 @@ function App() {
                             <AdminAwardPage />
                         </Suspense>
                     ),
+                },
+                {
+                    path: "awards/:awardId/categories/:categoryId",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <AdminAwardCategoryPage />
+                        </Suspense>
+                    )
                 },
                 {
                     path: "categories/",

@@ -8,12 +8,8 @@ const AdminAwardPage = () => {
     <Layout>
       <BreadcrumbLevel2 previousPage="awards" currentPage={"award"} />
       <div className="bg-white text-gray-500">
-      <AdminAwardTabs />
+        <AdminAwardTabs />
       </div>
-      {/* <section className="px-4 py-4">
-        <Typography className="text-lg text-gray-900 font-LatoBold capitalize">Nominations</Typography>
-        <AdminNominationsView />
-      </section> */}
       <MiniFooter />
     </Layout>
   );

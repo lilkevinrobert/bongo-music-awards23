@@ -1,14 +1,16 @@
-import { Card, Typography } from "@material-tailwind/react";
+import { NavLink, useParams } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa";
 import { RxDotsVertical } from "react-icons/rx";
+import { Card, Typography } from "@material-tailwind/react";
 import AwardsEventBarChart from "../Charts/AwardsEventBarChart";
 import AwardsEventPieChart from "../Charts/AwardsEventPieChart";
-import { NavLink } from "react-router-dom";
 
 const AdminNominationsView = () => {
+  const nav = useParams()
   const nominations = [
     {
       category: "Song of the year",
+      categoryId: "dkjs93jknd",
       nominees: [
         {
           id: "12345",
@@ -49,6 +51,7 @@ const AdminNominationsView = () => {
     },
     {
       category: "Artist of the year",
+      categoryId: "ndae792ash",
       nominees: [
         {
           id: "123",
@@ -88,9 +91,11 @@ const AdminNominationsView = () => {
       {nominations.map((nomination, i) => (
         <div key={i} className="py-6">
           <div className="flex flex-row items-center justify-between">
-            <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
-              {nomination.category}
-            </Typography>
+            <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.categoryId}`}>
+              <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
+                {nomination.category}
+              </Typography>
+            </NavLink>
             <FaArrowUp
               onClick={toTop}
               className="text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
@@ -111,7 +116,7 @@ const AdminNominationsView = () => {
                   </Typography>
                 </div>
                 <NavLink to={`/admin/artists/${nominee.id}/nominations`}>
-                <RxDotsVertical />
+                  <RxDotsVertical />
                 </NavLink>
               </Card>
             ))}
