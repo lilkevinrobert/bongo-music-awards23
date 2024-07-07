@@ -25,12 +25,11 @@ const ErrorHandler = () => {
               className="capitalize flex flex-row items-center gap-2 rounded-full"
             >
               <MdOutlineArrowBack className="text-lg" />
-              <span className="font-LatoRegular">You can Go back</span>
+              <span className="font-LatoRegular">Go back</span>
             </Button>
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
