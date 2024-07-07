@@ -5,6 +5,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 interface IconArgs {
   open: boolean;
@@ -18,7 +19,9 @@ const Icon = ({ open }: IconArgs) => {
       viewBox="0 0 24 24"
       strokeWidth={2}
       stroke="currentColor"
-      className={`${open ? "rotate-180" : ""} h-5 w-5 transition-transform mr-2`}
+      className={`${
+        open ? "rotate-180" : ""
+      } h-5 w-5 transition-transform mr-2`}
     >
       <path
         strokeLinecap="round"
@@ -44,10 +47,12 @@ const AdminArtistNominations = () => {
   const nominations = [
     {
       awards: "Bongo Music Awards 2024",
+      awardsId: "ndk44ojnd",
       isActive: true,
       nominations: [
         {
           category: "song of the year",
+          categoryId: "wjwk332d",
           nomination: {
             title: "Some song",
             artist: "Stage name",
@@ -56,6 +61,7 @@ const AdminArtistNominations = () => {
         },
         {
           category: "artist of the year",
+          categoryId: "wjwk332d",
           nomination: {
             title: "Some song",
             artist: "Stage name",
@@ -66,10 +72,12 @@ const AdminArtistNominations = () => {
     },
     {
       awards: "Bongo Music Awards 2023",
+      awardsId: "knawoqsxq",
       isActive: false,
       nominations: [
         {
           category: "best upcoming male artist",
+          categoryId: "djee73njsdj",
           nomination: {
             title: "Stage name",
             artist: "Stage name",
@@ -78,6 +86,7 @@ const AdminArtistNominations = () => {
         },
         {
           category: "best video of the year",
+          categoryId: "djee73njsdj",
           nomination: {
             title: "Some song",
             artist: "Stage name",
@@ -86,6 +95,7 @@ const AdminArtistNominations = () => {
         },
         {
           category: "best collaboration of the year",
+          categoryId: "djee73njsdj",
           nomination: {
             title: "Some song",
             artist: "Stage name",
@@ -94,6 +104,7 @@ const AdminArtistNominations = () => {
         },
         {
           category: "song of the year",
+          categoryId: "djee73njsdj",
           nomination: {
             title: "Some song",
             artist: "Stage name",
@@ -102,6 +113,7 @@ const AdminArtistNominations = () => {
         },
         {
           category: "album of the year",
+          categoryId: "djee73njsdj",
           nomination: {
             title: "Album name",
             artist: "Stage name",
@@ -122,7 +134,7 @@ const AdminArtistNominations = () => {
             className="hover:bg-amber-50"
           >
             <AccordionHeader
-              onClick={() => openHandler(i+1)}
+              onClick={() => openHandler(i + 1)}
               className="font-LatoBold text-base"
             >
               <div className="flex items-center gap-2 pl-2 border-2 border-transparent border-l-gray-700 border-r-transparent">
@@ -144,9 +156,11 @@ const AdminArtistNominations = () => {
                   className="w-full flex flex-row justify-between bg-stone-50 shadow"
                 >
                   <div className="w-full py-2 px-4 border-2 border-stone-100 border-l-amber-300 border-r-transparent">
-                    <Typography className="font-LatoBold uppercase text-amber-600">
-                      {nomination.category}
-                    </Typography>
+                    <NavLink to={`/admin/awards/${item.awardsId}/categories/${nomination.categoryId}`}>
+                      <Typography className="font-LatoBold uppercase text-amber-600">
+                        {nomination.category}
+                      </Typography>
+                    </NavLink>
                     <Typography className="font-LatoBold capitalize">
                       {nomination.nomination.title}
                     </Typography>
