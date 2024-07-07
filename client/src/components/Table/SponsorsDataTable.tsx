@@ -80,7 +80,7 @@ const SponsorsDataTable = () => {
       <table className="table-auto w-full bg-white border shadow">
         <thead>
           <tr className="bg-gray-200 text-left text-gray-900 font-LatoBold">
-            <th className="px-4 py-1">Name</th>
+            <th className="hidden md:block px-4 py-1">Name</th>
             <th className="px-4 py-1">Logo</th>
             <th className="px-4 py-1">Link</th>
             <th className="px-4 py-1 text-center w-40"></th>
@@ -92,12 +92,12 @@ const SponsorsDataTable = () => {
               key={index}
               className={`${index % 2 === 0 ? "bg-gray-50" : ""} group/actions`}
             >
-              <td className="border px-4 py-1 capitalize">{row.name}</td>
+              <td className="hidden md:block border px-4 py-1 capitalize">{row.name}</td>
               <td className="border px-4 py-1 capitalize font-normal">
                 <img
                   src={row.logo}
                   alt={row.name}
-                  className="w-full h-40 bg-amber-200"
+                  className="w-full h-24 md:h-40 object-cover bg-amber-200"
                 />
               </td>
               <td className="border px-4 py-1 capitalize">{row.link}</td>
