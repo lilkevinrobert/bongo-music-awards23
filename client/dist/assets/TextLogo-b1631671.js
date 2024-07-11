@@ -1,1 +1,0 @@
-import{j as t}from"./react-b72defc1.js";import{r as e}from"./@material-tailwind-31758b72.js";const a=()=>t.jsx(t.Fragment,{children:t.jsxs(e.Typography,{className:"text-2xl text-center text-slate-900",children:["Bongo ",t.jsx("span",{className:"text-yellow-400",children:" Music Awards"})]})});export{a as T};
