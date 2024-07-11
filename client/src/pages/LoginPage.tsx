@@ -31,9 +31,9 @@ const LoginPage = () => {
         src={TopographyDarkBackground}
         loading="lazy"
       />
-      <div className="w-full lg:w-1/2 shadow-none">
+      <div className="w-full lg:w-1/2 shadow-none z-10">
         <div className="w-full flex flex-row items-center justify-center my-4">
-          <NavLink to="/">
+          <NavLink to="/" className="cursor-pointer">
             <TextLogo textSize="text-2xl" />
           </NavLink>
         </div>
