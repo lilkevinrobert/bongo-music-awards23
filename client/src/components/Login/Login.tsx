@@ -111,7 +111,7 @@ const Login = () => {
         window.setTimeout(
           () =>
             toast.error(
-              <p className="capitalize">{`Failed to login...Try again`}</p>
+              <p className="capitalize font-LatoBold">{`Failed to login...Try again`}</p>
             ),
           1000
         );
@@ -123,7 +123,7 @@ const Login = () => {
       <Card className="w-96 shadow-none">
         <form onSubmit={handleLogin}>
           <CardHeader className="flex flex-col items-center justify-center shadow-none">
-            <Typography className="self-start pl-2 text-gray-800">
+            <Typography className="self-start pl-2 text-lg text-gray-800 font-LatoBold">
               Enter account credentials to login.
             </Typography>
           </CardHeader>
@@ -162,7 +162,7 @@ const Login = () => {
             <Button
               variant="gradient"
               fullWidth
-              className="bg-slate-900 hover:bg-yellow-500 transition ease-in-out"
+              className="bg-slate-900 hover:bg-amber-600 transition ease-in-out font-LatoBold"
               onClick={handleLogin}
             >
               Log In

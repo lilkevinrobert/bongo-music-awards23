@@ -1,24 +1,16 @@
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import {
-  MdOutlineEdit,
-  MdOutlineRemoveRedEye,
-  MdOutlineDeleteOutline,
-} from "react-icons/md";
-import { NavLink } from "react-router-dom";
-
+import { MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
 interface DataRow {
-    id: string;
-    name: string;
-    logo: string;
-    link: string;
-
+  id: string;
+  name: string;
+  logo: string;
+  link: string;
 }
 
 const SponsorsDataTable = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filteredData, setFilteredData] = useState<DataRow[]>([]);
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState<DataRow[]>([]);
 
   const data = [
     {
@@ -92,7 +84,9 @@ const SponsorsDataTable = () => {
               key={index}
               className={`${index % 2 === 0 ? "bg-gray-50" : ""} group/actions`}
             >
-              <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">{row.name}</td>
+              <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">
+                {row.name}
+              </td>
               <td className="border px-4 py-1 capitalize font-normal">
                 <img
                   src={row.logo}

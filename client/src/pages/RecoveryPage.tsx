@@ -11,8 +11,8 @@ const RecoveryPage = () => {
     <div className="w-screen h-screen bg-white py-4 px-6 flex items-center justify-center">
       <div className="text-slate-950">
         <div className="pb-0">
-          <TextLogo />
-          <Typography className="text-center text-sm font-light">
+          <TextLogo textSize="text-lg" />
+          <Typography className="text-center text-sm font-light font-LatoBold">
             Password Recovery
           </Typography>
         </div>
@@ -22,14 +22,14 @@ const RecoveryPage = () => {
         </Typography>
         <form className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Typography>Email Address</Typography>
+            <Typography className="font-LatoBold">Email Address</Typography>
             <input
               type="email"
               placeholder="example@someaddress.com"
               className="border border-gray-500 pl-4 rounded-lg font-LatoRegular"
             />
           </div>
-          <Button className="transition ease-in-out font-bold hover:text-slate-900 hover:bg-yellow-400">
+          <Button className="transition ease-in-out font-LatoBold hover:text-slate-900 hover:bg-yellow-400">
             Proceed
           </Button>
         </form>

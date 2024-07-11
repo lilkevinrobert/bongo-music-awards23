@@ -17,8 +17,6 @@ import { NavLink, useParams } from "react-router-dom";
 import { PiWarningFill } from "react-icons/pi";
 import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { IoAdd } from "react-icons/io5";
-import AdminArtistNominations from "../../components/Nomination/AdminArtistNominations";
-import MiniFooter from "../../components/Footer/MiniFooter";
 
 type DataRow = {
   id: number;
