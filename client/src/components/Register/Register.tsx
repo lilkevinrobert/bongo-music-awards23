@@ -120,7 +120,7 @@ const Register = () => {
             placeholder="Enter Your Password"
             type="password"
           />
-          <Button className="font-LatoBold hover:bg-amber-600 transition ease-in-out" fullWidth onClick={handleRegister}>
+          <Button className="font-LatoBold bg-gray-950 hover:bg-yellow-300 text-white hover:text-gray-950 transition ease-linear" fullWidth onClick={handleRegister}>
             Register
           </Button>
         </CardBody>

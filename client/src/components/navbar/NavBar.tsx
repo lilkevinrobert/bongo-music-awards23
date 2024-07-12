@@ -1,14 +1,16 @@
 import {Dropdown, Navbar} from "flowbite-react";
 import {Button, Typography} from "@material-tailwind/react";
 import {NavLink} from "react-router-dom";
+// import Logo from "/logo.png";
 
 const NavBar = () => {
     return (
         <Navbar fluid className="font-LatoBold">
             <Navbar.Brand href="../">
-                <Typography variant="h3" className="self-center whitespace-nowrap text-base md:text-lg lg:text-xl text-slate-900 dark:text-white">
+                <Typography variant="h3" className="self-center whitespace-nowrap font-LatoBold text-base md:text-lg lg:text-xl text-slate-900 dark:text-white">
                     Bongo <span className="text-yellow-300"> Music Awards</span>
                 </Typography>
+                {/* <img src={Logo} alt="bongo music awards logo" loading="lazy" className="text-xs self-center h-fit" /> */}
             </Navbar.Brand>
             <div className="flex md:order-2">
                 <NavLink to="../../login">

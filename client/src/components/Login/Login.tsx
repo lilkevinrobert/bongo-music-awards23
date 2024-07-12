@@ -162,7 +162,7 @@ const Login = () => {
             <Button
               variant="gradient"
               fullWidth
-              className="bg-slate-900 hover:bg-amber-600 transition ease-in-out font-LatoBold"
+              className="bg-gray-950 hover:bg-yellow-300 text-white hover:text-gray-950 transition ease-in-out font-LatoBold"
               onClick={handleLogin}
             >
               Log In
