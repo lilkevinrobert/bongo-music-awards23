@@ -25,11 +25,12 @@ const RecoveryPage = () => {
             <Typography className="font-LatoBold">Email Address</Typography>
             <input
               type="email"
+              required
               placeholder="example@someaddress.com"
               className="border border-gray-300 pl-4 rounded-lg font-LatoRegular"
             />
           </div>
-          <Button className="font-LatoBold hover:text-slate-900 bg-gray-950 hover:bg-yellow-400 transition ease-linear">
+          <Button type="submit" className="font-LatoBold hover:text-slate-900 bg-gray-950 hover:bg-yellow-400 transition ease-linear">
             Proceed
           </Button>
         </form>
