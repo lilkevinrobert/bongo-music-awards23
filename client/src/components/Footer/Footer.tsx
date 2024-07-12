@@ -7,7 +7,7 @@ import Logo from "/logo.png";
 const LINKS = [
   {
     title: "About",
-    items: ["Bongo Music Awards"],
+    items: ["Bongo Music Awards", "Contacts"],
   },
   {
     title: "Follow us",
@@ -46,6 +46,12 @@ const Footer = () => {
   const getHref = (title: string, item: string) => {
     switch (title) {
       case "About":
+        if(item == "Bongo Music Awards"){
+          return "/about";
+        }
+        if(item == "Contacts"){
+          return "/contact";
+        }
         return "/about";
       case "Follow us":
         if(item == "Instagram"){
