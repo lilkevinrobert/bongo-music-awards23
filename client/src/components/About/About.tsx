@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center gap-4 lg:gap-8 py-10 lg:px-40 bg-slate-50 text-slate-900">
       <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
-        <Typography variant="h6" className="underline underline-offset-4 text-lg font-LatoBold">About Us</Typography>
+        <Typography variant="h6" className="underline-offset-4 text-lg font-LatoBold">About Us</Typography>
         <Typography className="font-LatoRegular text-justify">
           Welcome to the <span className="bg-yellow-300 p-1 text-black"> {awardSiteName} </span> official web page, your ultimate
           destination for celebrating and recognizing the exceptional talents
@@ -15,7 +15,7 @@ const About = () => {
         </Typography>
       </section>
       <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
-        <Typography variant="h6" className="underline underline-offset-4 text-lg font-LatoBold" >Our Mission</Typography>
+        <Typography variant="h6" className="self-start underline underline-offset-4 text-lg font-LatoBold" >Our Mission</Typography>
         <Typography className="font-LatoRegular text-justify">
           Our Mission At {awardSiteName} is simple: to
           honor and celebrate the artists, musicians, and creative visionaries
@@ -25,7 +25,7 @@ const About = () => {
         </Typography>
       </section>
       <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
-        <Typography variant="h6" className="underline underline-offset-4 text-lg font-LatoBold" >What we Do</Typography>
+        <Typography variant="h6" className="self-start underline underline-offset-4 text-lg font-LatoBold" >What we Do</Typography>
         <div className="gap-4 flex flex-col items-center justify-center font-LatoRegular text-justify">
           <li> <span className="font-LatoBold">Awards Ceremony:</span> Each year, we host a prestigious music
           awards ceremony that showcases the best in the industry. We recognize
@@ -46,7 +46,7 @@ const About = () => {
         </div>
       </section>
       <section className="w-full px-8 lg:px-28 flex flex-col items-center justify-center gap-4">
-        <Typography variant="h6" className="underline underline-offset-4 text-lg font-LatoBold">Our Team</Typography>
+        <Typography variant="h6" className="self-start underline underline-offset-4 text-lg font-LatoBold">Our Team</Typography>
         <Typography className="font-LatoRegular text-justify">
           Our Team is composed of music industry experts, event
           organizers, tech-savvy professionals, and dedicated music enthusiasts.
