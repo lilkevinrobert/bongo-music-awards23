@@ -15,6 +15,7 @@ interface AwardsCardContent {
     time: string;
     title: string;
     location: string;
+    isActive: boolean;
   };
 }
 
@@ -27,8 +28,15 @@ const AwardsCard = ({ content }: AwardsCardContent) => {
           alt="award_poster"
           className="hidden text-sm font-LatoRegular"
         />
+          <div className="capitalize flex items-center gap-2 text-sm font-LatoRegular pt-4">
+        {content.isActive ? (
+            <><div className="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div><span className="text-green-400 animate-pulse">active</span></>
+          ) : (
+            <span className="text-gray-400">closed</span>
+          )}
+          </div>
         <div>
-          <p className="text-sm text-gray-400 font-LatoRegular py-2">
+          <p className="text-sm text-gray-500 font-LatoRegular py-2">
             {content.date} | {content.time}
           </p>
           <Typography variant="h6" className="font-LatoBold">
@@ -42,14 +50,14 @@ const AwardsCard = ({ content }: AwardsCardContent) => {
       </CardBody>
       <CardFooter className="bg-transparent p-4">
         <NavLink to={`../awards/${content.id}`}>
-        <Button
-          variant="outlined"
-          size="sm"
-          fullWidth
-          className="capitalize rounded-full border-gray-500 hover:text-white hover:bg-gray-700 transition ease-linear"
-        >
-          view
-        </Button>
+          <Button
+            variant="outlined"
+            size="sm"
+            fullWidth
+            className="capitalize rounded-full border-gray-500 hover:text-white hover:bg-gray-700 transition ease-linear"
+          >
+            view
+          </Button>
         </NavLink>
       </CardFooter>
     </Card>
