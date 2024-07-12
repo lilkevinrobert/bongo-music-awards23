@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Button, Typography } from "@material-tailwind/react";
-import TextLogo from "../components/Logo/TextLogo";
+import Logo from "/logo.png";
 
 const RecoveryPage = () => {
   const getYear = () => {
@@ -10,8 +10,8 @@ const RecoveryPage = () => {
   return (
     <div className="w-screen h-screen bg-white py-4 px-6 flex items-center justify-center">
       <div className="text-slate-950">
-        <div className="pb-0">
-          <TextLogo textSize="text-lg" />
+        <div className="pb-0 flex flex-col items-center justify-center">
+          <img src={Logo} alt="bongo music awards logo" className="text-sm w-36" />
           <Typography className="text-center text-sm font-light font-LatoBold">
             Password Recovery
           </Typography>
@@ -26,10 +26,10 @@ const RecoveryPage = () => {
             <input
               type="email"
               placeholder="example@someaddress.com"
-              className="border border-gray-500 pl-4 rounded-lg font-LatoRegular"
+              className="border border-gray-300 pl-4 rounded-lg font-LatoRegular"
             />
           </div>
-          <Button className="transition ease-in-out font-LatoBold hover:text-slate-900 hover:bg-yellow-400">
+          <Button className="font-LatoBold hover:text-slate-900 bg-gray-950 hover:bg-yellow-400 transition ease-linear">
             Proceed
           </Button>
         </form>
@@ -40,7 +40,7 @@ const RecoveryPage = () => {
             </Typography>
           </NavLink>
         </div>
-        <Typography className="text-center text-xs font-light text-slate-400 py-4">
+        <Typography className="text-center text-xs font-LatoRegular text-slate-400 py-4">
           &copy; {getYear()}
         </Typography>
       </div>

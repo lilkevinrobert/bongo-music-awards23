@@ -87,7 +87,7 @@ const Register = () => {
         className="mt-0 mb-2 w-full max-w-screen-lg sm:w-96"
       >
         <CardHeader className="shadow-none pl-2">
-          <Typography className="text-lg text-gray-800 font-LatoBold">
+          <Typography className="text-lg text-gray-800 font-LatoRegular">
             Enter your details to register.
           </Typography>
         </CardHeader>
@@ -97,27 +97,27 @@ const Register = () => {
             value={first_name}
             onChange={(e) => setFirstname(e.target.value)}
             className="pl-4 rounded-lg w-full font-LatoRegular text-gray-900 border border-gray-400"
-            placeholder="Enter Your firstname"
+            placeholder="Enter your Firstname"
           />
           <input
             type="text"
             value={last_name}
             onChange={(e) => setLastname(e.target.value)}
             className="pl-4 rounded-lg w-full font-LatoRegular text-gray-900 border border-gray-400"
-            placeholder="Enter Your lastname"
+            placeholder="Enter your Lastname"
           />
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="pl-4 rounded-lg w-full font-LatoRegular text-gray-900 border border-gray-400"
-            placeholder="Enter Your Email Address"
+            placeholder="Enter your Email Address"
             type="email"
           />
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="pl-4 rounded-lg w-full font-LatoRegular text-gray-900 border border-gray-400"
-            placeholder="Enter Your Password"
+            placeholder="Enter your Password"
             type="password"
           />
           <Button className="font-LatoBold bg-gray-950 hover:bg-yellow-300 text-white hover:text-gray-950 transition ease-linear" fullWidth onClick={handleRegister}>

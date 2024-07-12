@@ -9,7 +9,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import { NavLink } from "react-router-dom";
 import Logo from "/logo.png";
-import TopographyDarkBackground from "/topography-dark.svg";
+// import TopographyDarkBackground from "/topography-dark.svg";
 
 const LoginPage = () => {
   const data = [
@@ -26,15 +26,15 @@ const LoginPage = () => {
   ];
   return (
     <section className="relative px-4 w-full h-screen flex flex-col items-center justify-center bg-white">
-      <img
+      {/* <img
         className={`absolute w-full h-full top-0 left-0 z-0 object-cover object-center bg-yellow-200 opacity-5`}
         src={TopographyDarkBackground}
         loading="lazy"
-      />
+      /> */}
       <div className="w-full lg:w-1/2 shadow-none z-10">
         <div className="w-full flex flex-row items-center justify-center my-4">
           <NavLink to="/" className="cursor-pointer">
-            <img src={Logo} alt="bongo music awards logo" className=" w-36" />
+            <img src={Logo} alt="bongo music awards logo" className="text-sm w-36" />
           </NavLink>
         </div>
         <Tabs id="custom-animation" value="html">

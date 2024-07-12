@@ -123,18 +123,19 @@ const Login = () => {
       <Card className="w-96 shadow-none">
         <form onSubmit={handleLogin}>
           <CardHeader className="flex flex-col items-center justify-center shadow-none">
-            <Typography className="self-start pl-2 text-lg text-gray-800 font-LatoBold">
+            <Typography className="self-start pl-2 text-lg text-gray-900 font-LatoRegular">
               Enter account credentials to login.
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4 my-1">
             <div>
+              <label htmlFor="email" className="font-LatoBold capitalize text-gray-900">email address</label>
               <input
-                className="pl-4 rounded-lg w-full font-LatoRegular border border-gray-500"
                 placeholder="Enter your Email Address"
                 type="email"
                 name="email"
                 onChange={inputHandler}
+                className="pl-4 rounded-lg w-full font-LatoRegular border border-gray-500"
               />
               {errors?.email?.length > 0 && (
                 <span className="text-red-400 text-sm m-2 p-2">
@@ -144,12 +145,13 @@ const Login = () => {
             </div>
 
             <div>
+            <label htmlFor="password" className="font-LatoBold capitalize text-gray-900">password</label>
               <input
                 placeholder="Enter Your Password"
                 type="password"
                 name="password"
-                className="pl-4 rounded-lg w-full font-LatoRegular border border-gray-500"
                 onChange={inputHandler}
+                className="pl-4 rounded-lg w-full font-LatoRegular border border-gray-500"
               />
               {errors?.password?.length > 0 && (
                 <span className="text-red-400 text-sm m-2 p-2">
