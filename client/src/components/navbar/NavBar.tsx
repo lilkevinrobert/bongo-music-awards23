@@ -7,7 +7,7 @@ const NavBar = () => {
         <Navbar fluid className="font-LatoBold">
             <Navbar.Brand href="../">
                 <Typography variant="h3" className="self-center whitespace-nowrap text-base md:text-lg lg:text-xl text-slate-900 dark:text-white">
-                    Bongo <span className="text-yellow-400"> Music Awards</span>
+                    Bongo <span className="text-yellow-300"> Music Awards</span>
                 </Typography>
             </Navbar.Brand>
             <div className="flex md:order-2">
@@ -15,9 +15,9 @@ const NavBar = () => {
                     <Button
                         type="button"
                         size="md"
-                        className="bg-yellow-400 hover:bg-slate-900 transition ease-in-out rounded-3xl"
+                        className="font-LatoBold text-gray-950 hover:text-white bg-yellow-300 hover:bg-gray-950 uppercase transition ease-in-out rounded-3xl"
                     >
-                        Login
+                        Log in
                     </Button>
                 </NavLink>
                 <Navbar.Toggle/>

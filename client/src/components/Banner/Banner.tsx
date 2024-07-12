@@ -1,12 +1,12 @@
 import AnimatedImage from "../Animated/AnimatedImage";
 import AnimatedText from "../Animated/AnimatedText";
-import SampleImage from "/vite.svg";
+import Logo from "/logo.png";
 import TopographyDarkBackground from "/topography-dark.svg";
 import { Button, Typography } from "@material-tailwind/react";
 
 const Banner = () => {
   return (
-    <div className="relative w-full h-screen bg-gradient-to-r from-yellow-200 to-yellow-100 font-LatoBold p-16 md:p-32 flex flex-col md:flex-row items-center justify-center gap-0 md:gap-0 md:justify-between">
+    <div className="relative w-full h-screen bg-gradient-to-r from-yellow-200 to-yellow-100 font-LatoBold p-auto md:p-32 flex flex-col-reverse md:flex-col-reverse items-center justify-center gap-0 md:gap-0 md:justify-center">
       <img
         className={`absolute w-fit h-full top-0 left-0 z-0 object-cover object-center bg-transparent opacity-5`}
         src={TopographyDarkBackground}
@@ -20,14 +20,14 @@ const Banner = () => {
       <div className="z-10 flex flex-col items-center justify-center bg-transparent h-fit">
         <Typography
           variant="h2"
-          className="hidden text-slate-900 text-xl md:text-6xl font-LatoBold md:font-LatoRegular mb-2"
+          className="hidden text-black text-xl md:text-6xl font-LatoBold md:font-LatoRegular mb-2"
         >
           Bongo Music Awards 2023
         </Typography>
         <AnimatedText
           text="bongo music awards 2023"
           Wrapper="h2"
-          className="capitalize text-slate-900 text-xl md:text-6xl font-LatoBold md:font-LatoRegular mb-2"
+          className="capitalize text-gray-950 text-3xl text-center md:text-6xl font-LatoBold md:font-LatoRegular mb-5"
           animationProps={{
             initial: { opacity: 1, y: 20, x: -1000 },
             animate: { opacity: 1, x: 0 },
@@ -43,7 +43,7 @@ const Banner = () => {
         <AnimatedText
           text="hii imeenda!"
           Wrapper="h2"
-          className="capitalize text-slate-900 text-4xl md:text-6xl lg:text-8xl font-LatoBold"
+          className="capitalize text-black text-4xl md:text-6xl lg:text-8xl font-LatoBold"
           animationProps={{
             initial: { opacity: 0, x: -1000 },
             animate: { opacity: 1, x: 0 },
@@ -60,7 +60,7 @@ const Banner = () => {
           <Button
             type="button"
             size="md"
-            className="font-LatoBold text-white bg-yellow-400 hover:bg-slate-900 transition ease-in-out rounded-3xl animate-bounce"
+            className="font-LatoBold text-black hover:text-white bg-yellow-300 hover:bg-gray-950 transition ease-in-out rounded-3xl animate-bounce"
           >
             <Typography>Vote Now</Typography>
           </Button>
@@ -68,8 +68,8 @@ const Banner = () => {
       </div>
       <div className="z-10 h-fit bg-transparent">
         <AnimatedImage
-          src={SampleImage}
-          className="text-red-600 w-64 h-72 md:w-96"
+          src={Logo}
+          className=" w-80 h-64 md:w-full"
         />
       </div>
     </div>
