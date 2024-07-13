@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogBody } from "@material-tailwind/react";
+import { Button, Dialog, DialogBody, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
 import DeleteDialog from "../Dialog/DeleteDialog";
@@ -43,7 +43,7 @@ const SponsorsDataTable = () => {
       id: "ewew242sd1",
       name: "sponsor one",
       logo: "link to sponsor one logo",
-      link: "link to sponsor one site",
+      link: "https://www.long-link-example.com/blog/some-super-long-annoying-link-to-some-long-address-with-a-long-link/",
     },
     {
       id: "ewew242sd2",
@@ -61,7 +61,7 @@ const SponsorsDataTable = () => {
       id: "ewew242sd4",
       name: "sponsor four",
       logo: "link to sponsor four logo",
-      link: "link to sponsor four site",
+      link: "https://www.long-link-example.com/blog/some-super-long-annoying-link-to-some-long-address-with-a-long-link/",
     },
     {
       id: "tyak42sd5",
@@ -114,7 +114,7 @@ const SponsorsDataTable = () => {
           {filteredData.map((row, index) => (
             <tr
               key={index}
-              className={`${index % 2 === 0 ? "bg-gray-50" : ""} group/actions`}
+              className={`${index % 2 === 0 ? "bg-gray-50" : ""} hover:bg-blue-50 group/actions`}
             >
               <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">
                 {row.name}
@@ -123,13 +123,13 @@ const SponsorsDataTable = () => {
                 <img
                   src={row.logo}
                   alt={`${row.name}'s logo`}
-                  className="w-full h-24 md:h-40 object-cover bg-amber-200 text-xs"
+                  className="w-24 md:w-40 h-24 md:h-40 object-cover bg-yellow-200 text-xs"
                 />
               </td>
-              <td className="border px-2 md:px-4 py-1 capitalize">
-                {row.link}
+              <td className="border p-2">
+                <Typography variant="paragraph" className="text-ellipsis">{row.link}</Typography>
               </td>
-              <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
+              <td className="border border-b-transparent border-l-transparent border-r-transparent block px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
                 <button
                   className="bg-transparent px-2 py-1 rounded-full mr-1 hover:bg-green-700 group"
                   onClick={() => editDialogHandler(index)}
