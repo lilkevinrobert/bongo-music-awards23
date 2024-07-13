@@ -18,16 +18,10 @@ const Banner = () => {
         loading="lazy"
       />
       <div className="z-10 flex flex-col items-center justify-center bg-transparent h-fit">
-        <Typography
-          variant="h2"
-          className="hidden text-black text-xl md:text-6xl font-LatoBold md:font-LatoRegular mb-2"
-        >
-          Bongo Music Awards 2023
-        </Typography>
         <AnimatedText
           text="bongo music awards 2023"
           Wrapper="h2"
-          className="capitalize text-gray-950 text-3xl text-center md:text-6xl font-LatoBold md:font-LatoRegular mb-5"
+          className="capitalize text-gray-950 text-3xl text-center md:text-6xl font-LatoRegular mb-5"
           animationProps={{
             initial: { opacity: 1, y: 20, x: -1000 },
             animate: { opacity: 1, x: 0 },
@@ -56,7 +50,7 @@ const Banner = () => {
             },
           }}
         />
-        <div className="my-8">
+        <div className="my-20 md:my-28 lg:my-8">
           <Button
             type="button"
             size="md"
@@ -69,7 +63,7 @@ const Banner = () => {
       <div className="z-10 h-fit bg-transparent">
         <AnimatedImage
           src={Logo}
-          className=" w-80 h-64 md:w-full"
+          className="h-64 md:w-full"
         />
       </div>
     </div>

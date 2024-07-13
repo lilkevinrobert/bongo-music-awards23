@@ -39,7 +39,7 @@ const AdminCategoriesPage = () => {
           <section className="w-full pt-8 px-8 min-h-screen bg-slate-300 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 scroll-m-10">
             <div className="px-0">
               <div className="flex flex-row items-center justify-between">
-                <Typography variant="h5" className="">
+                <Typography variant="h5" className="font-LatoBold">
                   Categories
                 </Typography>
                 <Button
