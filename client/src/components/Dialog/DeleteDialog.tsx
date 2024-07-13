@@ -56,7 +56,7 @@ const DeleteDialog = ({
             size="sm"
             type="button"
             onClick={() => closeModal()}
-            className="bg-gray-300 hover:bg-gray-400 shadow-none text-gray-800 text-sm md:text-md lg:text-md font-LatoBold py-2 px-4 rounded-full mr-2 transition ease-in-out"
+            className="bg-gray-100 hover:bg-gray-200 shadow-none text-gray-800 text-sm md:text-md lg:text-md font-LatoBold py-2 px-4 rounded-full mr-2 transition ease-in-out"
           >
             Cancel
           </Button>
