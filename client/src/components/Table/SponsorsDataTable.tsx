@@ -132,15 +132,13 @@ const SponsorsDataTable = () => {
         open={openDeleteDialog}
         handler={deleteDialogHandler}
         dismiss={{enabled: true}}
-        className="bg-transparent shadow-none"
+        className="bg-transparent rounded-none"
       >
-        <div className="h-full border-red-400 text-black flex flex-col items-center">
           {deleteId && (
-            <DialogBody>
+            <DialogBody className="flex items-center justify-center">
               <DeleteDialog closeModal={closeDeleteDialog} deleteId={deleteId} deleteItem="Sponsor" />
             </DialogBody>
           )}
-        </div>
       </Dialog>
     </>
   );
