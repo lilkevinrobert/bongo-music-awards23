@@ -2,7 +2,8 @@ import { Button, Dialog, DialogBody } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
 import DeleteDialog from "../Dialog/DeleteDialog";
-interface DataRow {
+import EditSponsorForm from "../Forms/EditSponsorForm";
+export interface Sponsor {
   id: string;
   name: string;
   logo: string;
@@ -12,14 +13,27 @@ interface DataRow {
 const SponsorsDataTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteId, setDeleteId] = useState("");
-  const [filteredData, setFilteredData] = useState<DataRow[]>([]);
+  const [_editId, setEditId] = useState(null);
+  const [editData, setEditData] = useState<Sponsor | null>(null)
+  const [filteredData, setFilteredData] = useState<Sponsor[]>([]);
 
   // Dialogs
+  // edit dialog
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const closeEditDialog = () => setOpenEditDialog((cur) => !cur);
+  const editDialogHandler = (id: any) => {
+    setEditData(data[id])
+    if (id) {
+      setEditId(id);
+    }
+    setOpenEditDialog((cur) => !cur);
+  };
+  // delete dialog
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const closeDeleteDialog = () => setOpenDeleteDialog((cur) => !cur);
-  const deleteDialogHandler = (id:string) => {
-    if(id){
-      setDeleteId(id)
+  const deleteDialogHandler = (id: string) => {
+    if (id) {
+      setDeleteId(id);
     }
     setOpenDeleteDialog((cur) => !cur);
   };
@@ -28,26 +42,32 @@ const SponsorsDataTable = () => {
     {
       id: "ewew242sd1",
       name: "sponsor one",
-      logo: "link to sponsor logo",
-      link: "link to sponsor site",
+      logo: "link to sponsor one logo",
+      link: "link to sponsor one site",
     },
     {
       id: "ewew242sd2",
       name: "sponsor two",
-      logo: "link to sponsor logo",
-      link: "link to sponsor site",
+      logo: "link to sponsor two logo",
+      link: "link to sponsor two site",
     },
     {
       id: "ewew242sd3",
       name: "sponsor three",
-      logo: "link to sponsor logo",
-      link: "link to sponsor site",
+      logo: "link to sponsor three logo",
+      link: "link to sponsor three site",
     },
     {
       id: "ewew242sd4",
       name: "sponsor four",
-      logo: "link to sponsor logo",
-      link: "link to sponsor site",
+      logo: "link to sponsor four logo",
+      link: "link to sponsor four site",
+    },
+    {
+      id: "tyak42sd5",
+      name: "sponsor five",
+      logo: "link to sponsor five logo",
+      link: "link to sponsor five site",
     },
   ];
 
@@ -62,7 +82,7 @@ const SponsorsDataTable = () => {
         );
       }) ?? [];
     setFilteredData(filtered);
-  }, [searchTerm, data]);
+  }, [searchTerm]);
   return (
     <>
       <div className="flex flex-row items-center justify-between w-fit mb-2">
@@ -106,11 +126,13 @@ const SponsorsDataTable = () => {
                   className="w-full h-24 md:h-40 object-cover bg-amber-200 text-xs"
                 />
               </td>
-              <td className="border px-2 md:px-4 py-1 capitalize">{row.link}</td>
+              <td className="border px-2 md:px-4 py-1 capitalize">
+                {row.link}
+              </td>
               <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
                 <button
                   className="bg-transparent px-2 py-1 rounded-full mr-1 hover:bg-green-700 group"
-                  //   onClick={handleEdit}
+                  onClick={() => editDialogHandler(index)}
                 >
                   <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
@@ -131,14 +153,27 @@ const SponsorsDataTable = () => {
         size="xs"
         open={openDeleteDialog}
         handler={deleteDialogHandler}
-        dismiss={{enabled: true}}
+        dismiss={{ enabled: true }}
         className="bg-transparent rounded-none"
       >
-          {deleteId && (
-            <DialogBody className="flex items-center justify-center">
-              <DeleteDialog closeModal={closeDeleteDialog} deleteId={deleteId} deleteItem="Sponsor" />
-            </DialogBody>
-          )}
+        {deleteId && (
+          <DialogBody className="flex items-center justify-center">
+            <DeleteDialog
+              closeModal={closeDeleteDialog}
+              deleteId={deleteId}
+              deleteItem="Sponsor"
+            />
+          </DialogBody>
+        )}
+      </Dialog>
+      <Dialog
+        open={openEditDialog}
+        handler={editDialogHandler}
+        className="bg-transparent m-0 rounded-none"
+      >
+        <DialogBody className="flex items-center justify-center">
+          <EditSponsorForm closeModal={closeEditDialog} data={editData && editData} />
+        </DialogBody>
       </Dialog>
     </>
   );

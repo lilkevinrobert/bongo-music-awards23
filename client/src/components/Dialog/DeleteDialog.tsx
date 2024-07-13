@@ -1,39 +1,43 @@
-import { Typography, Button } from "@material-tailwind/react"
+import { Typography, Button } from "@material-tailwind/react";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { IoIosWarning } from "react-icons/io"
+import { IoIosWarning } from "react-icons/io";
 
 interface DeleteDialogProps {
-    closeModal: () => void;
-    deleteId: string;
-    deleteItem: "Sponsor" | "User" | "Award";
+  closeModal: () => void;
+  deleteId: string;
+  deleteItem: "Sponsor" | "User" | "Award";
+}
+
+const DeleteDialog = ({
+  closeModal,
+  deleteId,
+  deleteItem,
+}: DeleteDialogProps) => {
+  const [delId] = useState(deleteId);
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  function deleteItemHandler(item: string) {
+    switch (item) {
+      case "Sponsor":
+        return `sponsors`;
+      default:
+        break;
+    }
   }
 
-const DeleteDialog = ({closeModal, deleteId, deleteItem}:DeleteDialogProps) => {
-    const [delId] = useState(deleteId)
-    const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-      function deleteItemHandler(item: string) {
-        switch (item) {
-          case 'Sponsor':
-            return `sponsors`
-          default:
-            break;
-        }
-      }
-    
-    const deleteHandler = () => {
-      axios.delete(`${BASE_URL}/${deleteItemHandler(deleteItem)}/${delId}`)
-      .then(()=> {
-        closeModal()
-        toast.success(`${deleteItem} Deleted Successfully.`)
+  const deleteHandler = () => {
+    axios
+      .delete(`${BASE_URL}/${deleteItemHandler(deleteItem)}/${delId}`)
+      .then(() => {
+        closeModal();
+        toast.success(`${deleteItem} Deleted Successfully.`);
         setTimeout(() => window.location.reload(), 3000);
       })
-      .catch(()=>toast.error(`Failed to delete ${deleteItem}.`))
-    }
+      .catch(() => toast.error(`Failed to delete ${deleteItem}.`));
+  };
   return (
-
     <div className="h-full border-red-400 flex items-center">
       <div className="bg-white p-8 rounded-md shadow-md">
         <Typography className="text-gray-900 text-sm md:text-md lg:text-lg font-LatoBold text-center">
@@ -67,8 +71,7 @@ const DeleteDialog = ({closeModal, deleteId, deleteItem}:DeleteDialogProps) => {
         </div>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default DeleteDialog
+export default DeleteDialog;
