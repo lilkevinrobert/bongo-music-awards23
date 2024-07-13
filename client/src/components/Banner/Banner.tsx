@@ -8,12 +8,12 @@ const Banner = () => {
   return (
     <div className="relative w-full h-screen bg-gradient-to-r from-yellow-200 to-yellow-100 font-LatoBold p-auto md:p-32 flex flex-col-reverse md:flex-col-reverse items-center justify-center gap-0 md:gap-0 md:justify-center">
       <img
-        className={`absolute w-fit h-full top-0 left-0 z-0 object-cover object-center bg-transparent opacity-5 -rotate-90`}
+        className={`hidden md:block absolute w-fit h-full top-0 left-0 z-0 object-cover object-center bg-transparent opacity-5 -rotate-90`}
         src={TopographyDarkBackground}
         loading="lazy"
       />
       <img
-        className={`absolute w-fit h-full top-0 right-0 z-0 object-cover object-center bg-transparent opacity-5 rotate-90`}
+        className={`hidden md:block absolute w-fit h-full top-0 right-0 z-0 object-cover object-center bg-transparent opacity-5 rotate-90`}
         src={TopographyDarkBackground}
         loading="lazy"
       />
