@@ -26,7 +26,7 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
           </label>
           <select
             name="genre"
-            className="h-10 mt-1 p-2 pl-4 border border-gray-300 font-LatoRegular rounded-full w-full"
+            className="h-10 mt-1 p-2 pl-4 border border-gray-300 font-LatoRegular rounded-md w-full"
           >
             <option className="normal-case">Select a Genre</option>
             <option value="Bongo Flavor" className="capitalize">
@@ -67,7 +67,7 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
             type="text"
             id="category"
             // {...register("middle_name", { required: false })}
-            className="h-10 mt-1 p-2 pl-4 border border-gray-300 font-LatoRegular rounded-full w-full"
+            className="h-10 mt-1 p-2 pl-4 border border-gray-300 font-LatoRegular rounded-md w-full"
           />
         </div>
         <div className="flex flex-row items-center justify-end gap-1">
