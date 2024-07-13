@@ -1,6 +1,7 @@
-import { Button } from "@material-tailwind/react";
+import { Button, Dialog, DialogBody } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
+import DeleteDialog from "../Dialog/DeleteDialog";
 interface DataRow {
   id: string;
   name: string;
@@ -10,29 +11,40 @@ interface DataRow {
 
 const SponsorsDataTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [deleteId, setDeleteId] = useState("");
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
+
+  // Dialogs
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const closeDeleteDialog = () => setOpenDeleteDialog((cur) => !cur);
+  const deleteDialogHandler = (id:string) => {
+    if(id){
+      setDeleteId(id)
+    }
+    setOpenDeleteDialog((cur) => !cur);
+  };
 
   const data = [
     {
-      id: "ewew242sd",
+      id: "ewew242sd1",
       name: "sponsor one",
       logo: "link to sponsor logo",
       link: "link to sponsor site",
     },
     {
-      id: "ewew242sd",
+      id: "ewew242sd2",
       name: "sponsor two",
       logo: "link to sponsor logo",
       link: "link to sponsor site",
     },
     {
-      id: "ewew242sd",
+      id: "ewew242sd3",
       name: "sponsor three",
       logo: "link to sponsor logo",
       link: "link to sponsor site",
     },
     {
-      id: "ewew242sd",
+      id: "ewew242sd4",
       name: "sponsor four",
       logo: "link to sponsor logo",
       link: "link to sponsor site",
@@ -87,20 +99,15 @@ const SponsorsDataTable = () => {
               <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">
                 {row.name}
               </td>
-              <td className="border px-4 py-1 capitalize font-normal">
+              <td className="border px-0 md:px-4 py-1 capitalize font-normal">
                 <img
                   src={row.logo}
-                  alt={row.name}
-                  className="w-full h-24 md:h-40 object-cover bg-amber-200"
+                  alt={`${row.name}'s logo`}
+                  className="w-full h-24 md:h-40 object-cover bg-amber-200 text-xs"
                 />
               </td>
-              <td className="border px-4 py-1 capitalize">{row.link}</td>
+              <td className="border px-2 md:px-4 py-1 capitalize">{row.link}</td>
               <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
-                {/* <NavLink to={`../artists/${row.id}`}>
-                <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
-                  <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
-                </button>
-              </NavLink> */}
                 <button
                   className="bg-transparent px-2 py-1 rounded-full mr-1 hover:bg-green-700 group"
                   //   onClick={handleEdit}
@@ -108,7 +115,7 @@ const SponsorsDataTable = () => {
                   <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
                 </button>
                 <button
-                  //   onClick={() => handleConfirmDelete(row)}
+                  onClick={() => deleteDialogHandler(row.id)}
                   className="bg-transparent px-2 py-1 rounded-full hover:bg-red-700 group"
                 >
                   <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
@@ -118,6 +125,23 @@ const SponsorsDataTable = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Dialogs */}
+      <Dialog
+        size="xs"
+        open={openDeleteDialog}
+        handler={deleteDialogHandler}
+        dismiss={{enabled: true}}
+        className="bg-transparent shadow-none"
+      >
+        <div className="h-full border-red-400 text-black flex flex-col items-center">
+          {deleteId && (
+            <DialogBody>
+              <DeleteDialog closeModal={closeDeleteDialog} deleteId={deleteId} deleteItem="Sponsor" />
+            </DialogBody>
+          )}
+        </div>
+      </Dialog>
     </>
   );
 };

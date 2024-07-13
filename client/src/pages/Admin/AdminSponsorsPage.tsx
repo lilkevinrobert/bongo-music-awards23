@@ -43,7 +43,6 @@ const AdminSponsorsPage = () => {
         className="bg-transparent m-0 rounded-none"
       >
         <DialogBody className="flex items-center justify-center">
-          {/* <SearchDialog closeModal={handleOpen} /> */}
           <AddSponsorForm closeModal={handleOpen} />
         </DialogBody>
       </Dialog>
