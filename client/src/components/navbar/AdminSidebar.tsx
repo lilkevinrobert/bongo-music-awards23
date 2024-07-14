@@ -9,9 +9,9 @@ import {
   LuLogOut,
   LuMusic2,
 } from "react-icons/lu";
-import { BsInbox } from "react-icons/bs";
+import { BiCategory } from "react-icons/bi";
 import { SiGithubsponsors } from "react-icons/si";
-import { MdOutlineHome } from "react-icons/md";
+import { MdOutlineGroupWork, MdOutlineHome } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 // Active Link Styling
@@ -211,6 +211,23 @@ const AdminSidebar = () => {
             </a>
           </li>
           
+          {/* Genres */}
+          <li className="relative">
+            <a
+              className="flex cursor-pointer items-center truncate rounded-[5px] text-[0.85rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-amber-50 hover:text-yellow-400 hover:outline-none focus:bg-amber-50 focus:text-inherit focus:outline-none active:bg-amber-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+              data-te-sidenav-link-ref
+            >
+              <NavLink
+                to="../genres"
+                style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
+                className="w-full text-gray-600 hover:text-yellow-400 capitalize font-LatoBold flex px-6 py-[0.45rem]"
+              >
+                <MdOutlineGroupWork className="text-xl mr-1" />
+                genres
+              </NavLink>
+            </a>
+          </li>
+
           {/* Categories */}
           <li className="relative">
             <a
@@ -222,7 +239,7 @@ const AdminSidebar = () => {
                 style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
                 className="w-full text-gray-600 hover:text-yellow-400 capitalize font-LatoBold flex px-6 py-[0.45rem]"
               >
-                <BsInbox className="text-lg mr-2" />
+                <BiCategory className="text-xl mr-1" />
                 categories
               </NavLink>
             </a>
