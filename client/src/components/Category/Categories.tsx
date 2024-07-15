@@ -2,12 +2,15 @@ import {
   Accordion,
   AccordionBody,
   AccordionHeader,
+  Dialog,
+  DialogBody,
   Typography,
 } from "@material-tailwind/react";
 import { IoIosArrowForward } from "react-icons/io";
 import { TiDelete } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
+import DeleteDialog from "../Dialog/DeleteDialog";
 
 interface IconArgs {
   open: boolean;
@@ -48,6 +51,18 @@ const Categories = () => {
   };
   // end accordion controls
 
+  // Delete Dialog handling
+  const [deleteId, setDeleteId] = useState("");
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const closeDeleteDialog = () => setOpenDeleteDialog((cur) => !cur);
+  const deleteDialogHandler = (id: any) => {
+    if (id) {
+      setDeleteId(id);
+    }
+    setOpenDeleteDialog((cur) => !cur);
+  };
+
+  // Data from API
   const categoryListByGenre = [
     {
       genre: "hip-hop",
@@ -130,18 +145,38 @@ const Categories = () => {
                   <IoIosArrowForward className="text-lg text-gray-500 group-hover:hidden transition ease-linear" />
                   <div className="hidden group-hover:flex flex-row items-center gap-2 transition ease-linear bg-amber-50 px-2 rounded-full">
                     <AiFillEdit className="text-lg text-green-500 cursor-pointer hover:border-2 hover:border-green-500 rounded-full" />
-                    <TiDelete className="text-xl text-red-500 cursor-pointer hover:border-2 hover:border-red-500 rounded-full" />
+                    <TiDelete onClick={() => deleteDialogHandler(item.id)} className="text-xl text-red-500 cursor-pointer hover:border-2 hover:border-red-500 rounded-full" />
                   </div>
                 </div>
               ))}
             {group.categories.length == 0 && (
               <div className="text-center text-base w-full text-gray-900 font-LatoRegular capitalize">
-                <span className="px-4 py-2 rounded-full bg-yellow-100">no categories found.</span>
+                <span className="px-4 py-2 rounded-full bg-yellow-100">
+                  no categories found.
+                </span>
               </div>
             )}
           </AccordionBody>
         </Accordion>
       ))}
+
+      {/* Dialogs */}
+      <Dialog
+        size="md"
+        open={openDeleteDialog}
+        handler={deleteDialogHandler}
+        className="bg-transparent shadow-none text-black"
+      >
+        {deleteId && (
+          <DialogBody className="flex items-center justify-center">
+            <DeleteDialog
+              closeModal={closeDeleteDialog}
+              deleteId={deleteId}
+              deleteItem="Genre"
+            />
+          </DialogBody>
+        )}
+      </Dialog>
     </>
   );
 };
