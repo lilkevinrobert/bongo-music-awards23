@@ -7,7 +7,7 @@ import { IoIosWarning } from "react-icons/io";
 interface DeleteDialogProps {
   closeModal: () => void;
   deleteId: string;
-  deleteItem: "Sponsor" | "User" | "Award";
+  deleteItem: "Sponsor" | "User" | "Award" | "Genre";
 }
 
 const DeleteDialog = ({
@@ -22,6 +22,8 @@ const DeleteDialog = ({
     switch (item) {
       case "Sponsor":
         return `sponsors`;
+      case "Genre":
+        return `genres`;
       default:
         break;
     }
