@@ -11,9 +11,14 @@ import { TiDelete } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
 import DeleteDialog from "../Dialog/DeleteDialog";
+import EditCategoryForm from "../Forms/EditCategoryForm";
 
 interface IconArgs {
   open: boolean;
+}
+export interface ICategory {
+  id: any;
+  name: string;
 }
 
 const Icon = ({ open }: IconArgs) => {
@@ -60,6 +65,18 @@ const Categories = () => {
       setDeleteId(id);
     }
     setOpenDeleteDialog((cur) => !cur);
+  };
+  // Edit dialog handling
+  const [_editId, setEditId] = useState(null);
+  const [editData, setEditData] = useState<ICategory | null>(null);
+  const [openEditGenre, setOpenEditGenre] = useState(false);
+  const handleOpenEditGenre = () => setOpenEditGenre((cur) => !cur);
+  const openEditDialogHandler = (genreId: any, categoryId: any) => {
+    setEditData(categoryListByGenre[genreId].categories[categoryId]);
+    if (genreId && categoryId) {
+      setEditId(categoryId);
+    }
+    setOpenEditGenre((cur) => !cur);
   };
 
   // Data from API
@@ -144,8 +161,11 @@ const Categories = () => {
                   {item.name}
                   <IoIosArrowForward className="text-lg text-gray-500 group-hover:hidden transition ease-linear" />
                   <div className="hidden group-hover:flex flex-row items-center gap-2 transition ease-linear bg-amber-50 px-2 rounded-full">
-                    <AiFillEdit className="text-lg text-green-500 cursor-pointer hover:border-2 hover:border-green-500 rounded-full" />
-                    <TiDelete onClick={() => deleteDialogHandler(item.id)} className="text-xl text-red-500 cursor-pointer hover:border-2 hover:border-red-500 rounded-full" />
+                    <AiFillEdit onClick={() => openEditDialogHandler(i, indx)} className="text-lg text-green-500 cursor-pointer hover:border-2 hover:border-green-500 rounded-full" />
+                    <TiDelete
+                      onClick={() => deleteDialogHandler(item.id)}
+                      className="text-xl text-red-500 cursor-pointer hover:border-2 hover:border-red-500 rounded-full"
+                    />
                   </div>
                 </div>
               ))}
@@ -176,6 +196,17 @@ const Categories = () => {
             />
           </DialogBody>
         )}
+      </Dialog>
+      <Dialog
+        size="md"
+        open={openEditGenre}
+        handler={handleOpenEditGenre}
+        className="bg-transparent shadow-none text-black"
+      >
+        <EditCategoryForm
+          closeModal={handleOpenEditGenre}
+          genre={editData && editData}
+        />
       </Dialog>
     </>
   );

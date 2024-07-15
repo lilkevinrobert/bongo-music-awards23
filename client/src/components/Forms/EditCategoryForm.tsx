@@ -6,7 +6,7 @@ interface FormProps {
   genre: IGenre | null;
 }
 
-const EditGenreForm = ({ closeModal, genre }: FormProps) => {
+const EditCategoryForm = ({ closeModal, genre }: FormProps) => {
   return (
     <Card className="mx-auto w-full max-w-[24rem] rounded-md">
       <form>
@@ -15,7 +15,7 @@ const EditGenreForm = ({ closeModal, genre }: FormProps) => {
           variant="h4"
           className="text-2xl capitalize font-LatoBold text-gray-900"
         >
-          Edit Genre
+          Edit Category
         </Typography>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
@@ -49,4 +49,4 @@ const EditGenreForm = ({ closeModal, genre }: FormProps) => {
   );
 };
 
-export default EditGenreForm;
+export default EditCategoryForm;
