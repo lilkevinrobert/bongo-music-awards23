@@ -60,7 +60,7 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
         </Button>
         <Button
           size="md"
-          className="capitalize hover:text-gray-900 hover:bg-yellow-400 transition ease-in-out font-LatoRegular"
+          className="capitalize hover:text-gray-900 hover:bg-yellow-300 transition ease-in-out font-LatoRegular hover:font-LatoBold rounded-full"
         >
           save changes
         </Button>

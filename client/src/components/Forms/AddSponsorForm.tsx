@@ -52,7 +52,7 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
 
           <Button
             size="sm"
-            className="capitalize hover:text-gray-900 hover:bg-yellow-400 transition ease-in-out font-LatoBold"
+            className="capitalize hover:text-gray-900 hover:bg-yellow-300 transition ease-in-out font-LatoBold rounded-full"
           >
             add sponsor
           </Button>
