@@ -1,1 +1,0 @@
-import{j as e}from"./react-b72defc1.js";import{r as s}from"./@material-tailwind-31758b72.js";const a=()=>e.jsxs("div",{className:"w-full h-96 flex items-center justify-center gap-4",children:[e.jsx(s.Spinner,{color:"yellow",className:"h-12 w-12"}),e.jsx(s.Typography,{className:"text-slate-600 font-LatoRegular",children:"Fetching your Items ..."})]});export{a as F};
