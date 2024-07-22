@@ -5,7 +5,7 @@ import Loading from "./components/Loading/Loading.tsx";
 import NominatorsPage from "./pages/Admin/NominatorsPage.tsx";
 import JudgesPage from "./pages/Admin/JudgesPage.tsx";
 import ArtistPage from "./pages/Admin/ArtistPage.tsx";
-import ArtistDashboardPage from "./pages/artist/ArtistDashboardPage.tsx";
+import ArtistDashboardPage from "./pages/Artist/ArtistDashboardPage.tsx";
 import JudgePage from "./pages/Admin/JudgePage.tsx";
 import NominatorPage from "./pages/Admin/NominatorPage.tsx";
 import AdminProfilePage from "./pages/Admin/ProfilePage.tsx";
