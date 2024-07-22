@@ -15,6 +15,7 @@ import ErrorHandler from "./components/Errors/ErrorHandler.tsx";
 import ArtistNominationsPage from "./pages/Admin/ArtistNominationsPage.tsx";
 import AdminAwardCategoryPage from "./pages/Admin/AdminAwardCategoryPage.tsx";
 import AdminSponsorsPage from "./pages/Admin/AdminSponsorsPage.tsx";
+import ArtistProfilePage from "./pages/Artist/ArtistProfilePage.tsx";
 
 
 // Lazy-loaded components
@@ -203,10 +204,10 @@ function App() {
                     ),
                 },
                 {
-                    path: "artists/",
+                    path: "profile/",
                     element: (
                         <Suspense fallback={<Loading />}>
-                            <ArtistsPage/>
+                            <ArtistProfilePage/>
                         </Suspense>
                     ),
                 },

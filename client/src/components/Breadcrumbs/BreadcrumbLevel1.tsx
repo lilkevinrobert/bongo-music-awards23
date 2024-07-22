@@ -6,9 +6,10 @@ import AdminMobileSidebar from "../navbar/AdminMobileSidebar";
 
 interface BreadcrumbLevel1Props {
   currentPage: string;
+  showProfileMenu?: "yes" | "no";
 }
 
-const BreadcrumbLevel1 = ({ currentPage }: BreadcrumbLevel1Props) => {
+const BreadcrumbLevel1 = ({ currentPage, showProfileMenu }: BreadcrumbLevel1Props) => {
   return (
     <div className="top-0 sticky z-[1035] pb-0 flex flex-row items-center justify-between bg-white text-slate-900">
       <div className="self-baseline flex flex-row items-center mt-2">
@@ -24,7 +25,7 @@ const BreadcrumbLevel1 = ({ currentPage }: BreadcrumbLevel1Props) => {
           </Typography>
         </Breadcrumbs>
       </div>
-      <div className="py-2 pr-4">
+      <div className={`${showProfileMenu == "no" && "hidden"} py-2 pr-4`}>
         <ProfileMenu profileAddress="/admin/profile" />
       </div>
     </div>

@@ -20,7 +20,7 @@ const QuickActionCard = ({ title }: IQuickActionCardProps) => {
     }
   };
   return (
-    <NavLink to="#">
+    <NavLink to={`/artist/${title}`}>
       <Card className="w-fit px-10 py-5 rounded-md flex flex-col items-center justify-center gap-2 hover:scale-110 bg-white hover:bg-amber-200 transition-all ease-linear">
         {cardTitleHandler(title)}
         <Typography className="font-LatoBold text-base text-gray-900 capitalize">
