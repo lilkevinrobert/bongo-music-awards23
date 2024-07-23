@@ -6,17 +6,11 @@ const EditArtistProfile = () => {
     const navigation = useNavigate();
   return (
     <form className="w-1/2">
-      <Typography
-        variant="h4"
-        className="hidden text-2xl capitalize font-LatoBold text-gray-900"
-      >
-        profile
-      </Typography>
+      <Typography className="text-lg text-gray-900 font-LatoBold mb-4 capitalize">
+          edit profile details
+        </Typography>
       <div className="w-full h-auto flex items-center gap-5">
         <div className="w-1/2 space-y-2">
-          <Typography className="text-lg text-gray-900 font-LatoBold mb-4 capitalize">
-            Basic details
-          </Typography>
           <div className=" w-full">
             <label
               htmlFor="first_name"

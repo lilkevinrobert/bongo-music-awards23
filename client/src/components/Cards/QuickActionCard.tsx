@@ -1,5 +1,5 @@
 import { Card, Typography } from "@material-tailwind/react";
-import { LuCircle, LuMusic2, LuTrophy, LuUser2 } from "react-icons/lu";
+import { LuCircle, LuMusic2, LuSettings, LuTrophy, LuUser2 } from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 
 interface IQuickActionCardProps {
@@ -15,6 +15,8 @@ const QuickActionCard = ({ title }: IQuickActionCardProps) => {
         return <LuMusic2 className="text-3xl text-gray-800" />;
       case "nominations":
         return <LuTrophy className="text-3xl text-gray-800" />;
+      case "settings":
+        return <LuSettings className="text-3xl text-gray-800" />;
       default:
         return <LuCircle className="text-3xl text-gray-800" />;
     }

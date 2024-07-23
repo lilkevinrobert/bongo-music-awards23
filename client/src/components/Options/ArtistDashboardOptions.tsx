@@ -14,6 +14,7 @@ const ArtistDashboardOptions = () => {
         <QuickActionCard title="songs" />
         <QuickActionCard title="nominations" />
         <QuickActionCard title="profile" />
+        <QuickActionCard title="settings" />
       </div>
     </div>
   );
