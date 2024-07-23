@@ -98,7 +98,7 @@ const ArtistNominationsAside = () => {
 
   return (
     <div className="py-2 bg-transparent">
-      <div className="w-full flex items-center gap-2">
+      <div className="w-full hidden items-center gap-2">
         <ArtistSearchByEvent />
       </div>
 

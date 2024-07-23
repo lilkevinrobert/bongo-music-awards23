@@ -33,7 +33,7 @@ export function handleActiveAdminLinkColor(state: boolean) {
 
 const ArtistSidebar = () => {
   return (
-    <Card className="h-[calc(100vh)] w-full max-w-[20rem] p-4 shadow-xl">
+    <Card className="h-[calc(100vh)] w-full max-w-[20rem] p-4 shadow-xl rounded-none">
       <div>
         <NavLink
           className="flex items-center justify-start"

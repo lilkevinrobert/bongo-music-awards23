@@ -12,10 +12,10 @@ const ErrorHandler = () => {
           {error.status}
         </Typography>
         <div className="flex flex-col items-center">
-          <Typography className="text-gray-800 text-xl uppercase font-LatoBold">
+          <Typography className="text-gray-800 text-xl text-center uppercase font-LatoBold">
             you didn't breakdown anything.
           </Typography>
-          <Typography className="text-gray-800 text-xl uppercase font-LatoBold">
+          <Typography className="text-gray-800 text-xl text-center uppercase font-LatoBold">
             {error.error.message}.
           </Typography>
           <div className="py-4">
