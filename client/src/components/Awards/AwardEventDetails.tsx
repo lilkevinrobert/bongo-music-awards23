@@ -14,9 +14,9 @@ import EditAwardForm from "../Forms/EditAwardForm";
 const AwardEventDetails = () => {
   const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
   const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
-  const [openCategoriesDialog, setOpenCategoriesDialog] = useState(false);
-  const handleOpenCategoriesDialog = () =>
-    setOpenCategoriesDialog((cur) => !cur);
+  const [openGenresDialog, setOpenGenresDialog] = useState(false);
+  const handleOpenGenresDialog = () =>
+    setOpenGenresDialog((cur) => !cur);
 
   // Data from API...
   const sponsorsList = [
@@ -36,7 +36,7 @@ const AwardEventDetails = () => {
       logo: "sponsor's logo",
     },
   ];
-  const categoriesList: string[] = [
+  const genresList: string[] = [
     "Bongo Flava",
     "Taarab",
     "R&B",
@@ -92,13 +92,13 @@ const AwardEventDetails = () => {
         </div>
       </section>
       <hr />
-      {/* Categories section */}
+      {/* Genres section */}
       <section className="px-4 py-4">
         <Typography className="text-lg text-gray-900 font-LatoBold capitalize">
-          categories
+          genres
         </Typography>
         <div className="py-4 flex items-center flex-wrap gap-2">
-          {categoriesList.map((category, i) => (
+          {genresList.map((category, i) => (
             <Typography
               key={i}
               className="font-LatoRegular text-sm text-gray-800 bg-amber-100 w-fit px-4 py-2 rounded-full normal-case"
@@ -107,7 +107,7 @@ const AwardEventDetails = () => {
             </Typography>
           ))}
           <span
-            onClick={handleOpenCategoriesDialog}
+            onClick={handleOpenGenresDialog}
             className="w-8 h-8 flex flex-col items-center justify-center rounded-full cursor-pointer shadow transiton ease-in-out bg-gray-900 hover:bg-gray-950"
           >
             <IoAdd className="text-white text-lg" />
@@ -190,8 +190,8 @@ const AwardEventDetails = () => {
       </Dialog>
       <Dialog
         size="md"
-        open={openCategoriesDialog}
-        handler={handleOpenCategoriesDialog}
+        open={openGenresDialog}
+        handler={handleOpenGenresDialog}
         className="bg-transparent shadow-none"
         animate={{
           mount: { scale: 1, y: 0 },
@@ -205,14 +205,14 @@ const AwardEventDetails = () => {
               color="blue-gray"
               className="font-LatoBold"
             >
-              Add Awards Categories
+              Add Awards Genres
             </Typography>
             <Typography
               className="mb-3 font-LatoRegular"
               variant="paragraph"
               color="gray"
             >
-              Select appropriate categories:
+              Select appropriate genre(s):
             </Typography>
 
             {/* Available Categories */}
@@ -256,7 +256,7 @@ const AwardEventDetails = () => {
             <CardFooter className="py-0 flex flex-row items-center justify-center gap-2">
               <Button
                 variant="filled"
-                onClick={handleOpenCategoriesDialog}
+                onClick={handleOpenGenresDialog}
                 className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800"
               >
                 cancel

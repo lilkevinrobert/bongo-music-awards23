@@ -73,7 +73,7 @@ const ContactForm = () => {
         <Button
           fullWidth
           size="md"
-          className="w-auto my-4 self-end transition ease-in-out bg-slate-800 hover:bg-yellow-600"
+          className="w-auto my-4 self-end font-LatoBold rounded-full text-white hover:text-gray-900 transition ease-in-out bg-gray-900 hover:bg-yellow-300"
         >
           get in touch
         </Button>

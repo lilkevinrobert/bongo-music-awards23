@@ -7,8 +7,8 @@ interface TextSize {
 const TextLogo = ({ textSize }: TextSize ) => {
     return(
         <>
-        <Typography className={`${textSize} text-center text-slate-900`}>
-          Bongo <span className="text-yellow-400"> Music Awards</span>
+        <Typography className={`${textSize} text-center text-slate-900 font-LatoBold`}>
+          Bongo <span className="text-amber-500"> Music Awards</span>
         </Typography>
       </>
     )

@@ -65,7 +65,6 @@ const AdminAwardsPage = () => {
       >
         
           <AddAwardForm closeModal={handleOpenNewAward} />
-        
       </Dialog>
       
     </Layout>

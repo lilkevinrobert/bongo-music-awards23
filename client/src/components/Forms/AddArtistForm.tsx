@@ -39,7 +39,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true); // Start the loading indicator
     console.log(data);
-    setFormData(data)
+    setFormData(data);
     // e.preventDefault();
     // await axios
     //   .get("https://api.bongomusicawards.co.tz/sanctum/csrf-cookie")
@@ -95,8 +95,11 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full px-8 mx-auto my-8"
       >
-        <div className="flex flex-row items-center justify-between mb-4 uppercase font-semibold">
-          <Typography variant="h4" className="text-2xl capitalize font-LatoBold text-gray-900">
+        <div className="flex flex-row items-center justify-between mb-4 uppercase">
+          <Typography
+            variant="h4"
+            className="text-2xl capitalize font-LatoBold text-gray-900"
+          >
             New Artist
           </Typography>
           <div className="bg-gray-100 rounded">
@@ -104,7 +107,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
               className="w-6 h-6 cursor-pointer rounded transition ease-in-out hover:bg-slate-800 hover:text-white"
               onClick={closeModal}
             />
-            </div>
+          </div>
         </div>
 
         <div className="mb-4 flex items-center gap-12 justify-between ">

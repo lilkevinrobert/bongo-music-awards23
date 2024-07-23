@@ -44,16 +44,16 @@ const AddEmptyState = ({ itemName }: AddEmptyStateProps) => {
   return (
     <>
       <div className="w-full h-full border border-transparent rounded-lg py-20 flex flex-col items-center justify-center gap-1">
-        <FaArrowDownLong className="text-5xl text-slate-500 animate-bounce" />
-        <BsInbox className="text-8xl text-slate-500" />
+        <FaArrowDownLong className="text-5xl text-gray-400 animate-bounce" />
+        <BsInbox className="text-8xl text-gray-400" />
         <Typography className="text-xl text-gray-600 normal-case font-LatoBold">
           Nothing to show yet!
         </Typography>
-        <Typography className="text-slate-500 font-LatoRegular">
+        <Typography className="text-gray-500 font-LatoRegular">
           Start by adding some
           <span className="capitalize"> {itemName} </span> data
         </Typography>
-        <Button size="sm" className="my-4 capitalize bg-slate-950" onClick={dialogSelector}>
+        <Button size="sm" className="my-4 capitalize font-LatoRegular text-white hover:text-gray-900 bg-gray-900 hover:bg-yellow-300 rounded-full transition ease-in-out" onClick={dialogSelector}>
           add {itemName}
         </Button>
       </div>

@@ -8,6 +8,7 @@ const AllAwards = () => {
       time: "08:00 pm",
       title: "Bongo Music Awards 2024",
       location: "Dar es Salaam, TZ",
+      isActive: true,
     },
     {
       id: "jsia3ua3z",
@@ -15,6 +16,7 @@ const AllAwards = () => {
       time: "08:00 pm",
       title: "Bongo Music Awards 2023",
       location: "Dar es Salaam, TZ",
+      isActive: false,
     },
   ];
   return (

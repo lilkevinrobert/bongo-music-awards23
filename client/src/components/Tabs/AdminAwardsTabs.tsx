@@ -19,7 +19,7 @@ const AdminAwardsTabs = () => {
     ];
   return (
     <Tabs value={activeTab} className="bg-transparent w-full pt-4">
-        <TabsHeader className="rounded-none border-b border-blue-gray-50 bg-transparent p-0 w-3/12 font-LatoBold"
+        <TabsHeader className="rounded-none border-b border-blue-gray-50 bg-transparent p-0 w-6/12 lg:w-3/12 font-LatoBold"
         indicatorProps={{
             className: "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
         }}>
