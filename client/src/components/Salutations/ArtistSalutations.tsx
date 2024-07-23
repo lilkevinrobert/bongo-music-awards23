@@ -8,7 +8,7 @@ const ArtistSalutations = () => {
         <Typography className="font-LatoBold text-xl text-gray-900">
           Hello, VFX Artist
         </Typography>
-        <Typography className="font-LatoRegular text-xl text-gray-900">
+        <Typography className="font-LatoRegular text-xl text-center text-gray-900">
           Welcome, to your Bongo Music Awards Dashboard
         </Typography>
       </div>

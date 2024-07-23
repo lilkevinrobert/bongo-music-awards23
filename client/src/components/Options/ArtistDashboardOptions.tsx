@@ -10,7 +10,7 @@ const ArtistDashboardOptions = () => {
       >
         quick actions
       </Typography>
-      <div className="my-6 flex flex-row items-center justify-center gap-5">
+      <div className="my-6 flex flex-row flex-wrap items-center justify-center gap-5">
         <QuickActionCard title="songs" />
         <QuickActionCard title="nominations" />
         <QuickActionCard title="profile" />

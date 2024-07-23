@@ -3,6 +3,7 @@ import { Breadcrumbs, Typography } from "@material-tailwind/react";
 import { AiFillHome } from "react-icons/ai";
 import ProfileMenu from "../Menu/ProfileMenu";
 import AdminMobileSidebar from "../navbar/AdminMobileSidebar";
+import ArtistMobileSidebar from "../navbar/ArtistMobileSidebar";
 
 interface BreadcrumbLevel1Props {
   currentPage: string;
@@ -10,13 +11,23 @@ interface BreadcrumbLevel1Props {
   user: "admin" | "artist";
 }
 
-const BreadcrumbLevel1 = ({ currentPage, user, showProfileMenu }: BreadcrumbLevel1Props) => {
+const BreadcrumbLevel1 = ({
+  currentPage,
+  user,
+  showProfileMenu,
+}: BreadcrumbLevel1Props) => {
+  const mobileSidebarHandler = (type: string) => {
+    switch (type) {
+      case "admin":
+        return <AdminMobileSidebar />;
+      case "artist":
+        return <ArtistMobileSidebar />;
+    }
+  };
   return (
     <div className="top-0 sticky z-[1035] pb-0 flex flex-row items-center justify-between bg-white text-slate-900">
       <div className="self-baseline flex flex-row items-center mt-2">
-        <div className="lg:hidden">
-          <AdminMobileSidebar />
-        </div>
+        <div className="lg:hidden">{mobileSidebarHandler(user)}</div>
         <Breadcrumbs separator="/">
           <NavLink to="../dashboard" className="opacity-60 pr-2">
             <AiFillHome className="text-md" />
