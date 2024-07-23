@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const EditArtistProfileCredentials = () => {
   const navigation = useNavigate();
   return (
-    <form className="w-1/2">
+    <form className="w-full">
       <div className=" w-full">
         <Typography className="text-lg text-gray-900 font-LatoBold mb-4 capitalize">
           Password Management
@@ -19,7 +19,7 @@ const EditArtistProfileCredentials = () => {
           type="password"
           id="password"
           placeholder="Enter your new Password here"
-          className="h-10 mt-1 p-2 pl-4 w-full text-gray-900 border border-gray-300 font-LatoRegular rounded-md bg-transparent"
+          className="h-10 mt-1 p-2 pl-4 w-full text-gray-900 border border-gray-300 font-LatoRegular rounded-md bg-white"
         />
       </div>
       <Typography className="text-red-600 text-base font-LatoRegular mt-2">

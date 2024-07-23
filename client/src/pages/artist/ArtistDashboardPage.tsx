@@ -17,7 +17,7 @@ const ArtistDashboardPage = () => {
             <ArtistDashboardOptions />
           </div>
         </section>
-        <section className={`${isEventActive ? "w-4/12" : "hidden"}  px-4 bg-transparent`}>
+        <section className={`${isEventActive ? "w-4/12" : "hidden"}  px-4 py-5 bg-transparent`}>
           <Typography variant="h4" className="capitalize font-LatoBold text-lg text-gray-900">
             nominations
           </Typography>

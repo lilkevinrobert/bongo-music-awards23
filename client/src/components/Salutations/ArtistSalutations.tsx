@@ -6,10 +6,10 @@ const ArtistSalutations = () => {
     <div className="relative w-full h-full flex items-center justify-center rounded-full bg-transparent">
       <div className="absolute z-20 flex flex-col items-center justify-center">
         <Typography className="font-LatoBold text-xl text-gray-900">
-          Welcome, SomeArtist Name
+          Hello, VFX Artist
         </Typography>
         <Typography className="font-LatoRegular text-xl text-gray-900">
-          to your Bongo Music Awards Dashboard
+          Welcome, to your Bongo Music Awards Dashboard
         </Typography>
       </div>
       <Typography className="hidden absolute capitalize text-8xl text-amber-50 font-LatoBold opacity-50 top-0 left-0 z-10">
