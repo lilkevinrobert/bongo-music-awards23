@@ -26,6 +26,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+
   const [formData, setFormData] = useState<FormData>({
     first_name: "",
     middle_name: "",
@@ -38,7 +39,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setLoading(true); // Start the loading indicator
-    console.log(data);
+    console.log(formData);
     setFormData(data);
     // e.preventDefault();
     // await axios
@@ -251,7 +252,7 @@ const AddArtistForm: React.FC<FormProps> = ({ closeModal }) => {
             Biography
           </label>
           <textarea
-            value={formData.bio}
+            // value={formData.bio}
             id="bio"
             {...register("bio", { required: "* Biography is required" })}
             className="mt-1 p-2 pl-4 w-full border border-gray-300 font-LatoRegular rounded-md bg-transparent"

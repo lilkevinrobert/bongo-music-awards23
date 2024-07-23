@@ -66,10 +66,7 @@ Route::group(['prefix'=>'artists'], function () {
 
     Route::group(['prefix'=>'info'], function () {
         Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
-
     });
-
-
 });
 
 
