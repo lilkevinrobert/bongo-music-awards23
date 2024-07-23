@@ -17,7 +17,7 @@ const AdminCategoriesPage = () => {
   return (
     <>
       <Layout>
-        <BreadcrumbLevel1 currentPage="categories" />
+        <BreadcrumbLevel1 currentPage="categories" user='admin' />
         <div className="text-slate-900 px-4">
           <div className="flex flex-row items-center justify-between">
             <Typography variant="h4" className="text-xl font-LatoBold capitalize">

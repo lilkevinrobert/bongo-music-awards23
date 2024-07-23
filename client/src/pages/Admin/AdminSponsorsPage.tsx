@@ -18,7 +18,7 @@ const AdminSponsorsPage = () => {
 
   return (
     <Layout>
-      <BreadcrumbLevel1 currentPage="sponsors" />
+      <BreadcrumbLevel1 currentPage="sponsors" user='admin' />
       <div className="px-4 text-slate-900 flex flex-row items-center justify-between">
         <Typography className="text-lg text-gray-900 font-LatoBold capitalize">
           sponsors

@@ -6,7 +6,7 @@ import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1";
 const ArtistsPage = () => {
   return (
     <Layout>
-      <BreadcrumbLevel1 currentPage="artists" />
+      <BreadcrumbLevel1 currentPage="artists" user="admin" />
       <div className="text-slate-900 px-4">
         <Typography variant="h4" className="text-lg font-LatoBold">Artists</Typography>
         <ArtistsDataTable />

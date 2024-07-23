@@ -12,7 +12,7 @@ const GenresPage = () => {
   return (
     <>
       <Layout>
-        <BreadcrumbLevel1 currentPage="genres" />
+        <BreadcrumbLevel1 currentPage="genres" user='admin' />
         <div className="text-slate-900 px-4">
           <div className="flex flex-row items-center justify-between">
             <Typography

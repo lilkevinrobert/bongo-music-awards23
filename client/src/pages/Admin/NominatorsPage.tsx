@@ -6,7 +6,7 @@ import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1"
 const NominatorsPage = () => {
   return (
     <Layout>
-      <BreadcrumbLevel1 currentPage="nominators" />
+      <BreadcrumbLevel1 currentPage="nominators" user='admin' />
       <div className="text-slate-900 px-4">
       <Typography variant="h4" className="text-lg font-LatoBold">Nominators</Typography>
         <NominatorsDataTable />

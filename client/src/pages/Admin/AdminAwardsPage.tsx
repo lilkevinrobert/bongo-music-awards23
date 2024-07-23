@@ -20,7 +20,7 @@ const AdminAwardsPage = () => {
   const handleOpenNewAward = () => setOpenNewAward(!openNewAward);
   return (
     <Layout>
-      <BreadcrumbLevel1 currentPage="awards" />
+      <BreadcrumbLevel1 currentPage="awards" user='admin' />
       <div className="text-slate-900 px-4">
         <div className="flex flex-row items-center justify-between">
           <Typography variant="h4" className="text-xl font-LatoBold">
