@@ -106,7 +106,7 @@ const ArtistNominationsAside = () => {
       <section className="py-4">
         <Typography
           variant="h6"
-          className="capitalize font-LatoBold text-base mb-4"
+          className="capitalize font-LatoBold text-base text-gray-900 mb-4"
         >
           active event
         </Typography>
@@ -144,7 +144,7 @@ const ArtistNominationsAside = () => {
       <section>
         <Typography
           variant="h6"
-          className="capitalize font-LatoBold text-base mb-4"
+          className="capitalize font-LatoBold text-base text-gray-900 mb-4"
         >
           your nominations
         </Typography>

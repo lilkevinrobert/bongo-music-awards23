@@ -3,14 +3,14 @@ import QuickActionCard from "../Cards/QuickActionCard";
 
 const ArtistDashboardOptions = () => {
   return (
-    <div className="h-full">
+    <div className="h-auto">
       <Typography
         variant="h2"
-        className="capitalize font-LatoBold text-xl text-gray-950"
+        className="capitalize font-LatoBold text-xl text-center text-gray-950"
       >
         quick actions
       </Typography>
-      <div className="my-6 flex flex-row items-center justify-start gap-5">
+      <div className="my-6 flex flex-row items-center justify-center gap-5">
         <QuickActionCard title="songs" />
         <QuickActionCard title="nominations" />
         <QuickActionCard title="profile" />

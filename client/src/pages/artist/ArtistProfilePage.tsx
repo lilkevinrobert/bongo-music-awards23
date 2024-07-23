@@ -6,7 +6,7 @@ import EditArtistProfileCredentials from '../../components/Forms/EditArtistProfi
 const ArtistProfilePage = () => {
   return (
     <ArtistLayout>
-        <div className='w-1/2 bg-rose-400'>
+        <div className='w-1/2'>
         <BreadcrumbLevel1 currentPage='profile' showProfileMenu='no' />
         </div>
         <div className='bg-transparent flex flex-col items-center justify-center'>
