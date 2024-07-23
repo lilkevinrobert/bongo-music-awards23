@@ -16,6 +16,7 @@ import AdminAwardCategoryPage from "./pages/Admin/AdminAwardCategoryPage.tsx";
 import AdminSponsorsPage from "./pages/Admin/AdminSponsorsPage.tsx";
 import ArtistProfilePage from "./pages/Artist/ArtistProfilePage.tsx";
 import ArtistSettingsPage from "./pages/Artist/ArtistSettingsPage.tsx";
+import ArtistNominationsViewPage from "./pages/Artist/ArtistNominationsViewPage.tsx";
 
 
 // Lazy-loaded components
@@ -200,7 +201,15 @@ function App() {
                     path: "dashboard/",
                     element: (
                         <Suspense fallback={<Loading />}>
-                            <ArtistDashboardPage/>
+                            <ArtistDashboardPage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "nominations/",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <ArtistNominationsViewPage />
                         </Suspense>
                     ),
                 },
