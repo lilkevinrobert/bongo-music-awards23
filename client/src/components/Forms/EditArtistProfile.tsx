@@ -9,8 +9,8 @@ const EditArtistProfile = () => {
       <Typography className="text-lg text-gray-900 font-LatoBold mb-4 capitalize">
           edit profile details
         </Typography>
-      <div className="w-full h-auto flex items-center gap-5">
-        <div className="w-1/2 space-y-2">
+      <div className="w-full h-auto flex flex-col md:flex-row md:items-center gap-5">
+        <div className="ww-full md:w-1/2 space-y-2">
           <div className=" w-full">
             <label
               htmlFor="first_name"
@@ -54,7 +54,10 @@ const EditArtistProfile = () => {
             />
           </div>
         </div>
-        <div className="w-1/2 flex flex-col items-center justify-center gap-2">
+        <div className="ww-full md:w-1/2 flex flex-col items-center justify-center gap-2">
+        <Typography className="md:hidden text-sm text-gray-900 font-LatoBold self-start capitalize">
+          profile photo
+        </Typography>
           <div className="w-40 h-40">
             <img
               src={SampleDP}
@@ -69,7 +72,7 @@ const EditArtistProfile = () => {
           />
         </div>
       </div>
-      <div className="flex items-center justify-center gap-2 my-16">
+      <div className="flex items-center justify-center gap-2 my-10 md:my-16">
         <Button size="sm" onClick={() => navigation(-1)} className="rounded-full capitalize font-LatoBold bg-transparent border border-gray-900 hover:bg-amber-300 transition ease-linear text-gray-900 hover:text-gray-900 hover:scale-110">go back</Button>
         <Button size="sm" className="rounded-full capitalize font-LatoBold bg-gray-900 hover:bg-amber-300 transition ease-linear text-white hover:text-gray-900 hover:scale-110">save changes</Button>
       </div>
