@@ -7,10 +7,11 @@ import {PropagateLoader} from "react-spinners";
 
 const Register = () => {
     const [loading, setLoading] = useState(false);
-    const [first_name, setFirstname] = useState("");
-    const [last_name, setLastname] = useState("");
+    const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [password, setPassword]= useState("");
+    const [confirmPassword, setConfirmPassword]= useState("");
     const navigate = useNavigate();
 
     const handleRegister = async (event: any) => {
@@ -18,12 +19,12 @@ const Register = () => {
         setLoading(true);
         await axios.get('https://api.bongomusicawards.co.tz/sanctum/csrf-cookie')
             .then(()=>{
-                 axios.post('https://api.bongomusicawards.co.tz/api/artists/register', {first_name, last_name, email, password})
+                 axios.post('https://api.bongomusicawards.co.tz/api/artists/register', {fullName, email,phone, password, confirmPassword})
                     .then((response) => {
                         console.log(response);
                         window.setTimeout(() => toast.success(<p className="capitalize">{`Registering...`}</p>), 2000)
-                        setFirstname("");
-                        setLastname("");
+                        setFullName("");
+                        setPhone("");
                         setEmail("");
                         setPassword("");
 
@@ -40,28 +41,29 @@ const Register = () => {
             }).catch((errors) => {
                 console.log(errors)
                 window.setTimeout(() => toast.error(<p
-                    className="capitalize">{`Failed to Create artist...`}</p>), 1000)
+                    className="capitalize">{`Failed to Create Account...`}</p>), 1000)
                 //stop the spinner or progress indicator with the error message.
                 setLoading(false);
             });
     }
 
-
     return (
         <Card className='shadow-none border-none'>
-            <Typography color="gray" className="sfont-normal">
+            <Typography color="gray" className="sfont-normal text-center">
                 Enter your details to register.
             </Typography>
-            <form onSubmit={handleRegister} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+            <form onSubmit={handleRegister} className="mt-6 mb-2 w-80 max-w-screen-lg sm:w-96">
                 <div className="mb-4 flex flex-col gap-6">
-                    <Input color="black" crossOrigin={undefined} value={first_name} onChange={(e)=> setFirstname(e.target.value)} className="my-1 rounded-md"
-                           placeholder="Enter Your firstname"/>
-                    <Input color="black" crossOrigin={undefined} value={last_name} onChange={(e) => setLastname(e.target.value) } className="my-1 rounded-md"
-                           placeholder="Enter Your lastname"/>
+                    <Input color="black" crossOrigin={undefined} value={fullName} onChange={(e)=> setFullName(e.target.value)} className="my-1 rounded-md"
+                           placeholder="Enter Your Full Name"/>
+                    <Input color="black" crossOrigin={undefined} value={phone} onChange={(e) => setPhone(e.target.value) } className="my-1 rounded-md"
+                           placeholder="Enter Your Phone Number"/>
                     <Input color="black" crossOrigin={undefined} value={email} onChange={(e) => setEmail(e.target.value)} className="my-1 rounded-md"
                            placeholder="Enter Your Email Address" type='email'/>
                     <Input color="black" crossOrigin={undefined} value={password} onChange={(e) => setPassword(e.target.value)} className="my-1 rounded-md"
                            placeholder="Enter Your Password" type="password"/>
+                    <Input color="black" crossOrigin={undefined} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="my-1 rounded-md"
+                           placeholder="Confirm Your Password" type="password"/>
                 </div>
                 <Button className="mt-6" fullWidth onClick={handleRegister} >
                     Register

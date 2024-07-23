@@ -6,7 +6,6 @@ use App\Models\Event;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Http;
 
 class EventsController extends Controller
 {
