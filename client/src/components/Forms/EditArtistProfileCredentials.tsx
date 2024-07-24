@@ -1,19 +1,34 @@
 import { Button, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { TiWarning } from "react-icons/ti"
 
 const EditArtistProfileCredentials = () => {
   const navigation = useNavigate();
   return (
-    <form className="w-full">
-      <div className=" w-full">
+    <form className="w-full space-y-2">
         <Typography className="text-lg text-gray-900 font-LatoBold mb-4 capitalize">
-          Password Management
+          Password & security
         </Typography>
+      <div className="w-full">
         <label
           htmlFor="password"
           className="block text-sm font-LatoBold text-gray-900"
         >
-          Password
+          Current Password
+        </label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your current Password here"
+          className="h-10 mt-1 p-2 pl-4 w-full text-gray-900 border border-gray-300 font-LatoRegular rounded-md bg-white"
+        />
+      </div>
+      <div className=" w-full">
+        <label
+          htmlFor="password"
+          className="block text-sm font-LatoBold text-gray-900"
+        >
+          New Password
         </label>
         <input
           type="password"
@@ -22,8 +37,8 @@ const EditArtistProfileCredentials = () => {
           className="h-10 mt-1 p-2 pl-4 w-full text-gray-900 border border-gray-300 font-LatoRegular rounded-md bg-white"
         />
       </div>
-      <Typography className="text-red-600 text-base font-LatoRegular mt-2">
-        NB: Changes made here are permanent.
+      <Typography className="text-red-600 text-base font-LatoRegular mt-2 flex items-center gap-2">
+        <TiWarning className="text-2xl" /> Changes made here are permanent.
       </Typography>
 
       <div className="flex items-center justify-end gap-2 my-4">

@@ -6,7 +6,7 @@ import ArtistSalutations from "../../components/Salutations/ArtistSalutations";
 import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1";
 
 const ArtistDashboardPage = () => {
-  const isEventActive:boolean = true;
+  const isEventActive:boolean = false;
   return (
     <ArtistLayout>
       <div className="md:hidden">

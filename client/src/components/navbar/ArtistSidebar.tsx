@@ -36,7 +36,7 @@ const ArtistSidebar = () => {
     <Card className="h-[calc(100vh)] w-full max-w-[20rem] p-4 shadow-xl rounded-none">
       <div>
         <NavLink
-          className="flex items-center justify-start"
+          className="flex items-center justify-start gap-1"
           to="/artist/dashboard"
         >
           <img
@@ -44,12 +44,13 @@ const ArtistSidebar = () => {
             alt="bongo music awards logo"
             className="text-sm w-20"
           />
+          <Typography className="hidden lg:block font-LatoBold mt-2 text-gray-900 capitalize">music awards</Typography>
         </NavLink>
       </div>
       <div className="pt-2 h-full flex flex-col justify-between">
         <List className="space-y-1">
           <NavLink to="/artist/dashboard" style={({ isActive }) => handleActiveAdminLinkColor(isActive)} className="hover:bg-yellow-50">
-            <ListItem className="bg-transparent py-1 pl-0 group">
+            <ListItem className="bg-transparent py-1 pl-0 group space-x-2">
               <ListItemPrefix className="text-gray-900 group-hover:text-yellow-400 transition ease-linear">
                 <LuHome className="text-lg" />
               </ListItemPrefix>
@@ -59,7 +60,7 @@ const ArtistSidebar = () => {
             </ListItem>
           </NavLink>
           <NavLink to="/artist/songs" style={({ isActive }) => handleActiveAdminLinkColor(isActive)} className="hover:bg-yellow-50">
-            <ListItem className="bg-transparent py-1 pl-0 group">
+            <ListItem className="bg-transparent py-1 pl-0 group space-x-2">
               <ListItemPrefix className="text-gray-900 group-hover:text-yellow-400 transition ease-linear">
                 <LuMusic2 className="text-lg" />
               </ListItemPrefix>
@@ -69,7 +70,7 @@ const ArtistSidebar = () => {
             </ListItem>
           </NavLink>
           <NavLink to="/artist/nominations" style={({ isActive }) => handleActiveAdminLinkColor(isActive)} className="hover:bg-yellow-50">
-            <ListItem className="bg-transparent py-1 pl-0 group">
+            <ListItem className="bg-transparent py-1 pl-0 group space-x-2">
               <ListItemPrefix className="text-gray-900 group-hover:text-yellow-400 transition ease-linear">
                 <LuTrophy className="text-lg" />
               </ListItemPrefix>
@@ -79,7 +80,7 @@ const ArtistSidebar = () => {
             </ListItem>
           </NavLink>
           <NavLink to="/artist/profile" style={({ isActive }) => handleActiveAdminLinkColor(isActive)} className="hover:bg-yellow-50">
-            <ListItem className="bg-transparent py-1 pl-0 group">
+            <ListItem className="bg-transparent py-1 pl-0 group space-x-2">
               <ListItemPrefix className="text-gray-900 group-hover:text-yellow-400 transition ease-linear">
                 <LuUser2 className="text-lg" />
               </ListItemPrefix>
@@ -91,7 +92,7 @@ const ArtistSidebar = () => {
         </List>
         <List>
           <NavLink to="/artist/settings" style={({ isActive }) => handleActiveAdminLinkColor(isActive)} className="hover:bg-yellow-50">
-            <ListItem className="bg-transparent py-1 pl-0 group">
+            <ListItem className="bg-transparent py-1 pl-0 group space-x-2">
               <ListItemPrefix className="text-gray-900 group-hover:text-yellow-400 transition ease-linear">
                 <LuSettings className="text-lg" />
               </ListItemPrefix>
@@ -101,7 +102,7 @@ const ArtistSidebar = () => {
             </ListItem>
           </NavLink>
           <NavLink to="/login" style={({ isActive }) => handleActiveAdminLinkColor(isActive)} className="hover:bg-yellow-50">
-            <ListItem className="bg-transparent py-1 pl-0 group">
+            <ListItem className="bg-transparent py-1 pl-0 group space-x-2">
               <ListItemPrefix className="text-gray-900 group-hover:text-yellow-400 transition ease-linear">
                 <LuLogOut className="text-lg" />
               </ListItemPrefix>
