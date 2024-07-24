@@ -6,7 +6,7 @@ import AdminArtistNominations from "../../components/Nomination/AdminArtistNomin
 const ArtistNominationsViewPage = () => {
   return (
     <ArtistLayout>
-      <BreadcrumbLevel1 currentPage="nominations" user="artist" />
+      <BreadcrumbLevel1 currentPage="nominations" user="artist" separator="arrow" />
       <div className='px-4 py-2 bg-transparent'>
          {/* Nominations */}
         <Typography variant="h4" className="text-lg text-gray-900 font-LatoBold capitalize">

@@ -8,7 +8,7 @@ import MiniFooter from "../../components/Footer/MiniFooter";
 const ArtistSettingsPage = () => {
   return (
     <ArtistLayout>
-      <BreadcrumbLevel1 currentPage="settings" user="artist" />
+      <BreadcrumbLevel1 currentPage="settings" user="artist" separator="arrow" />
       <div className="px-4 py-2 mb-4 rounded-md bg-gray-100">
         <ArtistSocialAccounts />
       </div>
