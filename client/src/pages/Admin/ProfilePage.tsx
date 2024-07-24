@@ -6,7 +6,7 @@ import AdminProfile from "../../components/Profile/AdminProfile";
 const ProfilePage = () => {
     return (
         <Layout>
-            <BreadcrumbLevel1 currentPage="profile" />
+            <BreadcrumbLevel1 user="admin" currentPage="profile" />
             <div className="text-slate-900 px-4 h-auto">
                 <Typography variant="h4" className="text-lg font-LatoBold">My Profile</Typography>
                 <div className="py-4">
