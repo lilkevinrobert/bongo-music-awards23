@@ -17,6 +17,7 @@ import AdminSponsorsPage from "./pages/Admin/AdminSponsorsPage.tsx";
 import ArtistProfilePage from "./pages/Artist/ArtistProfilePage.tsx";
 import ArtistSettingsPage from "./pages/Artist/ArtistSettingsPage.tsx";
 import ArtistNominationsViewPage from "./pages/Artist/ArtistNominationsViewPage.tsx";
+import ArtistSongsPage from "./pages/Artist/ArtistSongsPage.tsx";
 
 
 // Lazy-loaded components
@@ -226,6 +227,14 @@ function App() {
                     element: (
                         <Suspense fallback={<Loading />}>
                             <ArtistSettingsPage />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "songs/",
+                    element: (
+                        <Suspense fallback={<Loading />}>
+                            <ArtistSongsPage />
                         </Suspense>
                     ),
                 },

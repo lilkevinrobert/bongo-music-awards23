@@ -127,7 +127,7 @@ const ArtistSocialAccounts = () => {
                 </div>
               </div>
               
-              <div className="w-10 h-full flex items-center justify-center rounded-full cursor-pointer bg-zinc-50 group hover:bg-gray-800">
+              <div className="w-10 h-full flex items-center justify-center rounded-full cursor-pointer bg-zinc-50 group hover:bg-gray-800 transition ease-in-out">
                 <FiEdit2 className="text-lg text-gray-800 group-hover:text-white group-hover:-rotate-12 transition ease-linear" />
               </div>
             </div>
