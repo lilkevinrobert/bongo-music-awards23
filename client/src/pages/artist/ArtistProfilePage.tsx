@@ -6,7 +6,7 @@ const ArtistProfilePage = () => {
   return (
     <ArtistLayout>
       <BreadcrumbLevel1 currentPage='profile' user='artist' separator='arrow' />
-        <div className='px-4 py-2 bg-transparent'>
+        <div className='px-2 md:px-4 py-2 bg-transparent'>
             <EditArtistProfile />
         </div>
     </ArtistLayout>

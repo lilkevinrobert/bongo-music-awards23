@@ -13,15 +13,15 @@ const ArtistSettingsPage = () => {
         user="artist"
         separator="arrow"
       />
-      <div className="mb-4 rounded-md bg-gray-100 px-4 py-2">
+      <div className="mb-4 rounded-md bg-gray-100 px-2 md:px-4 py-2">
         <ArtistSocialAccounts />
       </div>
-      <div className="my-4 rounded-md bg-gray-100 px-4 py-2">
+      <div className="my-4 rounded-md bg-gray-100 px-2 md:px-4 py-2">
         <EditArtistProfileCredentials />
       </div>
 
       {/* delete account */}
-      <form className="my-4 rounded-md bg-gray-100 px-4 py-2">
+      <form className="my-4 rounded-md bg-gray-100 px-2 md:px-4 py-2">
         <Typography className="mb-4 font-LatoBold text-lg capitalize text-gray-900">
           Delete your account
         </Typography>

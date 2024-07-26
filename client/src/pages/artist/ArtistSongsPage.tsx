@@ -12,7 +12,7 @@ const ArtistSongsPage = () => {
   return (
     <ArtistLayout>
       <BreadcrumbLevel1 user="artist" currentPage="songs" separator="arrow" />
-      <div className="px-4 py-2 bg-transparent">
+      <div className="px-2 md:px-4 py-2 bg-transparent">
         <div className="flex items-center justify-between">
           <Typography
             variant="h4"
