@@ -1,5 +1,5 @@
-import { Button, Typography } from "@material-tailwind/react";
-import { Key } from "react";
+import { Button, Dialog, DialogBody, Typography } from "@material-tailwind/react";
+import { Key, useState } from "react";
 import {
   FaInstagram,
   FaTiktok,
@@ -12,6 +12,7 @@ import { FiEdit2 } from "react-icons/fi"
 import { IoAdd } from "react-icons/io5";
 import { LuCircle } from "react-icons/lu";
 import { TiArrowForward } from "react-icons/ti";
+import AddSocialAccountForm from "../Forms/AddSocialAccountForm";
 
 interface ISocialPlatform {
   platform: string;
@@ -20,45 +21,47 @@ interface ISocialPlatform {
 }
 
 const ArtistSocialAccounts = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
   // stored social accounts
-  //   const socials:any = []
-  const socials = [
-    {
-      platform: "x",
-      link: "https://www.x.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-    {
-      platform: "instagram",
-      link: "https://www.instagram.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-    {
-      platform: "tiktok",
-      link: "https://www.tiktok.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-    {
-      platform: "facebook",
-      link: "https://www.facebook.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-    {
-      platform: "spotify",
-      link: "https://www.spotify.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-    {
-      platform: "youtube",
-      link: "https://www.youtube.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-    {
-      platform: "boomplay",
-      link: "https://www.boomplay.com/vfx_artist",
-      handle: "VFX Artist",
-    },
-  ];
+    const socials:any = []
+  // const socials = [
+  //   {
+  //     platform: "x",
+  //     link: "https://www.x.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  //   {
+  //     platform: "instagram",
+  //     link: "https://www.instagram.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  //   {
+  //     platform: "tiktok",
+  //     link: "https://www.tiktok.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  //   {
+  //     platform: "facebook",
+  //     link: "https://www.facebook.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  //   {
+  //     platform: "spotify",
+  //     link: "https://www.spotify.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  //   {
+  //     platform: "youtube",
+  //     link: "https://www.youtube.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  //   {
+  //     platform: "boomplay",
+  //     link: "https://www.boomplay.com/vfx_artist",
+  //     handle: "VFX Artist",
+  //   },
+  // ];
 
   const platformHandler = (platform: string) => {
     switch (platform) {
@@ -86,6 +89,7 @@ const ArtistSocialAccounts = () => {
         </Typography>
         <Button
           size="sm"
+          onClick={handleOpen}
           className="-mt-4 rounded-full flex items-center gap-2 group capitalize font-LatoBold bg-gray-900 hover:bg-amber-300 transition ease-linear text-white hover:text-gray-900"
         >
           <IoAdd className="text-lg text-white group-hover:text-gray-900" />
@@ -133,6 +137,17 @@ const ArtistSocialAccounts = () => {
             </div>
           ))}
       </div>
+
+      {/* Dialog */}
+      <Dialog
+        open={open}
+        handler={handleOpen}
+        className="bg-transparent m-0 rounded-none"
+      >
+        <DialogBody className="flex items-center justify-center">
+          <AddSocialAccountForm closeModal={handleOpen} />
+        </DialogBody>
+      </Dialog>
     </div>
   );
 };
