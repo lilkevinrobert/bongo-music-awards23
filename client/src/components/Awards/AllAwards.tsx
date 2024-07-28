@@ -20,7 +20,7 @@ const AllAwards = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 grid-flow-row-dense gap-4">
+    <div className="grid grid-flow-row-dense grid-cols-1 gap-4 md:grid-cols-4">
       {allAwards.map((award, i) => (
         <AwardsCard key={i} content={award} />
       ))}

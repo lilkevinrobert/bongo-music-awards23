@@ -20,23 +20,23 @@ const AdminAwardsPage = () => {
   const handleOpenNewAward = () => setOpenNewAward(!openNewAward);
   return (
     <Layout>
-      <BreadcrumbLevel1 currentPage="awards" user='admin' />
-      <div className="text-slate-900 px-4">
+      <BreadcrumbLevel1 currentPage="awards" user="admin" />
+      <div className="px-4 text-slate-900">
         <div className="flex flex-row items-center justify-between">
-          <Typography variant="h4" className="text-xl font-LatoBold">
+          <Typography variant="h4" className="font-LatoBold text-xl">
             Awards
           </Typography>
           <div className="flex items-center gap-2">
             <Button
               size="sm"
               onClick={handleOpenNewAward}
-              className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+              className="flex flex-row items-center gap-3 rounded-full bg-gray-800 font-LatoRegular capitalize transition ease-in-out hover:bg-yellow-300 hover:text-gray-900"
             >
               <IoAdd className="text-lg" /> new
             </Button>
             <div
               onClick={handleOpen}
-              className="bg-yellow-200 rounded-full py-1 px-4 flex flex-row gap-2 cursor-pointer hover:bg-yellow-300 transition ease-linear"
+              className="flex cursor-pointer flex-row gap-2 rounded-full bg-yellow-200 px-4 py-1 transition ease-linear hover:bg-yellow-300"
             >
               <p className="font-LatoRegular capitalize">search</p>
               <MdOutlineSearch className="text-2xl text-gray-700" />
@@ -51,7 +51,7 @@ const AdminAwardsPage = () => {
       <Dialog
         open={open}
         handler={handleOpen}
-        className="bg-transparent m-0 rounded-none"
+        className="m-0 rounded-none bg-transparent"
       >
         <DialogBody className="flex items-center justify-center">
           <SearchDialog closeModal={handleOpen} />
@@ -60,13 +60,12 @@ const AdminAwardsPage = () => {
       <Dialog
         open={openNewAward}
         handler={handleOpenNewAward}
-        size="xs"
         className="bg-transparent shadow-none"
       >
-        
-          <AddAwardForm closeModal={handleOpenNewAward} />
+        <DialogBody className="flex items-center justify-center">
+        <AddAwardForm closeModal={handleOpenNewAward} />
+        </DialogBody>
       </Dialog>
-      
     </Layout>
   );
 };
