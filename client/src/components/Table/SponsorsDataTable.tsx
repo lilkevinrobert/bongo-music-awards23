@@ -150,7 +150,6 @@ const SponsorsDataTable = () => {
 
       {/* Dialogs */}
       <Dialog
-        size="xs"
         open={openDeleteDialog}
         handler={deleteDialogHandler}
         dismiss={{ enabled: true }}
