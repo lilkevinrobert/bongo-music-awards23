@@ -7,6 +7,7 @@ use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\NominatorsController;
 use App\Http\Controllers\JudgeController;
 use App\Http\Controllers\AdminController;
+use \App\Http\Controllers\GenresController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,7 +38,7 @@ Route::group(['prefix'=>'admin'], function () {
     });
 });
 
-Route::group(['prefix'=>'events'], function () {
+Route::group(['prefix'=>'awards'], function () {
 
     /**
      * Events (Awards) end-points.
@@ -67,6 +68,19 @@ Route::group(['prefix'=>'artists'], function () {
     Route::group(['prefix'=>'info'], function () {
         Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
     });
+});
+
+/**
+ * Genres
+ */
+Route::group(['prefix'=>'v1'], function () {
+//    Route::get('/',[GenresController::class, 'index']);
+//    Route::post('/',[GenresController::class,'store']);
+//    Route::get('/{genreId}', [GenresController::class, 'show']);
+//    Route::patch('/{genreId}', [GenresController::class, 'update']);
+//    Route::delete('/{genreId}', [GenresController::class, 'destroy']);
+
+    Route::apiResource('genres', GenresController::class);
 });
 
 

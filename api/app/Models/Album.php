@@ -14,8 +14,9 @@ class Album extends Model
 
     protected $fillable = [
         'album_title',
+        'artist_id',
         'release_date',
-        'genre',
+        'genre_id',
         'album_artwork_url',
         'featured_artists',
         'producer',

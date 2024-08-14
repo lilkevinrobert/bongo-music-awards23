@@ -15,25 +15,25 @@ class ArtistProfile extends Model
 
     protected $fillable = [
         'profile_image_url',
+        'user_information_id',
+        'artist_occupation_id',
+        'record_label',
+        'debut_year',
         'stage_name',
         'album_id',
         'single_id',
-        'user_id',
+        'artist_award_id', // relation one to many
         'bio',
-        'phone_number',
-        'genre',
+        'genre_id', // relation one to many
+        'official_website_link',
         'spotify_music_link',
         'apple_music_link',
         'youtube_music_link',
-        'date_of_birth',
-        'place_of_birth',
         'boomplay_music_link',
-        'awards_won',
         'created_by'
     ];
 
     public $timestamps = true;
-
 
     public function getArtistProfiles(array $artistProfiles = [])
     {

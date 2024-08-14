@@ -17,9 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->timestamps();
-            $table->integer('event_id')->unsigned();
-//            $table->foreign('event_id')->references('id')->on('events')
-//                ->onDelete('cascade');
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genre_models');
+        Schema::dropIfExists('genres');
     }
 };

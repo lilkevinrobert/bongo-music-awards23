@@ -13,9 +13,11 @@ class Track extends Model
 
     protected $fillable = [
         'title',
+        'artist_id',
         'track_number',
+        'track_artwork_url',
         'duration',
-        'genre',
+        'genre_id',
         'featured_artists',
         'composer',
         'producer',

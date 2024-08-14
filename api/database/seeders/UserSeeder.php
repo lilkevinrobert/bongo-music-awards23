@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         \App\Models\User::create([
-            'firstname' => 'user',
-            'middlename' => 'user',
-            'lastname' => 'user',
+            'first_name' => 'user',
+            'middle_name' => 'user',
+            'last_name' => 'user',
             'email' => 'user@bma.com',
             'role' => 'user',
             'password' => Hash::make('password'),
@@ -27,9 +27,9 @@ class UserSeeder extends Seeder
 
         // Alternatively, create a user using the DB facade
         DB::table('users')->insert([
-            'firstname' => 'admin',
-            'middlename' => 'user',
-            'lastname' => 'admin',
+            'first_name' => 'admin',
+            'middle_name' => 'user',
+            'last_name' => 'admin',
             'email' => 'admin@bma.com',
             'role' => 'admin',
             'password' => Hash::make('password'),
@@ -37,9 +37,9 @@ class UserSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'firstname' => 'Omary',
-            'middlename' => 'Ally',
-            'lastname' => 'Mwanga',
+            'first_name' => 'Omary',
+            'middle_name' => 'Ally',
+            'last_name' => 'Mwanga',
             'email' => 'marioo@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
@@ -47,8 +47,8 @@ class UserSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'firstname' => 'Ali',
-            'lastname' => 'Kiba',
+            'first_name' => 'Ali',
+            'last_name' => 'Kiba',
             'email' => 'alikiba@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
@@ -56,9 +56,9 @@ class UserSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'firstname' => 'Naseeb',
-            'middlename' => 'Abdul',
-            'lastname' => 'Juma',
+            'first_name' => 'Naseeb',
+            'middle_name' => 'Abdul',
+            'last_name' => 'Juma',
             'email' => 'diamond_platnumz@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
@@ -66,17 +66,17 @@ class UserSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'firstname' => 'Raymond',
-            'middlename' => 'Shaban',
-            'lastname' => 'Raymond',
+            'first_name' => 'Raymond',
+            'middle_name' => 'Shaban',
+            'last_name' => 'Raymond',
             'email' => 'rayvanny@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::create([
-            'firstname' => 'Amani',
-            'lastname' => 'Mussa',
+            'first_name' => 'Amani',
+            'last_name' => 'Mussa',
             'email' => 'lava_lava@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
@@ -84,9 +84,9 @@ class UserSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'firstname' => 'Rajab',
-            'middlename'=>'Abdul',
-            'lastname' => 'Kahali',
+            'first_name' => 'Rajab',
+            'middle_name'=>'Abdul',
+            'last_name' => 'Kahali',
             'email' => 'harmonize@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
@@ -94,9 +94,9 @@ class UserSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'firstname' => 'Vanessa',
-            'middlename'=>'Hau',
-            'lastname' => 'Mdee',
+            'first_name' => 'Vanessa',
+            'middle_name'=>'Hau',
+            'last_name' => 'Mdee',
             'email' => 'vanessa_mdee@gmail.com',
             'role' => 'artist',
             'password' => Hash::make('password'),
@@ -108,18 +108,18 @@ class UserSeeder extends Seeder
          * Nominators Seeding.
          * */
         \App\Models\User::create([
-            'firstname' => 'Juma',
-            'middlename'=>'Hassan',
-            'lastname' => 'Mbarook',
+            'first_name' => 'Juma',
+            'middle_name'=>'Hassan',
+            'last_name' => 'Mbarook',
             'email' => 'jmbarook@gmail.com',
             'role' => 'nominator',
             'password' => Hash::make('password'),
         ]);
 
         \App\Models\User::create([
-            'firstname' => 'Farid',
-            'middlename'=>'Hashimu',
-            'lastname' => 'Mbonde',
+            'first_name' => 'Farid',
+            'middle_name'=>'Hashimu',
+            'last_name' => 'Mbonde',
             'email' => 'faridmbonde@gmail.com',
             'role' => 'nominator',
             'password' => Hash::make('password'),
