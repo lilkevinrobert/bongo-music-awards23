@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\NominatorsController;
 use App\Http\Controllers\JudgeController;
 use App\Http\Controllers\AdminController;
 use \App\Http\Controllers\GenresController;
+use \App\Http\Controllers\CategoriesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,14 +29,42 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 /**
  * Admin dashboard, item counts
  */
-Route::group(['prefix'=>'admin'], function () {
+Route::group(['prefix'=>'v1'], function () {
+
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
 
 
-    /**
-     * Admin dashboard, item counts
-     */
-    Route::group(['prefix' => 'counts'], function () {
-        Route::get('/',[AdminController::class,'counts']);
+    Route::apiResource('genres', GenresController::class);
+    Route::apiResource('categories', CategoriesController::class);
+    Route::get('genres/{genreId}/categories', [GenresController::class, 'getCategories']);
+    Route::group(['prefix'=>'admin'], function () {
+        Route::group(['prefix' => 'counts'], function () {
+            Route::get('/',[AdminController::class,'counts']);
+        });
+    });
+
+
+
+
+    Route::group(['prefix'=>'artist'], function () {
+        Route::post('/register',[ArtistProfilesController::class,'registerUser']); // Self registration of artist
+        Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
+        Route::get('/{id}',[ArtistProfilesController::class,'show']); //All available artist in the system
+        Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
+
+        Route::group(['prefix'=>'info'], function () {
+            Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
+        });
+    });
+
+
+    // Judges Endpoints
+    Route::group(['prefix'=>'judges'], function () {
+        Route::get('/',[JudgeController::class,'index']); //All available judges in the system
+        Route::post('/',[JudgeController::class,'store']);
+        Route::get('/{id}',[JudgeController::class,'show']);
+        Route::delete('/{id}',[JudgeController::class,'destroy']);
     });
 });
 
@@ -59,30 +89,6 @@ Route::group(['prefix'=>'awards'], function () {
 });
 
 
-Route::group(['prefix'=>'artists'], function () {
-    Route::post('/register',[ArtistProfilesController::class,'registerUser']); // Self registration of artist
-    Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
-    Route::get('/{id}',[ArtistProfilesController::class,'show']); //All available artist in the system
-    Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
-
-    Route::group(['prefix'=>'info'], function () {
-        Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
-    });
-});
-
-/**
- * Genres
- */
-Route::group(['prefix'=>'v1'], function () {
-//    Route::get('/',[GenresController::class, 'index']);
-//    Route::post('/',[GenresController::class,'store']);
-//    Route::get('/{genreId}', [GenresController::class, 'show']);
-//    Route::patch('/{genreId}', [GenresController::class, 'update']);
-//    Route::delete('/{genreId}', [GenresController::class, 'destroy']);
-
-    Route::apiResource('genres', GenresController::class);
-});
-
 
 
 // Nominators Endpoints
@@ -93,13 +99,7 @@ Route::group(['prefix'=>'nominators'], function () {
     Route::put('/{id}',[NominatorsController::class, 'update']);
 });
 
-// Judges Endpoints
-Route::group(['prefix'=>'judges'], function () {
-    Route::get('/',[JudgeController::class,'index']); //All available judges in the system
-    Route::post('/',[JudgeController::class,'store']);
-    Route::get('/{id}',[JudgeController::class,'show']);
-    Route::delete('/{id}',[JudgeController::class,'destroy']);
-});
+
 
 
 Route::middleware(['auth:sanctum'])->group(function () {

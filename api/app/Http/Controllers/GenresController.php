@@ -118,4 +118,8 @@ class GenresController extends Controller
         ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
 
     }
+
+    public function getGenreCategories(Genre $genre, Request $request){
+
+    }
 }
