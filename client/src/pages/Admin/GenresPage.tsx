@@ -5,6 +5,7 @@ import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import AddGenreForm from "../../components/Forms/AddGenreForm";
 import Genres from "../../components/Genre/Genres";
+import { Toaster } from "react-hot-toast";
 
 const GenresPage = () => {
   const [openAddGenre, setOpenAddGenre] = useState(false);
@@ -36,6 +37,9 @@ const GenresPage = () => {
           </div>
         </div>
 
+        {/* Toaster */}
+        <Toaster position="top-center" containerClassName="font-LatoRegular" />
+
         {/* Dialogs */}
         <Dialog
           size="md"
@@ -45,6 +49,7 @@ const GenresPage = () => {
         >
           <AddGenreForm closeModal={handleOpenAddGenre} />
         </Dialog>
+        
       </Layout>
     </>
   );

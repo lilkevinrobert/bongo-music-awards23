@@ -31,13 +31,15 @@ const DeleteDialog = ({
 
   const deleteHandler = () => {
     axios
-      .delete(`${BASE_URL}/${deleteItemHandler(deleteItem)}/${delId}`)
+      .delete(`${BASE_URL}/v1/${deleteItemHandler(deleteItem)}/${delId}`)
       .then(() => {
         closeModal();
         toast.success(`${deleteItem} Deleted Successfully.`);
         setTimeout(() => window.location.reload(), 3000);
       })
-      .catch(() => toast.error(`Failed to delete ${deleteItem}.`));
+      .catch(() => {
+        closeModal();
+        toast.error(`Failed to delete ${deleteItem}.`)});
   };
   return (
     <div className="h-full border-red-400 flex items-center">
