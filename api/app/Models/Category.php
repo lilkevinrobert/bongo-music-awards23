@@ -19,12 +19,12 @@ class Category extends Model
     public static function validate($input, $id = null)
     {
         $rules = [ # place-holder for validation rules
-            'name' => 'required|string|max:255',
+            'categories' => 'required|array',
             'genre_id' => 'required|exists:genres,id',
         ];
 
         $nice_names = [ # Friendly names
-            'name' => 'Category Name',
+            'categories' => 'Category Name',
             'genre_id' => 'Genre',
         ];
 
