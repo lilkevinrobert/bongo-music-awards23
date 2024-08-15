@@ -119,7 +119,32 @@ class GenresController extends Controller
 
     }
 
-    public function getGenreCategories(Genre $genre, Request $request){
+    public function getGenreCategories($genreId) {
 
+        $genre = Genre::find($genreId);
+        if (!isset($genre)) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_NOT_FOUND,
+                'message' => 'Genre not found',
+            ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
+        }
+
+        $categories =  Genre::with('categories')->find($genreId);
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Genre categories',
+            'data' => $categories,
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
+
+    public function getAllGenreCategories() {
+        $categories =  Genre::with('categories')->get();
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'All genres with their categories',
+            'data' => $categories,
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+    }
+
+
 }

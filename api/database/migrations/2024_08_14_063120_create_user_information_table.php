@@ -17,12 +17,20 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
-            $table->string('surname');
+            $table->string('last_name');
             $table->enum('gender', ['male', 'female']);
             $table->date('date_of_birth');
             $table->string('phone', 20);
             $table->string('profile_picture_url')->nullable();
             $table->unsignedBigInteger('address_id'); // reference to the address table (1-many)
+            $table->unsignedBigInteger('user_id');
+//            $table->foreign('address_id')
+//                ->references('id')
+//                ->on('addresses');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_information');
+        Schema::dropIfExists('user_informations');
     }
 };

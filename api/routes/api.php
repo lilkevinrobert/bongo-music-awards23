@@ -37,7 +37,14 @@ Route::group(['prefix'=>'v1'], function () {
 
     Route::apiResource('genres', GenresController::class);
     Route::apiResource('categories', CategoriesController::class);
-    Route::get('genres/{genreId}/categories', [GenresController::class, 'getCategories']);
+
+
+
+
+
+
+    Route::get('genres/{genreId}/categories', [GenresController::class, 'getGenreCategories']);
+    Route::get('genres/category/all', [GenresController::class, 'getAllGenreCategories']);
     Route::group(['prefix'=>'admin'], function () {
         Route::group(['prefix' => 'counts'], function () {
             Route::get('/',[AdminController::class,'counts']);

@@ -20,7 +20,10 @@ return new class extends Migration
             $table->unsignedBigInteger('ward_shehia_id');
             $table->unsignedBigInteger('street_id');
             $table->unsignedBigInteger('street_road_id');
-            $table->unsignedBigInteger('house_number');
+            $table->unsignedBigInteger('building_house_number');
+            $table->string('physical_address');
+            $table->string('postal_address');
+            $table->string('postal_address_city');
             $table->enum('address_type', ['HOME', 'WORK', 'OTHER']);
             $table->enum('residence_type', ['PERMANENT', 'TEMPORARY']);
             $table->timestamps();
