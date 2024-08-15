@@ -1,13 +1,31 @@
 import { Button, Card, CardBody, Typography } from "@material-tailwind/react";
+import { useForm } from "react-hook-form";
+import ErrorFormField from "../Errors/ErrorFormField";
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 interface FormProps {
   closeModal: () => void;
 }
 
+type Inputs = {
+  name: string;
+}
+
+// Validation Schema
+const schema = yup.object().shape({
+  name: yup.string().required(),
+})
+
 const AddGenreForm = ({ closeModal }: FormProps) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
+    resolver: yupResolver(schema)
+  })
+
+  const onSubmit = (data) => console.log(data)
   return (
     <Card className="mx-auto w-full max-w-[24rem] max-h-[95vh] rounded-md overflow-y-auto">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody className="flex flex-col gap-4">
           <div className="flex flex-row items-center justify-between uppercase">
             <Typography
@@ -28,7 +46,9 @@ const AddGenreForm = ({ closeModal }: FormProps) => {
               type="text"
               className="h-10 mt-1 p-2 pl-4 border border-gray-300 font-LatoRegular rounded-md w-full"
               placeholder="Enter Genre name"
+              {...register('name', { required: true })}
             />
+            {errors.name && <ErrorFormField message={`Genre ${errors.name?.message}`} /> }
           </div>
           <div className="flex flex-row items-center justify-end gap-1">
             <Button
@@ -39,6 +59,7 @@ const AddGenreForm = ({ closeModal }: FormProps) => {
               cancel
             </Button>
             <Button
+              type="submit"
               size="sm"
               className="h-10 capitalize hover:text-gray-900 bg-gray-900 hover:bg-yellow-300 transition ease-in-out font-LatoBold rounded-full"
             >
