@@ -94,7 +94,7 @@ class CategoriesController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        $category->update($request->only(['name','genre_id']));
+        $category->update($request->only(['name']));
         return new CategoryResource(Category::find($id));
     }
 
