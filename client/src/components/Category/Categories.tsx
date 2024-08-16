@@ -12,13 +12,35 @@ import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
 import DeleteDialog from "../Dialog/DeleteDialog";
 import EditCategoryForm from "../Forms/EditCategoryForm";
+import useFetch from "../../hooks/useFetch";
+import LoadingList from "../Loading/LoadingList";
+import Errors from "../Errors/Errors";
+import AddEmptyState from "../EmptyState/AddEmptyState";
 
 interface IconArgs {
   open: boolean;
 }
+
+interface ICategoryItem{
+  id: any;
+  genre_id: any;
+  name: string;
+}
 export interface ICategory {
   id: any;
   name: string;
+  categories: ICategoryItem[]
+}
+
+interface Data {
+  data: [];
+}
+
+interface FetchResult {
+  data: Data | null;
+  loading: boolean;
+  error: Error | null;
+  fetchData: ()=>void;
 }
 
 const Icon = ({ open }: IconArgs) => {
@@ -43,10 +65,7 @@ const Icon = ({ open }: IconArgs) => {
 };
 
 const Categories = () => {
-  // const BASE_URL = import.meta.env.VITE_BASE_URL;
-  // accordion controls
-  const [open, setOpen] = useState<Array<number>>([]);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   // Data from API
   const categoryListByGenre = [
     {
@@ -96,7 +115,12 @@ const Categories = () => {
       categories: [],
     },
   ];
-  
+  const { data: categoryData, loading, error, fetchData }: FetchResult = useFetch(`${BASE_URL}/v1/genres/category/all`)
+
+  // accordion controls
+  const [open, setOpen] = useState<Array<number>>([]);
+
+
   const openHandler = (value: number) => {
     setOpen((prevOpen) =>
       prevOpen.includes(value)
@@ -122,7 +146,8 @@ const Categories = () => {
   const [openEditGenre, setOpenEditGenre] = useState(false);
   const handleOpenEditGenre = () => setOpenEditGenre((cur) => !cur);
   const openEditDialogHandler = (genreId: any, categoryId: any) => {
-    setEditData(categoryListByGenre[genreId].categories[categoryId]);
+    console.log(genreId, categoryId)
+    categoryData && setEditData(categoryData[genreId].categories[categoryId]);
     if (genreId && categoryId) {
       setEditId(categoryId);
     }
@@ -131,9 +156,18 @@ const Categories = () => {
 
   return (
     <>
-      {categoryListByGenre.map((group, i) => (
-        <Accordion
-          title={group.genre}
+    {
+      loading ? (<LoadingList />)
+      : error ? (
+        <Errors errorName={error.name} />
+      ): categoryData?.data.length === 0 ? (
+        <AddEmptyState itemName="category" />
+      ): (
+        <div>
+          {
+            categoryData?.data.map((group: ICategory, i) => (
+              <Accordion
+          title={group.name}
           key={i}
           open={open.includes(i + 1)}
           icon={<Icon open={open.includes(i + 1)} />}
@@ -144,7 +178,7 @@ const Categories = () => {
               variant="h6"
               className="text-gray-800 font-LatoBold capitalize pl-2 border-2 border-transparent border-l-yellow-300 border-r-transparent"
             >
-              in - {group.genre}{" "}
+              in - {group.name}{" "}
               <span className="text-xs text-gray-400 font-LatoBold pl-2">
                 genre
               </span>
@@ -179,7 +213,11 @@ const Categories = () => {
             )}
           </AccordionBody>
         </Accordion>
-      ))}
+            ))
+          }
+        </div>
+      )
+    }
 
       {/* Dialogs */}
       <Dialog
