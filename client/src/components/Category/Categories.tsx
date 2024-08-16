@@ -6,7 +6,6 @@ import {
   DialogBody,
   Typography,
 } from "@material-tailwind/react";
-import { IoIosArrowForward } from "react-icons/io";
 import { TiDelete } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
