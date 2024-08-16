@@ -66,55 +66,8 @@ const Icon = ({ open }: IconArgs) => {
 
 const Categories = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  
   // Data from API
-  const categoryListByGenre = [
-    {
-      genre: "hip-hop",
-      categories: [
-        {
-          id: "dsjjta",
-          name: "best song of the year",
-        },
-        {
-          id: "mnerews",
-          name: "upcoming artist of the year",
-        },
-        {
-          id: "emrys",
-          name: "best album of the year",
-        },
-      ],
-    },
-    {
-      genre: "bongo flava",
-      categories: [
-        {
-          id: "mnerews",
-          name: "upcoming artist of the year",
-        },
-        {
-          id: "dsjjta",
-          name: "best song of the year",
-        },
-        {
-          id: "morgana",
-          name: "best video of the year",
-        },
-        {
-          id: "emrys",
-          name: "best album of the year",
-        },
-      ],
-    },
-    {
-      genre: "singeli",
-      categories: [],
-    },
-    {
-      genre: "taarabu",
-      categories: [],
-    },
-  ];
   const { data: categoryData, loading, error, fetchData }: FetchResult = useFetch(`${BASE_URL}/v1/genres/category/all`)
 
   // accordion controls
@@ -141,18 +94,20 @@ const Categories = () => {
     setOpenDeleteDialog((cur) => !cur);
   };
   // Edit dialog handling
+  // console.log(categoryData?.data[0]?.categories[1]);
   const [_editId, setEditId] = useState(null);
+  const [editCategoryGenre, setEditCategoryGenre] = useState<string>("")
   const [editData, setEditData] = useState<ICategory | null>(null);
   const [openEditGenre, setOpenEditGenre] = useState(false);
   const handleOpenEditGenre = () => setOpenEditGenre((cur) => !cur);
-  const openEditDialogHandler = (genreId: any, categoryId: any) => {
-    console.log(genreId, categoryId)
-    categoryData && setEditData(categoryData[genreId].categories[categoryId]);
-    if (genreId && categoryId) {
-      setEditId(categoryId);
+  const openEditDialogHandler = (genreName:string, category:any) => {
+    setEditData(category)
+    if(genreName && category){
+      setEditId(category.id)
+      setEditCategoryGenre(genreName)
     }
     setOpenEditGenre((cur) => !cur);
-  };
+  }
 
   return (
     <>
@@ -196,7 +151,7 @@ const Categories = () => {
                   {item.name}
                   <IoIosArrowForward className="text-lg text-gray-500 group-hover:hidden transition ease-linear" />
                   <div className="hidden group-hover:flex flex-row items-center gap-2 transition ease-linear bg-amber-50 px-2 rounded-full">
-                    <AiFillEdit onClick={() => openEditDialogHandler(i, indx)} className="text-lg text-green-500 cursor-pointer hover:border-2 hover:border-green-500 rounded-full" />
+                    <AiFillEdit onClick={() => openEditDialogHandler(group.name, item)} className="text-lg text-green-500 cursor-pointer hover:border-2 hover:border-green-500 rounded-full" />
                     <TiDelete
                       onClick={() => deleteDialogHandler(item.id)}
                       className="text-xl text-red-500 cursor-pointer hover:border-2 hover:border-red-500 rounded-full"
@@ -246,6 +201,7 @@ const Categories = () => {
         <EditCategoryForm
           closeModal={handleOpenEditGenre}
           genre={editData && editData}
+          categoryGenre={editCategoryGenre && editCategoryGenre}
         />
       </Dialog>
     </>
