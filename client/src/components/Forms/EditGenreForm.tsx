@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 
 interface FormProps {
   closeModal: () => void;
+  fetchData: () => void;
   genre: IGenre | null;
 }
 
@@ -21,7 +22,7 @@ interface FormData {
   name: string;
 }
 
-const EditGenreForm = ({ closeModal, genre }: FormProps) => {
+const EditGenreForm = ({ closeModal, fetchData, genre }: FormProps) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [genreData, setGenreData] = useState<FormData | null>(genre);
 
@@ -42,8 +43,9 @@ const EditGenreForm = ({ closeModal, genre }: FormProps) => {
       .then((response) => {
         if (response.status == 200) {
           closeModal();
+          fetchData(); // Ref-fetch data after save
           toast.success("Genre Updated Successfully");
-          setTimeout(() => window.location.reload(), 3000);
+          // setTimeout(() => window.location.reload(), 3000);
         } else {
           closeModal();
           toast.error("Failed to Update Genre.");

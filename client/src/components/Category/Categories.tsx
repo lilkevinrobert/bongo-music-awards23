@@ -47,38 +47,6 @@ const Categories = () => {
   // accordion controls
   const [open, setOpen] = useState<Array<number>>([]);
 
-  const openHandler = (value: number) => {
-    setOpen((prevOpen) =>
-      prevOpen.includes(value)
-        ? prevOpen.filter((item) => item !== value)
-        : [...prevOpen, value]
-    );
-  };
-  // end accordion controls
-
-  // Delete Dialog handling
-  const [deleteId, setDeleteId] = useState("");
-  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const closeDeleteDialog = () => setOpenDeleteDialog((cur) => !cur);
-  const deleteDialogHandler = (id: any) => {
-    if (id) {
-      setDeleteId(id);
-    }
-    setOpenDeleteDialog((cur) => !cur);
-  };
-  // Edit dialog handling
-  const [_editId, setEditId] = useState(null);
-  const [editData, setEditData] = useState<ICategory | null>(null);
-  const [openEditGenre, setOpenEditGenre] = useState(false);
-  const handleOpenEditGenre = () => setOpenEditGenre((cur) => !cur);
-  const openEditDialogHandler = (genreId: any, categoryId: any) => {
-    setEditData(categoryListByGenre[genreId].categories[categoryId]);
-    if (genreId && categoryId) {
-      setEditId(categoryId);
-    }
-    setOpenEditGenre((cur) => !cur);
-  };
-
   // Data from API
   const categoryListByGenre = [
     {
@@ -128,6 +96,39 @@ const Categories = () => {
       categories: [],
     },
   ];
+  
+  const openHandler = (value: number) => {
+    setOpen((prevOpen) =>
+      prevOpen.includes(value)
+        ? prevOpen.filter((item) => item !== value)
+        : [...prevOpen, value]
+    );
+  };
+  // end accordion controls
+
+  // Delete Dialog handling
+  const [deleteId, setDeleteId] = useState("");
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const closeDeleteDialog = () => setOpenDeleteDialog((cur) => !cur);
+  const deleteDialogHandler = (id: any) => {
+    if (id) {
+      setDeleteId(id);
+    }
+    setOpenDeleteDialog((cur) => !cur);
+  };
+  // Edit dialog handling
+  const [_editId, setEditId] = useState(null);
+  const [editData, setEditData] = useState<ICategory | null>(null);
+  const [openEditGenre, setOpenEditGenre] = useState(false);
+  const handleOpenEditGenre = () => setOpenEditGenre((cur) => !cur);
+  const openEditDialogHandler = (genreId: any, categoryId: any) => {
+    setEditData(categoryListByGenre[genreId].categories[categoryId]);
+    if (genreId && categoryId) {
+      setEditId(categoryId);
+    }
+    setOpenEditGenre((cur) => !cur);
+  };
+
   return (
     <>
       {categoryListByGenre.map((group, i) => (
@@ -191,6 +192,7 @@ const Categories = () => {
           <DialogBody className="flex items-center justify-center">
             <DeleteDialog
               closeModal={closeDeleteDialog}
+              fetchData={fetchData}
               deleteId={deleteId}
               deleteItem="Genre"
             />
