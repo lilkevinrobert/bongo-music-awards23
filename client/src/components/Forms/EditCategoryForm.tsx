@@ -19,9 +19,9 @@ const EditCategoryForm = ({ closeModal, genre, categoryGenre }: FormProps) => {
         >
           Edit Category
         </Typography>
-        <div className="text-sm font-LatoBold text-gray-800 flex items-center capitalize">
+        <div className="text-sm text-gray-800 flex items-center capitalize">
           <BiSubdirectoryRight className="text-2xl" />
-          <Typography>{`in ${categoryGenre}`}</Typography>
+          <Typography className="bg-yellow-200 px-4 py-1 rounded-r-full font-LatoRegular">{`in ${categoryGenre}`}</Typography>
         </div>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
