@@ -32,11 +32,6 @@ class Genre extends Model
         return $validator;
     }
 
-    public function event()
-    {
-        return $this->belongsTo(Event::class);
-    }
-
     public function categories(){
         return $this->hasMany(Category::class);
     }
