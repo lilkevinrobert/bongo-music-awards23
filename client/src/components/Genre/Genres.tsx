@@ -1,6 +1,6 @@
 import { Dialog, DialogBody } from "@material-tailwind/react";
 import { useState } from "react";
-import { IoIosArrowForward } from "react-icons/io";
+import { GoDotFill } from "react-icons/go";
 import { TiDelete } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
 import EditGenreForm from "../Forms/EditGenreForm";
@@ -73,11 +73,11 @@ const Genres = () => {
           {genreData?.data.map((item: IGenre, i) => (
             <div
               key={i}
-              className="group flex w-fit items-center justify-between gap-2 rounded-full bg-amber-100 px-4 py-2 font-LatoBold text-xs uppercase text-gray-800"
-            >
+              className="relative group flex items-center justify-between gap-2 font-LatoBold text-xs text-gray-800 hover:text-gray-50 uppercase bg-amber-100 hover:bg-gray-800 transition ease-linear w-fit px-4 py-2 rounded-full"
+              >
+                <GoDotFill className="text-lg text-gray-700 group-hover:text-gray-50 transition ease-linear" />
               {item.name}
-              <IoIosArrowForward className="text-lg text-gray-500 transition ease-linear group-hover:hidden" />
-              <div className="hidden flex-row items-center gap-2 rounded-full bg-amber-50 px-2 transition ease-linear group-hover:flex">
+              <div className="invisible group-hover:visible transition-opacity duration-300 opacity-0 group-hover:opacity-100 flex flex-row items-center gap-2 bg-amber-50 px-2 rounded-full">
                 <AiFillEdit
                   onClick={() => openEditDialogHandler(item)}
                   className="cursor-pointer rounded-full text-lg text-green-500 hover:border-2 hover:border-green-500"

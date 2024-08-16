@@ -12,7 +12,7 @@ const EditCategoryForm = ({ closeModal, genre, categoryGenre }: FormProps) => {
   return (
     <Card className="mx-auto w-full max-w-[24rem] rounded-md">
       <form>
-        <CardHeader className="shadow-none py-4 px-2">
+        <CardHeader className="shadow-none pt-4 px-2">
         <Typography
           variant="h4"
           className="text-2xl capitalize font-LatoBold text-gray-900"
