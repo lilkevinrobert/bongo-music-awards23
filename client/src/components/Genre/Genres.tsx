@@ -1,5 +1,5 @@
 import { Dialog, DialogBody } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { TiDelete } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
@@ -10,6 +10,7 @@ import Errors from "../Errors/Errors";
 import AddEmptyState from "../EmptyState/AddEmptyState";
 import LoadingItems from "../Loading/LoadingItems";
 import { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 export interface IGenre {
   id: any;
@@ -27,7 +28,13 @@ interface FetchResult {
 }
 
 const Genres = () => {
+  // Data from API
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const {
+    data: genreData,
+    loading,
+    error,
+  }: FetchResult = useFetch(`${BASE_URL}/v1/genres`);
 
   // Edit dialog handling
   const [_editId, setEditId] = useState(null);
@@ -52,13 +59,6 @@ const Genres = () => {
     }
     setOpenDeleteDialog((cur) => !cur);
   };
-
-  // Data from API
-  const {
-    data: genreData,
-    loading,
-    error,
-  }: FetchResult = useFetch(`${BASE_URL}/v1/genres`);
 
   return (
     <>
