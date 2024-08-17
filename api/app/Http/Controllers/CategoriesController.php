@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class CategoriesController extends Controller
@@ -24,11 +25,16 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      */
     public function store(Request $request)
     {
-        $validator = Category::validate($request->only(['name','genre_id']));
+
+        $validator = Validator::make($request->all(), [
+            'genre_id' => 'required|exists:genres,id',
+            'categories' => 'required|array|min:1',
+            'categories.*.name' => 'required|string|max:255',
+        ]);
 
         if ($validator->fails()) {
             return response()->json([
@@ -40,17 +46,22 @@ class CategoriesController extends Controller
         try {
             DB::beginTransaction();
 
-            $data = [
-                'name' => $validator->validated()['name'],
-                'genre_id' => $validator->validated()['genre_id']
-            ];
-            $category = Category::create($data);
+            $genreId = $validator->validated()['genre_id'];
+            $categories = [];
+            foreach ($validator->validated()['categories'] as $category) {
+                Category::create([
+                    'name' => $category['name'],
+                    'genre_id' => $genreId,
+                ]);
+
+                $categories[] = $category;
+            }
 
             DB::commit();
             return response()->json([
                 'status' => ResponseAlias::HTTP_CREATED,
                 'message' => 'Genre category created successfully',
-                'data' => new CategoryResource($category),
+                'data' => new CategoryResource($categories),
             ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
         } catch (QueryException|\Exception $e) {
             return response()->json([
@@ -64,7 +75,7 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param \App\Models\Category $category
      */
     public function show($id)
     {
@@ -81,8 +92,8 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Category $category
      */
     public function update(Request $request, $id)
     {
@@ -101,7 +112,7 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param \App\Models\Category $category
      */
     public function destroy($id)
     {
