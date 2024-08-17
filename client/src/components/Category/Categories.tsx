@@ -118,7 +118,7 @@ const Categories = () => {
       {loading ? (
         <LoadingList />
       ) : error ? (
-        <Errors errorName={error.name} />
+        <Errors errorName={error.name} message={error.message} />
       ) : categoryData?.data.length === 0 ? (
         <AddEmptyState itemName="category" />
       ) : (

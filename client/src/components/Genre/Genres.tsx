@@ -65,7 +65,7 @@ const Genres = () => {
       {loading ? (
         <LoadingItems />
       ) : error ? (
-        <Errors errorName={error.name} />
+        <Errors errorName={error.name} message={error.message} />
       ) : genreData?.data.length === 0 ? (
         <AddEmptyState itemName="genre" />
       ) : (
