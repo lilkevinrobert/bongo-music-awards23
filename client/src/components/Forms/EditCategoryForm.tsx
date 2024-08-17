@@ -15,7 +15,6 @@ interface FormProps {
 const EditCategoryForm = ({ closeModal, genre, categoryGenre, fetchData }: FormProps) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [categoryData, setCategoryData] = useState(genre)
-  // console.log(categoryData)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

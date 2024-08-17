@@ -194,7 +194,7 @@ const Categories = () => {
               closeModal={closeDeleteDialog}
               fetchData={fetchData}
               deleteId={deleteId}
-              deleteItem="Genre"
+              deleteItem="Category"
             />
           </DialogBody>
         )}
