@@ -82,7 +82,7 @@ const ArtistsDataTable: React.FC = () => {
       {artistsDataLoading ? (
         <LoadingTable />
       ) : artistsDataError ? (
-        <Errors errorName={artistsDataError?.name} />
+        <Errors errorName={artistsDataError?.name} message={artistsDataError?.message} />
       ) : artistsData?.data.length === 0 ? (
         <AddEmptyState itemName="artist" />
       ) : (

@@ -9,6 +9,7 @@ import { IoAdd } from "react-icons/io5";
 import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1";
 import AddCategoryForm from "../../components/Forms/AddCategoryForm";
 import Categories from "../../components/Category/Categories";
+import { Toaster } from "react-hot-toast";
 
 const AdminCategoriesPage = () => {
   const [openAddCategory, setOpenAddCategory] = useState(false);
@@ -37,6 +38,10 @@ const AdminCategoriesPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Toaster */}
+        <Toaster position="top-center" containerClassName="font-LatoRegular" />
+
         <Dialog
           size="md"
           open={openAddCategory}

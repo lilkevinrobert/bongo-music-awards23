@@ -32,15 +32,14 @@ const DeleteDialog = ({
   }
 
   const deleteHandler = () => {
+    closeModal();
     axios
       .delete(`${BASE_URL}/${deleteItemHandler(deleteItem)}/${delId}`)
       .then(() => {
-        closeModal();
         fetchData(); // re-fetch data
         toast.success(`${deleteItem} Deleted Successfully.`);
       })
       .catch(() => {
-        closeModal();
         toast.error(`Failed to delete ${deleteItem}.`)});
   };
   return (

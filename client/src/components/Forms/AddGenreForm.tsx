@@ -31,11 +31,11 @@ const AddGenreForm = ({ closeModal }: FormProps) => {
   });
 
   const onSubmit = async (data: any) => {
+    closeModal()
     const processingToastId = toast.loading("Processing..")
     axios
         .post(`${BASE_URL}/genres`, data)
         .then((res) => {
-          closeModal()
           if (res.status == 201) {
             toast.dismiss(processingToastId)
             const responseToastId = toast.success("Genre created successfully.")
@@ -46,7 +46,6 @@ const AddGenreForm = ({ closeModal }: FormProps) => {
           }
         })
         .catch(() => {
-          closeModal();
           toast.dismiss(processingToastId)
           toast.error("Failed to create.")});
   };
