@@ -207,6 +207,7 @@ const Categories = () => {
       >
         <EditCategoryForm
           closeModal={handleOpenEditGenre}
+          fetchData={fetchData}
           genre={editData && editData}
           categoryGenre={editCategoryGenre && editCategoryGenre}
         />
