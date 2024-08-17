@@ -6,12 +6,14 @@ import { IoIosWarning } from "react-icons/io";
 
 interface DeleteDialogProps {
   closeModal: () => void;
+  fetchData: () => void;
   deleteId: string;
   deleteItem: "Sponsor" | "User" | "Award" | "Genre";
 }
 
 const DeleteDialog = ({
   closeModal,
+  fetchData,
   deleteId,
   deleteItem,
 }: DeleteDialogProps) => {
@@ -34,8 +36,8 @@ const DeleteDialog = ({
       .delete(`${BASE_URL}/v1/${deleteItemHandler(deleteItem)}/${delId}`)
       .then(() => {
         closeModal();
+        fetchData(); // re-fetch data
         toast.success(`${deleteItem} Deleted Successfully.`);
-        setTimeout(() => window.location.reload(), 3000);
       })
       .catch(() => {
         closeModal();

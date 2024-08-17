@@ -1,22 +1,28 @@
 import { Button, Card, CardBody, CardHeader, CardFooter, Typography } from "@material-tailwind/react";
+import { BiSubdirectoryRight } from "react-icons/bi";
 import { IGenre } from "../Genre/Genres";
 
 interface FormProps {
   closeModal: () => void;
   genre: IGenre | null;
+  categoryGenre: string;
 }
 
-const EditCategoryForm = ({ closeModal, genre }: FormProps) => {
+const EditCategoryForm = ({ closeModal, genre, categoryGenre }: FormProps) => {
   return (
     <Card className="mx-auto w-full max-w-[24rem] rounded-md">
       <form>
-        <CardHeader className="shadow-none py-4 px-2">
+        <CardHeader className="shadow-none pt-4 px-2">
         <Typography
           variant="h4"
           className="text-2xl capitalize font-LatoBold text-gray-900"
         >
           Edit Category
         </Typography>
+        <div className="text-sm text-gray-800 flex items-center capitalize">
+          <BiSubdirectoryRight className="text-2xl" />
+          <Typography className="bg-yellow-200 px-4 py-1 rounded-r-full font-LatoRegular">{`in ${categoryGenre}`}</Typography>
+        </div>
         </CardHeader>
         <CardBody className="flex flex-col gap-4">
         <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">

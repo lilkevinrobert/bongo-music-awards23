@@ -9,9 +9,14 @@ const Loading = () => {
       {/* in case of any issues add "motion-safe:" to spinner animate-spin ==> motion-safe:animate-spin  */}
         <FaSpinner className="animate-spin text-yellow-100 text-3xl" />
       <div className="rounded-md p-4 max-w-sm w-full mx-auto flex flex-row items-center justify-center gap-4">
+        <div>
         <Typography className="uppercase text-3xl text-yellow-100 font-LatoBold">
-          bongo music awards
+          bongo
         </Typography>
+        <Typography className="uppercase text-3xl text-yellow-100 font-LatoBold">
+        music awards
+        </Typography>
+        </div>
         <div className="block">
           <RiMusic2Fill className="text-4xl text-yellow-100" />
           <FaAward className="text-4xl text-yellow-100" />

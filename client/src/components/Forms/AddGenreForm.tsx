@@ -48,7 +48,7 @@ const AddGenreForm = ({ closeModal }: FormProps) => {
         .catch(() => {
           closeModal();
           toast.dismiss(processingToastId)
-          toast.error("Failed to create genre.")});
+          toast.error("Failed to create.")});
   };
   return (
     <Card className="mx-auto max-h-[95vh] w-full max-w-[24rem] overflow-y-auto rounded-md">

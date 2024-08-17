@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineEdit, MdOutlineDeleteOutline } from "react-icons/md";
 import DeleteDialog from "../Dialog/DeleteDialog";
 import EditSponsorForm from "../Forms/EditSponsorForm";
+import useFetch from "../../hooks/useFetch";
 export interface Sponsor {
   id: string;
   name: string;
@@ -11,11 +12,16 @@ export interface Sponsor {
 }
 
 const SponsorsDataTable = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteId, setDeleteId] = useState("");
   const [_editId, setEditId] = useState(null);
   const [editData, setEditData] = useState<Sponsor | null>(null)
   const [filteredData, setFilteredData] = useState<Sponsor[]>([]);
+
+  // delete this function later
+  const { data:sponsorsData, loading, error, fetchData } = useFetch(`${BASE_URL}/sponsors`)
+  console.log(sponsorsData, loading, error)
 
   // Dialogs
   // edit dialog
@@ -159,6 +165,7 @@ const SponsorsDataTable = () => {
           <DialogBody className="flex items-center justify-center">
             <DeleteDialog
               closeModal={closeDeleteDialog}
+              fetchData={fetchData}
               deleteId={deleteId}
               deleteItem="Sponsor"
             />

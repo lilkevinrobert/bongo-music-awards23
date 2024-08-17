@@ -6,19 +6,41 @@ import {
   DialogBody,
   Typography,
 } from "@material-tailwind/react";
-import { IoIosArrowForward } from "react-icons/io";
 import { TiDelete } from "react-icons/ti";
 import { AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
 import DeleteDialog from "../Dialog/DeleteDialog";
 import EditCategoryForm from "../Forms/EditCategoryForm";
+import useFetch from "../../hooks/useFetch";
+import LoadingList from "../Loading/LoadingList";
+import Errors from "../Errors/Errors";
+import AddEmptyState from "../EmptyState/AddEmptyState";
+import { GoDotFill } from "react-icons/go";
 
 interface IconArgs {
   open: boolean;
 }
+
+interface ICategoryItem {
+  id: any;
+  genre_id: any;
+  name: string;
+}
 export interface ICategory {
   id: any;
   name: string;
+  categories: ICategoryItem[];
+}
+
+interface Data {
+  data: [];
+}
+
+interface FetchResult {
+  data: Data | null;
+  loading: boolean;
+  error: Error | null;
+  fetchData: () => void;
 }
 
 const Icon = ({ open }: IconArgs) => {
@@ -31,7 +53,7 @@ const Icon = ({ open }: IconArgs) => {
       stroke="currentColor"
       className={`${
         open ? "rotate-180" : ""
-      } h-5 w-5 transition-transform mr-2 text-gray-600`}
+      } mr-2 h-5 w-5 text-gray-600 transition-transform`}
     >
       <path
         strokeLinecap="round"
@@ -43,7 +65,16 @@ const Icon = ({ open }: IconArgs) => {
 };
 
 const Categories = () => {
-  // const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  // Data from API
+  const {
+    data: categoryData,
+    loading,
+    error,
+    fetchData,
+  }: FetchResult = useFetch(`${BASE_URL}/v1/genres/category/all`);
+
   // accordion controls
   const [open, setOpen] = useState<Array<number>>([]);
 
@@ -51,7 +82,7 @@ const Categories = () => {
     setOpen((prevOpen) =>
       prevOpen.includes(value)
         ? prevOpen.filter((item) => item !== value)
-        : [...prevOpen, value]
+        : [...prevOpen, value],
     );
   };
   // end accordion controls
@@ -67,130 +98,101 @@ const Categories = () => {
     setOpenDeleteDialog((cur) => !cur);
   };
   // Edit dialog handling
+  // console.log(categoryData?.data[0]?.categories[1]);
   const [_editId, setEditId] = useState(null);
+  const [editCategoryGenre, setEditCategoryGenre] = useState<string>("");
   const [editData, setEditData] = useState<ICategory | null>(null);
   const [openEditGenre, setOpenEditGenre] = useState(false);
   const handleOpenEditGenre = () => setOpenEditGenre((cur) => !cur);
-  const openEditDialogHandler = (genreId: any, categoryId: any) => {
-    setEditData(categoryListByGenre[genreId].categories[categoryId]);
-    if (genreId && categoryId) {
-      setEditId(categoryId);
+  const openEditDialogHandler = (genreName: string, category: any) => {
+    setEditData(category);
+    if (genreName && category) {
+      setEditId(category.id);
+      setEditCategoryGenre(genreName);
     }
     setOpenEditGenre((cur) => !cur);
   };
 
-  // Data from API
-  const categoryListByGenre = [
-    {
-      genre: "hip-hop",
-      categories: [
-        {
-          id: "dsjjta",
-          name: "best song of the year",
-        },
-        {
-          id: "mnerews",
-          name: "upcoming artist of the year",
-        },
-        {
-          id: "emrys",
-          name: "best album of the year",
-        },
-      ],
-    },
-    {
-      genre: "bongo flava",
-      categories: [
-        {
-          id: "mnerews",
-          name: "upcoming artist of the year",
-        },
-        {
-          id: "dsjjta",
-          name: "best song of the year",
-        },
-        {
-          id: "morgana",
-          name: "best video of the year",
-        },
-        {
-          id: "emrys",
-          name: "best album of the year",
-        },
-      ],
-    },
-    {
-      genre: "singeli",
-      categories: [],
-    },
-    {
-      genre: "taarabu",
-      categories: [],
-    },
-  ];
   return (
     <>
-      {categoryListByGenre.map((group, i) => (
-        <Accordion
-          title={group.genre}
-          key={i}
-          open={open.includes(i + 1)}
-          icon={<Icon open={open.includes(i + 1)} />}
-          className="bg-transparent hover:bg-yellow-50 transition ease-linear"
-        >
-          <AccordionHeader onClick={() => openHandler(i + 1)}>
-            <Typography
-              variant="h6"
-              className="text-gray-800 font-LatoBold capitalize pl-2 border-2 border-transparent border-l-yellow-300 border-r-transparent"
+      {loading ? (
+        <LoadingList />
+      ) : error ? (
+        <Errors errorName={error.name} />
+      ) : categoryData?.data.length === 0 ? (
+        <AddEmptyState itemName="category" />
+      ) : (
+        <div>
+          {categoryData?.data.map((group: ICategory, i) => (
+            <Accordion
+              title={group.name}
+              key={i}
+              open={open.includes(i + 1)}
+              icon={<Icon open={open.includes(i + 1)} />}
+              className="bg-transparent transition ease-linear hover:bg-yellow-50"
             >
-              in - {group.genre}{" "}
-              <span className="text-xs text-gray-400 font-LatoBold pl-2">
-                genre
-              </span>
-            </Typography>
-          </AccordionHeader>
-
-          {/* categories */}
-          <AccordionBody className="flex flex-row flex-wrap items-center gap-2 bg-white">
-            {group.categories &&
-              group.categories.map((item, indx) => (
-                <div
-                  key={indx}
-                  className="group flex items-center justify-between gap-2 font-LatoBold text-xs text-gray-800 uppercase bg-amber-100 w-fit px-4 py-2 rounded-full"
+              <AccordionHeader onClick={() => openHandler(i + 1)}>
+                <Typography
+                  variant="h6"
+                  className="border-2 border-transparent border-l-yellow-300 border-r-transparent pl-2 font-LatoBold capitalize text-gray-800"
                 >
-                  {item.name}
-                  <IoIosArrowForward className="text-lg text-gray-500 group-hover:hidden transition ease-linear" />
-                  <div className="hidden group-hover:flex flex-row items-center gap-2 transition ease-linear bg-amber-50 px-2 rounded-full">
-                    <AiFillEdit onClick={() => openEditDialogHandler(i, indx)} className="text-lg text-green-500 cursor-pointer hover:border-2 hover:border-green-500 rounded-full" />
-                    <TiDelete
-                      onClick={() => deleteDialogHandler(item.id)}
-                      className="text-xl text-red-500 cursor-pointer hover:border-2 hover:border-red-500 rounded-full"
-                    />
+                  in - {group.name}{" "}
+                  <span className="pl-2 font-LatoBold text-xs text-gray-400">
+                    genre
+                  </span>
+                </Typography>
+              </AccordionHeader>
+
+              {/* categories */}
+              <AccordionBody className="flex flex-row flex-wrap items-center gap-2 bg-white">
+                {group.categories &&
+                  group.categories.map((item, indx) => (
+                    <div
+                      key={indx}
+                      className="group relative flex w-fit items-center justify-between gap-2 rounded-full bg-amber-100 px-4 py-2 font-LatoBold text-xs uppercase text-gray-800 transition ease-linear hover:bg-gray-800 hover:text-gray-50"
+                    >
+                      <GoDotFill className="text-lg text-gray-700 transition ease-linear group-hover:text-gray-50" />
+
+                      {item.name}
+                      <div className="invisible flex flex-row items-center gap-2 rounded-full bg-amber-50 px-2 opacity-0 transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
+                        <AiFillEdit
+                          onClick={() =>
+                            openEditDialogHandler(group.name, item)
+                          }
+                          className="cursor-pointer rounded-full text-xl text-green-500 hover:border-2 hover:border-green-500"
+                        />
+                        <TiDelete
+                          onClick={() => deleteDialogHandler(item.id)}
+                          className="cursor-pointer rounded-full text-2xl text-red-500 hover:border-2 hover:border-red-500"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                {group.categories.length == 0 && (
+                  <div className="w-full text-center font-LatoRegular text-base capitalize text-gray-900">
+                    <span className="rounded-full bg-yellow-100 px-4 py-2">
+                      no categories found.
+                    </span>
                   </div>
-                </div>
-              ))}
-            {group.categories.length == 0 && (
-              <div className="text-center text-base w-full text-gray-900 font-LatoRegular capitalize">
-                <span className="px-4 py-2 rounded-full bg-yellow-100">
-                  no categories found.
-                </span>
-              </div>
-            )}
-          </AccordionBody>
-        </Accordion>
-      ))}
+                )}
+              </AccordionBody>
+            </Accordion>
+          ))}
+        </div>
+      )}
 
       {/* Dialogs */}
       <Dialog
         size="md"
         open={openDeleteDialog}
         handler={deleteDialogHandler}
-        className="bg-transparent shadow-none text-black"
+        className="bg-transparent text-black shadow-none"
       >
         {deleteId && (
           <DialogBody className="flex items-center justify-center">
             <DeleteDialog
               closeModal={closeDeleteDialog}
+              fetchData={fetchData}
               deleteId={deleteId}
               deleteItem="Genre"
             />
@@ -201,11 +203,12 @@ const Categories = () => {
         size="md"
         open={openEditGenre}
         handler={handleOpenEditGenre}
-        className="bg-transparent shadow-none text-black"
+        className="bg-transparent text-black shadow-none"
       >
         <EditCategoryForm
           closeModal={handleOpenEditGenre}
           genre={editData && editData}
+          categoryGenre={editCategoryGenre && editCategoryGenre}
         />
       </Dialog>
     </>
