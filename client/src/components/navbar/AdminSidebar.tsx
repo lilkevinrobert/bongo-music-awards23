@@ -148,7 +148,7 @@ const AdminSidebar = () => {
                 </NavLink>
               </li>
 
-              <li className="relative">
+              <li className="relative hidden">
                 <NavLink
                   to="../nominators"
                   style={({ isActive }) => handleActiveAdminLinkColor(isActive)}
