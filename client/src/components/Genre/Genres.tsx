@@ -34,7 +34,7 @@ const Genres = () => {
     loading,
     error,
     fetchData
-  }: FetchResult = useFetch(`${BASE_URL}/v1/genres`);
+  }: FetchResult = useFetch(`${BASE_URL}/genres`);
 
   // Edit dialog handling
   const [_editId, setEditId] = useState(null);

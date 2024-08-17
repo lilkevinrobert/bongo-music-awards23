@@ -73,7 +73,7 @@ const Categories = () => {
     loading,
     error,
     fetchData,
-  }: FetchResult = useFetch(`${BASE_URL}/v1/genres/category/all`);
+  }: FetchResult = useFetch(`${BASE_URL}/genres/category/all`);
 
   // accordion controls
   const [open, setOpen] = useState<Array<number>>([]);

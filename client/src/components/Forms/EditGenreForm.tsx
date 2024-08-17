@@ -37,7 +37,7 @@ const EditGenreForm = ({ closeModal, fetchData, genre }: FormProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .patch(`${BASE_URL}/v1/genres/${genreData?.id}`, {
+      .patch(`${BASE_URL}/genres/${genreData?.id}`, {
         name: genreData?.name,
       })
       .then((response) => {

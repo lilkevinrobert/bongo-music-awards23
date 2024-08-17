@@ -33,7 +33,7 @@ const DeleteDialog = ({
 
   const deleteHandler = () => {
     axios
-      .delete(`${BASE_URL}/v1/${deleteItemHandler(deleteItem)}/${delId}`)
+      .delete(`${BASE_URL}/${deleteItemHandler(deleteItem)}/${delId}`)
       .then(() => {
         closeModal();
         fetchData(); // re-fetch data
