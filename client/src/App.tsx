@@ -18,9 +18,11 @@ import ArtistProfilePage from "./pages/Artist/ArtistProfilePage.tsx";
 import ArtistSettingsPage from "./pages/Artist/ArtistSettingsPage.tsx";
 import ArtistNominationsViewPage from "./pages/Artist/ArtistNominationsViewPage.tsx";
 import ArtistSongsPage from "./pages/Artist/ArtistSongsPage.tsx";
+import useNetworkStatus from "./hooks/useNetworkStatus.ts";
 
 
 // Lazy-loaded components
+const OfflineErrorPage = lazy(() => import("./components/Errors/ErrorNetworkOffline"))
 const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -34,6 +36,8 @@ const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage"));
 const RecoveryPage = lazy(() => import("./pages/RecoveryPage"));
 
 function App() {
+    const { isOnline } = useNetworkStatus();
+
     const router = createBrowserRouter([
         {
             path: "/",
@@ -270,7 +274,10 @@ function App() {
     return (
         <AuthProvider>
             <>
-                <RouterProvider router={router}/>
+            {
+                isOnline ? <RouterProvider router={router}/> : <OfflineErrorPage />
+            }
+                {/* <RouterProvider router={router}/> */}
             </>
         </AuthProvider>
     );
