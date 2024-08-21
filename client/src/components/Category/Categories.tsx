@@ -77,6 +77,7 @@ const Categories = () => {
 
   // accordion controls
   const [open, setOpen] = useState<Array<number>>([]);
+  const [alwaysOpen, setAlwaysOpen] = useState(true);
 
   const openHandler = (value: number) => {
     setOpen((prevOpen) =>
@@ -85,6 +86,7 @@ const Categories = () => {
         : [...prevOpen, value],
     );
   };
+  const alwaysOpenHandler = () => setAlwaysOpen((cur) => !cur);
   // end accordion controls
 
   // Delete Dialog handling
@@ -127,11 +129,15 @@ const Categories = () => {
             <Accordion
               title={group.name}
               key={i}
-              open={open.includes(i + 1)}
+              open={alwaysOpen}
+              // open={open.includes(i + 1)}
               icon={<Icon open={open.includes(i + 1)} />}
               className="bg-transparent transition ease-linear hover:bg-yellow-50"
             >
-              <AccordionHeader onClick={() => openHandler(i + 1)}>
+              <AccordionHeader 
+              // onClick={() => openHandler(i + 1)}
+              onClick={alwaysOpenHandler}
+              >
                 <Typography
                   variant="h6"
                   className="border-2 border-transparent border-l-yellow-300 border-r-transparent pl-2 font-LatoBold capitalize text-gray-800"
