@@ -76,16 +76,16 @@ const Categories = () => {
   }: FetchResult = useFetch(`${BASE_URL}/genres/category/all`);
 
   // accordion controls
-  const [open, setOpen] = useState<Array<number>>([]);
+  const [open, _setOpen] = useState<Array<number>>([]);
   const [alwaysOpen, setAlwaysOpen] = useState(true);
 
-  const openHandler = (value: number) => {
-    setOpen((prevOpen) =>
-      prevOpen.includes(value)
-        ? prevOpen.filter((item) => item !== value)
-        : [...prevOpen, value],
-    );
-  };
+  // const openHandler = (value: number) => {
+  //   setOpen((prevOpen) =>
+  //     prevOpen.includes(value)
+  //       ? prevOpen.filter((item) => item !== value)
+  //       : [...prevOpen, value],
+  //   );
+  // };
   const alwaysOpenHandler = () => setAlwaysOpen((cur) => !cur);
   // end accordion controls
 
