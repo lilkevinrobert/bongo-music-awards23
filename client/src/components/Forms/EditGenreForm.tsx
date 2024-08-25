@@ -36,23 +36,21 @@ const EditGenreForm = ({ closeModal, fetchData, genre }: FormProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    closeModal();
     axios
-      .patch(`${BASE_URL}/v1/genres/${genreData?.id}`, {
+      .patch(`${BASE_URL}/genres/${genreData?.id}`, {
         name: genreData?.name,
       })
       .then((response) => {
         if (response.status == 200) {
-          closeModal();
           fetchData(); // Ref-fetch data after save
           toast.success("Genre Updated Successfully");
           // setTimeout(() => window.location.reload(), 3000);
         } else {
-          closeModal();
           toast.error("Failed to Update Genre.");
         }
       })
       .catch(() => {
-        closeModal();
         toast.error("Failed to Update Genre.");
       });
   };

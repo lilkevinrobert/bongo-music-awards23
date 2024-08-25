@@ -34,7 +34,7 @@ const Genres = () => {
     loading,
     error,
     fetchData
-  }: FetchResult = useFetch(`${BASE_URL}/v1/genres`);
+  }: FetchResult = useFetch(`${BASE_URL}/genres`);
 
   // Edit dialog handling
   const [_editId, setEditId] = useState(null);
@@ -65,7 +65,7 @@ const Genres = () => {
       {loading ? (
         <LoadingItems />
       ) : error ? (
-        <Errors errorName={error.name} />
+        <Errors errorName={error.name} message={error.message} />
       ) : genreData?.data.length === 0 ? (
         <AddEmptyState itemName="genre" />
       ) : (

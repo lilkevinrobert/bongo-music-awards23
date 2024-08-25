@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 interface ErrorsProps {
   errorName: string;
+  message?: string;
 }
 
-const Errors: React.FC<ErrorsProps> = ({ errorName }) => {
+const Errors: React.FC<ErrorsProps> = ({ errorName, message }) => {
   let errorMessage: string;
 
   const navigate = useNavigate();
@@ -40,6 +41,9 @@ const Errors: React.FC<ErrorsProps> = ({ errorName }) => {
       <div className="flex flex-col items-center justify-center gap-4 z-10">
         <RiEmotionSadLine className="text-7xl text-gray-400 motion-safe:animate-bounce" />
         <div className="flex flex-col items-center">
+          <Typography className="text-gray-400 font-LatoBold">
+            {message}
+          </Typography>
           <Typography className="text-gray-400 font-LatoBold">
             {errorMessage}
           </Typography>

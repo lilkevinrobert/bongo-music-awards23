@@ -14,17 +14,17 @@ const SummaryCard = ({ count, title, type }: summaryCardType) => {
   const iconHandler = () => {
     switch(type){
       case "users":
-        return <div className="hidden sm:block bg-blue-200 p-2 rounded"><LuUsers className="text-blue-600 text-2xl" /></div>
+        return <div className="hidden sm:block bg-blue-200 p-2 rounded-full"><LuUsers className="text-blue-600 text-2xl" /></div>
       case "active_events":
-        return <div className="hidden sm:block bg-green-200 p-2 rounded"><MdOutlineEventNote className="text-green-600 text-2xl" /></div>
+        return <div className="hidden sm:block bg-green-200 p-2 rounded-full"><MdOutlineEventNote className="text-green-600 text-2xl" /></div>
       case "genres":
-        return <div className="hidden sm:block bg-purple-200 p-2 rounded"><MdOutlineCategory className="text-purple-600 text-2xl" /></div>
+        return <div className="hidden sm:block bg-purple-200 p-2 rounded-full"><MdOutlineCategory className="text-purple-600 text-2xl" /></div>
       case "categories":
-        return <div className="hidden sm:block bg-red-200 p-2 rounded"><BiCategoryAlt className="text-red-600 text-2xl" /></div>
+        return <div className="hidden sm:block bg-red-200 p-2 rounded-full"><BiCategoryAlt className="text-red-600 text-2xl" /></div>
       case "nominators":
-        return <div className="hidden sm:block bg-yellow-200 p-2 rounded"><MdOutlineHowToVote className="text-yellow-600 text-2xl" /></div>
+        return <div className="hidden sm:block bg-yellow-200 p-2 rounded-full"><MdOutlineHowToVote className="text-yellow-600 text-2xl" /></div>
       default:
-        return <div className="hidden sm:block bg-cyan-200 p-2 rounded"><TbUsersGroup className="text-cyan-600 text-2xl" /></div>
+        return <div className="hidden sm:block bg-cyan-200 p-2 rounded-full"><TbUsersGroup className="text-cyan-600 text-2xl" /></div>
     }
   }
 

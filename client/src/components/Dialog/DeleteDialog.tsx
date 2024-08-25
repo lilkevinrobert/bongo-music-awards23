@@ -8,7 +8,7 @@ interface DeleteDialogProps {
   closeModal: () => void;
   fetchData: () => void;
   deleteId: string;
-  deleteItem: "Sponsor" | "User" | "Award" | "Genre";
+  deleteItem: "Sponsor" | "User" | "Award" | "Genre" | "Category";
 }
 
 const DeleteDialog = ({
@@ -26,21 +26,22 @@ const DeleteDialog = ({
         return `sponsors`;
       case "Genre":
         return `genres`;
+      case "Category":
+        return `categories`;
       default:
         break;
     }
   }
 
   const deleteHandler = () => {
+    closeModal();
     axios
-      .delete(`${BASE_URL}/v1/${deleteItemHandler(deleteItem)}/${delId}`)
+      .delete(`${BASE_URL}/${deleteItemHandler(deleteItem)}/${delId}`)
       .then(() => {
-        closeModal();
         fetchData(); // re-fetch data
         toast.success(`${deleteItem} Deleted Successfully.`);
       })
       .catch(() => {
-        closeModal();
         toast.error(`Failed to delete ${deleteItem}.`)});
   };
   return (

@@ -73,18 +73,20 @@ const Categories = () => {
     loading,
     error,
     fetchData,
-  }: FetchResult = useFetch(`${BASE_URL}/v1/genres/category/all`);
+  }: FetchResult = useFetch(`${BASE_URL}/genres/category/all`);
 
   // accordion controls
-  const [open, setOpen] = useState<Array<number>>([]);
+  const [open, _setOpen] = useState<Array<number>>([]);
+  const [alwaysOpen, setAlwaysOpen] = useState(true);
 
-  const openHandler = (value: number) => {
-    setOpen((prevOpen) =>
-      prevOpen.includes(value)
-        ? prevOpen.filter((item) => item !== value)
-        : [...prevOpen, value],
-    );
-  };
+  // const openHandler = (value: number) => {
+  //   setOpen((prevOpen) =>
+  //     prevOpen.includes(value)
+  //       ? prevOpen.filter((item) => item !== value)
+  //       : [...prevOpen, value],
+  //   );
+  // };
+  const alwaysOpenHandler = () => setAlwaysOpen((cur) => !cur);
   // end accordion controls
 
   // Delete Dialog handling
@@ -118,7 +120,7 @@ const Categories = () => {
       {loading ? (
         <LoadingList />
       ) : error ? (
-        <Errors errorName={error.name} />
+        <Errors errorName={error.name} message={error.message} />
       ) : categoryData?.data.length === 0 ? (
         <AddEmptyState itemName="category" />
       ) : (
@@ -127,11 +129,15 @@ const Categories = () => {
             <Accordion
               title={group.name}
               key={i}
-              open={open.includes(i + 1)}
+              open={alwaysOpen}
+              // open={open.includes(i + 1)}
               icon={<Icon open={open.includes(i + 1)} />}
               className="bg-transparent transition ease-linear hover:bg-yellow-50"
             >
-              <AccordionHeader onClick={() => openHandler(i + 1)}>
+              <AccordionHeader 
+              // onClick={() => openHandler(i + 1)}
+              onClick={alwaysOpenHandler}
+              >
                 <Typography
                   variant="h6"
                   className="border-2 border-transparent border-l-yellow-300 border-r-transparent pl-2 font-LatoBold capitalize text-gray-800"
@@ -194,7 +200,7 @@ const Categories = () => {
               closeModal={closeDeleteDialog}
               fetchData={fetchData}
               deleteId={deleteId}
-              deleteItem="Genre"
+              deleteItem="Category"
             />
           </DialogBody>
         )}
@@ -207,6 +213,7 @@ const Categories = () => {
       >
         <EditCategoryForm
           closeModal={handleOpenEditGenre}
+          fetchData={fetchData}
           genre={editData && editData}
           categoryGenre={editCategoryGenre && editCategoryGenre}
         />
