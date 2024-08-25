@@ -10,6 +10,7 @@ use App\Http\Controllers\JudgeController;
 use App\Http\Controllers\AdminController;
 use \App\Http\Controllers\GenresController;
 use \App\Http\Controllers\CategoriesController;
+use \App\Http\Controllers\UserInformationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,15 +55,20 @@ Route::group(['prefix'=>'v1'], function () {
 
 
 
-    Route::group(['prefix'=>'artist'], function () {
-        Route::post('/register',[ArtistProfilesController::class,'registerUser']); // Self registration of artist
-        Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
-        Route::get('/{id}',[ArtistProfilesController::class,'show']); //All available artist in the system
-        Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
+    Route::group(['prefix'=>'user_informations'], function () {
+        Route::get('/',[UserInformationController::class,'index']);
+        Route::post('/', [UserInformationController::class, 'store']);
 
-        Route::group(['prefix'=>'info'], function () {
-            Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
-        });
+
+
+//        Route::post('/register',[ArtistProfilesController::class,'registerUser']); // Self registration of artist
+//        Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
+//        Route::get('/{id}',[ArtistProfilesController::class,'show']); //All available artist in the system
+//        Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
+//
+//        Route::group(['prefix'=>'info'], function () {
+//            Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
+//        });
     });
 
 
