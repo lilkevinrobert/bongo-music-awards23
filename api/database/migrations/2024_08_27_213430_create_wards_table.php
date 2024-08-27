@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('wards', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('postcode');
+            $table->unsignedBigInteger('napa_ward_id');
+            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('district_id');
             $table->timestamps();
         });
     }
