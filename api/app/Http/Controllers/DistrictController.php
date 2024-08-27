@@ -36,7 +36,7 @@ class DistrictController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        $district_wards =  District::with('wards')->find($district);
+        $district_wards =  District::with('wards')->find($districtId);
         return response()->json([
             'status' => ResponseAlias::HTTP_OK,
             'message' => 'District Wards',
