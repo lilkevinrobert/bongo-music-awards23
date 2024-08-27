@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DistrictResource;
 use App\Http\Resources\RegionResource;
 use App\Models\Region;
 use Illuminate\Http\Response;

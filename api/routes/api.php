@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
-use App\Http\Controllers\ArtistProfilesController;
+use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\NominatorsController;
 use App\Http\Controllers\JudgeController;
 use App\Http\Controllers\AdminController;
@@ -58,6 +58,7 @@ Route::group(['prefix'=>'v1'], function () {
     Route::group(['prefix'=>'addresses'], function () {
         Route::get('regions',[RegionController::class, 'index']);
         Route::get('regions/{regionId}/districts',[RegionController::class, 'show']);
+        Route::get('districts/{districtId}/wards',[DistrictController::class, 'show']);
     });
 
 
