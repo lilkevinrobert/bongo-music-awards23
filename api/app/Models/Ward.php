@@ -23,4 +23,8 @@ class Ward extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    public function streets(){
+        return $this->hasMany(Street::class);
+    }
 }

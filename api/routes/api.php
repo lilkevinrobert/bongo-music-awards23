@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StreetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
@@ -59,6 +60,7 @@ Route::group(['prefix'=>'v1'], function () {
         Route::get('regions',[RegionController::class, 'index']);
         Route::get('regions/{regionId}/districts',[RegionController::class, 'show']);
         Route::get('districts/{districtId}/wards',[DistrictController::class, 'show']);
+        Route::get('wards/{wardId}/streets',[StreetController::class, 'show']);
     });
 
 
