@@ -14,7 +14,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $regions = region::all();
+        $regions = Region::all();
         return RegionResource::collection($regions);
     }
 
