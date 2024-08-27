@@ -39,7 +39,8 @@ class RegionController extends Controller
         return response()->json([
             'status' => ResponseAlias::HTTP_OK,
             'message' => 'Region districts',
-            'data' => new RegionResource($regions),
+//            'data' => new DistrictResource($regions),
+            'data' => $regions,
         ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
 

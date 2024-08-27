@@ -5,18 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class District extends Model
 {
     use HasFactory;
 
-    protected $table = 'regions';
+    protected $table = 'districts';
+
     protected $fillable = [
-        'name',
         'napa_region_id',
+        'region_id',
+        'napa_district_id',
+        'name',
         'postcode'
     ];
 
-    public function districts(){
-        return $this->hasMany(District::class);
+
+    public function regions()
+    {
+        return $this->belongsTo(Region::class);
     }
 }
