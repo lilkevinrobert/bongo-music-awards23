@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use \App\Http\Controllers\GenresController;
 use \App\Http\Controllers\CategoriesController;
 use \App\Http\Controllers\UserInformationController;
+use \App\Http\Controllers\RegionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -50,6 +51,13 @@ Route::group(['prefix'=>'v1'], function () {
         Route::group(['prefix' => 'counts'], function () {
             Route::get('/',[AdminController::class,'counts']);
         });
+    });
+
+
+    //Get all addresses endpoints
+    Route::group(['prefix'=>'addresses'], function () {
+        Route::get('regions',[RegionController::class, 'index']);
+        Route::get('regions/{regionId}/districts',[RegionController::class, 'show']);
     });
 
 
