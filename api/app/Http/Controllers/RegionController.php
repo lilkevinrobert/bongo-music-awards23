@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DistrictResource;
 use App\Http\Resources\RegionResource;
 use App\Models\Region;
 use Illuminate\Http\Response;
@@ -35,12 +36,11 @@ class RegionController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        $regions =  Region::with('districts')->find($regionId);
+        $region_districts =  Region::with('districts')->find($regionId);
         return response()->json([
             'status' => ResponseAlias::HTTP_OK,
             'message' => 'Region districts',
-//            'data' => new DistrictResource($regions),
-            'data' => $regions,
+            'data' => new DistrictResource($region_districts),
         ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
 
