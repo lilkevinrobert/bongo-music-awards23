@@ -14,17 +14,16 @@ class ArtistProfile extends Model
     protected $table = 'artist_profiles';
 
     protected $fillable = [
-        'profile_image_url',
         'user_information_id',
-        'artist_occupation_id',
+//        'artist_occupation_id',
         'record_label',
         'debut_year',
         'stage_name',
-        'album_id',
-        'single_id',
-        'artist_award_id', // relation one to many
+//        'album_id',
+//        'single_id',
+//        'artist_award_id', // relation one to many
         'bio',
-        'genre_id', // relation one to many
+//        'genre_id', // relation one to many
         'official_website_link',
         'spotify_music_link',
         'apple_music_link',
