@@ -27,10 +27,10 @@ interface StreetData {
   id: number;
   streets: string[];
 }
-interface RoadData {
-  id: number;
-  roads: string[];
-}
+// interface RoadData {
+//   id: number;
+//   roads: string[];
+// }
 
 const AddArtistFormAdmin = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -39,7 +39,7 @@ const AddArtistFormAdmin = () => {
   const [districtsData, setDistrictsData] = useState<DistrictData | null>();
   const [wardsData, setWardsData] = useState<WardData | null>();
   const [streetsData, setStreetsData] = useState<StreetData | null>();
-  const [roadsData, setRoadsData] = useState<RoadData | null>();
+  // const [roadsData, setRoadsData] = useState<RoadData | null>();
 
   // handle select options
   const [selectedRegionOption, setSelectedRegionOption] = useState("");
@@ -58,10 +58,10 @@ const AddArtistFormAdmin = () => {
   const handleStreetChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedStreetOption(e.target.value);
   };
-  const [selectedRoadOption, setSelectedRoadOption] = useState("");
-  const handleRoadChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedRoadOption(e.target.value);
-  };
+  // const [selectedRoadOption, setSelectedRoadOption] = useState("");
+  // const handleRoadChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedRoadOption(e.target.value);
+  // };
 
   // Fetch Regions from API
   const {
@@ -102,13 +102,13 @@ const AddArtistFormAdmin = () => {
   }
   if(selectedStreetOption){
     // Get Roads
-    axios
-    .get(
-      `${BASE_URL}/addresses/streets/${selectedStreetOption}/roads`,
-    )
-    .then((response) => {
-      setRoadsData(response.data.data);
-    });
+    // axios
+    // .get(
+    //   `${BASE_URL}/addresses/streets/${selectedStreetOption}/roads`,
+    // )
+    // .then((response) => {
+    //   setRoadsData(response.data.data);
+    // });
   }
 
   return (
