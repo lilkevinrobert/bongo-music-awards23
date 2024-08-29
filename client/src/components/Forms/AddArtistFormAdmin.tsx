@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Typography } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
 import useFetch from "../../hooks/useFetch";
@@ -36,9 +36,9 @@ const AddArtistFormAdmin = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   // Data
-  const [districtsData, setDistrictsData] = useState<DistrictData | null>();
-  const [wardsData, setWardsData] = useState<WardData | null>();
-  const [streetsData, setStreetsData] = useState<StreetData | null>();
+  const [districtsData, setDistrictsData] = useState<DistrictData | null>(null);
+  const [wardsData, setWardsData] = useState<WardData | null>(null);
+  const [streetsData, setStreetsData] = useState<StreetData | null>(null);
   // const [roadsData, setRoadsData] = useState<RoadData | null>();
 
   // handle select options
@@ -70,37 +70,41 @@ const AddArtistFormAdmin = () => {
     loading: loadingRegions,
   }: FetchResult = useFetch(`${BASE_URL}/addresses/regions`);
 
-  if (selectedRegionOption) {
-    // Get Districts
-    axios
-      .get(`${BASE_URL}/addresses/regions/${selectedRegionOption}/districts`)
-      .then((response) => {
-        setDistrictsData(response.data.data);
-      });
-  }
+  useEffect(() => {
+    if (selectedRegionOption) {
+      // Get Districts
+      axios
+        .get(`${BASE_URL}/addresses/regions/${selectedRegionOption}/districts`)
+        .then((response) => {
+          setDistrictsData(null);
+          setDistrictsData(response.data.data);
+        });
+    }
+  }, [selectedRegionOption]);
 
-  if (selectedDistrictOption) {
-    // Get Wards
-    axios
-      .get(
-        `${BASE_URL}/addresses/districts/${selectedDistrictOption}/wards`,
-      )
-      .then((response) => {
-        setWardsData(response.data.data);
-      });
-  }
+  useEffect(() => {
+    if (selectedDistrictOption) {
+      // Get Wards
+      axios
+        .get(`${BASE_URL}/addresses/districts/${selectedDistrictOption}/wards`)
+        .then((response) => {
+          setWardsData(response.data.data);
+        });
+    }
+  }, [selectedDistrictOption]);
 
-  if(selectedWardOption){
-    // Get Streets
-    axios
-      .get(
-        `${BASE_URL}/addresses/wards/${selectedWardOption}/streets`,
-      )
-      .then((response) => {
-        setStreetsData(response.data.data);
-      });
-  }
-  if(selectedStreetOption){
+  useEffect(() => {
+    if (selectedWardOption) {
+      // Get Streets
+      axios
+        .get(`${BASE_URL}/addresses/wards/${selectedWardOption}/streets`)
+        .then((response) => {
+          setStreetsData(response.data.data);
+        });
+    }
+  }, [selectedWardOption]);
+
+  if (selectedStreetOption) {
     // Get Roads
     // axios
     // .get(
@@ -305,6 +309,12 @@ const AddArtistFormAdmin = () => {
                   ))}
                 </select>
               )}
+              {districtsData == null && (
+                <select
+                  disabled
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                ></select>
+              )}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
@@ -332,6 +342,12 @@ const AddArtistFormAdmin = () => {
                   ))}
                 </select>
               )}
+              {wardsData == null && (
+                <select
+                  disabled
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                ></select>
+              )}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
@@ -358,6 +374,12 @@ const AddArtistFormAdmin = () => {
                     </option>
                   ))}
                 </select>
+              )}
+              {streetsData == null && (
+                <select
+                  disabled
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                ></select>
               )}
             </div>
             <div className="flex w-full flex-col">
@@ -391,9 +413,12 @@ const AddArtistFormAdmin = () => {
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 house number
               </label>
-              <input type="text" placeholder="Enter your house number" className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
- />
-              </div>
+              <input
+                type="text"
+                placeholder="Enter your house number"
+                className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+              />
+            </div>
           </div>
         </div>
       </div>
