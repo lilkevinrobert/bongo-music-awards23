@@ -382,7 +382,7 @@ const AddArtistFormAdmin = () => {
                 ></select>
               )}
             </div>
-            <div className="flex w-full flex-col">
+            <div className="hidden w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 road <span className="text-red-500">*</span>
               </label>
@@ -418,6 +418,37 @@ const AddArtistFormAdmin = () => {
                 placeholder="Enter your house number"
                 className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
               />
+            </div>
+            <div className="flex w-full flex-col">
+              <label className="font-LatoBold text-base capitalize text-gray-900">
+                postal address
+              </label>
+              <input
+                type="text"
+                placeholder="Eg. P.O.Box 123, Dodoma"
+                className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+              />
+            </div>
+            <div className="flex w-full flex-col">
+              <label className="font-LatoBold text-base capitalize text-gray-900">
+                postal address type
+              </label>
+              <select name="" className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+              >
+                <option>Home</option>
+                <option>Work</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div className="flex w-full flex-col">
+              <label className="font-LatoBold text-base capitalize text-gray-900">
+                residence type
+              </label>
+              <select name="" className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+              >
+                <option>permanent</option>
+                <option>temporary</option>
+              </select>
             </div>
           </div>
         </div>
