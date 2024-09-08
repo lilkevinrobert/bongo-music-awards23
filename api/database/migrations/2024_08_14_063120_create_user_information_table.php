@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('profile_picture_url')->nullable();
             $table->unsignedBigInteger('address_id'); // reference to the address table (1-many)
             $table->unsignedBigInteger('user_id');
-//            $table->foreign('address_id')
-//                ->references('id')
-//                ->on('addresses')
-//                ->onDelete('cascade');
+            $table->foreign('address_id')
+                ->references('id')
+                ->on('addresses')
+                ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

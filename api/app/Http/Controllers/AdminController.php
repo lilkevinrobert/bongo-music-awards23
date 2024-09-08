@@ -16,7 +16,6 @@ class AdminController extends Controller
             'active_events' => 2,
             'genres' => 17,
             'categories' => 58,
-            'nominators' => 95,
             'artists' => 12
         ];
         return $data;

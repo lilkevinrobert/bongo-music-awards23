@@ -23,9 +23,9 @@ return new class extends Migration
 //            $table->unsignedBigInteger('album_id')->nullable();
 //            $table->unsignedBigInteger('single_id')->nullable();
 //            $table->unsignedBigInteger('artist_award_id')->nullable();
-            $table->string('bio');
+            $table->text('bio');
 //            $table->unsignedBigInteger('genre_id');
-            $table->string('official_website_link');
+            $table->string('official_website_link')->nullable();
             $table->string('spotify_music_link')->nullable();
             $table->string('apple_music_link')->nullable();
             $table->string('youtube_music_link')->nullable();

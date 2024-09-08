@@ -20,7 +20,7 @@ class UserInformation extends Model
         'date_of_birth',
         'profile_picture_url',
         'status',
-        'phone_number',
+        'phone',
         'address_id',
         'user_id'
     ];
@@ -31,15 +31,16 @@ class UserInformation extends Model
             'first_name' => ['required', 'min:2', 'max:50'],
             'middle_name' => ['nullable', 'min:2', 'max:50'],
             'last_name' => ['required', 'min:2', 'max:50'],
-            'username' => ['required', 'min:2', 'max:50'],
-            'email' => ['required','email'],
+            'username' => ['required', 'min:2', 'max:50', 'unique:users,username'],
+            'email' => ['required','email', 'unique:users,email'],
+            'user_role' => ['required'],
             'password' => ['required'],
-            'gender' => ['required'], // enum validation of MALE, FEMALE
-            'date_of_birth' => ['required'], //change it to type date
-            'profile_picture_url' => ['required'],
-            'phone_number' => ['required'], // phone number validation
-            'address_id' => ['required'], // exists address table
-            'user_id' => ['required'], //exists user id
+            'gender' => ['required'], // TODO enum validation of MALE, FEMALE
+            'date_of_birth' => ['required'], //TODO change it to type date
+            'profile_picture_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg'],
+            'phone' => ['required'], //TODO phone number validation
+            'address_id' => ['nullable', 'exists:addresses,id'],
+            'user_id' => ['nullable', 'exists:users,id'],
         ];
 
         $nice_names = [ # Friendly names
@@ -48,9 +49,10 @@ class UserInformation extends Model
             'password' => 'Password',
             'username' => 'Username',
             'email' => 'Email',
+            'user_role' => 'User Role',
             'date_of_birth' => 'Date Of Birth',
             'profile_picture_url' => 'Profile Picture',
-            'phone_number' => 'Phone Number',
+            'phone' => 'Phone Number',
             'address_id' => 'Address',
             'user_id' => 'User',
         ];

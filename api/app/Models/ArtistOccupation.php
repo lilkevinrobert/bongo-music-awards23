@@ -6,24 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
-class Occupation extends Model
+class ArtistOccupation extends Model
 {
     use HasFactory;
+    protected $table = 'artist_occupations';
 
-    protected $table = 'occupations';
     protected $fillable = [
-        'name',
-        'description'
+        'artist_id',
+        'occupation_id',
     ];
 
     public static function validate($input, $id = null)
     {
         $rules = [ # place-holder for validation rules
-            'name' => ['required'],
-            'description' => ['required'],
+            'artist_id' => ['required', 'exists:artist_profiles,id'],
+            'occupation_id' => ['required', 'exists:occupations,id'],
         ];
 
-        $nice_names = [];
+        $nice_names = [ # Friendly names
+            'artist_id' => 'Artist',
+            'occupation_id' => 'Occupation',
+        ];
 
         # validation code
         $validator = Validator::make($input, $rules);
