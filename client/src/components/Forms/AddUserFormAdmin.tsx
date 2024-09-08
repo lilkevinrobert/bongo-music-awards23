@@ -122,7 +122,7 @@ const schema = yup.object().shape({
     .trim(),
 });
 
-const AddArtistFormAdmin = () => {
+const AddUserFormAdmin = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const location = useLocation();
@@ -714,155 +714,6 @@ const AddArtistFormAdmin = () => {
           </div>
         </div>
       </section>
-      <div className="hidden py-2 pr-4">
-        <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
-          artist profile
-        </Typography>
-        <div className="flex w-full gap-4 rounded-md bg-slate-50 p-4">
-          <div className="grid w-full grid-cols-2 items-center justify-between gap-2">
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                writer
-              </label>
-              <input
-                type="tel"
-                name="phone_number"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                record label
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                official website link
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                debut year
-              </label>
-              <input
-                type="text"
-                name="last_name"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                stage name
-              </label>
-              <select
-                name="district"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                albums
-              </label>
-              <select
-                name="ward"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                singles
-              </label>
-              <select
-                name="ward"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                bio
-              </label>
-              <select
-                name="building_house_number"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                genre
-              </label>
-              <select
-                name="building_house_number"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                spotify website link
-              </label>
-              <input
-                type="text"
-                name="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                apple website link
-              </label>
-              <input
-                type="text"
-                name="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                youtube website link
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-            <div className="flex w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                boomplay website link
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="mx-4 mb-10 flex flex-row items-center justify-end rounded-md bg-slate-200 px-4 py-4">
         <Button
           size="sm"
@@ -879,4 +730,4 @@ const AddArtistFormAdmin = () => {
   );
 };
 
-export default AddArtistFormAdmin;
+export default AddUserFormAdmin;

@@ -46,7 +46,7 @@ import {
   MdOutlineAttachMoney,
 } from "react-icons/md";
 import { HiMiniArrowTrendingUp } from "react-icons/hi2";
-import AdminAddArtistPage from "./pages/Admin/AdminAddArtistPage.tsx";
+import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
