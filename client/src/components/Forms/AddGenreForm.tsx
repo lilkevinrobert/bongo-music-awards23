@@ -32,7 +32,7 @@ const AddGenreForm = ({ closeModal }: FormProps) => {
 
   const onSubmit = async (data: any) => {
     closeModal()
-    const processingToastId = toast.loading("Processing..")
+    const processingToastId = toast.loading("Processing...")
     axios
         .post(`${BASE_URL}/genres`, data)
         .then((res) => {
