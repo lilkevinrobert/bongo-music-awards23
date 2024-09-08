@@ -66,7 +66,10 @@ const schema = yup.object().shape({
     value: yup.string().required("Please Select Residence type."),
   }),
   username: yup.string().required("Username is required."),
-  email: yup.string().required("Email is required.").email("Email format not acceptable."),
+  email: yup
+    .string()
+    .required("Email is required.")
+    .email("Email format not acceptable."),
   password: yup
     .string()
     .required("Password is required.")
@@ -96,7 +99,8 @@ const schema = yup.object().shape({
     ),
   house_number: yup
     .number()
-    .required("House Number is required.").moreThan(0, "Must be a number greater than 0"),
+    .required("House Number is required.")
+    .moreThan(0, "Must be a number greater than 0 (zero)"),
   postal_address: yup
     .string()
     .required("Postal Address is required.")
@@ -104,7 +108,8 @@ const schema = yup.object().shape({
   phone_number: yup
     .string()
     .required("Phone number is required.")
-    .length(10, "Only 10 numbers required.").trim(),
+    .length(10, "Only 10 numbers required.")
+    .trim(),
 });
 
 const AddArtistFormAdmin = () => {
@@ -209,8 +214,8 @@ const AddArtistFormAdmin = () => {
         <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
           personal information
         </Typography>
-        <div className="flex flex-col lg:flex-row w-full gap-4 rounded-md bg-slate-50 p-4">
-          <div className="flex w-full lg:w-4/12 flex-col">
+        <div className="flex w-full flex-col gap-4 rounded-md bg-slate-50 p-4 lg:flex-row">
+          <div className="flex w-full flex-col lg:w-4/12">
             <label className="font-LatoBold text-base capitalize text-gray-900">
               Profile Picture
             </label>
@@ -222,7 +227,7 @@ const AddArtistFormAdmin = () => {
             />
             <div className="hidden h-full w-full rounded bg-gray-400"></div>
           </div>
-          <div className="grid w-full grid-cols-1 md:grid-cols-2 items-center justify-between gap-2">
+          <div className="grid w-full grid-cols-1 items-center justify-between gap-2 md:grid-cols-2">
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 first name <span className="text-red-500">*</span>
@@ -350,8 +355,8 @@ const AddArtistFormAdmin = () => {
         <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
           contact information
         </Typography>
-        <div className="flex flex-col lg:flex-row w-full gap-4 rounded-md bg-slate-50 p-4">
-          <div className="grid w-full grid-cols-1 md:grid-cols-2 items-center justify-between gap-2">
+        <div className="flex w-full flex-col gap-4 rounded-md bg-slate-50 p-4 lg:flex-row">
+          <div className="grid w-full grid-cols-1 items-center justify-between gap-2 md:grid-cols-2">
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 phone number <span className="text-red-500">*</span>
@@ -360,7 +365,7 @@ const AddArtistFormAdmin = () => {
                 type="tel"
                 placeholder="Like: 0714456680"
                 {...register("phone_number", { required: true })}
-                className="mt-1 w-full rounded-md font-LatoRegular border border-gray-300 py-2 pl-4"
+                className="mt-1 w-full rounded-md border border-gray-300 py-2 pl-4 font-LatoRegular"
               />
               {errors.phone_number && (
                 <ErrorFormField message={`${errors.phone_number?.message}`} />
@@ -374,13 +379,11 @@ const AddArtistFormAdmin = () => {
                 type="email"
                 placeholder="Enter email"
                 {...register("email", { required: true })}
-                className="mt-1 w-full font-LatoRegular rounded-md border border-gray-300 py-2 pl-4"
+                className="mt-1 w-full rounded-md border border-gray-300 py-2 pl-4 font-LatoRegular"
               />
-              {
-                errors.email && (
-                  <ErrorFormField message={`${errors.email?.message}`} />
-                )
-              }
+              {errors.email && (
+                <ErrorFormField message={`${errors.email?.message}`} />
+              )}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
@@ -456,7 +459,7 @@ const AddArtistFormAdmin = () => {
               {districtsData == null && (
                 <select
                   disabled
-                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                  className="mt-1 h-10 w-full rounded-md border border-dotted border-gray-100 p-2 pl-4 font-LatoRegular capitalize"
                 ></select>
               )}
             </div>
@@ -489,7 +492,7 @@ const AddArtistFormAdmin = () => {
               {wardsData == null && (
                 <select
                   disabled
-                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                  className="mt-1 h-10 w-full rounded-md border border-dotted border-gray-100 p-2 pl-4 font-LatoRegular capitalize"
                 ></select>
               )}
             </div>
@@ -522,7 +525,7 @@ const AddArtistFormAdmin = () => {
               {streetsData == null && (
                 <select
                   disabled
-                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                  className="mt-1 h-10 w-full rounded-md border border-dotted border-gray-100 p-2 pl-4 font-LatoRegular capitalize"
                 ></select>
               )}
             </div>
@@ -604,7 +607,9 @@ const AddArtistFormAdmin = () => {
                 }}
               />
               {errors.postal_address_type?.value?.message && (
-                <ErrorFormField message={`${errors.postal_address_type?.value?.message}`} />
+                <ErrorFormField
+                  message={`${errors.postal_address_type?.value?.message}`}
+                />
               )}
             </div>
             <div className="flex w-full flex-col">
@@ -620,7 +625,7 @@ const AddArtistFormAdmin = () => {
                       {...field}
                       options={[
                         { value: "Permanent", label: "Permanent" },
-                        { value: "Temporary", label: "Temporary" }
+                        { value: "Temporary", label: "Temporary" },
                       ]}
                       className="font-LatoRegular"
                       placeholder="Select Type of Residence"
@@ -629,7 +634,9 @@ const AddArtistFormAdmin = () => {
                 }}
               />
               {errors.residence_type?.value?.message && (
-                <ErrorFormField message={`${errors.residence_type?.value?.message}`} />
+                <ErrorFormField
+                  message={`${errors.residence_type?.value?.message}`}
+                />
               )}
             </div>
           </div>
