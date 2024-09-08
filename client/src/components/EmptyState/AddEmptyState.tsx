@@ -7,6 +7,7 @@ import AddNominatorForm from "../Forms/AddNominatorForm";
 import AddJudgeForm from "../Forms/AddJudgeForm";
 import AddCategoryForm from "../Forms/AddCategoryForm";
 import AddGenreForm from "../Forms/AddGenreForm";
+import { useNavigate } from "react-router-dom"
 
 type AddEmptyStateProps = {
   itemName: string;
@@ -26,10 +27,14 @@ const AddEmptyState = ({ itemName }: AddEmptyStateProps) => {
   const handleOpenJudgeDialog = () => setOpenJudgeDialog((cur) => !cur);
   const handleOpenCategoryDialog = () => setOpenCategoryDialog((cur) => !cur);
   const handleOpenGenreDialog = () => setOpenGenreDialog((cur) => !cur);
+
+  const navigate = useNavigate()
+
   const dialogSelector = () => {
     switch (itemName) {
       case "artist":
-        handleOpenArtistDialog();
+        // redirect to create user form
+        navigate(`/admin/add-user-form?origin=artist`)
         return;
       case "nominator":
         handleOpenNominatorDialog();
@@ -38,7 +43,8 @@ const AddEmptyState = ({ itemName }: AddEmptyStateProps) => {
         handleOpenGenreDialog();
         return;
       case "judge":
-        handleOpenJudgeDialog();
+        // redirect to create user form
+        navigate(`/admin/add-user-form?origin=judge`)
         return;
       case "category":
         handleOpenCategoryDialog();

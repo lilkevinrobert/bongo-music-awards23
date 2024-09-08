@@ -169,7 +169,7 @@ function App() {
       path: "/admin",
       children: [
         {
-          path: "add-artist-form/",
+          path: "add-user-form/",
           element: (
             <Suspense fallback={<Loading />}>
                 <AdminAddArtistPage />

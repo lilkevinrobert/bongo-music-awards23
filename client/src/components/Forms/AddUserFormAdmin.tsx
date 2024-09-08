@@ -8,6 +8,8 @@ import ErrorFormField from "../Errors/ErrorFormField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Select from "react-select";
+import toast, { Toaster } from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 
 interface Data {
   data: [];
@@ -33,9 +35,16 @@ interface StreetData {
   streets: string[];
 }
 
+interface File {
+  name: string;
+  size: number;
+}
+
+// Image validation constants
 const MINIMUM_AGE = 18;
 
 type Inputs = {
+  profile_image: File;
   first_name: string;
   middle_name?: string | undefined;
   last_name: string;
@@ -46,13 +55,14 @@ type Inputs = {
   email: string;
   date_of_birth: string;
   password: string;
-  house_number: number;
+  building_house_number: number;
   postal_address: string;
   phone_number: string;
 };
 
 // Validation Schema
 const schema = yup.object().shape({
+  profile_image: yup.mixed<File>().required("Profile picture is required."),
   first_name: yup.string().required("First name is required."),
   middle_name: yup.string(),
   last_name: yup.string().required("Last name is required."),
@@ -97,7 +107,7 @@ const schema = yup.object().shape({
         return age >= MINIMUM_AGE;
       },
     ),
-  house_number: yup
+  building_house_number: yup
     .number()
     .required("House Number is required.")
     .moreThan(0, "Must be a number greater than 0 (zero)"),
@@ -114,6 +124,10 @@ const schema = yup.object().shape({
 
 const AddArtistFormAdmin = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+  const origin = urlParams.get("origin");
 
   const {
     register,
@@ -201,13 +215,57 @@ const AddArtistFormAdmin = () => {
   }
 
   const onSubmit = async (data: any) => {
-    console.log(data);
+    // let modified_gender = data.gender.value
+    let modified_data = {
+      first_name: data.first_name,
+      middle_name: data.middle_name,
+      last_name: data.last_name,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      gender: data.gender.value,
+      date_of_birth: data.date_of_birth,
+      phone: data.phone_number,
+      region_id: selectedRegionOption,
+      district_id: selectedDistrictOption,
+      ward_shehia_id: selectedWardOption,
+      street_id: selectedStreetOption,
+      building_house_number: data.building_house_number,
+      postal_address: data.postal_address,
+      address_type: data.postal_address_type.value,
+      residence_type: data.residence_type.value,
+      user_role: origin?.toUpperCase(),
+    };
+    const processingToastId = toast.loading("Processing...");
+
+    axios
+      .post(`${BASE_URL}/user_informations`, modified_data)
+      .then((res) => {
+        toast.dismiss(processingToastId);
+        if (res.status == 201) {
+          const responseToastId = toast.success("User created successfully.");
+          setTimeout(() => {
+            toast.dismiss(responseToastId);
+            window.location.reload();
+          }, 3000);
+        }
+      })
+      .catch((e) => {
+        const messages: any = Object.values(e.response.data.message);
+
+        for (let item of messages) {
+          item.map((text: string) => {
+            toast.error(`${text}`);
+          });
+        }
+        toast.dismiss(processingToastId);
+      });
   };
 
   return (
     <form className="pl-4" onSubmit={handleSubmit(onSubmit)}>
       <Typography className="font-LatoBold text-lg capitalize text-gray-900">
-        add artist
+        add {origin && origin}
       </Typography>
       {/* Personal information section */}
       <section className="py-2 pr-4">
@@ -219,12 +277,24 @@ const AddArtistFormAdmin = () => {
             <label className="font-LatoBold text-base capitalize text-gray-900">
               Profile Picture
             </label>
-            <input
-              type="file"
-              name="profile_picture"
-              required
-              className="mt-1 w-full rounded-md p-2 font-LatoRegular"
+            <Controller
+              name="profile_image"
+              control={control}
+              render={({ field: { onChange, onBlur } }) => (
+                <input
+                  name="image"
+                  type="file"
+                  className="font-LatoRegular"
+                  accept=".jpg, .jpeg"
+                  onChange={(e) => onChange(e.target.files)}
+                  onBlur={onBlur}
+                  multiple={false}
+                />
+              )}
             />
+            {errors.profile_image && (
+              <ErrorFormField message={`${errors.profile_image?.message}`} />
+            )}
             <div className="hidden h-full w-full rounded bg-gray-400"></div>
           </div>
           <div className="grid w-full grid-cols-1 items-center justify-between gap-2 md:grid-cols-2">
@@ -563,11 +633,13 @@ const AddArtistFormAdmin = () => {
               <input
                 type="number"
                 placeholder="Enter house number"
-                {...register("house_number", { required: true })}
+                {...register("building_house_number", { required: true })}
                 className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
               />
-              {errors.house_number && (
-                <ErrorFormField message={`${errors.house_number?.message}`} />
+              {errors.building_house_number && (
+                <ErrorFormField
+                  message={`${errors.building_house_number?.message}`}
+                />
               )}
             </div>
             <div className="flex w-full flex-col">
@@ -729,7 +801,7 @@ const AddArtistFormAdmin = () => {
                 bio
               </label>
               <select
-                name="house_number"
+                name="building_house_number"
                 className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
               >
                 <option>1</option>
@@ -741,7 +813,7 @@ const AddArtistFormAdmin = () => {
                 genre
               </label>
               <select
-                name="house_number"
+                name="building_house_number"
                 className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
               >
                 <option>1</option>
@@ -797,9 +869,12 @@ const AddArtistFormAdmin = () => {
           type="submit"
           className="float-right font-LatoBold text-xs capitalize transition ease-in-out hover:bg-amber-400 hover:text-gray-900"
         >
-          save changes
+          add user
         </Button>
       </div>
+
+      {/* Toaster */}
+      <Toaster position="top-center" containerClassName="font-LatoRegular"  />
     </form>
   );
 };
