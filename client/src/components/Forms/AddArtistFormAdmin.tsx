@@ -96,8 +96,7 @@ const schema = yup.object().shape({
     ),
   house_number: yup
     .number()
-    .required("House Number is required.")
-    .min(1, "House number can not be zero (0)"),
+    .required("House Number is required.").moreThan(0, "Must be a number greater than 0"),
   postal_address: yup
     .string()
     .required("Postal Address is required.")
@@ -143,10 +142,6 @@ const AddArtistFormAdmin = () => {
   const handleStreetChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedStreetOption(e.target.value);
   };
-  // const [selectedRoadOption, setSelectedRoadOption] = useState("");
-  // const handleRoadChange = (e: ChangeEvent<HTMLSelectElement>) => {
-  //   setSelectedRoadOption(e.target.value);
-  // };
 
   // Fetch Regions from API
   const {
@@ -214,8 +209,8 @@ const AddArtistFormAdmin = () => {
         <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
           personal information
         </Typography>
-        <div className="flex w-full gap-4 rounded-md bg-slate-50 p-4">
-          <div className="flex w-4/12 flex-col">
+        <div className="flex flex-col lg:flex-row w-full gap-4 rounded-md bg-slate-50 p-4">
+          <div className="flex w-full lg:w-4/12 flex-col">
             <label className="font-LatoBold text-base capitalize text-gray-900">
               Profile Picture
             </label>
@@ -227,7 +222,7 @@ const AddArtistFormAdmin = () => {
             />
             <div className="hidden h-full w-full rounded bg-gray-400"></div>
           </div>
-          <div className="grid w-full grid-cols-2 items-center justify-between gap-2">
+          <div className="grid w-full grid-cols-1 md:grid-cols-2 items-center justify-between gap-2">
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 first name <span className="text-red-500">*</span>
@@ -355,8 +350,8 @@ const AddArtistFormAdmin = () => {
         <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
           contact information
         </Typography>
-        <div className="flex w-full gap-4 rounded-md bg-slate-50 p-4">
-          <div className="grid w-full grid-cols-2 items-center justify-between gap-2">
+        <div className="flex flex-col lg:flex-row w-full gap-4 rounded-md bg-slate-50 p-4">
+          <div className="grid w-full grid-cols-1 md:grid-cols-2 items-center justify-between gap-2">
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 phone number <span className="text-red-500">*</span>
