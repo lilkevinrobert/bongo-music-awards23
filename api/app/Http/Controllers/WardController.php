@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ward;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class WardController extends Controller
 {
@@ -17,48 +19,26 @@ class WardController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Ward  $ward
-     * @return \Illuminate\Http\Response
      */
-    public function show(Ward $ward)
+    public function show($wardId)
     {
-        //
+        $ward = Ward::find($wardId);
+        if (!isset($ward)){
+            return response()->json([
+                'status' => ResponseAlias::HTTP_NOT_FOUND,
+                'message' => 'Ward not found',
+            ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
+        }
+
+        $ward_streets =  Ward::with('streets')->find($wardId);
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Ward Streets',
+            'data' => $ward_streets,
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ward  $ward
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Ward $ward)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ward  $ward
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ward $ward)
-    {
-        //
-    }
 }

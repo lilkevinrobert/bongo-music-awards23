@@ -42,20 +42,22 @@ class ArtistProfile extends Model
     public static function validate($input, $id = null)
     {
         $rules = [ # place-holder for validation rules
-            'stage_name' => ['required', 'min:2', 'max:50'],
-            'bio' => ['required',],
-            'phone_number' => ['required'],
-            'genre' => ['nullable'],
-            'date_of_birth' => ['nullable'],
-            'place_of_birth' => ['nullable'],
+            'user_information_id' => ['required', 'exists:user_informations,id'],
+            'artist_occupations' => ['required',], // TODO to be of type array
+            'genres' => ['required',], // TODO to be of type array
+            'record_label' => ['required'],
+            'debut_year' => ['required','integer'], //TODO year only not date
+            'stage_name' => ['required'],
+            'bio' => ['required'],
+//            'created_by' => ['required', 'exists:users,id'],
         ];
 
         $nice_names = [ # Friendly names
-            'stage_name' => 'Artist stage name',
-            'bio' => 'Artist biography',
-            'phone_number' => 'Phone number',
-            'date_of_birth' => 'Date of birth',
-            'place_of_birth' => 'Place of birth'
+            'user_information_id' => 'User Information',
+            'artist_occupations' => 'Artist Occupations',
+            'record_label' => 'Artist biography',
+            'debut_year' => 'Debut Year',
+            'stage_name' => 'Stage Name',
         ];
 
         # validation code

@@ -17,11 +17,8 @@ class Address extends Model
         'district_id',
         'ward_shehia_id',
         'street_id',
-        'street_road_id',
         'building_house_number',
-        'physical_address',
         'postal_address',
-        'postal_address_city',
         'address_type',
         'residence_type'
     ];
@@ -30,29 +27,23 @@ class Address extends Model
     {
         $rules = [ # place-holder for validation rules
             //check the input if the exists in the regions, distraction, ward, street tables
-            'region_id' => ['required'],
-            'district_id' => ['required'],
-            'ward_shehia_id' => ['required'],
-            'street_id' => ['required'],
-            'street_road_id' => ['required'],
+            'region_id' => ['required','exists:regions,id'],
+            'district_id' => ['required','exists:districts,id'],
+            'ward_shehia_id' => ['required', 'exists:wards,id'],
+            'street_id' => ['required', 'exists:streets,id'],
             'building_house_number' => ['required'],
-            'physical_address' => ['required'],
             'postal_address' => ['required'],
-            'postal_address_city' => ['required'],
-            'address_type' => ['required'], //enum validation
-            'residence_type' => ['required'], //enum validation
+            'address_type' => ['required'], //TODO enum validation
+            'residence_type' => ['required'], //TODO enum validation
         ];
 
         $nice_names = [ # Friendly names
             'region_id' => 'Region',
             'district_id' => 'District',
-            'ward_shehia_id' => 'Ward',
+            'ward_shehia_id' => 'Ward or Shehia',
             'street_id' => 'Street',
-            'street_road_id' => 'Street Road',
             'building_house_number' => 'Building House Number',
-            'physical_address' => 'Physical Address',
             'postal_address' => 'Postal Address',
-            'postal_address_city' => 'Postal Address City',
             'address_type' => 'Address Type',
             'residence_type' => 'Residence Type',
         ];

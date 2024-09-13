@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ArtistProfileResource;
+use App\Models\ArtistGenre;
+use App\Models\ArtistOccupation;
 use App\Models\ArtistProfile;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -23,17 +25,22 @@ class ArtistProfilesController extends Controller
      */
     public function index()
     {
-        $artistProfiles = ArtistProfile::all();
-        return ArtistProfileResource::collection($artistProfiles);
+//        $artistProfiles = ArtistProfile::all();
+//        return ArtistProfileResource::collection($artistProfiles);
+        return ["data" => []];
     }
 
-    public function registerUser(Request $request){
-        $validator = User::validate($request->all());
-
-        if ($validator->fails()) {
+    /**
+     * Store a newly created resource in storage.
+     *
+     */
+    public function store(Request $request)
+    {
+        $profileValidator = ArtistProfile::validate($request->all());
+        if ($profileValidator->fails()) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
-                'message' => $validator->messages(),
+                'message' => $profileValidator->messages(),
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
 
@@ -41,83 +48,51 @@ class ArtistProfilesController extends Controller
             DB::beginTransaction();
 
             $data = [
-                'first_name' => $request->input('first_name'),
-                'last_name' => $request->input('last_name'),
-                'email' => $request->input('email'),
-                'role' => 'Artist',
-                'password' => Hash::make($request->input('password')),
+                'user_information_id' => $profileValidator->validated()['user_information_id'],
+                'record_label' => $profileValidator->validated()['record_label'],
+                'debut_year' => $profileValidator->validated()['debut_year'],
+                'stage_name' => $profileValidator->validated()['stage_name'],
+                'bio' => $profileValidator->validated()['bio'],
+                'official_website_link' => $request->input('official_website_link'),
+                'spotify_music_link' => $request->input('spotify_music_link'),
+                'apple_music_link' => $request->input('apple_music_link'),
+                'youtube_music_link' => $request->input('youtube_music_link'),
+                'boomplay_music_link' => $request->input('boomplay_music_link'),
+                'created_by' => 1, //TODO to be change to authenticated user (ADMIN id)
             ];
 
-            $user = User::create($data);
+            $artist_profile = ArtistProfile::create($data);
 
-            DB::commit();
-            return response()->json([
-                'status' => ResponseAlias::HTTP_CREATED,
-                'data' => $user,
-            ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+            if ($artist_profile) {
+                //Artist Occupation
+                foreach ($profileValidator->validated()['artist_occupations'] as $artistOccupation) {
+                    ArtistOccupation::create([
+                        'artist_id' => $profileValidator->validated()['user_information_id'],
+                        'occupation_id' => $artistOccupation
+                    ]);
+                }
 
+                //Artist Genres
+                foreach ($profileValidator->validated()['genres'] as $genreId) {
+                    ArtistGenre::create([
+                        'artist_id' => $profileValidator->validated()['user_information_id'],
+                        'genre_id' => $genreId
+                    ]);
+                }
+
+                DB::commit();
+                return response()->json([
+                    'status' => ResponseAlias::HTTP_CREATED,
+                    'message' => 'Artist profile created successfully',
+                    'data' => new ArtistProfileResource($artist_profile),
+                ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+            }
         } catch (QueryException|\Exception $e) {
             return response()->json([
-                'error' => 'Something went wrong while creating the user. Please try again later.',
-                'message' => $e->getMessage()],
-                ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
+                'error' => 'Something went wrong while creating Artist profile. Please try again later.',
+                'message' => $e->getMessage()
+            ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return JsonResponse
-     */
-    public function store(Request $request)
-    {
-
-        /**
-         * CREATING ARTIST Profile
-         * Validating artist inputs
-         *
-         */
-        $validator = ArtistProfile::validate($request->all());
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
-                'message' => $validator->messages(),
-            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
-        }
-
-        /**
-         * CREATING ARTIST USER
-         * Validating user inputs
-         */
-
-        $userValidator = User::validate($request->all());
-        if ($userValidator->fails()) {
-            return response()->json([
-                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
-                'message' => $userValidator->messages(),
-            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
-        }
-
-        try {
-
-            DB::beginTransaction();
-            $user = User::create($userValidator->safe()->merge(['role' => 'artist', 'password' => Hash::make($userValidator->validated()['last_name'])])->all());
-            $artist_profile = ArtistProfile::create($validator->safe()->merge(['user_id' => $user->id, 'created_by' => auth()->id() ?: 1])->all());
-
-            DB::commit();
-            return response()->json([
-                'status' => ResponseAlias::HTTP_CREATED,
-                'data' => $user,
-            ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
-
-        } catch (QueryException|\Exception $e) {
-            return response()->json([
-                'error' => 'Something went wrong while creating the user. Please try again later.',
-                'message' => $e->getMessage()],
-                ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
-        }
-
     }
 
     /**
@@ -127,7 +102,7 @@ class ArtistProfilesController extends Controller
     public function show(ArtistProfile $artistProfile, $id)
     {
         $artistProfiles = ArtistProfile::find($id);
-        if(!isset($artistProfiles)){
+        if (!isset($artistProfiles)) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
                 'error' => 'Resource not found.',
@@ -138,20 +113,21 @@ class ArtistProfilesController extends Controller
     }
 
 
-    public function getArtist($id) {
+    public function getArtist($id)
+    {
 
         // USE SQL JOINS use (user_id)
-        $user = User::select(['first_name','middle_name','last_name','email'])
-            ->where('id',$id)
+        $user = User::select(['first_name', 'middle_name', 'last_name', 'email'])
+            ->where('id', $id)
             ->limit(1)
             ->first();
 
-        $artist_profile = ArtistProfile::select(['stage_name','phone_number','bio'])
+        $artist_profile = ArtistProfile::select(['stage_name', 'phone_number', 'bio'])
             ->where('user_id', $id)
             ->limit(1)
             ->first();
 
-        if (!isset($user) && !isset($artist_profile)){
+        if (!isset($user) && !isset($artist_profile)) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
                 'error' => 'Resource not found.',

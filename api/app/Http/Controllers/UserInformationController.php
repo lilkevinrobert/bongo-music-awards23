@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\UserInformationResource;
 use App\Http\Resources\UserResource;
 use App\Models\Address;
 use App\Models\Category;
@@ -24,7 +25,8 @@ class UserInformationController extends Controller
      */
     public function index()
     {
-        //
+        $user_information = UserInformation::all();
+        return UserInformationResource::collection($user_information);
     }
 
     /**
@@ -37,7 +39,7 @@ class UserInformationController extends Controller
         $userInformationValidator = UserInformation::validate($request->all());
         $addressValidator = Address::validate($request->all());
 
-        // handle user information's validation failure
+        // Handle user information's and address validation failure
         if ($userInformationValidator->fails() && $addressValidator->fails()) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
@@ -45,19 +47,18 @@ class UserInformationController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
 
-
-        // address information validation
-        $addressValidator = Address::validate($request->all());
-        if ($addressValidator->fails()) {
+        // User information validation
+        $userInformationValidator = UserInformation::validate($request->all());
+        if ($userInformationValidator->fails()) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $userInformationValidator->messages(),
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
 
-        // user information validation
-        $userInformationValidator = UserInformation::validate($request->all());
-        if ($userInformationValidator->fails()) {
+        // Address information validation
+        $addressValidator = Address::validate($request->all());
+        if ($addressValidator->fails()) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
                 'message' => $userInformationValidator->messages(),
@@ -71,27 +72,26 @@ class UserInformationController extends Controller
             $user = User::create([
                 'username' => $userInformationValidator->validated()['username'],
                 'email' => $userInformationValidator->validated()['email'],
+                'user_role' => $userInformationValidator->validated()['user_role'],
                 'password' => Hash::make($userInformationValidator->validated()['password']),
             ]);
 
             if ($user) {
                 //Validate user address information's
                 $address = [
-                    'region_id' => $userInformationValidator->validated()['region_id'],
-                    'district_id' => $userInformationValidator->validated()['district_id'],
-                    'ward_shehia_id' => $userInformationValidator->validated()['ward_shehia_id'],
-                    'street_id' => $userInformationValidator->validated()['street_id'],
-                    'street_road_id' => $userInformationValidator->validated()['street_road_id'],
-                    'building_house_number' => $userInformationValidator->validated()['building_house_number'],
-                    'physical_address' => $userInformationValidator->validated()['physical_address'],
-                    'postal_address' => $userInformationValidator->validated()['postal_address'],
-                    'postal_address_city' => $userInformationValidator->validated()['postal_address_city'],
-                    'address_type' => $userInformationValidator->validated()['address_type'],
-                    'residence_type' => $userInformationValidator->validated()['residence_type'],
+                    'region_id' => $addressValidator->validated()['region_id'],
+                    'district_id' => $addressValidator->validated()['district_id'],
+                    'ward_shehia_id' => $addressValidator->validated()['ward_shehia_id'],
+                    'street_id' => $addressValidator->validated()['street_id'],
+                    'building_house_number' => $addressValidator->validated()['building_house_number'],
+                    'postal_address' => $addressValidator->validated()['postal_address'],
+                    'address_type' => $addressValidator->validated()['address_type'],
+                    'residence_type' => $addressValidator->validated()['residence_type'],
                 ];
                 $address = Address::create($address);
 
                 // saving image to the database returning the image_url
+                // TODO image saving to the database
 
                 if ($address) {
                     $user_info_data = [
@@ -100,8 +100,8 @@ class UserInformationController extends Controller
                         'last_name' => $userInformationValidator->validated()['last_name'],
                         'gender' => $userInformationValidator->validated()['gender'],
                         'date_of_birth' => $userInformationValidator->validated()['date_of_birth'],
-                        'profile_picture_url' => $userInformationValidator->validated()['profile_picture_url'],
-                        'phone_number' => $userInformationValidator->validated()['phone_number'],
+                        'profile_picture_url' => 'No image defined yet',
+                        'phone' => $userInformationValidator->validated()['phone'],
                         'address_id' => $address->id,
                         'user_id' => $user->id,
                     ];
@@ -114,13 +114,11 @@ class UserInformationController extends Controller
                         return response()->json([
                             'status' => ResponseAlias::HTTP_CREATED,
                             'message' => 'User created successfully',
-//                            'data' => new CategoryResource($categories),
-                            'data' => [$user_data],
+                            'data' => new UserInformationResource($user_data),
                         ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
                     }
                 }
             }
-
 
             DB::rollBack();
             return response()->json([
@@ -129,7 +127,7 @@ class UserInformationController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         } catch (QueryException|\Exception $e) {
             return response()->json([
-                'error' => 'Something went wrong while creating new category. Please try again later.',
+                'error' => 'Something went wrong while creating new User. Please try again later.',
                 'message' => $e->getMessage()
             ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
