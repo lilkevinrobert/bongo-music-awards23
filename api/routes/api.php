@@ -82,7 +82,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'artists'], function ($request) {
 
         //Create artist profile
-        Route::post('/{userId}/profiles', [ArtistProfilesController::class, 'store']);
+        Route::post('/profiles', [ArtistProfilesController::class, 'store']);
         Route::get('/', [ArtistProfilesController::class,'index']);
     });
 

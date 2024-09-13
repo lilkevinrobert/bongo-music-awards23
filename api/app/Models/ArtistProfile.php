@@ -44,10 +44,12 @@ class ArtistProfile extends Model
         $rules = [ # place-holder for validation rules
             'user_information_id' => ['required', 'exists:user_informations,id'],
             'artist_occupations' => ['required',], // TODO to be of type array
+            'genres' => ['required',], // TODO to be of type array
             'record_label' => ['required'],
-            'debut_year' => ['required'], //TODO year only not date
+            'debut_year' => ['required','integer'], //TODO year only not date
             'stage_name' => ['required'],
             'bio' => ['required'],
+//            'created_by' => ['required', 'exists:users,id'],
         ];
 
         $nice_names = [ # Friendly names

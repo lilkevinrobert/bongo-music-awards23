@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_information_id');
 //            $table->unsignedBigInteger('artist_occupation_id'); // The artist’s roles (e.g., singer, songwriter, producer, instrumentalist).
             $table->string('record_label');
-            $table->date('debut_year');
+//
+//          $table->date('debut_year'); //TODO should be to date YYYY i.e 2000, 2001 and not integer
+            $table->integer('debut_year');
             $table->string('stage_name');
 //            $table->unsignedBigInteger('album_id')->nullable();
 //            $table->unsignedBigInteger('single_id')->nullable();
@@ -30,13 +32,13 @@ return new class extends Migration
             $table->string('apple_music_link')->nullable();
             $table->string('youtube_music_link')->nullable();
             $table->string('boomplay_music_link')->nullable();
-            $table->string('created_by');
+            $table->unsignedBigInteger('created_by');
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+//            $table->unsignedBigInteger('user_id');
+//            $table->foreign('user_id')
+//                ->references('id')
+//                ->on('users')
+//                ->onDelete('cascade');
             $table->foreign('user_information_id')
                 ->references('id')
                 ->on('user_informations')

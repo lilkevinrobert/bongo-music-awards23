@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ArtistProfileResource;
+use App\Models\ArtistGenre;
 use App\Models\ArtistOccupation;
 use App\Models\ArtistProfile;
 use App\Models\User;
@@ -33,7 +34,7 @@ class ArtistProfilesController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $profileValidator = ArtistProfile::validate($request->all());
         if ($profileValidator->fails()) {
@@ -46,26 +47,52 @@ class ArtistProfilesController extends Controller
         try {
             DB::beginTransaction();
 
-            foreach ($profileValidator->validated()['artist_occupations'] as $artistOccupation) {
-                ArtistOccupation::create([
-                    'artist_id' => $id,
-                    'occupation_id' => $artistOccupation
-                ]);
+            $data = [
+                'user_information_id' => $profileValidator->validated()['user_information_id'],
+                'record_label' => $profileValidator->validated()['record_label'],
+                'debut_year' => $profileValidator->validated()['debut_year'],
+                'stage_name' => $profileValidator->validated()['stage_name'],
+                'bio' => $profileValidator->validated()['bio'],
+                'official_website_link' => $request->input('official_website_link'),
+                'spotify_music_link' => $request->input('spotify_music_link'),
+                'apple_music_link' => $request->input('apple_music_link'),
+                'youtube_music_link' => $request->input('youtube_music_link'),
+                'boomplay_music_link' => $request->input('boomplay_music_link'),
+                'created_by' => 1, //TODO to be change to authenticated user (ADMIN id)
+            ];
+
+            $artist_profile = ArtistProfile::create($data);
+
+            if ($artist_profile) {
+                //Artist Occupation
+                foreach ($profileValidator->validated()['artist_occupations'] as $artistOccupation) {
+                    ArtistOccupation::create([
+                        'artist_id' => $profileValidator->validated()['user_information_id'],
+                        'occupation_id' => $artistOccupation
+                    ]);
+                }
+
+                //Artist Genres
+                foreach ($profileValidator->validated()['genres'] as $genreId) {
+                    ArtistGenre::create([
+                        'artist_id' => $profileValidator->validated()['user_information_id'],
+                        'genre_id' => $genreId
+                    ]);
+                }
+
+                DB::commit();
+                return response()->json([
+                    'status' => ResponseAlias::HTTP_CREATED,
+                    'message' => 'Artist profile created successfully',
+                    'data' => new ArtistProfileResource($artist_profile),
+                ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
             }
-
-
         } catch (QueryException|\Exception $e) {
             return response()->json([
                 'error' => 'Something went wrong while creating Artist profile. Please try again later.',
                 'message' => $e->getMessage()
             ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
-
-
-
-
-
-
     }
 
     /**
