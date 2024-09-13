@@ -47,6 +47,7 @@ import {
 } from "react-icons/md";
 import { HiMiniArrowTrendingUp } from "react-icons/hi2";
 import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
+import AdminArtistProfileCompletionPage from "./pages/Admin/AdminArtistProfileCompletionPage.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
@@ -173,6 +174,14 @@ function App() {
           element: (
             <Suspense fallback={<Loading />}>
                 <AdminAddArtistPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "artist-profile-completion/",
+          element: (
+            <Suspense fallback={<Loading />}>
+                <AdminArtistProfileCompletionPage />
             </Suspense>
           ),
         },

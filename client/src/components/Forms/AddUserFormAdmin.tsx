@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Select from "react-select";
 import toast, { Toaster } from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Data {
   data: [];
@@ -129,6 +129,8 @@ const AddUserFormAdmin = () => {
   const urlParams = new URLSearchParams(location.search);
   const origin = urlParams.get("origin");
 
+  const navigate = useNavigate()
+
   const {
     register,
     control,
@@ -244,9 +246,11 @@ const AddUserFormAdmin = () => {
         toast.dismiss(processingToastId);
         if (res.status == 201) {
           const responseToastId = toast.success("User created successfully.");
+
           setTimeout(() => {
             toast.dismiss(responseToastId);
-            window.location.reload();
+            const user = res.data.data.id
+            navigate(`/admin/artist-profile-completion?user=${user}`)
           }, 3000);
         }
       })

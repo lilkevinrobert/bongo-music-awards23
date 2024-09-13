@@ -51,6 +51,7 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
     // Create a new input field and add it to the state
     setInputFields([...inputFields, ""]);
   };
+
   const handleInputChange = (
     index: number,
     event: ChangeEvent<HTMLInputElement>,
@@ -78,7 +79,7 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
     return categoryObjects;
   };
 
-  // U may or may not need it
+  // U may or may not need it 🤷🏾‍♂️👇🏾
   // const removeEmptyCategories = (categories: CategoriesType[]) => {
   //   // Filter out empty category objects
   //   const filteredCategories = categories.filter(
