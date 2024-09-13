@@ -390,8 +390,8 @@ function App() {
   return (
     <AuthProvider>
       <>
-        {/* {isOnline ? <RouterProvider router={router} /> : <OfflineErrorPage />} */}
-        <RouterProvider router={router}/>
+        {isOnline ? <RouterProvider router={router} /> : <OfflineErrorPage />}
+        {/* <RouterProvider router={router}/> */}
       </>
     </AuthProvider>
   );
