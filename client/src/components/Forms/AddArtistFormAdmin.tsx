@@ -1,7 +1,120 @@
+import { ChangeEvent, useEffect, useState } from "react";
 import { Typography } from "@material-tailwind/react";
-import { Button } from "@material-tailwind/react"
+import { Button } from "@material-tailwind/react";
+import useFetch from "../../hooks/useFetch";
+import axios from "axios";
+
+interface Data {
+  data: [];
+}
+
+interface FetchResult {
+  data: Data | null;
+  loading: boolean;
+  error: Error | null;
+  fetchData: () => void;
+}
+
+interface DistrictData {
+  id: number;
+  districts: string[];
+}
+interface WardData {
+  id: number;
+  wards: string[];
+}
+interface StreetData {
+  id: number;
+  streets: string[];
+}
+// interface RoadData {
+//   id: number;
+//   roads: string[];
+// }
 
 const AddArtistFormAdmin = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  // Data
+  const [districtsData, setDistrictsData] = useState<DistrictData | null>(null);
+  const [wardsData, setWardsData] = useState<WardData | null>(null);
+  const [streetsData, setStreetsData] = useState<StreetData | null>(null);
+  // const [roadsData, setRoadsData] = useState<RoadData | null>();
+
+  // handle select options
+  const [selectedRegionOption, setSelectedRegionOption] = useState("");
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedRegionOption(e.target.value);
+  };
+  const [selectedDistrictOption, setSelectedDistrictOption] = useState("");
+  const handleDistrictChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedDistrictOption(e.target.value);
+  };
+  const [selectedWardOption, setSelectedWardOption] = useState("");
+  const handleWardChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedWardOption(e.target.value);
+  };
+  const [selectedStreetOption, setSelectedStreetOption] = useState("");
+  const handleStreetChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedStreetOption(e.target.value);
+  };
+  // const [selectedRoadOption, setSelectedRoadOption] = useState("");
+  // const handleRoadChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedRoadOption(e.target.value);
+  // };
+
+  // Fetch Regions from API
+  const {
+    data: regionsData,
+    error: regionsError,
+    loading: loadingRegions,
+  }: FetchResult = useFetch(`${BASE_URL}/addresses/regions`);
+
+  useEffect(() => {
+    if (selectedRegionOption) {
+      // Get Districts
+      axios
+        .get(`${BASE_URL}/addresses/regions/${selectedRegionOption}/districts`)
+        .then((response) => {
+          setDistrictsData(null);
+          setDistrictsData(response.data.data);
+        });
+    }
+  }, [selectedRegionOption]);
+
+  useEffect(() => {
+    if (selectedDistrictOption) {
+      // Get Wards
+      axios
+        .get(`${BASE_URL}/addresses/districts/${selectedDistrictOption}/wards`)
+        .then((response) => {
+          setWardsData(response.data.data);
+        });
+    }
+  }, [selectedDistrictOption]);
+
+  useEffect(() => {
+    if (selectedWardOption) {
+      // Get Streets
+      axios
+        .get(`${BASE_URL}/addresses/wards/${selectedWardOption}/streets`)
+        .then((response) => {
+          setStreetsData(response.data.data);
+        });
+    }
+  }, [selectedWardOption]);
+
+  if (selectedStreetOption) {
+    // Get Roads
+    // axios
+    // .get(
+    //   `${BASE_URL}/addresses/streets/${selectedStreetOption}/roads`,
+    // )
+    // .then((response) => {
+    //   setRoadsData(response.data.data);
+    // });
+  }
+
   return (
     <form className="pl-4">
       <Typography className="font-LatoBold text-lg capitalize text-gray-900">
@@ -21,7 +134,7 @@ const AddArtistFormAdmin = () => {
               name="profile_picture"
               className="mt-1 w-full rounded-md p-2 font-LatoRegular"
             />
-            <div className="w-full h-full bg-gray-400 rounded"></div>
+            <div className="hidden h-full w-full rounded bg-gray-400"></div>
           </div>
           <div className="grid w-full grid-cols-2 items-center justify-between gap-2">
             <div className="flex w-full flex-col">
@@ -107,7 +220,7 @@ const AddArtistFormAdmin = () => {
           <div className="grid w-full grid-cols-2 items-center justify-between gap-2">
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                phone number
+                phone number <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
@@ -117,7 +230,7 @@ const AddArtistFormAdmin = () => {
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                email
+                email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -127,61 +240,184 @@ const AddArtistFormAdmin = () => {
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                region
+                region <span className="text-red-500">*</span>
               </label>
-              <input
-                type="text"
-                name="last_name"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2"
-              />
+              <>
+                {loadingRegions && (
+                  <Typography
+                    variant="paragraph"
+                    className="text-center font-LatoRegular text-base capitalize"
+                  >
+                    populating fields...
+                  </Typography>
+                )}
+                {regionsError && (
+                  <Typography
+                    variant="paragraph"
+                    className="font-LatoRegular text-base capitalize"
+                  >
+                    some problem occurred.
+                  </Typography>
+                )}
+                {regionsData && (
+                  <select
+                    name="region"
+                    required
+                    value={selectedRegionOption}
+                    onChange={handleChange}
+                    className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                  >
+                    <option value="" disabled className="normal-case">
+                      Select a Region
+                    </option>
+                    {regionsData.data.map((item: any, i) => (
+                      <option
+                        key={i}
+                        value={item.id}
+                        className="font-LatoRegular capitalize"
+                      >
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </>
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                district
+                district <span className="text-red-500">*</span>
               </label>
-              <select
-                name="district"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
+              {districtsData && (
+                <select
+                  name="district"
+                  required
+                  value={selectedDistrictOption}
+                  onChange={handleDistrictChange}
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                >
+                  <option value="" disabled className="normal-case">
+                    Select a District
+                  </option>
+                  {districtsData.districts.map((item: any, i: number) => (
+                    <option
+                      key={i}
+                      value={item.id}
+                      className="font-LatoRegular capitalize"
+                    >
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {districtsData == null && (
+                <select
+                  disabled
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                ></select>
+              )}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                ward
+                ward <span className="text-red-500">*</span>
               </label>
-              <select
-                name="ward"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
+              {wardsData && (
+                <select
+                  name="ward"
+                  required
+                  value={selectedWardOption}
+                  onChange={handleWardChange}
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                >
+                  <option value="" disabled className="normal-case">
+                    Select a Ward
+                  </option>
+                  {wardsData.wards.map((item: any, i: number) => (
+                    <option
+                      key={i}
+                      value={item.id}
+                      className="font-LatoRegular capitalize"
+                    >
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {wardsData == null && (
+                <select
+                  disabled
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                ></select>
+              )}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                street
+                street <span className="text-red-500">*</span>
               </label>
-              <select
-                name="ward"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
+              {streetsData && (
+                <select
+                  name="street"
+                  required
+                  value={selectedStreetOption}
+                  onChange={handleStreetChange}
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                >
+                  <option value="" disabled className="normal-case">
+                    Select a Street
+                  </option>
+                  {streetsData.streets.map((item: any, i: number) => (
+                    <option
+                      key={i}
+                      value={item.id}
+                      className="font-LatoRegular capitalize"
+                    >
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+              {streetsData == null && (
+                <select
+                  disabled
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                ></select>
+              )}
+            </div>
+            <div className="flex w-full flex-col">
+              <label className="font-LatoBold text-base capitalize text-gray-900">
+                road <span className="text-red-500">*</span>
+              </label>
+              {/* {streetsData && (
+                <select
+                  name="road"
+                  required
+                  value={selectedRoadOption}
+                  onChange={handleRoadChange}
+                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+                >
+                  <option value="" disabled className="normal-case">
+                    Select a Road
+                  </option>
+                  {roadsData?.roads.map((item: any, i: number) => (
+                    <option
+                      key={i}
+                      value={item.id}
+                      className="font-LatoRegular capitalize"
+                    >
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
+              )} */}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 house number
               </label>
-              <select
-                name="house_number"
-                className="rounded-md border border-gray-300 font-LatoRegular text-base capitalize text-gray-900"
-              >
-                <option>1</option>
-                <option>2</option>
-              </select>
+              <input
+                type="text"
+                placeholder="Enter your house number"
+                className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
+              />
             </div>
           </div>
         </div>
@@ -335,8 +571,13 @@ const AddArtistFormAdmin = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-end mb-10 bg-slate-200 py-4 px-4 mx-4 rounded-md">
-      <Button size="sm" className="text-xs font-LatoBold capitalize float-right hover:bg-amber-400 transition ease-in-out hover:text-gray-900">save changes</Button>
+      <div className="mx-4 mb-10 flex flex-row items-center justify-end rounded-md bg-slate-200 px-4 py-4">
+        <Button
+          size="sm"
+          className="float-right font-LatoBold text-xs capitalize transition ease-in-out hover:bg-amber-400 hover:text-gray-900"
+        >
+          save changes
+        </Button>
       </div>
     </form>
   );
