@@ -21,16 +21,12 @@ import ArtistSongsPage from "./pages/Artist/ArtistSongsPage.tsx";
 import useNetworkStatus from "./hooks/useNetworkStatus.ts";
 
 // Lazy-loaded components
-const OfflineErrorPage = lazy(
-  () => import("./components/Errors/ErrorNetworkOffline"),
-);
+const OfflineErrorPage = lazy(() => import("./components/Errors/ErrorNetworkOffline"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const AdminDashboardPage = lazy(() => import("./pages/Admin/DashboardPage"));
-const ArtistDashboardPage = lazy(
-  () => import("./pages/Artist/ArtistDashboardPage"),
-);
+const ArtistDashboardPage = lazy(() => import("./pages/Artist/ArtistDashboardPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminCategoriesPage = lazy(() => import("./pages/Admin/CategoriesPage"));
 const AdminGenresPage = lazy(() => import("./pages/Admin/GenresPage"));
