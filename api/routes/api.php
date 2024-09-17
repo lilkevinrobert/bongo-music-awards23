@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\WardController;
 use Illuminate\Http\Request;
@@ -79,20 +80,25 @@ Route::group(['prefix' => 'v1'], function () {
 //            Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
 //        });
     });
+    // Artist Endpoints.
     Route::group(['prefix' => 'artists'], function ($request) {
 
         //Create artist profile
         Route::post('/profiles', [ArtistProfilesController::class, 'store']);
-        Route::get('/', [ArtistProfilesController::class,'index']);
+        Route::get('/', [ArtistProfilesController::class, 'index']);
     });
 
     // Judges Endpoints
     Route::group(['prefix' => 'judges'], function () {
-        Route::get('/', [JudgeController::class, 'index']); //All available judges in the system
+        Route::get('/', [JudgeController::class, 'index']);
         Route::post('/', [JudgeController::class, 'store']);
         Route::get('/{id}', [JudgeController::class, 'show']);
         Route::delete('/{id}', [JudgeController::class, 'destroy']);
     });
+
+    // SPONSORS APIS.
+    Route::apiResource('sponsors', SponsorController::class);
+
 });
 
 Route::group(['prefix' => 'awards'], function () {
@@ -113,7 +119,6 @@ Route::group(['prefix' => 'awards'], function () {
     Route::get('/{eventId}/genres', [EventsController::class, 'eventGenres']);
 
 });
-
 
 
 Route::middleware(['auth:sanctum'])->group(function () {

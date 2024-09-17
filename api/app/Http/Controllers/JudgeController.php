@@ -49,28 +49,16 @@ class JudgeController extends Controller
         try {
             DB::beginTransaction();
 
-            $user = User::create([
-                'first_name' => $validator->validated()['first_name'],
-                'middle_name' => $validator->validated()['middle_name'],
-                'last_name' => $validator->validated()['last_name'],
-                'email' => $validator->validated()['email'],
-                'gender' => $validator->validated()['gender'],
-                'role' => 'judge',
-                'password' => Hash::make($validator->validated()['last_name'])
-            ]);
-
             //saving the image to the database.
 
             $judge = Judge::create([
-                'profile_image_url' => 'No Image URl available',
                 'organization' => $validator->validated()['organization'],
                 'position' => $validator->validated()['position'],
                 'expertise' => $validator->validated()['expertise'],
                 'phone_number' => $validator->validated()['phone_number'],
-                'role' => 'judge',
                 'bio' => $validator->validated()['bio'],
                 'created_by' => auth()->id() ?: 1,
-                'user_id' => $user->id,
+                'user_id' => 1,
                 'event_id' => $validator->validated()['event_id'] // The selected event id, (i.e )
             ]);
 
@@ -81,6 +69,7 @@ class JudgeController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
 
         } catch (QueryException|\Exception $e) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Something went wrong while creating the user. Please try again later.',
                 'message' => $e->getMessage()],
