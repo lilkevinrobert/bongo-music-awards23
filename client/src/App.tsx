@@ -34,14 +34,6 @@ const AdminGenrePage = lazy(() => import("./pages/Admin/GenrePage"));
 const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage"));
 const RecoveryPage = lazy(() => import("./pages/RecoveryPage"));
 
-import logotest from "/logo-safari-2.png";
-import testimagebg from "/testimage.jpg";
-import {
-  MdOutlineSchool,
-  MdOutlineScience,
-  MdOutlineAttachMoney,
-} from "react-icons/md";
-import { HiMiniArrowTrendingUp } from "react-icons/hi2";
 import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
 import AdminArtistProfileCompletionPage from "./pages/Admin/AdminArtistProfileCompletionPage.tsx";
 
@@ -49,93 +41,6 @@ function App() {
   const { isOnline } = useNetworkStatus();
 
   const router = createBrowserRouter([
-    {
-      path: "/testing",
-      errorElement: <ErrorHandler />,
-      element: (
-        <Suspense fallback={<Loading />}>
-          <div className="h-screen w-full flex items-center bg-gray-900">
-            <div className="relative mx-auto h-72 w-72 rounded-full border-2 border-dashed border-gray-50/40 bg-transparent shadow-lg">
-              {/* Logo Container */}
-              <div className="absolute inset-0 z-0 flex items-center justify-center">
-                <div className="flex h-28 w-28 items-center justify-center rounded-full bg-white p-1 shadow-lg border-2 border-blue-700">
-                  <img src={logotest} alt="Logo" className="h-fit w-fit" />
-                </div>
-              </div>
-
-              <div className="relative h-16 w-8 bg-gray-100"></div>
-
-              {/* Top Menu Item */}
-              {/* <div className="group absolute -top-5 left-1/2 -translate-x-1/2 transform cursor-pointer rounded-full transition ease-linear hover:scale-110">
-                <div className="relative flex h-12 w-fit items-center justify-center rounded-full bg-gray-200 px-3 py-2 font-bold capitalize text-gray-900 shadow-md group-hover:bg-white">
-                  <div className="absolute left-1/2 top-full h-10 w-0.5 -translate-x-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <HiMiniArrowTrendingUp className="mr-2 text-2xl text-gray-700" />
-                  <p className="font-LatoBold">startups</p>
-                </div>
-              </div> */}
-              <div className="group absolute -top-10 left-1/2 -translate-x-1/2 transform cursor-pointer rounded-full transition ease-linear shadow-lg shadow-gray-500/50 hover:shadow-blue-500/40 hover:scale-110">
-                <div className="relative flex flex-col h-20 w-20 items-center justify-center rounded-full bg-gray-200 px-3 py-2 font-bold capitalize text-gray-900 shadow-md group-hover:bg-white">
-                  <div className="absolute left-1/2 top-full h-10 w-0.5 -translate-x-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <HiMiniArrowTrendingUp className="text-2xl text-gray-700 group-hover:text-blue-700 transition ease-linear" />
-                  <p className="font-LatoBold group-hover:text-blue-700 text-sm transition ease-linear">startups</p>
-                </div>
-              </div>
-
-              {/* Bottom Menu Item */}
-              {/* <div className="group absolute -bottom-5 left-1/2 -translate-x-1/2 transform cursor-pointer rounded-full transition ease-linear hover:scale-110">
-                <div className="relative flex h-12 w-fit items-center justify-center rounded-full bg-gray-200 group-hover:bg-white px-4 py-2 font-bold capitalize text-gray-900 shadow-md">
-                  <div className="absolute bottom-full left-1/2 h-10 w-0.5 -translate-x-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <MdOutlineSchool className="mr-2 text-5xl text-gray-700" />
-                  <p className="font-LatoBold">higher learning</p>
-                </div>
-              </div> */}
-              <div className="group absolute -bottom-10 left-1/2 -translate-x-1/2 transform cursor-pointer rounded-full transition ease-linear shadow-lg shadow-gray-500/50 hover:shadow-blue-500/40 hover:scale-110">
-                <div className="relative flex flex-col h-20 w-20 items-center justify-center rounded-full bg-gray-200 group-hover:bg-white px-4 py-2 font-bold capitalize text-gray-900 shadow-md">
-                  <div className="absolute bottom-full left-1/2 h-10 w-0.5 -translate-x-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <MdOutlineSchool className="text-5xl text-gray-700 group-hover:text-blue-700 transition ease-linear" />
-                  <p className="font-LatoBold group-hover:text-blue-700 text-sm transition ease-linear text-center">higher learning</p>
-                </div>
-              </div>
-
-              {/* Left Menu Item */}
-              {/* <div className="group absolute -left-24 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full transition ease-linear hover:scale-110">
-                <div className="relative flex h-12 w-fit items-center justify-center rounded-full bg-gray-200 px-3 py-2 font-bold capitalize text-gray-900 shadow-md group-hover:bg-white">
-                  <div className="absolute left-full top-1/2 h-0.5 w-14 -translate-y-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <MdOutlineAttachMoney className="mr-2 text-2xl text-gray-700" />
-                  <p className="font-LatoBold">investor</p>
-                </div>
-              </div> */}
-               <div className="group absolute -left-14 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full transition ease-linear shadow-lg shadow-gray-500/50 hover:shadow-blue-500/40 hover:scale-110">
-                <div className="relative flex flex-col h-20 w-20 items-center justify-center rounded-full bg-gray-200 px-3 py-2 font-bold capitalize text-gray-900 shadow-md group-hover:bg-white">
-                  <div className="absolute left-full top-1/2 h-0.5 w-14 -translate-y-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <MdOutlineAttachMoney className="text-2xl text-gray-700 group-hover:text-blue-700 transition ease-linear" />
-                  <p className="font-LatoBold text-center group-hover:text-blue-700 text-sm transition ease-linear">investor</p>
-                </div>
-              </div>
-
-              {/* Right Menu Item */}
-              {/* <div className="group absolute -right-24 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full transition ease-linear hover:scale-110">
-                <div className="relative flex h-12 w-fit items-center justify-center rounded-full bg-gray-200 px-3 py-2 font-bold capitalize text-gray-900 shadow-md group-hover:bg-white">
-                  <div className="absolute right-full top-1/2 h-0.5 w-12 -translate-y-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <MdOutlineScience className="mr-2 text-2xl text-gray-700" />
-                  <p className="font-LatoBold">research</p>
-                </div>
-              </div> */}
-               <div className="group absolute -right-12 top-1/2 -translate-y-1/2 transform cursor-pointer rounded-full transition ease-linear shadow-lg shadow-gray-500/50 hover:shadow-blue-500/40 hover:scale-110">
-                <div className="relative flex flex-col h-20 w-20 items-center justify-center rounded-full bg-gray-200 px-3 py-2 font-bold capitalize text-gray-900 shadow-md group-hover:bg-white">
-                  <div className="absolute right-full top-1/2 h-0.5 w-12 -translate-y-1/2 transform bg-gray-300 group-hover:bg-white"></div>
-                  <MdOutlineScience className="text-2xl text-gray-700 group-hover:text-blue-700 transition ease-linear" />
-                  <p className="font-LatoBold text-center group-hover:text-blue-700 text-sm transition ease-linear">research</p>
-                </div>
-              </div>
-            </div>
-            <div className="w-1/2 h-full bg-red-300">
-                <img src={testimagebg} alt="some image" className="w-full h-full" />
-            </div>
-          </div>
-        </Suspense>
-      ),
-    },
     {
       path: "/",
       index: true,
@@ -169,7 +74,7 @@ function App() {
           path: "add-user-form/",
           element: (
             <Suspense fallback={<Loading />}>
-                <AdminAddArtistPage />
+              <AdminAddArtistPage />
             </Suspense>
           ),
         },
@@ -177,7 +82,7 @@ function App() {
           path: "artist-profile-completion/",
           element: (
             <Suspense fallback={<Loading />}>
-                <AdminArtistProfileCompletionPage />
+              <AdminArtistProfileCompletionPage />
             </Suspense>
           ),
         },
