@@ -47,7 +47,7 @@ const AdminDashboardPage = () => {
         {/* Summary Cards */}
         <div>
           <h3 className="capitalize text-gray-700 text-lg pl-1">overview</h3>
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-6 py-4">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4 lg:grid-cols-5 py-4">
             {summaryCountLoading ? (
               <>
                 <LoadingSummaryCard />

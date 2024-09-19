@@ -729,7 +729,7 @@ const AddUserFormAdmin = () => {
       </div>
 
       {/* Toaster */}
-      <Toaster position="top-center" containerClassName="font-LatoRegular"  />
+      <Toaster position="top-center" containerClassName="font-LatoRegular" />
     </form>
   );
 };

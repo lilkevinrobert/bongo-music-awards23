@@ -5,10 +5,10 @@ import AddUserFormAdmin from '../../components/Forms/AddUserFormAdmin'
 const AddArtistPage = () => {
   return (
     <Layout>
-        <BreadcrumbLevel2 previousPage='users' currentPage='Add User' isDisabled />
-        <div className="bg-white text-gray-500">
-          <AddUserFormAdmin />
-        </div>
+      <BreadcrumbLevel2 previousPage='users' currentPage='Add User' isDisabled />
+      <div className="bg-white text-gray-500">
+        <AddUserFormAdmin />
+      </div>
     </Layout>
   )
 }
