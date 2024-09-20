@@ -8,7 +8,7 @@ import LoadingTable from "../Loading/LoadingTable";
 import Errors from "../Errors/Errors";
 import AddEmptyState from "../EmptyState/AddEmptyState";
 
-type DataRow = {
+export type DataRow = {
   id: string;
   sponsor_name: string;
   logo: string;
@@ -75,7 +75,7 @@ const SponsorsDataTable = () => {
       <div className="flex flex-row items-center justify-between w-fit mb-2">
         <input
           type="text"
-          placeholder="Search artist..."
+          placeholder="Search sponsor here..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="p-4 border border-gray-500 rounded-full w-4/4 h-8 font-LatoRegular text-gray-900"
