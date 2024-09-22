@@ -31,7 +31,7 @@ const SponsorsDataTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteId, setDeleteId] = useState("");
   const [_editId, setEditId] = useState(null);
-  const [_editData, setEditData] = useState<DataRow | null>(null)
+  const [editData, setEditData] = useState<DataRow | null>(null)
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
 
   // Get data
@@ -40,7 +40,7 @@ const SponsorsDataTable = () => {
   // Dialogs
   // edit dialog
   const [openEditDialog, setOpenEditDialog] = useState(false);
-  // const closeEditDialog = () => setOpenEditDialog((cur) => !cur);
+  const closeEditDialog = () => setOpenEditDialog((cur) => !cur);
   const editDialogHandler = (id: any) => {
     setEditData(filteredData[id])
     if (id) {
@@ -169,7 +169,7 @@ const SponsorsDataTable = () => {
         className="bg-transparent m-0 rounded-none"
       >
         <DialogBody className="flex items-center justify-center">
-          <EditSponsorForm />
+          <EditSponsorForm closeModal={closeEditDialog} data={editData && editData} />
         </DialogBody>
       </Dialog>
     </>
