@@ -5,7 +5,6 @@ import { useForm, Controller } from "react-hook-form";
 import ErrorFormField from "../Errors/ErrorFormField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Select from "react-select";
 import toast, { Toaster } from "react-hot-toast";
 
 interface FormProps {
@@ -18,20 +17,18 @@ export interface File {
 }
 
 export type Inputs = {
+  sponsor_logo: File;
   sponsor_name: string;
   link: string;
-  award: { value: string };
-  sponsor_logo: File;
+  award: string;
 }
 
 // Validation Schema
 const schema = yup.object().shape({
   sponsor_logo: yup.mixed<File>().required("Sponsor logo is required."),
-  sponsor_name: yup.string().required("Sponsor's name is required"),
-  link: yup.string().required("Sponsor's name is required"),
-  award: yup.object({
-    value: yup.string().required("Please select an award."),
-  }),
+  sponsor_name: yup.string().required("Sponsor's name is required."),
+  link: yup.string().required("Sponsor's name is required."),
+  award: yup.string().required('Please select an award.')
 })
 
 const AddSponsorForm = ({ closeModal }: FormProps) => {
@@ -44,15 +41,16 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
     formState: { errors },
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      award: ""
+    }
   });
 
   const onSubmit = async (data: any) => {
-    // let modified_gender = data.gender.value
     let modified_data = {
       sponsor_name: data.sponsor_name,
       link: data.link,
-      award_id: data.award.value,
-      // sponsor_logo: data.sponsor_logo[0], should be passed like so
+      award_id: data.award,
       logo: data.sponsor_logo[0],
     };
     const processingToastId = toast.loading("Processing...");
@@ -143,22 +141,18 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
             <Controller
               name="award"
               control={control}
-              render={({ field }) => {
+              render={({ field, fieldState }) => {
                 return (
-                  <Select
-                    {...field}
-                    options={[
-                      { value: "2", label: "INitialization" },
-                    ]}
-                    className="font-LatoRegular w-full"
-                    placeholder="Select Award"
-                  />
-                );
+                  <>
+                    <select {...field} className={`w-full h-[2.3rem] ${ fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
+                      <option value="">Select an option</option>
+                      <option value="2">Option 2</option>
+                    </select>
+                    {(fieldState.error || fieldState.error != undefined) && <ErrorFormField message={`${fieldState.error.message}`} />}
+                  </>
+                )
               }}
             />
-            {errors.award?.value?.message && (
-              <ErrorFormField message={`${errors.award?.value?.message}`} />
-            )}
           </div>
           <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
             <Typography className="capitalize">logo</Typography>
