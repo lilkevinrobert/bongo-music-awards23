@@ -718,7 +718,7 @@ const AddUserFormAdmin = () => {
           </div>
         </div>
       </section>
-      <div className="mx-4 mb-10 flex flex-row items-center justify-end rounded-md bg-slate-200 px-4 py-4">
+      <div className="mr-4 mb-10 flex flex-row items-center justify-end rounded-md bg-slate-200 px-4 py-4">
         <Button
           size="sm"
           type="submit"
