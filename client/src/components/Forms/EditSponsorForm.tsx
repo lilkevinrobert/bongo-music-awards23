@@ -194,7 +194,13 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
         </Button>
       </div>
       {/* Toaster */}
-      <Toaster position="top-center" containerClassName="font-LatoRegular" />
+      <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+        duration: 5000,
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }} />
     </form>
   );
 };
