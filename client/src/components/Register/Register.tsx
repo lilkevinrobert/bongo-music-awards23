@@ -9,7 +9,13 @@ const Register = () => {
     return (
         <Card className="w-96 shadow-none">
             <RegistrationForm />
-            <Toaster position="top-center" containerClassName="font-LatoRegular" />
+            <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+                duration: 5000,
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                },
+            }} />
         </Card>
     );
 };

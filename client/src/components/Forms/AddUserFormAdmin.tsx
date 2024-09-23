@@ -7,7 +7,6 @@ import { useForm, Controller } from "react-hook-form";
 import ErrorFormField from "../Errors/ErrorFormField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Select from "react-select";
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -48,9 +47,9 @@ type Inputs = {
   first_name: string;
   middle_name?: string | undefined;
   last_name: string;
-  gender: { value: string };
-  postal_address_type: { value: string };
-  residence_type: { value: string };
+  gender: string;
+  postal_address_type: string;
+  residence_type: string;
   username: string;
   email: string;
   date_of_birth: string;
@@ -66,15 +65,9 @@ const schema = yup.object().shape({
   first_name: yup.string().required("First name is required."),
   middle_name: yup.string(),
   last_name: yup.string().required("Last name is required."),
-  gender: yup.object({
-    value: yup.string().required("Please select a gender."),
-  }),
-  postal_address_type: yup.object({
-    value: yup.string().required("Please Select Address type."),
-  }),
-  residence_type: yup.object({
-    value: yup.string().required("Please Select Residence type."),
-  }),
+  gender: yup.string().required("Please select a Gender."),
+  postal_address_type: yup.string().required("Please select Address type."),
+  residence_type: yup.string().required("Please select Residence type."),
   username: yup.string().required("Username is required."),
   email: yup
     .string()
@@ -205,19 +198,7 @@ const AddUserFormAdmin = () => {
     }
   }, [selectedWardOption]);
 
-  if (selectedStreetOption) {
-    // Get Roads
-    // axios
-    // .get(
-    //   `${BASE_URL}/addresses/streets/${selectedStreetOption}/roads`,
-    // )
-    // .then((response) => {
-    //   setRoadsData(response.data.data);
-    // });
-  }
-
   const onSubmit = async (data: any) => {
-    // let modified_gender = data.gender.value
     let modified_data = {
       first_name: data.first_name,
       middle_name: data.middle_name,
@@ -225,7 +206,7 @@ const AddUserFormAdmin = () => {
       username: data.username,
       email: data.email,
       password: data.password,
-      gender: data.gender.value,
+      gender: data.gender,
       date_of_birth: data.date_of_birth,
       phone: data.phone_number,
       region_id: selectedRegionOption,
@@ -234,8 +215,8 @@ const AddUserFormAdmin = () => {
       street_id: selectedStreetOption,
       building_house_number: data.building_house_number,
       postal_address: data.postal_address,
-      address_type: data.postal_address_type.value,
-      residence_type: data.residence_type.value,
+      address_type: data.postal_address_type,
+      residence_type: data.residence_type,
       user_role: origin?.toUpperCase(),
     };
     const processingToastId = toast.loading("Processing...");
@@ -252,10 +233,18 @@ const AddUserFormAdmin = () => {
             const user = res.data.data.id
             navigate(`/admin/artist-profile-completion?user=${user}`)
           }, 3000);
+        } else if (res.status == 500) {
+
+          toast.error("Action Failed")
         }
       })
       .catch((e) => {
+        const errorCode = e.response.status
+        const error = e.response.data.error
         const messages: any = Object.values(e.response.data.message);
+        if (error && errorCode) {
+          toast.error(`${errorCode}: ${error}`)
+        }
 
         for (let item of messages) {
           item.map((text: string) => {
@@ -348,23 +337,19 @@ const AddUserFormAdmin = () => {
               <Controller
                 name="gender"
                 control={control}
-                render={({ field }) => {
+                render={({ field, fieldState }) => {
                   return (
-                    <Select
-                      {...field}
-                      options={[
-                        { value: "MALE", label: "Male" },
-                        { value: "FEMALE", label: "Female" },
-                      ]}
-                      className="font-LatoRegular"
-                      placeholder="Select Gender"
-                    />
-                  );
+                    <>
+                      <select {...field} className={`w-full h-[2.3rem] ${fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
+                        <option value="">Select a Gender</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                      </select>
+                      {(fieldState.error || fieldState.error != undefined) && <ErrorFormField message={`${fieldState.error.message}`} />}
+                    </>
+                  )
                 }}
               />
-              {errors.gender?.value?.message && (
-                <ErrorFormField message={`${errors.gender?.value?.message}`} />
-              )}
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
@@ -603,33 +588,6 @@ const AddUserFormAdmin = () => {
                 ></select>
               )}
             </div>
-            <div className="hidden w-full flex-col">
-              <label className="font-LatoBold text-base capitalize text-gray-900">
-                road <span className="text-red-500">*</span>
-              </label>
-              {/* {streetsData && (
-                <select
-                  name="road"
-                  required
-                  value={selectedRoadOption}
-                  onChange={handleRoadChange}
-                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
-                >
-                  <option value="" disabled className="normal-case">
-                    Select a Road
-                  </option>
-                  {roadsData?.roads.map((item: any, i: number) => (
-                    <option
-                      key={i}
-                      value={item.id}
-                      className="font-LatoRegular capitalize"
-                    >
-                      {item.name}
-                    </option>
-                  ))}
-                </select>
-              )} */}
-            </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
                 house number <span className="text-red-500">*</span>
@@ -667,26 +625,21 @@ const AddUserFormAdmin = () => {
               <Controller
                 name="postal_address_type"
                 control={control}
-                render={({ field }) => {
+                render={({ field, fieldState }) => {
                   return (
-                    <Select
-                      {...field}
-                      options={[
-                        { value: "Home", label: "Home" },
-                        { value: "Work", label: "Work" },
-                        { value: "Other", label: "Other" },
-                      ]}
-                      className="font-LatoRegular"
-                      placeholder="Select Type of Postal Address"
-                    />
-                  );
+                    <>
+                      <select {...field} className={`w-full h-[2.3rem] ${fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
+                        <option value="">Select an option</option>
+                        <option value="Home">Home</option>
+                        <option value="Work">Work</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      {(fieldState.error || fieldState.error != undefined) && <ErrorFormField message={`${fieldState.error.message}`} />}
+                    </>
+                  )
                 }}
               />
-              {errors.postal_address_type?.value?.message && (
-                <ErrorFormField
-                  message={`${errors.postal_address_type?.value?.message}`}
-                />
-              )}
+
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
@@ -695,30 +648,24 @@ const AddUserFormAdmin = () => {
               <Controller
                 name="residence_type"
                 control={control}
-                render={({ field }) => {
+                render={({ field, fieldState }) => {
                   return (
-                    <Select
-                      {...field}
-                      options={[
-                        { value: "Permanent", label: "Permanent" },
-                        { value: "Temporary", label: "Temporary" },
-                      ]}
-                      className="font-LatoRegular"
-                      placeholder="Select Type of Residence"
-                    />
-                  );
+                    <>
+                      <select {...field} className={`w-full h-[2.3rem] ${fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
+                        <option value="">Select an option</option>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Temporary">Temporary</option>
+                      </select>
+                      {(fieldState.error || fieldState.error != undefined) && <ErrorFormField message={`${fieldState.error.message}`} />}
+                    </>
+                  )
                 }}
               />
-              {errors.residence_type?.value?.message && (
-                <ErrorFormField
-                  message={`${errors.residence_type?.value?.message}`}
-                />
-              )}
             </div>
           </div>
         </div>
       </section>
-      <div className="mx-4 mb-10 flex flex-row items-center justify-end rounded-md bg-slate-200 px-4 py-4">
+      <div className="mr-4 mb-10 flex flex-row items-center justify-end rounded-md bg-slate-200 px-4 py-4">
         <Button
           size="sm"
           type="submit"
@@ -729,7 +676,13 @@ const AddUserFormAdmin = () => {
       </div>
 
       {/* Toaster */}
-      <Toaster position="top-center" containerClassName="font-LatoRegular"  />
+      <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+        duration: 5000,
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }} />
     </form>
   );
 };

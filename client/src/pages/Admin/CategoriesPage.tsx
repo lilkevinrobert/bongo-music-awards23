@@ -25,12 +25,12 @@ const AdminCategoriesPage = () => {
               Categories
             </Typography>
             <Button
-                  size="sm"
-                  onClick={handleOpenAddCategory}
-                  className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
-                >
-                  <IoAdd className="text-lg" /> new
-                </Button>
+              size="sm"
+              onClick={handleOpenAddCategory}
+              className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+            >
+              <IoAdd className="text-lg" /> new
+            </Button>
           </div>
           <div>
             <div className="py-2">
@@ -40,7 +40,13 @@ const AdminCategoriesPage = () => {
         </div>
 
         {/* Toaster */}
-        <Toaster position="top-center" containerClassName="font-LatoRegular" />
+        <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+          duration: 5000,
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        }} />
 
         <Dialog
           size="md"

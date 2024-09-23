@@ -6,10 +6,10 @@ import {
     CardHeader,
     Typography,
 } from "@material-tailwind/react";
-import React, {useState} from "react";
-import toast, {Toaster} from "react-hot-toast";
+import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "../../api/axios.ts";
-import {NavLink, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 type Login = {
     email: string;
@@ -55,7 +55,7 @@ const Login = () => {
     };
 
     const getUser = async () => {
-        const {data} = await axios.get("/api/user");
+        const { data } = await axios.get("/api/user");
         console.log(data);
     };
 
@@ -141,14 +141,14 @@ const Login = () => {
                             />
                             {errors?.email?.length > 0 && (
                                 <span className="text-red-400 text-sm m-2 p-2">
-                  {errors.email[0]}
-                </span>
+                                    {errors.email[0]}
+                                </span>
                             )}
                         </div>
 
                         <div>
                             <label htmlFor="password"
-                                   className="font-LatoBold capitalize text-gray-900">password</label>
+                                className="font-LatoBold capitalize text-gray-900">password</label>
                             <input
                                 placeholder="Enter Your Password"
                                 type="password"
@@ -158,8 +158,8 @@ const Login = () => {
                             />
                             {errors?.password?.length > 0 && (
                                 <span className="text-red-400 text-sm m-2 p-2">
-                  {errors.password[0]}
-                </span>
+                                    {errors.password[0]}
+                                </span>
                             )}
                         </div>
                     </CardBody>
@@ -183,7 +183,13 @@ const Login = () => {
                     </CardFooter>
                 </form>
             </Card>
-            <Toaster position="top-center"/>
+            <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+                duration: 5000,
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                },
+            }} />
         </>
     );
 };

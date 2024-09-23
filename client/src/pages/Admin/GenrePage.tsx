@@ -57,14 +57,14 @@ const AdminGenrePage = () => {
   };
 
   useEffect(() => {
-      const token = getDataFromLocalStorage();
-      console.log(token)
+    const token = getDataFromLocalStorage();
+    console.log(token)
 
-      //headers
-      const headers = {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-      }
+    //headers
+    const headers = {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    }
 
     fetch(`${BASE_URL}/admin/genres`, {
       method: "GET",
@@ -220,7 +220,13 @@ const AdminGenrePage = () => {
             </div>
           </section>
         </div>
-        <Toaster position="top-center" />
+        <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+          duration: 5000,
+          style: {
+            background: '#333',
+            color: '#fff',
+          },
+        }} />
       </Layout>
 
       <Dialog

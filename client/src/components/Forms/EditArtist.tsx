@@ -264,7 +264,13 @@ const EditArtist: React.FC<FormProps> = ({ closeModal }) => {
             </div>
           </div>
         </div>
-        <Toaster position="top-center" />
+        <Toaster position="top-center" toastOptions={{
+        duration: 5000,
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }} />
 
         {loading && (
           <div className="flex items-center justify-center mt-4">
