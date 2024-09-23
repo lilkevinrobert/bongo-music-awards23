@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="104.219.248.114" id="9ba12c09-1e18-4445-81cc-de477629f2e5" keyPath="C:\Users\lilke\Downloads\bma\id_rsa" port="21098" nameFormat="DESCRIPTIVE" username="bongcalw" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

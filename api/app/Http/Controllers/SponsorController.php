@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use App\Helper\ImageManager;
 
 class SponsorController extends Controller
 {
+    use ImageManager;
+
     /**
      * Display a listing of the resource.
      */
@@ -41,21 +44,26 @@ class SponsorController extends Controller
 
         try {
             DB::beginTransaction();
+            $path = storage_path('images/');
+            !is_dir($path) && mkdir($path, 0777, true);
 
             //TODO saving the image to the database.
+            if ($file = $request->file('image')) {
+                $fileData = $this->uploads($file, $path);
 
-            $sponsor = Sponsor::create([
-                'sponsor_name' => $validator->validated()['sponsor_name'],
-                'logo' => "Current no image",
-                'award_id' => $validator->validated()['award_id'],
-                'link' => $validator->validated()['link'],
-            ]);
+                $sponsor = Sponsor::create([
+                    'sponsor_name' => $validator->validated()['sponsor_name'],
+                    'logo' => 'storage/' . $fileData['filePath'],
+                    'award_id' => $validator->validated()['award_id'],
+                    'link' => $validator->validated()['link'],
+                ]);
 
-            DB::commit();
-            return response()->json([
-                'status' => ResponseAlias::HTTP_CREATED,
-                'data' => [$sponsor],
-            ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+                DB::commit();
+                return response()->json([
+                    'status' => ResponseAlias::HTTP_CREATED,
+                    'data' => [$sponsor],
+                ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+            }
 
         } catch (QueryException|\Exception $e) {
             DB::rollBack();

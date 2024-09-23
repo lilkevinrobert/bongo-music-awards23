@@ -71,9 +71,9 @@ class JudgeController extends Controller
         } catch (QueryException|\Exception $e) {
             DB::rollBack();
             return response()->json([
-                'error' => 'Something went wrong while creating the user. Please try again later.',
-                'message' => $e->getMessage()],
-                ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
+                'error' => 'Something went wrong while creating the Judge. Please try again later.',
+                'message' => $e->getMessage()
+            ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
 
     }

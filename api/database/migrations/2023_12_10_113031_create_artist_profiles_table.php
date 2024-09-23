@@ -16,17 +16,10 @@ return new class extends Migration
         Schema::create('artist_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_information_id');
-//            $table->unsignedBigInteger('artist_occupation_id'); // The artist’s roles (e.g., singer, songwriter, producer, instrumentalist).
             $table->string('record_label');
-//
-//          $table->date('debut_year'); //TODO should be to date YYYY i.e 2000, 2001 and not integer
             $table->integer('debut_year');
             $table->string('stage_name');
-//            $table->unsignedBigInteger('album_id')->nullable();
-//            $table->unsignedBigInteger('single_id')->nullable();
-//            $table->unsignedBigInteger('artist_award_id')->nullable();
             $table->text('bio');
-//            $table->unsignedBigInteger('genre_id');
             $table->string('official_website_link')->nullable();
             $table->string('spotify_music_link')->nullable();
             $table->string('apple_music_link')->nullable();
@@ -34,11 +27,6 @@ return new class extends Migration
             $table->string('boomplay_music_link')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
-//            $table->unsignedBigInteger('user_id');
-//            $table->foreign('user_id')
-//                ->references('id')
-//                ->on('users')
-//                ->onDelete('cascade');
             $table->foreign('user_information_id')
                 ->references('id')
                 ->on('user_informations')

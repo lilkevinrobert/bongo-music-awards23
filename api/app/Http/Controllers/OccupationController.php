@@ -14,6 +14,7 @@ class OccupationController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * The artist’s roles (e.g., singer, songwriter, producer, instrumentalist).
      */
     public function index()
     {
