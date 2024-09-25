@@ -95,25 +95,26 @@ const ArtistsDataTable: React.FC = () => {
                 placeholder="Search artist..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="p-4 border border-gray-500 rounded-md w-4/4 h-8 font-LatoRegular"
+                className="p-4 border border-gray-500 rounded-full w-4/4 h-8 font-LatoRegular"
               />
               <Button
                 size="sm"
-                className="ml-2 rounded-md bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+                className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
                 onClick={() => setSearchTerm("")}
               >
                 <GiMagicBroom className="text-lg font-LatoRegular" />
                 Clear
               </Button>
             </div>
+            <NavLink to={`/admin/add-user-form?origin=artist`}>
             <Button
               size="sm"
-              onClick={handleOpen}
-              className="flex items-center justify-center gap-2 rounded-md bg-yellow-300 hover:bg-yellow-400 transition ease-in-out text-slate-950"
-            >
+              className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+              >
               <MdOutlinePersonAdd className="text-lg" />
               <Typography className=" font-LatoRegular">Add</Typography>
             </Button>
+            </NavLink>
 
             {/* Dialogs */}
             <Dialog

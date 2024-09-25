@@ -3,10 +3,10 @@ const LoadingTable = () => {
     <>
       <div className="flex flex-row items-center justify-between my-2 animate-pulse">
         <div className="flex flex-row items-center gap-2">
-        <div className="py-5 px-24 rounded bg-slate-200 shadow-sm"></div>
-        <div className="py-5 px-14 rounded bg-slate-200 shadow-sm"></div>
+        <div className="py-5 px-24 rounded-full bg-slate-200 shadow-sm"></div>
+        <div className="py-5 px-14 rounded-full bg-slate-200 shadow-sm"></div>
         </div>
-        <div className="py-5 px-14 rounded bg-slate-200 shadow-sm"></div>
+        <div className="py-5 px-14 rounded-full bg-slate-200 shadow-sm"></div>
       </div>
       <div className="bg-white shadow-md rounded my-6 overflow-x-auto">
         <table className="min-w-max w-full table-auto">
