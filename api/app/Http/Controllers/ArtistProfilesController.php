@@ -25,9 +25,8 @@ class ArtistProfilesController extends Controller
      */
     public function index()
     {
-//        $artistProfiles = ArtistProfile::all();
-//        return ArtistProfileResource::collection($artistProfiles);
-        return ["data" => []];
+        $artistProfiles = ArtistProfile::all();
+        return ArtistProfileResource::collection($artistProfiles);
     }
 
     /**

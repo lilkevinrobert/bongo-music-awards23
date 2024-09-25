@@ -10,7 +10,6 @@
       <sourceFolder url="file://$MODULE_DIR$/api/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/api/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/api/tests/Unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/api/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/server/vendor/brick/math" />
@@ -253,6 +252,13 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/phpdocumentor/type-resolver" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/phpstan/phpdoc-parser" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/erusev/parsedown" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/knuckleswtf/scribe" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/mpociot/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/shalvah/clara" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/shalvah/upgrader" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/spatie/data-transfer-object" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/var-exporter" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
