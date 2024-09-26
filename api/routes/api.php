@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AwardGenresController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
@@ -103,6 +104,14 @@ Route::group(['prefix' => 'v1'], function () {
     // AWARDS APIS.
     Route::apiResource('awards', AwardController::class);
 
+    // AWARDS GENRE APIS.
+    Route::group(['prefix' => 'awards'], function () {
+        // Get All Genres for a Specific Award
+        Route::get('/{awardId}/genres', [AwardGenresController::class, 'getAwardGenres']);
+        // Create Award  genres
+        Route::post('/{awardId}/genres', [AwardGenresController::class, 'store']);
+    });
+
 
 //    Route::group(['prefix' => 'awards'], function () {
 
@@ -124,8 +133,6 @@ Route::group(['prefix' => 'v1'], function () {
 //    });
 
 });
-
-
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
