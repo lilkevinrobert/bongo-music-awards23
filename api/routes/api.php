@@ -17,6 +17,7 @@ use \App\Http\Controllers\GenresController;
 use \App\Http\Controllers\CategoriesController;
 use \App\Http\Controllers\UserInformationController;
 use \App\Http\Controllers\RegionController;
+use \App\Http\Controllers\AwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,26 +100,32 @@ Route::group(['prefix' => 'v1'], function () {
     // SPONSORS APIS.
     Route::apiResource('sponsors', SponsorController::class);
 
+    // AWARDS APIS.
+    Route::apiResource('awards', AwardController::class);
+
+
+//    Route::group(['prefix' => 'awards'], function () {
+
+//    /**
+//     * Events (Awards) end-points.
+//     */
+//    Route::get('/', [EventsController::class, 'index']); // Available events.
+//    Route::post('/', [EventsController::class, 'store']);
+//    Route::get('/{eventId}', [EventsController::class, 'show']); // Read specific event.
+//    Route::get('/{eventId}/genres/{genreId}/categories', []); // all available categories of a specific genre
+
+
+//        /**
+//         * Genres end-points. (genres)
+//         */
+
+//    Route::get('/{eventId}/genres', [EventsController::class, 'eventGenres']);
+
+//    });
+
 });
 
-Route::group(['prefix' => 'awards'], function () {
 
-    /**
-     * Events (Awards) end-points.
-     */
-    Route::get('/', [EventsController::class, 'index']); // Available events.
-    Route::post('/', [EventsController::class, 'store']);
-    Route::get('/{eventId}', [EventsController::class, 'show']); // Read specific event.
-    Route::get('/{eventId}/genres/{genreId}/categories', []); // all available categories of a specific genre
-
-
-    /**
-     * Genres end-points. (genres)
-     */
-
-    Route::get('/{eventId}/genres', [EventsController::class, 'eventGenres']);
-
-});
 
 
 Route::middleware(['auth:sanctum'])->group(function () {

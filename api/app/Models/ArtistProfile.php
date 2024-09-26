@@ -49,7 +49,6 @@ class ArtistProfile extends Model
             'debut_year' => ['required','integer'], //TODO year only not date
             'stage_name' => ['required'],
             'bio' => ['required'],
-//            'created_by' => ['required', 'exists:users,id'],
         ];
 
         $nice_names = [ # Friendly names
