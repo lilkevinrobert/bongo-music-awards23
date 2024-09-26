@@ -8,7 +8,7 @@ const ActiveAwards = () => {
       time: "08:00 pm",
       title: "Bongo Music Awards 2024",
       location: "Dar es Salaam, TZ",
-      isActive: true,
+      status: "ACTIVE",
     },
   ];
   return (

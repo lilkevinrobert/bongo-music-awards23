@@ -8,14 +8,17 @@ import {
 import { useState } from "react";
 import AwardEventDetails from "../Awards/AwardEventDetails";
 import AdminNominationsView from "../Nomination/AdminNominationsView";
+import { useParams } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const AdminAwardTabs = () => {
   const [activeTab, setActiveTab] = useState("details");
+  const params = useParams();
   const data = [
     {
       label: "Event Details",
       value: "details",
-      desc: <AwardEventDetails />,
+      desc: <AwardEventDetails awardId={params.awardId} />,
     },
     {
       label: "Nominations",
@@ -50,6 +53,14 @@ const AdminAwardTabs = () => {
           </TabPanel>
         ))}
       </TabsBody>
+      {/* Toaster */}
+      <Toaster position="top-center" containerClassName="font-LatoRegular" toastOptions={{
+        duration: 5000,
+        style: {
+          background: '#333',
+          color: '#fff',
+        },
+      }} />
     </Tabs>
   );
 };

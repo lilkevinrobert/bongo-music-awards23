@@ -63,7 +63,6 @@ const ArtistsDataTable: React.FC = () => {
     loading: artistsDataLoading,
     error: artistsDataError,
   }: FetchResult = useFetch(`${BASE_URL}/artists`);
-  console.log(artistsData)
 
   useEffect(() => {
     // Filter data based on the search term

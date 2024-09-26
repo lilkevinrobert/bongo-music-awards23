@@ -5,10 +5,9 @@ import { NavLink } from "react-router-dom";
 
 const SearchResultCard = ({
   id,
-  date,
-  title,
   location,
-  isActive,
+  title,
+  status
 }: IResults) => {
   return (
     <NavLink to={`/admin/awards/${id}`}>
@@ -16,14 +15,14 @@ const SearchResultCard = ({
         <div>
           <Typography className="flex items-center gap-2 font-LatoBold text-base text-gray-900">
             <div
-              className={`h-2 w-2 rounded-full ${isActive ? "bg-green-400" : "bg-red-400"}`}
+              className={`h-2 w-2 rounded-full ${status === "ACTIVE" ? "bg-green-400" : "bg-red-400"}`}
             ></div>
             {title}
           </Typography>
           <div className="hidden items-center gap-2 md:flex">
-            <Typography className="font-LatoRegular text-sm text-gray-900">
+            {/* <Typography className="font-LatoRegular text-sm text-gray-900">
               {date}
-            </Typography>
+            </Typography> */}
             <Typography className="font-LatoRegular text-sm text-gray-900">
               {location}
             </Typography>

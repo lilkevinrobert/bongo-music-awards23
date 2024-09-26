@@ -132,23 +132,23 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
         )}
       </div>
       <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
-            <Typography className="capitalize">Sponsoring Award</Typography>
-            <Controller
-              name="award"
-              control={control}
-              render={({ field, fieldState }) => {
-                return (
-                  <>
-                    <select {...field} className={`w-full h-[2.3rem] ${ fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
-                      <option value="">Select an option</option>
-                      <option value="2">Option 2</option>
-                    </select>
-                    {(fieldState.error || fieldState.error != undefined) && <ErrorFormField message={`${fieldState.error.message}`} />}
-                  </>
-                )
-              }}
-            />
-          </div>
+        <Typography className="capitalize">Sponsoring Award</Typography>
+        <Controller
+          name="award"
+          control={control}
+          render={({ field, fieldState }) => {
+            return (
+              <>
+                <select {...field} className={`w-full h-[2.3rem] ${fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
+                  <option value="">Select an option</option>
+                  <option value="2">Option 2</option>
+                </select>
+                {(fieldState.error || fieldState.error != undefined) && <ErrorFormField message={`${fieldState.error.message}`} />}
+              </>
+            )
+          }}
+        />
+      </div>
       <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
         <Typography className="capitalize">logo</Typography>
         <Controller

@@ -29,7 +29,7 @@ const AdminAwardsTabs = () => {
                 </Tab>
             ))}
         </TabsHeader>
-        <TabsBody className="bg-slate-50">
+        <TabsBody className="bg-slate-50 rounded-b-md">
             {
                 data.map(({ value, desc }) => (
                     <TabPanel key={value} value={value}>{desc}</TabPanel>

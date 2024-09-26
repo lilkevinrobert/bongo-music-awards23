@@ -3,49 +3,50 @@ import { IoCloseOutline } from "react-icons/io5";
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import SearchResultCard from "../Cards/SearchResultCard";
+import useFetch from "../../hooks/useFetch";
+import AddEmptyState from "../EmptyState/AddEmptyState";
+import Errors from "../Errors/Errors";
+import LoadingItems from "../Loading/LoadingItems";
 
 interface FormProps {
   closeModal: () => void;
 }
 
+interface AwardsData {
+  data: [];
+}
+interface FetchResult {
+  data: AwardsData | null;
+  loading: boolean;
+  error: Error | null;
+}
+
 export interface IResults {
   id: string;
-  date: string;
-  time: string;
   title: string;
   location: string;
-  isActive: boolean;
+  status: string;
 }
 
 const SearchDialog = ({ closeModal }: FormProps) => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+  // GET data
+  const {
+    data: awardsDataList,
+    loading: awardsDataLoading,
+    error: awardsDataError,
+  }: FetchResult = useFetch(`${BASE_URL}/awards`);
+
   // search feature
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState<IResults[]>([]);
 
-  // get search data
-  const data: IResults[] = [
-    {
-      id: "jsia3ua3z",
-      date: "Sunday, 30 June",
-      time: "08:00 pm",
-      title: "Bongo Music Awards 2024",
-      location: "Dar es Salaam, TZ",
-      isActive: true,
-    },
-    {
-      id: "jsia3ua3z",
-      date: "Saturday, 16 September",
-      time: "08:00 pm",
-      title: "Bongo Music Awards 2023",
-      location: "Dar es Salaam, TZ",
-      isActive: false,
-    },
-  ];
 
   useEffect(() => {
     // Filter data based on the search term
     const filtered =
-      data.filter((row) => {
+      awardsDataList?.data.filter((row:IResults) => {
         return Object.values(row).some(
           (value) =>
             typeof value === "string" &&
@@ -80,24 +81,29 @@ const SearchDialog = ({ closeModal }: FormProps) => {
           <IoCloseOutline className="text-2xl text-gray-900 group-hover:bg-yellow-200 rounded-full transition ease-in-out" />
         </div>
       </div>
-      {searchTerm == "" ? (
-        ""
-      ) : (
-        <div className="w-full bg-transparent px-2 md:px-16 lg:w-1/2">
-          {filteredData.map((item, i) => (
+
+      {
+        awardsDataLoading ? (
+          <LoadingItems orientation="portrait" />
+        ) : awardsDataError ? (
+          <Errors errorName={awardsDataError?.name} message={awardsDataError?.message} />
+        ) : awardsDataList?.data.length === 0 ? (
+          <AddEmptyState itemName="award" />
+        ) : searchTerm == " " ? (""): (
+          <div className="w-full bg-transparent px-2 md:px-16 lg:w-1/2">
+          {filteredData.map((item: IResults, i) => (
             <div key={i}>
               <SearchResultCard
                 id={item.id}
-                date={item.date}
-                time={item.time}
                 title={item.title}
                 location={item.location}
-                isActive={item.isActive}
+                status={item.status}
               />
             </div>
           ))}
         </div>
-      )}
+        )
+      }
     </div>
   );
 };

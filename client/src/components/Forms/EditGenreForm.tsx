@@ -43,7 +43,7 @@ const EditGenreForm = ({ closeModal, fetchData, genre }: FormProps) => {
       })
       .then((response) => {
         if (response.status == 200) {
-          fetchData(); // Ref-fetch data after save
+          fetchData(); // Re-fetch data after save
           toast.success("Genre Updated Successfully");
           // setTimeout(() => window.location.reload(), 3000);
         } else {

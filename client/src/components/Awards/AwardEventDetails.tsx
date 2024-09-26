@@ -1,17 +1,31 @@
 import {
   Typography,
   Dialog,
-  CardBody,
-  CardFooter,
   Card,
   Button,
-  Checkbox,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import EditAwardForm from "../Forms/EditAwardForm";
+// import useFetch from "../../hooks/useFetch";
+import AddAwardSponsorForm from "../Forms/AddAwardSponsorForm";
+import AddAwardGenreForm from "../Forms/AddAwardGenreForm";
 
-const AwardEventDetails = () => {
+interface AwardEventDetailsProps {
+  awardId: string | undefined;
+}
+
+// interface Data {
+//   data: [];
+// }
+// interface FetchResult {
+//   data: Data | null;
+//   loading: boolean;
+//   error: Error | null;
+// }
+
+const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
+  // const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
   const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
   const [openGenresDialog, setOpenGenresDialog] = useState(false);
@@ -19,39 +33,23 @@ const AwardEventDetails = () => {
     setOpenGenresDialog((cur) => !cur);
 
   // Data from API...
-  const sponsorsList = [
-    {
-      id: "eiow3oie4xc",
-      name: "Sponsor's name",
-      logo: "sponsor's logo",
-    },
-    {
-      id: "eiow3oie4xc",
-      name: "Sponsor's name",
-      logo: "sponsor's logo",
-    },
-    {
-      id: "eiow3oie4xc",
-      name: "Sponsor's name",
-      logo: "sponsor's logo",
-    },
+  const awardSponsorsList: any[] = [
+    // {
+    //   id: "eiow3oie4xc",
+    //   name: "Sponsor's name",
+    //   logo: "sponsor's logo",
+    // },
+    // get list from server
   ];
+
   const genresList: string[] = [
-    "Bongo Flava",
-    "Taarab",
-    "R&B",
-    "Singeli",
-    "Reggae/Dance Hall",
-    "Hip Hop & Rap",
-    "Religious Songs",
-    "Dancers",
-    "Best Performer of the Year",
-    "Honorary Awards",
+    // "Bongo Flava",
+    // get list from server
   ];
   return (
     <>
       <div className="px-0 pb-4">
-        <EditAwardForm />
+        <EditAwardForm awardId={awardId} />
       </div>
       <hr className="mt-4" />
       {/* Sponsors section */}
@@ -61,7 +59,7 @@ const AwardEventDetails = () => {
         </Typography>
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 py-4">
           {/* Awards Sponsor's card list */}
-          {sponsorsList.map((sponsor, i) => (
+          {awardSponsorsList.map((sponsor, i) => (
             <Card key={i} className="w-full h-auto shadow-none">
               <div className="w-full h-32">
                 <img
@@ -114,9 +112,10 @@ const AwardEventDetails = () => {
           </span>
         </div>
       </section>
+
       {/* Dialogs */}
       <Dialog
-        size="xs"
+        size="md"
         open={openSponsorsDialog}
         handler={handleOpenSponsorsDialog}
         className="bg-transparent shadow-none"
@@ -125,68 +124,7 @@ const AwardEventDetails = () => {
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <Card className="mx-auto w-full max-w-[24rem] rounded-md">
-          <CardBody className="flex flex-col gap-4">
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className="font-LatoBold"
-            >
-              Add Awards Sponsor(s)
-            </Typography>
-            <Typography
-              className="mb-3 font-LatoRegular"
-              variant="paragraph"
-              color="gray"
-            >
-              Select appropriate sponsor form the list below.
-            </Typography>
-
-            {/* Available Sponsor's */}
-            <div className="grid grid-cols-2 gap-2 bg-transparent border rounded p-4">
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Sponsor One"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Sponsor Two"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Sponsor Three"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Sponsor Four"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-            </div>
-            <CardFooter className="py-0 flex flex-row items-center justify-center gap-2">
-              <Button
-                variant="filled"
-                onClick={handleOpenSponsorsDialog}
-                className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800"
-              >
-                cancel
-              </Button>
-              <Button variant="filled" className="rounded-full font-LatoBold">
-                Save &nbsp; Changes
-              </Button>
-            </CardFooter>
-          </CardBody>
-        </Card>
+        <AddAwardSponsorForm handleOpenSponsorsDialog={handleOpenSponsorsDialog} />
       </Dialog>
       <Dialog
         size="md"
@@ -198,75 +136,7 @@ const AwardEventDetails = () => {
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <Card className="mx-auto w-full max-w-[24rem] rounded-md">
-          <CardBody className="flex flex-col gap-4">
-            <Typography
-              variant="h6"
-              color="blue-gray"
-              className="font-LatoBold"
-            >
-              Add Awards Genres
-            </Typography>
-            <Typography
-              className="mb-3 font-LatoRegular"
-              variant="paragraph"
-              color="gray"
-            >
-              Select appropriate genre(s):
-            </Typography>
-
-            {/* Available Categories */}
-            <div className="grid grid-cols-2 gap-2 bg-transparent border rounded p-4">
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Bongo Flava"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="R&B"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Taarab"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Singeli"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-              <div className="font-LatoRegular w-full">
-                <Checkbox
-                  label="Reggae/Dance Hall"
-                  crossOrigin={undefined}
-                  className="mr-2"
-                />
-              </div>
-            </div>
-            <CardFooter className="py-0 flex flex-row items-center justify-center gap-2">
-              <Button
-                variant="filled"
-                onClick={handleOpenGenresDialog}
-                className="rounded-full font-LatoBold bg-gray-300 hover:bg-gray-300 border-gray-300 hover:border-gray-800 text-gray-800"
-              >
-                cancel
-              </Button>
-              <Button variant="filled" className="rounded-full font-LatoBold">
-                Save &nbsp; Changes
-              </Button>
-            </CardFooter>
-          </CardBody>
-        </Card>
+        <AddAwardGenreForm handleOpenGenresDialog={handleOpenGenresDialog} awardId={awardId} />
       </Dialog>
     </>
   );
