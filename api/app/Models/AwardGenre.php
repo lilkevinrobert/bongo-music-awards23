@@ -6,29 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
-class Award extends Model
+class AwardGenre extends Model
 {
     use HasFactory;
 
-    protected $table = 'awards';
-
+    protected $table = 'award_genres';
     protected $fillable = [
-        'title',
-        'location',
-        'status',
-        'poster_image_url'
+        'award_id',
+        'genre_id'
     ];
 
     public static function validate($input, $id = null)
     {
         $rules = [ # place-holder for validation rules
-            'title' => ['required'],
-            'location' => ['required'],
-            'poster_image_url' => ['required','image', 'mimes:jpeg,png,jpg']
+            'award_id' => 'required|exists:awards,id',
+            'genre_id' => 'required|exists:genres,id|array',
+            'genre_id.*' => 'distinct|integer|exists:genres,id'
         ];
 
         $nice_names = [ # Friendly names
-            'poster_image_url' => 'poster image',
+            'award_id' => 'Award',
+            'genre_id' => 'Genre',
         ];
 
         # validation code

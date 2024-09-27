@@ -28,7 +28,6 @@ class ArtistProfileResource extends JsonResource
             'phone' => $this->getName($this->user_information_id)['phone'],
             'email' => $this->getEmail($this->user_information_id),
             'genres' => $this->getArtistGenres($this->id),
-
         ];
     }
 
@@ -57,7 +56,5 @@ class ArtistProfileResource extends JsonResource
         return ArtistGenre::where('artist_id', $user_information_id)
             ->select(['genre_id'])->get();
     }
-
-
 
 }

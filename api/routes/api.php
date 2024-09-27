@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AwardGenresController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
@@ -17,6 +18,7 @@ use \App\Http\Controllers\GenresController;
 use \App\Http\Controllers\CategoriesController;
 use \App\Http\Controllers\UserInformationController;
 use \App\Http\Controllers\RegionController;
+use \App\Http\Controllers\AwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,24 +101,36 @@ Route::group(['prefix' => 'v1'], function () {
     // SPONSORS APIS.
     Route::apiResource('sponsors', SponsorController::class);
 
-});
+    // AWARDS APIS.
+    Route::apiResource('awards', AwardController::class);
 
-Route::group(['prefix' => 'awards'], function () {
-
-    /**
-     * Events (Awards) end-points.
-     */
-    Route::get('/', [EventsController::class, 'index']); // Available events.
-    Route::post('/', [EventsController::class, 'store']);
-    Route::get('/{eventId}', [EventsController::class, 'show']); // Read specific event.
-    Route::get('/{eventId}/genres/{genreId}/categories', []); // all available categories of a specific genre
+    // AWARDS GENRE APIS.
+    Route::group(['prefix' => 'awards'], function () {
+        // Get All Genres for a Specific Award
+        Route::get('/{awardId}/genres', [AwardGenresController::class, 'getAwardGenres']);
+        // Create Award  genres
+        Route::post('/{awardId}/genres', [AwardGenresController::class, 'store']);
+    });
 
 
-    /**
-     * Genres end-points. (genres)
-     */
+//    Route::group(['prefix' => 'awards'], function () {
 
-    Route::get('/{eventId}/genres', [EventsController::class, 'eventGenres']);
+//    /**
+//     * Events (Awards) end-points.
+//     */
+//    Route::get('/', [EventsController::class, 'index']); // Available events.
+//    Route::post('/', [EventsController::class, 'store']);
+//    Route::get('/{eventId}', [EventsController::class, 'show']); // Read specific event.
+//    Route::get('/{eventId}/genres/{genreId}/categories', []); // all available categories of a specific genre
+
+
+//        /**
+//         * Genres end-points. (genres)
+//         */
+
+//    Route::get('/{eventId}/genres', [EventsController::class, 'eventGenres']);
+
+//    });
 
 });
 

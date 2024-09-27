@@ -87,6 +87,7 @@ class ArtistProfilesController extends Controller
                 ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
             }
         } catch (QueryException|\Exception $e) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Something went wrong while creating Artist profile. Please try again later.',
                 'message' => $e->getMessage()

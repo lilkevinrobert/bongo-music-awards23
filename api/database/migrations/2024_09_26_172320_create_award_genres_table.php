@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('awards', function (Blueprint $table) {
+        Schema::create('award_genres', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('location');
-            $table->enum('status', ['ACTIVE', 'CLOSED'])->default('ACTIVE');
-            $table->string('poster_image_url');
+            $table->unsignedBigInteger('award_id');
+            $table->unsignedBigInteger('genre_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awards');
+        Schema::dropIfExists('award_genres');
     }
 };
