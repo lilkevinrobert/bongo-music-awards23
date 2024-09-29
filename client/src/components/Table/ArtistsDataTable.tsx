@@ -191,7 +191,6 @@ const ArtistsDataTable: React.FC = () => {
               <tr className="bg-gray-200 text-left font-LatoBold">
                 <th className="px-4 py-1">Stage Name</th>
                 <th className="px-4 py-1">Full Name</th>
-                <th className="px-4 py-1">Genre</th>
                 <th className="px-4 py-1">Phone</th>
                 <th className="px-4 py-1">Email</th>
                 <th className="px-4 py-1 text-center w-40"></th>
@@ -213,7 +212,6 @@ const ArtistsDataTable: React.FC = () => {
                       row.middle_name != null ? row.middle_name : ""
                     } ${row.last_name}`}
                   </td>
-                  <td className="border px-4 py-1 capitalize">{row.genre}</td>
                   <td className="border px-4 py-1 capitalize">{row.phone}</td>
                   <td className="border px-4 py-1 lowercase">{row.email}</td>
                   <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
