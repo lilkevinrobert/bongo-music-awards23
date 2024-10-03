@@ -83,8 +83,8 @@ const RegistrationForm = () => {
               <input
                 {...register("username", { required: true })}
                 placeholder="Enter your username"
-                className="h-10 w-full rounded-lg border border-gray-400 pl-4 font-LatoRegular text-gray-900"
-              />
+                className={`w-full h-10 pl-4 rounded-lg border ${errors.username ? 'border-red-500' : 'border-gray-400'
+                  } font-LatoRegular text-sm rounded bg-white`} />
               {errors.username && (
                 <ErrorFormField message={`${errors.username?.message}`} />
               )}
@@ -93,8 +93,8 @@ const RegistrationForm = () => {
               <input
                 {...register("email", { required: true })}
                 placeholder="Enter your email"
-                className="h-10 w-full rounded-lg border border-gray-400 pl-4 font-LatoRegular text-gray-900"
-              />
+                className={`w-full h-10 pl-4 rounded-lg border ${errors.email ? 'border-red-500' : 'border-gray-400'
+                  } font-LatoRegular text-sm rounded bg-white`} />
               {errors.email && (
                 <ErrorFormField message={`${errors.email?.message}`} />
               )}
@@ -104,8 +104,8 @@ const RegistrationForm = () => {
                 {...register("password", { required: true, minLength: 6 })}
                 placeholder="Enter your password"
                 type="password"
-                className="h-10 w-full rounded-lg border border-gray-400 pl-4 font-LatoRegular text-gray-900"
-              />
+                className={`w-full h-10 pl-4 rounded-lg border ${errors.password ? 'border-red-500' : 'border-gray-400'
+                  } font-LatoRegular text-sm rounded bg-white`} />
               {errors.password && (
                 <ErrorFormField message={`${errors.password?.message}`} />
               )}
@@ -115,8 +115,8 @@ const RegistrationForm = () => {
                 {...register("password_confirmation", { required: true })}
                 placeholder="Confirm your password"
                 type="password"
-                className="h-10 w-full rounded-lg border border-gray-400 pl-4 font-LatoRegular text-gray-900"
-              />
+                className={`w-full h-10 pl-4 rounded-lg border ${errors.password_confirmation ? 'border-red-500' : 'border-gray-400'
+                  } font-LatoRegular text-sm rounded bg-white`} />
               {errors.password_confirmation && (
                 <ErrorFormField
                   message={`${errors.password_confirmation?.message}`}
