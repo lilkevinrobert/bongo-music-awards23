@@ -85,7 +85,7 @@ const Footer = () => {
   };
   return (
     <footer className="relative w-full bg-white">
-      <div className="mx-auto w-full max-w-7xl py-8">
+      <div className="mx-auto w-full max-w-7xl py-8 px-auto md:px-4">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
           <div className="bg-transprent flex flex-col items-start px-6 md:px-0 md:items-start justify-center">
             <NavLink to="/">
