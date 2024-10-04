@@ -42,7 +42,7 @@ class AwardGenresController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        if ((int) $request->route('awardId') !== (int) $id) {
+        if ((int)$request->route('awardId') !== (int)$id) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
                 'message' => 'Route Parameter Award Id do not match',
@@ -87,65 +87,61 @@ class AwardGenresController extends Controller
     }
 
 
+    // TODO Not yet tested.
+    public function getAwardGenres($awardId)
+    {
+        $award = Award::find($awardId);
+        if (!isset($award)) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_NOT_FOUND,
+                'message' => 'Award not found',
+            ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
+        }
 
-// TODO Not yet tested.
-public
-function getAwardGenres($awardId)
-{
-    $award = Award::find($awardId);
-    if (!isset($award)) {
-        return response()->json([
-            'status' => ResponseAlias::HTTP_NOT_FOUND,
-            'message' => 'Award not found',
-        ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
-    }
-
-    //retrieving the
-    $genres = Award::with('awardGenres')->where(['award_id' => $awardId])->get();
+        //retrieving the
+        $genres = Award::with('awardGenres')->where(['award_id' => $awardId])->get();
 //        $genres =  Genre::with('categories')->find($genreId);
 
-    return response()->json([
-        'status' => ResponseAlias::HTTP_OK,
-        'message' => 'Award genres',
-        'data' => $genres,
-    ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
-}
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Award genres',
+            'data' => $genres,
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+    }
 
 
-/**
- * Display the specified resource.
- *
- * @param \App\Models\AwardGenres $awardGenres
- * @return \Illuminate\Http\Response
- */
-public
-function show(AwardGenres $awardGenres)
-{
+    /**
+     * Display the specified resource.
+     *
+     * @param \App\Models\AwardGenres $awardGenres
+     * @return \Illuminate\Http\Response
+     */
+    public function show(AwardGenres $awardGenres)
+    {
 
-}
+    }
 
-/**
- * Update the specified resource in storage.
- *
- * @param \Illuminate\Http\Request $request
- * @param \App\Models\AwardGenres $awardGenres
- * @return \Illuminate\Http\Response
- */
-public
-function update(Request $request, AwardGenres $awardGenres)
-{
-    //
-}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\AwardGenres $awardGenres
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, AwardGenres $awardGenres)
+    {
+        //
+    }
 
-/**
- * Remove the specified resource from storage.
- *
- * @param \App\Models\AwardGenres $awardGenres
- * @return \Illuminate\Http\Response
- */
-public
-function destroy(AwardGenres $awardGenres)
-{
-    //
-}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\AwardGenres $awardGenres
+     * @return \Illuminate\Http\Response
+     */
+    public
+    function destroy(AwardGenres $awardGenres)
+    {
+        //
+    }
 }

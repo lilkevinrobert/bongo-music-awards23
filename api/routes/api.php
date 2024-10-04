@@ -3,10 +3,12 @@
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardGenresController;
+use App\Http\Controllers\AwardNominationController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\WardController;
+use App\Models\AwardNomination;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventsController;
@@ -67,7 +69,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('streets/{streetId}/roads', [StreetController::class, 'show']);
     });
 
-    //
+    //USER INFORMATION END POINTS
     Route::group(['prefix' => 'user_informations'], function () {
         Route::get('/', [UserInformationController::class, 'index']);
         Route::post('/', [UserInformationController::class, 'store']);
@@ -101,8 +103,7 @@ Route::group(['prefix' => 'v1'], function () {
     // SPONSORS APIS.
     Route::apiResource('sponsors', SponsorController::class);
 
-    // AWARDS APIS.
-    Route::apiResource('awards', AwardController::class);
+
 
     // AWARDS GENRE APIS.
     Route::group(['prefix' => 'awards'], function () {
@@ -110,6 +111,23 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/{awardId}/genres', [AwardGenresController::class, 'getAwardGenres']);
         // Create Award  genres
         Route::post('/{awardId}/genres', [AwardGenresController::class, 'store']);
+
+        // Active Events and Awards
+        Route::get('/active',  [AwardController::class, 'activeAwards']);
+        Route::get('/closed',  [AwardController::class, 'inactiveAwards']);
+    });
+
+    // AWARDS APIS.
+    Route::apiResource('awards', AwardController::class);
+
+
+    // NOMINATION END POINTS
+    Route::group(['prefix' => 'nominations'], function () {
+        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
+        Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
+//        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
+
+
     });
 
 
