@@ -34,7 +34,7 @@ class AwardNominationController extends Controller
     public function updateStatus(Request $request)
     {
 
-        if ($request->has('status') && $request->input('status') == "OPEN") {
+        if ($request->has('status') && $request->input('status') == "ACTIVE") {
 
             $validator = AwardNomination::validate($request->all());
             if ($validator->fails()) {
