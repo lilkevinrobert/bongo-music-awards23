@@ -103,8 +103,7 @@ Route::group(['prefix' => 'v1'], function () {
     // SPONSORS APIS.
     Route::apiResource('sponsors', SponsorController::class);
 
-    // AWARDS APIS.
-    Route::apiResource('awards', AwardController::class);
+
 
     // AWARDS GENRE APIS.
     Route::group(['prefix' => 'awards'], function () {
@@ -112,7 +111,13 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/{awardId}/genres', [AwardGenresController::class, 'getAwardGenres']);
         // Create Award  genres
         Route::post('/{awardId}/genres', [AwardGenresController::class, 'store']);
+
+        // Active Events and Awards
+        Route::get('/active',  [AwardController::class, 'activeAwards']);
     });
+
+    // AWARDS APIS.
+    Route::apiResource('awards', AwardController::class);
 
 
     // NOMINATION END POINTS
