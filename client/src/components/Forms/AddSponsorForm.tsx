@@ -116,8 +116,8 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
             <Typography className="capitalize">name</Typography>
             <input
               type="text"
-              className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded"
-              placeholder="Name of Sponsor"
+              className={`w-full h-[2rem] border ${errors.sponsor_name ? 'border-red-500' : 'border-gray-300'
+                } font-LatoRegular text-sm rounded`} placeholder="Name of Sponsor"
               {...register("sponsor_name", { required: true })}
             />
             {errors.sponsor_name && (
@@ -128,8 +128,8 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
             <Typography className="capitalize">link</Typography>
             <input
               type="text"
-              className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded"
-              placeholder="Enter sponsor's link"
+              className={`w-full h-[2rem] border ${errors.link ? 'border-red-500' : 'border-gray-300'
+                } font-LatoRegular text-sm rounded`} placeholder="Enter sponsor's link"
               {...register("link", { required: true })}
             />
             {errors.link && (
@@ -144,7 +144,7 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
               render={({ field, fieldState }) => {
                 return (
                   <>
-                    <select {...field} className={`w-full h-[2.3rem] ${ fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
+                    <select {...field} className={`w-full h-[2.3rem] ${fieldState.invalid ? 'border-red-500' : 'border-gray-300'} font-LatoRegular text-sm rounded`}>
                       <option value="">Select an option</option>
                       <option value="2">Option 2</option>
                     </select>
@@ -163,8 +163,8 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
                 <input
                   name="image"
                   type="file"
-                  className="w-full h-full border border-gray-300 font-LatoRegular text-sm rounded"
-                  accept=".jpg, .jpeg, .png"
+                  className={`w-full border ${errors.sponsor_logo ? 'border-red-500' : 'border-gray-300'
+                    } font-LatoRegular text-sm rounded`} accept=".jpg, .jpeg, .png"
                   onChange={(e) => onChange(e.target.files)}
                   onBlur={onBlur}
                   multiple={false}

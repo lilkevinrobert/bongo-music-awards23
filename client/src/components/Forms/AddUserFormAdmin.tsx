@@ -277,8 +277,8 @@ const AddUserFormAdmin = () => {
                 <input
                   name="image"
                   type="file"
-                  className="font-LatoRegular"
-                  accept=".jpg, .jpeg"
+                  className={`w-full border ${errors.profile_image ? 'border-red-500' : 'border-gray-300'
+                    } font-LatoRegular text-sm rounded`} accept=".jpg, .jpeg"
                   onChange={(e) => onChange(e.target.files)}
                   onBlur={onBlur}
                   multiple={false}
@@ -299,8 +299,8 @@ const AddUserFormAdmin = () => {
                 type="text"
                 placeholder="Enter firstname"
                 {...register("first_name", { required: true })}
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 font-LatoRegular"
-              />
+                className={`w-full border ${errors.first_name ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`} />
               {errors.first_name && (
                 <ErrorFormField message={`${errors.first_name?.message}`} />
               )}
@@ -323,7 +323,8 @@ const AddUserFormAdmin = () => {
               <input
                 type="text"
                 placeholder="Enter your lastname"
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 font-LatoRegular"
+                className={`w-full border ${errors.last_name ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`}
                 {...register("last_name", { required: true })}
               />
               {errors.last_name && (
@@ -359,7 +360,7 @@ const AddUserFormAdmin = () => {
                 <Controller
                   name="date_of_birth"
                   control={control}
-                  render={({ field }) => (
+                  render={({ field, fieldState }) => (
                     <input
                       type="date"
                       id="date_of_birth"
@@ -369,7 +370,7 @@ const AddUserFormAdmin = () => {
                           ? new Date(field.value).toISOString().split("T")[0]
                           : ""
                       }
-                      className="mt-1 w-full rounded-md border border-gray-300 p-2 font-LatoRegular"
+                      className={`mt-1 w-full rounded-md ${fieldState.invalid ? 'border-red-500' : 'border-gray-300'} p-2 font-LatoRegular`}
                     />
                   )}
                 />
@@ -386,8 +387,8 @@ const AddUserFormAdmin = () => {
                 type="text"
                 placeholder="Enter username"
                 {...register("username", { required: true })}
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 font-LatoRegular"
-              />
+                className={`w-full border ${errors.username ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`} />
               {errors.username && (
                 <ErrorFormField message={`${errors.username?.message}`} />
               )}
@@ -400,8 +401,8 @@ const AddUserFormAdmin = () => {
                 type="password"
                 placeholder="Enter Password"
                 {...register("password", { required: true })}
-                className="mt-1 w-full rounded-md border border-gray-300 p-2 font-LatoRegular"
-              />
+                className={`w-full border ${errors.password ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`} />
               {errors.password && (
                 <ErrorFormField message={`${errors.password?.message}`} />
               )}
@@ -424,7 +425,8 @@ const AddUserFormAdmin = () => {
                 type="tel"
                 placeholder="Like: 0714456680"
                 {...register("phone_number", { required: true })}
-                className="mt-1 w-full rounded-md border border-gray-300 py-2 pl-4 font-LatoRegular"
+                className={`w-full h-10 border ${errors.phone_number ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`}
               />
               {errors.phone_number && (
                 <ErrorFormField message={`${errors.phone_number?.message}`} />
@@ -438,8 +440,8 @@ const AddUserFormAdmin = () => {
                 type="email"
                 placeholder="Enter email"
                 {...register("email", { required: true })}
-                className="mt-1 w-full rounded-md border border-gray-300 py-2 pl-4 font-LatoRegular"
-              />
+                className={`w-full h-10 border ${errors.email ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`} />
               {errors.email && (
                 <ErrorFormField message={`${errors.email?.message}`} />
               )}
@@ -596,8 +598,8 @@ const AddUserFormAdmin = () => {
                 type="number"
                 placeholder="Enter house number"
                 {...register("building_house_number", { required: true })}
-                className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
-              />
+                className={`w-full h-10 border ${errors.building_house_number ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`} />
               {errors.building_house_number && (
                 <ErrorFormField
                   message={`${errors.building_house_number?.message}`}
@@ -612,8 +614,8 @@ const AddUserFormAdmin = () => {
                 type="text"
                 placeholder="Eg. P.O.Box 123, Dodoma"
                 {...register("postal_address", { required: true })}
-                className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular capitalize"
-              />
+                className={`w-full h-10 border ${errors.postal_address ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`} />
               {errors.postal_address && (
                 <ErrorFormField message={`${errors.postal_address?.message}`} />
               )}

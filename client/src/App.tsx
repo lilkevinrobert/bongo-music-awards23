@@ -26,7 +26,7 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const AdminDashboardPage = lazy(() => import("./pages/Admin/DashboardPage"));
-const ArtistDashboardPage = lazy(() => import("./pages/Artist/ArtistDashboardPage"));
+const ArtistDashboardPage = lazy(() => import("./pages/Artist/ArtistDashboardPage.tsx"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminCategoriesPage = lazy(() => import("./pages/Admin/CategoriesPage"));
 const AdminGenresPage = lazy(() => import("./pages/Admin/GenresPage"));

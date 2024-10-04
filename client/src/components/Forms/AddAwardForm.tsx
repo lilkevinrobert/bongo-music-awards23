@@ -104,7 +104,9 @@ const AddAwardForm = ({ closeModal }: FormProps) => {
 
           <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
             <Typography className="capitalize">title</Typography>
-            <input type="text" className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded" placeholder="Name of Award Event"
+            <input type="text"
+              className={`w-full h-[2rem] border ${errors.title ? 'border-red-500' : 'border-gray-300'
+                } font-LatoRegular text-sm rounded`} placeholder="Name of Award Event"
               {...register("title", { required: true })}
             />
             {errors.title && (
@@ -113,7 +115,9 @@ const AddAwardForm = ({ closeModal }: FormProps) => {
           </div>
           <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
             <Typography className="capitalize">location</Typography>
-            <input type="text" className="w-full h-[2rem] border-gray-300 font-LatoRegular text-sm rounded" placeholder="Enter a Location"
+            <input type="text"
+              className={`w-full h-[2rem] border ${errors.location ? 'border-red-500' : 'border-gray-300'
+                } font-LatoRegular text-sm rounded`} placeholder="Enter a Location"
               {...register("location", { required: true })} />
             {errors.location && (
               <ErrorFormField message={`${errors.location?.message}`} />
@@ -136,8 +140,9 @@ const AddAwardForm = ({ closeModal }: FormProps) => {
                 <input
                   name="image"
                   type="file"
-                  className="w-full h-full border border-gray-300 font-LatoRegular text-sm rounded"
-                  accept=".jpg, .jpeg, .png"
+                  className={`w-full border ${
+                    errors.poster_image_url ? 'border-red-500' : 'border-gray-300'
+                  } font-LatoRegular text-sm rounded`}                  accept=".jpg, .jpeg, .png"
                   onChange={(e) => onChange(e.target.files)}
                   onBlur={onBlur}
                   multiple={false}
