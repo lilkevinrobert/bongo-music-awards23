@@ -48,7 +48,7 @@ class SponsorController extends Controller
             !is_dir($path) && mkdir($path, 0777, true);
 
             //TODO saving the image to the database.
-            if ($file = $request->file('image')) {
+            if ($file = $request->file('logo')) {
                 $fileData = $this->uploads($file, $path);
 
                 $sponsor = Sponsor::create([

@@ -34,6 +34,11 @@ class AwardNominationController extends Controller
     public function updateStatus(Request $request)
     {
 
+        // TODO FUNCTION UPDATE IS REQUIRED
+        $currentStatus = AwardNomination::where('award_id', $request->input('award_id'))
+            ->select(['status'])
+            ->first()->status;
+
         if ($request->has('status') && $request->input('status') == "ACTIVE") {
 
             $validator = AwardNomination::validate($request->all());
@@ -73,6 +78,7 @@ class AwardNominationController extends Controller
         }
 
         if ($request->has('status') && $request->input('status') == "CLOSED") {
+
             $validator = AwardNomination::validate($request->all());
             if ($validator->fails()) {
                 return response()->json([
@@ -80,6 +86,12 @@ class AwardNominationController extends Controller
                     'message' => $validator->messages(),
                 ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
             }
+
+            $currentStatus = AwardNomination::where('award_id', $validator->validated()['award_id'])
+                ->select(['status'])
+                ->first()->status;
+
+
 
             try {
                 DB::beginTransaction();
