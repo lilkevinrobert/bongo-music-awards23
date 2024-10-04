@@ -25,7 +25,8 @@ class AwardNomination extends Model
             'award_id' => ['required', 'exists:awards,id'],
             'start_date' => ['required', 'date', 'after:today'],
             'end_date' => ['required', 'after:start_date', 'date'],
-            'status' => ['required', 'in:CLOSE,OPEN']
+//            'status' => ['required', 'in:CLOSE,OPEN']
+            'status' => ['required', 'in:ACTIVE,CLOSED']
         ];
 
         $nice_names = [ # Friendly names

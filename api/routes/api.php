@@ -114,6 +114,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         // Active Events and Awards
         Route::get('/active',  [AwardController::class, 'activeAwards']);
+        Route::get('/closed',  [AwardController::class, 'inactiveAwards']);
     });
 
     // AWARDS APIS.
@@ -123,6 +124,7 @@ Route::group(['prefix' => 'v1'], function () {
     // NOMINATION END POINTS
     Route::group(['prefix' => 'nominations'], function () {
         Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
+        Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
 //        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
 
 

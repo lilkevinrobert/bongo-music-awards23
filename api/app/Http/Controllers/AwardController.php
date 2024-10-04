@@ -127,7 +127,16 @@ class AwardController extends Controller
         $awards = Award::where('status', 'ACTIVE')->get();
         return response()->json([
             'status' => ResponseAlias::HTTP_OK,
-            'message' => 'Award deleted successfully',
+            'message' => 'Award Retrieved successfully',
+            'data' => AwardResource::collection($awards)
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+    }
+
+    public function inactiveAwards(Request $request){
+        $awards = Award::where('status', 'CLOSED')->get();
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Award Retrieved successfully',
             'data' => AwardResource::collection($awards)
         ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }

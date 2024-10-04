@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AwardGenreResource;
+use App\Http\Resources\AwardResource;
+use App\Models\Award;
 use App\Models\AwardGenre;
 use App\Models\AwardNomination;
 use Illuminate\Database\QueryException;
@@ -32,7 +34,7 @@ class AwardNominationController extends Controller
     public function updateStatus(Request $request)
     {
 
-        if ($request->has('status') && $request->input('status') == "OPEN") {
+        if ($request->has('status') && $request->input('status') == "ACTIVE") {
 
             $validator = AwardNomination::validate($request->all());
             if ($validator->fails()) {
@@ -72,6 +74,17 @@ class AwardNominationController extends Controller
         }
 
 
+    }
+
+
+    public function awardNomination($awardId)
+    {
+        $awards = AwardNomination::where('award_id', $awardId)->first();
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Award Retrieved successfully',
+            'data' => $awards
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
 
     /**
