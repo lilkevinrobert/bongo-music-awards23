@@ -21,6 +21,7 @@ interface EditData {
 interface AwardsData {
   data: EditData;
 }
+
 interface FetchResult {
   data: AwardsData | null;
   loading: boolean;

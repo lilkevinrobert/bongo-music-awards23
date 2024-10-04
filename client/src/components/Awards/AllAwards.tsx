@@ -7,6 +7,7 @@ import LoadingItems from "../Loading/LoadingItems.tsx";
 interface AwardsData {
   data: [];
 }
+
 interface FetchResult {
   data: AwardsData | null;
   loading: boolean;

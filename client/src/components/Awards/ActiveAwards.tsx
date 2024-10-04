@@ -1,22 +1,46 @@
 import AwardsCard from "../Cards/AwardsCard";
+import useFetch from "../../hooks/useFetch.ts";
+import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
+import Errors from "../Errors/Errors.tsx";
+import LoadingItems from "../Loading/LoadingItems.tsx";
+
+interface AwardsData {
+  data: [];
+}
+
+interface FetchResult {
+  data: AwardsData | null;
+  loading: boolean;
+  error: Error | null;
+}
 
 const ActiveAwards = () => {
-  const activeAwards = [
-    {
-      id: "jsia3ua3z",
-      date: "Sunday, 30 June",
-      time: "08:00 pm",
-      title: "Bongo Music Awards 2024",
-      location: "Dar es Salaam, TZ",
-      status: "ACTIVE",
-    },
-  ];
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  // GET data
+  const {
+    data: awardsDataList,
+    loading: awardsDataLoading,
+    error: awardsDataError,
+  }: FetchResult = useFetch(`${BASE_URL}/awards/active`);
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 grid-flow-row-dense gap-4">
-      {activeAwards.map((award, i) => (
-        <AwardsCard key={i} content={award} />
-      ))}
-    </div>
+    <>
+        {
+      awardsDataLoading ? (
+        <LoadingItems />
+      ) : awardsDataError ? (
+        <Errors errorName={awardsDataError?.name} message={awardsDataError?.message} />
+      ) : awardsDataList?.data.length === 0 ? (
+        <AddEmptyState itemName="award" />
+      ) : (
+        <div className="grid grid-flow-row-dense grid-cols-1 gap-4 md:grid-cols-4">
+        {awardsDataList?.data.map((award, i) => (
+          <AwardsCard key={i} content={award} />
+        ))}
+      </div>
+      )
+    } 
+    </>
   )
 }
 
