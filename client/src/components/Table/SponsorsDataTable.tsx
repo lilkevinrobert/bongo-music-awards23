@@ -100,7 +100,7 @@ const SponsorsDataTable = () => {
             <thead>
               <tr className="bg-gray-200 text-left text-gray-900 font-LatoBold">
                 <th className="hidden md:block px-4 py-1">Name</th>
-                <th className="px-4 py-1">Logo</th>
+                <th className="hidden md:block px-4 py-1">Logo</th>
                 <th className="px-4 py-1">Link</th>
                 <th className="px-4 py-1 text-center w-40"></th>
               </tr>
@@ -114,7 +114,7 @@ const SponsorsDataTable = () => {
                   <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">
                     {row.sponsor_name}
                   </td>
-                  <td className="border px-0 md:px-4 py-1 capitalize font-normal">
+                  <td className="hidden md:block border px-0 md:px-4 py-1 capitalize font-normal">
                     <img
                       src={row.logo}
                       alt={`${row.sponsor_name}'s logo`}
