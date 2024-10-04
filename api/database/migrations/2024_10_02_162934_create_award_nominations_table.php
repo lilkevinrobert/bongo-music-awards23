@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('award_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('status', ['CLOSE', 'OPEN'])->default('CLOSE');
+            $table->enum('status', ['ACTIVE', 'CLOSED'])->default('CLOSED');
             $table->timestamps();
         });
     }

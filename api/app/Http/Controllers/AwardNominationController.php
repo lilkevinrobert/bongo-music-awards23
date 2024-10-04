@@ -34,7 +34,7 @@ class AwardNominationController extends Controller
     public function updateStatus(Request $request)
     {
 
-        if ($request->has('status') && $request->input('status') == "ACTIVE") {
+        if ($request->has('status') && $request->input('status') == "OPEN") {
 
             $validator = AwardNomination::validate($request->all());
             if ($validator->fails()) {
@@ -65,7 +65,7 @@ class AwardNominationController extends Controller
 
             } catch (QueryException|\Exception $e) {
                 return response()->json([
-                    'error' => 'Something went wrong while creating Award genres. Please try again later.',
+                    'error' => 'Something went wrong while creating Award Nomination. Please try again later.',
                     'message' => $e->getMessage()
                 ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
             }
