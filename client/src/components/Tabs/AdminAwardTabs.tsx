@@ -23,7 +23,7 @@ const AdminAwardTabs = () => {
     {
       label: "Nominations",
       value: "nominations",
-      desc: <AdminNominationsView />,
+      desc: <AdminNominationsView awardId={params.awardId} />,
     },
   ];
   return (
