@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImageManager;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\UserInformationResource;
 use App\Http\Resources\UserResource;
@@ -18,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class UserInformationController extends Controller
 {
+    use ImageManager;
     /**
      * Display a listing of the resource.
      */
@@ -65,6 +67,8 @@ class UserInformationController extends Controller
 
         try {
             DB::beginTransaction();
+            $path = storage_path('images/');
+            !is_dir($path) && mkdir($path, 0777, true);
 
             //Creating new user
             $user = User::create([
@@ -91,29 +95,32 @@ class UserInformationController extends Controller
                 // saving image to the database returning the image_url
                 // TODO image saving to the database
 
-                if ($address) {
-                    $user_info_data = [
-                        'first_name' => $userInformationValidator->validated()['first_name'],
-                        'middle_name' => $userInformationValidator->validated()['middle_name'],
-                        'last_name' => $userInformationValidator->validated()['last_name'],
-                        'gender' => $userInformationValidator->validated()['gender'],
-                        'date_of_birth' => $userInformationValidator->validated()['date_of_birth'],
-                        'profile_picture_url' => 'No image defined yet',
-                        'phone' => $userInformationValidator->validated()['phone'],
-                        'address_id' => $address->id,
-                        'user_id' => $user->id,
-                    ];
+                if ($file = $request->file('profile_picture_url')) {
+                    $fileData = $this->uploads($file, $path);
+                    if ($address) {
+                        $user_info_data = [
+                            'first_name' => $userInformationValidator->validated()['first_name'],
+                            'middle_name' => $userInformationValidator->validated()['middle_name'],
+                            'last_name' => $userInformationValidator->validated()['last_name'],
+                            'gender' => $userInformationValidator->validated()['gender'],
+                            'date_of_birth' => $userInformationValidator->validated()['date_of_birth'],
+                            'profile_picture_url' => 'storage/' . $fileData['filePath'],
+                            'phone' => $userInformationValidator->validated()['phone'],
+                            'address_id' => $address->id,
+                            'user_id' => $user->id,
+                        ];
 
-                    //Create user information
-                    $user_data = UserInformation::create($user_info_data);
+                        //Create user information
+                        $user_data = UserInformation::create($user_info_data);
 
-                    if ($user_data) {
-                        DB::commit();
-                        return response()->json([
-                            'status' => ResponseAlias::HTTP_CREATED,
-                            'message' => 'User created successfully',
-                            'data' => new UserInformationResource($user_data),
-                        ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+                        if ($user_data) {
+                            DB::commit();
+                            return response()->json([
+                                'status' => ResponseAlias::HTTP_CREATED,
+                                'message' => 'User created successfully',
+                                'data' => new UserInformationResource($user_data),
+                            ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+                        }
                     }
                 }
             }
