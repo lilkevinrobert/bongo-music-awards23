@@ -34,6 +34,8 @@ const schema = yup.object().shape({
 
 const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
+  console.log(data)
 
   const {
     register,
@@ -43,7 +45,7 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
     defaultValues: {
-      award: ""
+      award: data?.award_id
     }
   });
 
@@ -136,6 +138,7 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
         <Controller
           name="award"
           control={control}
+          defaultValue={data?.award_id}
           render={({ field, fieldState }) => {
             return (
               <>
@@ -151,29 +154,30 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
       </div>
       <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
         <Typography className="capitalize">logo</Typography>
-        <Controller
-          name="sponsor_logo"
-          control={control}
-          render={({ field: { onChange, onBlur } }) => (
-            <input
-              name="image"
-              type="file"
-              className="w-full h-full border border-gray-300 font-LatoRegular text-sm rounded"
-              accept=".jpg, .jpeg, .png"
-              onChange={(e) => onChange(e.target.files)}
-              onBlur={onBlur}
-              multiple={false}
-            />
+        <div className="flex flex-row gap-4 bg-gray-50 border border-gray-300 px-1 py-2 rounded w-full">
+          {/* Display the previously uploaded file name if it exists */}
+          {data?.logo && (
+            <div className="flex flex-col w-32 h-32">
+              <img src={`${HOME_URL}/${data.logo}`} alt={`${data.sponsor_name} logo`} className="w-full h-full object-cover rounded font-LatoRegular text-sm" /></div>
           )}
-        />
+          <Controller
+            name="sponsor_logo"
+            control={control}
+            render={({ field: { onChange, onBlur } }) => (
+              <input
+                name="image"
+                type="file"
+                className="w-full h-full self-end border border-gray-300 font-LatoRegular text-sm rounded"
+                accept=".jpg, .jpeg, .png"
+                onChange={(e) => onChange(e.target.files)}
+                onBlur={onBlur}
+                multiple={false}
+              />
+            )}
+          />
+        </div>
         {errors.sponsor_logo && (
           <ErrorFormField message={`${errors.sponsor_logo?.message}`} />
-        )}
-        {/* Display the previously uploaded file name if it exists */}
-        {data?.logo && (
-          <Typography className="text-sm text-gray-500 font-LatoBold">
-            Current Logo: {data.logo}
-          </Typography>
         )}
       </div>
 
