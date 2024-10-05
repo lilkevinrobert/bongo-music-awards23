@@ -37,7 +37,7 @@ class UserInformation extends Model
             'password' => ['required'],
             'gender' => ['required'], // TODO enum validation of MALE, FEMALE
             'date_of_birth' => ['required'], //TODO change it to type date
-            'profile_picture_url' => ['nullable', 'image', 'mimes:jpeg,png,jpg'],
+            'profile_picture_url' => ['required', 'image', 'mimes:jpeg,png,jpg'],
             'phone' => ['required'], //TODO phone number validation
             'address_id' => ['nullable', 'exists:addresses,id'],
             'user_id' => ['nullable', 'exists:users,id'],
