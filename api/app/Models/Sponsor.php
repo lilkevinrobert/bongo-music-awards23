@@ -15,7 +15,6 @@ class Sponsor extends Model
     protected $fillable = [
         'sponsor_name',
         'logo',
-        'award_id',
         'link'
     ];
 
@@ -24,7 +23,6 @@ class Sponsor extends Model
         $rules = [ # place-holder for validation rules
             'sponsor_name' => ['required'],
             'logo' => ['required','image', 'mimes:jpeg,png,jpg'],
-            'award_id' => ['required', 'exists:awards,id'],
             'link' => ['required'],
         ];
 

@@ -47,14 +47,13 @@ class SponsorController extends Controller
             $path = storage_path('images/');
             !is_dir($path) && mkdir($path, 0777, true);
 
-            //TODO saving the image to the database.
+            //Saving the image to the database.
             if ($file = $request->file('logo')) {
                 $fileData = $this->uploads($file, $path, "sponsors/");
 
                 $sponsor = Sponsor::create([
                     'sponsor_name' => $validator->validated()['sponsor_name'],
                     'logo' => 'storage/' . $fileData['filePath'],
-                    'award_id' => $validator->validated()['award_id'],
                     'link' => $validator->validated()['link'],
                 ]);
 
