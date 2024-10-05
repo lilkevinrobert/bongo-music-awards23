@@ -28,6 +28,7 @@ interface FetchResult {
 
 const SponsorsDataTable = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteId, setDeleteId] = useState("");
   const [_editId, setEditId] = useState(null);
@@ -116,9 +117,8 @@ const SponsorsDataTable = () => {
                   </td>
                   <td className="border px-0 md:px-4 py-1 capitalize font-normal">
                     <img
-                      src={row.logo}
-                      alt={`${row.sponsor_name}'s logo`}
-                      className="w-24 md:w-40 h-24 md:h-40 object-cover bg-yellow-200 text-xs"
+                      src={`${HOME_URL}/${row.logo}`} alt={`${row.sponsor_name}'s logo`}
+                      className="w-24 md:w-full h-24 md:max-h-40 object-center object-contain bg-yellow-200 text-xs"
                     />
                   </td>
                   <td className="border p-2">

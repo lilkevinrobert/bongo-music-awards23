@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface Data {
   data: [];
@@ -172,6 +173,8 @@ const AddUserFormAdmin = () => {
         .then((response) => {
           setDistrictsData(null);
           setDistrictsData(response.data.data);
+          setWardsData(null);
+          setStreetsData(null);
         });
     }
   }, [selectedRegionOption]);
@@ -183,6 +186,7 @@ const AddUserFormAdmin = () => {
         .get(`${BASE_URL}/addresses/districts/${selectedDistrictOption}/wards`)
         .then((response) => {
           setWardsData(response.data.data);
+          setStreetsData(null)
         });
     }
   }, [selectedDistrictOption]);
@@ -464,7 +468,7 @@ const AddUserFormAdmin = () => {
                     variant="paragraph"
                     className="font-LatoRegular text-base capitalize"
                   >
-                    failed to get regions.
+                    failed to get regions. Try again later.
                   </Typography>
                 )}
                 {regionsData && (
@@ -518,10 +522,15 @@ const AddUserFormAdmin = () => {
                 </select>
               )}
               {districtsData == null && (
-                <select
-                  disabled
-                  className="mt-1 h-10 w-full rounded-md border border-dotted border-gray-100 p-2 pl-4 font-LatoRegular capitalize"
-                ></select>
+                <div className="flex flex-row items-center gap-2">
+                  <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
+                  <select
+                    disabled
+                    className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                  >
+                    <option selected>Populating Field...</option>
+                  </select>
+                </div>
               )}
             </div>
             <div className="flex w-full flex-col">
@@ -551,10 +560,15 @@ const AddUserFormAdmin = () => {
                 </select>
               )}
               {wardsData == null && (
-                <select
-                  disabled
-                  className="mt-1 h-10 w-full rounded-md border border-dotted border-gray-100 p-2 pl-4 font-LatoRegular capitalize"
-                ></select>
+                <div className="flex flex-row items-center gap-2">
+                  <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
+                  <select
+                    disabled
+                    className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                  >
+                    <option selected>Populating Field...</option>
+                  </select>
+                </div>
               )}
             </div>
             <div className="flex w-full flex-col">
@@ -584,10 +598,15 @@ const AddUserFormAdmin = () => {
                 </select>
               )}
               {streetsData == null && (
-                <select
-                  disabled
-                  className="mt-1 h-10 w-full rounded-md border border-dotted border-gray-100 p-2 pl-4 font-LatoRegular capitalize"
-                ></select>
+                <div className="flex flex-row items-center gap-2">
+                  <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
+                  <select
+                    disabled
+                    className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                  >
+                    <option selected>Populating Field...</option>
+                  </select>
+                </div>
               )}
             </div>
             <div className="flex w-full flex-col">
@@ -622,7 +641,7 @@ const AddUserFormAdmin = () => {
             </div>
             <div className="flex w-full flex-col">
               <label className="font-LatoBold text-base capitalize text-gray-900">
-                postal address type <span className="text-red-500">*</span>
+                address type <span className="text-red-500">*</span>
               </label>
               <Controller
                 name="postal_address_type"
