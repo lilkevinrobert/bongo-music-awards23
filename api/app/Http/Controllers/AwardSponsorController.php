@@ -38,7 +38,7 @@ class AwardSponsorController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        if ((int)$request->route('awardId') !== (int)$id) {
+        if ((int)$request->route('awardId') !== (int) $request->input('award_id')) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
                 'message' => 'Route Parameter Award Id do not match',
