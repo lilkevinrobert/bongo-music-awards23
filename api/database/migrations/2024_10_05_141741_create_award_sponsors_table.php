@@ -15,9 +15,14 @@ return new class extends Migration
     {
         Schema::create('award_sponsors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('award_id')->constrained('awards')->onDelete('cascade');
-            $table->foreignId('sponsor_id')->constrained('sponsors')->onDelete('cascade');
+//            $table->foreignId('award_id')->constrained('awards')->onDelete('cascade');
+//            $table->foreignId('sponsor_id')->constrained('sponsors')->onDelete('cascade');
+            $table->unsignedBigInteger('award_id');
+            $table->unsignedBigInteger('sponsor_id');
             $table->timestamps();
+
+            $table->foreign('award_id')->references('id')->on('awards')->onDelete('cascade');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
         });
     }
 
