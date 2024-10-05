@@ -49,7 +49,7 @@ class SponsorController extends Controller
 
             //TODO saving the image to the database.
             if ($file = $request->file('logo')) {
-                $fileData = $this->uploads($file, $path);
+                $fileData = $this->uploads($file, $path, "sponsors/");
 
                 $sponsor = Sponsor::create([
                     'sponsor_name' => $validator->validated()['sponsor_name'],

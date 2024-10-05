@@ -9,10 +9,8 @@ use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\WardController;
-use App\Models\AwardNomination;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventsController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\NominatorsController;
 use App\Http\Controllers\JudgeController;
@@ -74,17 +72,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'user_informations'], function () {
         Route::get('/', [UserInformationController::class, 'index']);
         Route::post('/', [UserInformationController::class, 'store']);
-
-
-//        Route::post('/register',[ArtistProfilesController::class,'registerUser']); // Self registration of artist
-//        Route::get('/',[ArtistProfilesController::class,'index']); //All available artist in the system
-//        Route::get('/{id}',[ArtistProfilesController::class,'show']); //All available artist in the system
-//        Route::post('/',[ArtistProfilesController::class,'store']); //All available artist in the system
-//
-//        Route::group(['prefix'=>'info'], function () {
-//            Route::get('/{id}',[ArtistProfilesController::class,'getArtist']);
-//        });
     });
+
     // Artist Endpoints.
     Route::group(['prefix' => 'artists'], function ($request) {
 

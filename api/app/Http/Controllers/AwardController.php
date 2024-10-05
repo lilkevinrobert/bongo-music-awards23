@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ImageManager;
 use App\Http\Resources\AwardResource;
 use App\Models\Award;
 use Illuminate\Database\QueryException;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class AwardController extends Controller
 {
+    use ImageManager;
+
     /**
      * Display a listing of the resource.
      */
@@ -38,23 +41,28 @@ class AwardController extends Controller
 
         try {
             DB::beginTransaction();
+            $path = storage_path('images/');
+            !is_dir($path) && mkdir($path, 0777, true);
 
-            // TODO saving image to the database.
+            // Saving image to the database.
+            if ($file = $request->file('poster_image_url')) {
+                $fileData = $this->uploads($file, $path, "awards/");
 
-            $data = [
-                'title' => $validator->validated()['title'],
-                'location' => $validator->validated()['location'],
-                'poster_image_url' => "No image set yet",
-            ];
+                $data = [
+                    'title' => $validator->validated()['title'],
+                    'location' => $validator->validated()['location'],
+                    'poster_image_url' => 'storage/' . $fileData['filePath'],
+                ];
 
-            $award = Award::create($data);
-            DB::commit();
+                $award = Award::create($data);
+                DB::commit();
 
-            return response()->json([
-                'status' => ResponseAlias::HTTP_CREATED,
-                'message' => 'Award created successfully',
-                'data' => new AwardResource($award),
-            ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+                return response()->json([
+                    'status' => ResponseAlias::HTTP_CREATED,
+                    'message' => 'Award created successfully',
+                    'data' => new AwardResource($award),
+                ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
+            }
 
         } catch (QueryException|\Exception $e) {
             return response()->json([
@@ -62,8 +70,6 @@ class AwardController extends Controller
                 'message' => $e->getMessage()
             ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
-
-
     }
 
     /**
@@ -132,7 +138,8 @@ class AwardController extends Controller
         ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
 
-    public function inactiveAwards(Request $request){
+    public function inactiveAwards(Request $request)
+    {
         $awards = Award::where('status', 'CLOSED')->get();
         return response()->json([
             'status' => ResponseAlias::HTTP_OK,
