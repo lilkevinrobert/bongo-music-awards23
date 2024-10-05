@@ -37,4 +37,16 @@ class Award extends Model
 
         return $validator;
     }
+
+    public function sponsors()
+    {
+        return $this->belongsToMany(Sponsor::class, 'award_sponsors', 'award_id', 'sponsor_id');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'award_genres', 'award_id', 'genre_id');
+    }
+
+
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardGenresController;
 use App\Http\Controllers\AwardNominationController;
+use App\Http\Controllers\AwardSponsorController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
@@ -104,13 +105,17 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('sponsors', SponsorController::class);
 
 
-
     // AWARDS GENRE APIS.
     Route::group(['prefix' => 'awards'], function () {
-        // Get All Genres for a Specific Award
-        Route::get('/{awardId}/genres', [AwardGenresController::class, 'getAwardGenres']);
         // Create Award  genres
         Route::post('/{awardId}/genres', [AwardGenresController::class, 'store']);
+        // Get All Genres for a Specific Award
+        Route::get('/{awardId}/genres', [AwardGenresController::class, 'show']);
+
+        // Create Award Sponsors
+        Route::post('/{awardId}/sponsors', [AwardSponsorController::class, 'store']);
+        // Get All Genres for a Specific Award
+        Route::get('/{awardId}/sponsors', [AwardSponsorController::class, 'show']);
 
         // Active Events and Awards
         Route::get('/active',  [AwardController::class, 'activeAwards']);
