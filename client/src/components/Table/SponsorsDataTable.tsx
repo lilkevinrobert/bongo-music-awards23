@@ -28,6 +28,7 @@ interface FetchResult {
 
 const SponsorsDataTable = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteId, setDeleteId] = useState("");
   const [_editId, setEditId] = useState(null);
@@ -100,7 +101,7 @@ const SponsorsDataTable = () => {
             <thead>
               <tr className="bg-gray-200 text-left text-gray-900 font-LatoBold">
                 <th className="hidden md:block px-4 py-1">Name</th>
-                <th className="hidden md:block px-4 py-1">Logo</th>
+                <th className="px-4 py-1">Logo</th>
                 <th className="px-4 py-1">Link</th>
                 <th className="px-4 py-1 text-center w-40"></th>
               </tr>
@@ -114,11 +115,10 @@ const SponsorsDataTable = () => {
                   <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">
                     {row.sponsor_name}
                   </td>
-                  <td className="hidden md:block border px-0 md:px-4 py-1 capitalize font-normal">
+                  <td className="border px-0 md:px-4 py-1 capitalize font-normal">
                     <img
-                      src={row.logo}
-                      alt={`${row.sponsor_name}'s logo`}
-                      className="w-24 md:w-40 h-24 md:h-40 object-cover bg-yellow-200 text-xs"
+                      src={`${HOME_URL}/${row.logo}`} alt={`${row.sponsor_name}'s logo`}
+                      className="w-24 md:w-full h-24 md:max-h-40 object-center object-contain bg-yellow-200 text-xs"
                     />
                   </td>
                   <td className="border p-2">
