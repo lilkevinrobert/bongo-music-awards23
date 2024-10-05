@@ -12,7 +12,6 @@ use App\Http\Controllers\WardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
-use App\Http\Controllers\NominatorsController;
 use App\Http\Controllers\JudgeController;
 use App\Http\Controllers\AdminController;
 use \App\Http\Controllers\GenresController;
