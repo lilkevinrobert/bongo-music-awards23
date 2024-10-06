@@ -57,7 +57,6 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
     };
     const processingToastId = toast.loading("Processing...");
 
-
     axios
       .patch(`${BASE_URL}/sponsors`, modified_data, {
         headers: {
