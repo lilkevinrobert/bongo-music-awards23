@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('award_genres', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('award_id');
-            $table->unsignedBigInteger('genre_id');
+            $table->foreignId('award_id')->constrained('awards')->onDelete('cascade');
+            $table->foreignId('genre_id')->constrained('genres')->onDelete('cascade');
             $table->timestamps();
         });
     }

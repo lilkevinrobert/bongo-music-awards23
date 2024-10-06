@@ -6,27 +6,29 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
-class Sponsor extends Model
+class AwardSponsor extends Model
 {
     use HasFactory;
 
-    protected $table = 'sponsors';
+    protected $table = 'award_sponsors';
 
     protected $fillable = [
-        'sponsor_name',
-        'logo',
-        'link'
+        'award_id',
+        'sponsor_id'
     ];
 
     public static function validate($input, $id = null)
     {
         $rules = [ # place-holder for validation rules
-            'sponsor_name' => ['required'],
-            'logo' => ['required','image', 'mimes:jpeg,png,jpg'],
-            'link' => ['required'],
+            'award_id' => 'required|exists:awards,id',
+            'sponsor_id' => 'required|exists:sponsors,id|array',
+            'sponsor_id.*' => 'distinct|integer|exists:sponsors,id'
         ];
 
-        $nice_names = [];
+        $nice_names = [ # Friendly names
+            'award_id' => 'Award',
+            'sponsor_id' => 'Sponsor',
+        ];
 
         # validation code
         $validator = Validator::make($input, $rules);
@@ -34,11 +36,4 @@ class Sponsor extends Model
 
         return $validator;
     }
-
-    public function awards()
-    {
-        return $this->belongsToMany(Award::class, 'award_sponsors', 'sponsor_id', 'award_id');
-    }
-
-
 }

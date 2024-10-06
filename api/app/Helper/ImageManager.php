@@ -8,17 +8,17 @@ use Illuminate\Support\Facades\Storage;
 trait ImageManager
 {
 
-    protected function uploads($file, $path)
+    protected function uploads($file, $path, $folder)
     {
 
         if ($file) {
             $fileName = time() . $file->getClientOriginalName();
 
             // Store the file using the correct disk and the constructed path
-            Storage::disk('public')->put('images/' . $fileName, File::get($file));
+            Storage::disk('public')->put('images/'. $folder. $fileName, File::get($file));
             $file_name = $file->getClientOriginalName();
             $file_type = $file->getClientOriginalExtension();
-            $filePath = 'images/' . $fileName; // Update the file path accordingly
+            $filePath = 'images/' .$folder .$fileName; // Update the file path accordingly
 
             return [
                 'fileName' => $file_name,

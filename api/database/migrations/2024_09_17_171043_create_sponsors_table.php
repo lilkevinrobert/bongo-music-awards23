@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('sponsor_name');
             $table->string('logo')->nullable();
-            $table->string('award_id');
             $table->string('link');
             $table->timestamps();
         });

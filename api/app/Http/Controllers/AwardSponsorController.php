@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AwardGenreResource;
+use App\Http\Resources\AwardSponsorResource;
 use App\Models\Award;
-use App\Models\AwardGenre;
+use App\Models\AwardSponsor;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class AwardGenresController extends Controller
+class AwardSponsorController extends Controller
 {
     /**
-     * Display a listing of the resource
+     * Display a listing of the resource.
+     *
      */
     public function index()
     {
-        $awards = Award::with('genres')->get();
-        return AwardGenreResource::collection($awards);
+        $awards = Award::with('sponsors')->get();
+        return AwardSponsorResource::collection($awards);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      */
     public function store(Request $request, $id)
     {
@@ -37,7 +38,6 @@ class AwardGenresController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        $validator = AwardGenre::validate($request->all());
         if ((int)$request->route('awardId') !== (int) $request->input('award_id')) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
@@ -45,6 +45,7 @@ class AwardGenresController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
+        $validator = AwardSponsor::validate($request->all());
         if ($validator->fails()) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
@@ -56,26 +57,26 @@ class AwardGenresController extends Controller
             DB::beginTransaction();
 
             $awardId = $validator->validated()['award_id'];
-            $genres = [];
+            $sponsors = [];
 
-            foreach ($validator->validated()['genre_id'] as $genre) {
-                AwardGenre::create([
+            foreach ($validator->validated()['sponsor_id'] as $sponsor) {
+                AwardSponsor::create([
                     'award_id' => $awardId,
-                    'genre_id' => $genre,
+                    'sponsor_id' => $sponsor,
                 ]);
 
-                $genres[] = $genre;
+                $sponsors[] = $sponsor;
             }
 
             DB::commit();
             return response()->json([
                 'status' => ResponseAlias::HTTP_CREATED,
-                'message' => 'Award Genre(s) created successfully',
-                'data' => new AwardGenreResource($genres),
+                'message' => 'Award Sponsor(s) created successfully',
+                'data' => new AwardSponsorResource($sponsors),
             ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
         } catch (QueryException|\Exception $e) {
             return response()->json([
-                'error' => 'Something went wrong while creating Award genres. Please try again later.',
+                'error' => 'Something went wrong while creating Award Sponsors. Please try again later.',
                 'message' => $e->getMessage()
             ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
@@ -84,7 +85,7 @@ class AwardGenresController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  \App\Models\AwardSponsor  $awardSponsor
      */
     public function show($id)
     {
@@ -92,22 +93,22 @@ class AwardGenresController extends Controller
         if (!isset($award)) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
-                'message' => 'Award not found',
+                'error' => 'Award not found.',
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        $award = Award::with('genres')->findOrFail($id);
-        return new AwardGenreResource($award);
+        $award = Award::with('sponsors')->findOrFail($id);
+        return new AwardSponsorResource($award);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\AwardGenres $awardGenres
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\AwardSponsor  $awardSponsor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AwardGenres $awardGenres)
+    public function update(Request $request, AwardSponsor $awardSponsor)
     {
         //
     }
@@ -115,11 +116,10 @@ class AwardGenresController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\AwardGenres $awardGenres
+     * @param  \App\Models\AwardSponsor  $awardSponsor
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy(AwardGenres $awardGenres)
+    public function destroy(AwardSponsor $awardSponsor)
     {
         //
     }

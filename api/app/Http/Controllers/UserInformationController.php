@@ -92,11 +92,9 @@ class UserInformationController extends Controller
                 ];
                 $address = Address::create($address);
 
-                // saving image to the database returning the image_url
-                // TODO image saving to the database
-
+                // Saving image saving to the database
                 if ($file = $request->file('profile_picture_url')) {
-                    $fileData = $this->uploads($file, $path);
+                    $fileData = $this->uploads($file, $path, "users/");
                     if ($address) {
                         $user_info_data = [
                             'first_name' => $userInformationValidator->validated()['first_name'],

@@ -35,6 +35,10 @@ class Genre extends Model
     public function categories(){
         return $this->hasMany(Category::class);
     }
+    public function awards()
+    {
+        return $this->belongsToMany(Award::class, 'award_genres', 'genre_id', 'award_id');
+    }
 
 
 }
