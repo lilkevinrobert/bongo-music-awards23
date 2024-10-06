@@ -45,7 +45,6 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
     defaultValues: {
-      award: data?.award_id
     }
   });
 
@@ -133,7 +132,7 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
           <ErrorFormField message={`${errors.link?.message}`} />
         )}
       </div>
-      <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
+      {/* <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
         <Typography className="capitalize">Sponsoring Award</Typography>
         <Controller
           name="award"
@@ -151,7 +150,7 @@ const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
             )
           }}
         />
-      </div>
+      </div> */}
       <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
         <Typography className="capitalize">logo</Typography>
         <div className="flex flex-row gap-4 bg-gray-50 border border-gray-300 px-1 py-2 rounded w-full">

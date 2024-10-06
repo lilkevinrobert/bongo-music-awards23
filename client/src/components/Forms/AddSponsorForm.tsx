@@ -20,15 +20,13 @@ export type Inputs = {
   sponsor_logo: File;
   sponsor_name: string;
   link: string;
-  award: string;
 }
 
 // Validation Schema
 const schema = yup.object().shape({
   sponsor_logo: yup.mixed<File>().required("Sponsor logo is required."),
   sponsor_name: yup.string().required("Sponsor's name is required."),
-  link: yup.string().required("Sponsor's name is required."),
-  award: yup.string().required('Please select an award.')
+  link: yup.string().required("Sponsor's name is required.")
 })
 
 const AddSponsorForm = ({ closeModal }: FormProps) => {
@@ -41,16 +39,12 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
     formState: { errors },
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      award: ""
-    }
   });
 
   const onSubmit = async (data: any) => {
     let modified_data = {
       sponsor_name: data.sponsor_name,
       link: data.link,
-      award_id: data.award,
       logo: data.sponsor_logo[0],
     };
     const processingToastId = toast.loading("Processing...");
@@ -136,7 +130,7 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
               <ErrorFormField message={`${errors.link?.message}`} />
             )}
           </div>
-          <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
+          {/* <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
             <Typography className="capitalize">Sponsoring Award</Typography>
             <Controller
               name="award"
@@ -153,7 +147,7 @@ const AddSponsorForm = ({ closeModal }: FormProps) => {
                 )
               }}
             />
-          </div>
+          </div> */}
           <div className="flex flex-col items-start gap-2 font-LatoBold text-gray-900">
             <Typography className="capitalize">logo</Typography>
             <Controller
