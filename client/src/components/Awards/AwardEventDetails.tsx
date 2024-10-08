@@ -66,12 +66,12 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
               ""
             ) :
               awardSponsorsList?.data.sponsors.map((sponsor: any, i) => (
-                <Card key={i} className="w-full h-auto shadow-none">
+                <Card key={i} className="w-full h-auto shadow-none group">
                   <div className="w-full h-32">
                     <img
                       src={`${HOME_URL}/${sponsor.logo}`} alt={`${sponsor.sponsor_name}'s logo`}
                       loading="lazy"
-                      className="bg-gray-200 h-full object-cover text-sm font-LatoRegular text-gray-900 rounded"
+                      className="bg-gray-200 w-full h-full object-cover group-hover:object-scale-down text-sm font-LatoRegular text-gray-900 rounded transition ease-in-out duration-300"
                     />
                   </div>
                   <p className="text-gray-900 text-base font-LatoBold">
@@ -80,7 +80,7 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
                   <Button
                     size="sm"
                     variant="outlined"
-                    className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
+                    className={`invisible group-hover:visible duration-300 my-2 rounded-full font-LatoRegular capitalize transition ease-linear bg-amber-200 hover:bg-amber-300 border-amber-200`}
                   >
                     remove
                   </Button>
