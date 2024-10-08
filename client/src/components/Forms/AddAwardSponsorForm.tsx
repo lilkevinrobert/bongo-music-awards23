@@ -128,7 +128,7 @@ const AddAwardSponsorForm = ({ handleOpenSponsorsDialog }: FormProps) => {
                 ) : sponsorsListError ? (
                     <Errors errorName={sponsorsListError?.name} message={sponsorsListError?.message} />
                 ) : sponsorsList?.data.length === 0 ? (
-                    <p>Add a sponsor please. See sponsors page NOW!</p>
+                    <p>Add a sponsor please. See Sponsors page NOW!</p>
                 ) : awardSponsorsListLoading ? (
                     <LoadingDialog />
                 ) : awardSponsorsListError ? (
@@ -151,7 +151,7 @@ const AddAwardSponsorForm = ({ handleOpenSponsorsDialog }: FormProps) => {
                                 >
                                     Select appropriate sponsor form the list below.
                                 </Typography>
-                                {/* Available Sponsor's */}
+                                {/* Available Sponsors */}
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-2 bg-transparent border-none rounded p-0">
                                     {
                                         sponsorsList?.data.map((item: Sponsor, index) => (

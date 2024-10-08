@@ -27,16 +27,33 @@ interface FetchResult {
     loading: boolean;
     error: Error | null;
 }
+interface TempDataGenre {
+    data: {
+        genres: []
+    };
+}
+export interface TempFetchResultGenre {
+    data: TempDataGenre | null;
+    loading: boolean;
+    error: Error | null;
+}
 
 const AddAwardGenreForm = ({ handleOpenGenresDialog, awardId }: FormProps) => {
     const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-    // GET data
+    // GET data - genres
     const {
         data: genresList,
         loading: genresListLoading,
         error: genresListError,
     }: FetchResult = useFetch(`${BASE_URL}/genres`);
+
+    // GET data - award genres
+    const {
+        data: awardGenresList,
+        loading: awardGenresListLoading,
+        error: awardGenresListError,
+    }: TempFetchResultGenre = useFetch(`${BASE_URL}/awards/${awardId}/genres`);
 
     const { handleSubmit, control, setValue, watch } = useForm<FormData>({
         defaultValues: {
@@ -109,7 +126,11 @@ const AddAwardGenreForm = ({ handleOpenGenresDialog, awardId }: FormProps) => {
                 ) : genresListError ? (
                     <Errors errorName={genresListError?.name} message={genresListError?.message} />
                 ) : genresList?.data.length === 0 ? (
-                    <p>Add a sponsor please. see sponsors page NOW!</p>
+                    <p>Add a genre please. see Genres page NOW!</p>
+                ) : awardGenresListLoading ? (
+                    <LoadingDialog />
+                ) : awardGenresListError ? (
+                    <Errors errorName={awardGenresListError.name} message={awardGenresListError.message} />
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Card className="mx-auto w-full max-w-[80rem] rounded-md">
@@ -129,7 +150,7 @@ const AddAwardGenreForm = ({ handleOpenGenresDialog, awardId }: FormProps) => {
                                     Select appropriate genre form the list below.
                                 </Typography>
 
-                                {/* Available Sponsor's */}
+                                {/* Available Genres */}
                                 <div className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-transparent border-none rounded p-0">
                                     {
                                         genresList?.data.map((item: Genre, index) => (
@@ -137,19 +158,25 @@ const AddAwardGenreForm = ({ handleOpenGenresDialog, awardId }: FormProps) => {
                                                 key={index}
                                                 name="selectedItems"
                                                 control={control}
-                                                render={() => (
-                                                    <div className="flex items-center space-x-2 p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition duration-300 ease-linear shadow">
-                                                        <label className="flex items-center cursor-pointer">
-                                                            <input
-                                                                type="checkbox"
-                                                                checked={selectedItems?.includes(item.id)}
-                                                                onChange={(e) => handleCheckboxChange(item.id, e.target.checked)}
-                                                                className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded checked:bg-gray-900 focus:ring-yellow-300 transition duration-200 ease-in-out"
-                                                            />
-                                                            <span className="ml-3 text-gray-800 font-LatoRegular uppercase">{item.name}</span>
-                                                        </label>
-                                                    </div>
-                                                )}
+                                                render={() => {
+                                                    // Check if the item is already in the awardGenresList
+                                                    const isChecked = awardGenresList?.data.genres.some(
+                                                        (genre: any) => genre.id === item.id
+                                                    );
+                                                    return (
+                                                        <div className="flex items-center space-x-2 p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition duration-300 ease-linear shadow">
+                                                            <label className="flex items-center cursor-pointer">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    checked={isChecked || selectedItems?.includes(item.id)}
+                                                                    onChange={(e) => handleCheckboxChange(item.id, e.target.checked)}
+                                                                    className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded checked:bg-gray-900 focus:ring-yellow-300 transition duration-200 ease-in-out"
+                                                                />
+                                                                <span className="ml-3 text-gray-800 font-LatoRegular uppercase">{item.name}</span>
+                                                            </label>
+                                                        </div>
+                                                    )
+                                                }}
                                             />
                                         ))
                                     }
