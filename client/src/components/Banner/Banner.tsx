@@ -19,7 +19,7 @@ const Banner = () => {
       />
       <div className="z-10 flex flex-col items-center justify-center bg-transparent h-fit">
         <AnimatedText
-          text="bongo music awards 2023"
+          text="bongo music awards"
           Wrapper="h2"
           className="capitalize text-gray-950 text-3xl text-center md:text-6xl font-LatoRegular mb-5"
           animationProps={{
@@ -37,7 +37,7 @@ const Banner = () => {
         <AnimatedText
           text="hii imeenda!"
           Wrapper="h2"
-          className="capitalize text-black text-4xl md:text-6xl lg:text-8xl font-LatoBold"
+          className="capitalize text-black text-center text-4xl md:text-6xl lg:text-8xl font-LatoBold"
           animationProps={{
             initial: { opacity: 0, x: -1000 },
             animate: { opacity: 1, x: 0 },
