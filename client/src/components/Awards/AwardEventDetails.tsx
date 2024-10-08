@@ -8,8 +8,11 @@ import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
 import EditAwardForm from "../Forms/EditAwardForm";
 // import useFetch from "../../hooks/useFetch";
-import AddAwardSponsorForm from "../Forms/AddAwardSponsorForm";
+import AddAwardSponsorForm, { TempFetchResult } from "../Forms/AddAwardSponsorForm";
 import AddAwardGenreForm from "../Forms/AddAwardGenreForm";
+import useFetch from "../../hooks/useFetch";
+import LoadingList from "../Loading/LoadingList";
+import Errors from "../Errors/Errors";
 
 interface AwardEventDetailsProps {
   awardId: string | undefined;
@@ -25,22 +28,22 @@ interface AwardEventDetailsProps {
 // }
 
 const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
-  // const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
+
   const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
   const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
   const [openGenresDialog, setOpenGenresDialog] = useState(false);
   const handleOpenGenresDialog = () =>
     setOpenGenresDialog((cur) => !cur);
 
-  // Data from API...
-  const awardSponsorsList: any[] = [
-    // {
-    //   id: "eiow3oie4xc",
-    //   name: "Sponsor's name",
-    //   logo: "sponsor's logo",
-    // },
-    // get list from server
-  ];
+  // GET data - award sponsors
+  const {
+    data: awardSponsorsList,
+    loading: awardSponsorsListLoading,
+    error: awardSponsorsListError,
+  }: TempFetchResult = useFetch(`${BASE_URL}/awards/${awardId}/sponsors`);
+
 
   const genresList: string[] = [
     // "Bongo Flava",
@@ -59,28 +62,35 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
         </Typography>
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-4 py-4">
           {/* Awards Sponsor's card list */}
-          {awardSponsorsList.map((sponsor, i) => (
-            <Card key={i} className="w-full h-auto shadow-none">
-              <div className="w-full h-32">
-                <img
-                  src="#"
-                  alt={sponsor.name}
-                  loading="lazy"
-                  className="bg-gray-200 h-full object-cover font-LatoRegular text-gray-900 rounded"
-                />
-              </div>
-              <p className="text-gray-900 text-base font-LatoBold">
-                {sponsor.name}
-              </p>
-              <Button
-                size="sm"
-                variant="outlined"
-                className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
-              >
-                remove
-              </Button>
-            </Card>
-          ))}
+          {
+            awardSponsorsListLoading ? (
+              <LoadingList orientation="landscape" />
+            ) : awardSponsorsListError ? (
+              <Errors errorName={awardSponsorsListError.name} message={awardSponsorsListError.message} />
+            ) : awardSponsorsList?.data.sponsors.length === 0 ? (
+            ""
+            ):
+              awardSponsorsList?.data.sponsors.map((sponsor: any, i) => (
+          <Card key={i} className="w-full h-auto shadow-none">
+            <div className="w-full h-32">
+              <img
+                src={`${HOME_URL}/${sponsor.logo}`} alt={`${sponsor.sponsor_name}'s logo`}
+                loading="lazy"
+                className="bg-gray-200 h-full object-cover text-sm font-LatoRegular text-gray-900 rounded"
+              />
+            </div>
+            <p className="text-gray-900 text-base font-LatoBold">
+              {sponsor.sponsor_name}
+            </p>
+            <Button
+              size="sm"
+              variant="outlined"
+              className="my-2 rounded-full font-LatoRegular capitalize transition ease-in-out bg-amber-200 hover:bg-amber-300 border-amber-200"
+            >
+              remove
+            </Button>
+          </Card>
+              ))}
           <div
             onClick={handleOpenSponsorsDialog}
             className="w-full h-48 transition ease-in-out cursor-pointer group rounded bg-transparent border-2 border-dashed border-spacing-4 border-gray-300 hover:border-gray-400 flex flex-col items-center justify-center"

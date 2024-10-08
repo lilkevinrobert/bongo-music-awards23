@@ -44,7 +44,7 @@ interface File {
 const MINIMUM_AGE = 18;
 
 type Inputs = {
-  profile_image: File;
+  profile_picture_url: File;
   first_name: string;
   middle_name?: string | undefined;
   last_name: string;
@@ -62,7 +62,7 @@ type Inputs = {
 
 // Validation Schema
 const schema = yup.object().shape({
-  profile_image: yup.mixed<File>().required("Profile picture is required."),
+  profile_picture_url: yup.mixed<File>().required("Profile picture is required."),
   first_name: yup.string().required("First name is required."),
   middle_name: yup.string(),
   last_name: yup.string().required("Last name is required."),
@@ -138,7 +138,6 @@ const AddUserFormAdmin = () => {
   const [districtsData, setDistrictsData] = useState<DistrictData | null>(null);
   const [wardsData, setWardsData] = useState<WardData | null>(null);
   const [streetsData, setStreetsData] = useState<StreetData | null>(null);
-  // const [roadsData, setRoadsData] = useState<RoadData | null>();
 
   // handle select options
   const [selectedRegionOption, setSelectedRegionOption] = useState("");
@@ -221,12 +220,18 @@ const AddUserFormAdmin = () => {
       postal_address: data.postal_address,
       address_type: data.postal_address_type,
       residence_type: data.residence_type,
+      profile_picture_url: data.profile_picture_url[0],
       user_role: origin?.toUpperCase(),
     };
+    console.log(data.profile_picture_url[0])
     const processingToastId = toast.loading("Processing...");
 
     axios
-      .post(`${BASE_URL}/user_informations`, modified_data)
+      .post(`${BASE_URL}/user_informations`, modified_data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then((res) => {
         toast.dismiss(processingToastId);
         if (res.status == 201) {
@@ -275,13 +280,13 @@ const AddUserFormAdmin = () => {
               Profile Picture
             </label>
             <Controller
-              name="profile_image"
+              name="profile_picture_url"
               control={control}
               render={({ field: { onChange, onBlur } }) => (
                 <input
                   name="image"
                   type="file"
-                  className={`w-full border ${errors.profile_image ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full border ${errors.profile_picture_url ? 'border-red-500' : 'border-gray-300'
                     } font-LatoRegular text-sm rounded`} accept=".jpg, .jpeg"
                   onChange={(e) => onChange(e.target.files)}
                   onBlur={onBlur}
@@ -289,8 +294,8 @@ const AddUserFormAdmin = () => {
                 />
               )}
             />
-            {errors.profile_image && (
-              <ErrorFormField message={`${errors.profile_image?.message}`} />
+            {errors.profile_picture_url && (
+              <ErrorFormField message={`${errors.profile_picture_url?.message}`} />
             )}
             <div className="hidden h-full w-full rounded bg-gray-400"></div>
           </div>
