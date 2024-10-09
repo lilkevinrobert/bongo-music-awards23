@@ -3,6 +3,7 @@ import {
   Dialog,
   Card,
   Button,
+  DialogBody,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { IoAdd } from "react-icons/io5";
@@ -15,6 +16,7 @@ import LoadingList from "../Loading/LoadingList";
 import Errors from "../Errors/Errors";
 import { GoDotFill } from "react-icons/go";
 import { TiDelete } from "react-icons/ti";
+import DeleteDialog from "../Dialog/DeleteDialog";
 
 interface AwardEventDetailsProps {
   awardId: string | undefined;
@@ -24,6 +26,9 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const HOME_URL = import.meta.env.VITE_HOME_URL;
 
+  const [deleteId, setDeleteId] = useState("");
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const closeDeleteDialog = () => setOpenDeleteDialog((cur) => !cur);
   const [openSponsorsDialog, setOpenSponsorsDialog] = useState(false);
   const handleOpenSponsorsDialog = () => setOpenSponsorsDialog((cur) => !cur);
   const [openGenresDialog, setOpenGenresDialog] = useState(false);
@@ -35,7 +40,9 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
     data: awardSponsorsList,
     loading: awardSponsorsListLoading,
     error: awardSponsorsListError,
+    fetchData
   }: TempFetchResult = useFetch(`${BASE_URL}/awards/${awardId}/sponsors`);
+  console.log(awardSponsorsList?.data.sponsors)
 
   // GET data - award genres
   const {
@@ -43,7 +50,16 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
     loading: awardGenresListLoading,
     error: awardGenresListError,
   }: TempFetchResultGenre = useFetch(`${BASE_URL}/awards/${awardId}/genres`);
-  console.log(awardGenresList)
+
+
+  // DELETE - award sponsor
+  const deleteDialogHandler = async (id: any) => {
+    if (id) {
+      setDeleteId(id);
+    }
+    setOpenDeleteDialog((cur) => !cur);
+
+  }
   return (
     <>
       <div className="px-0 pb-4">
@@ -80,6 +96,7 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
                   <Button
                     size="sm"
                     variant="outlined"
+                    onClick={() => deleteDialogHandler(sponsor.id)}
                     className={`invisible group-hover:visible duration-300 my-2 rounded-full font-LatoRegular capitalize transition ease-linear bg-amber-200 hover:bg-amber-300 border-amber-200`}
                   >
                     remove
@@ -157,6 +174,23 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
         }}
       >
         <AddAwardGenreForm handleOpenGenresDialog={handleOpenGenresDialog} awardId={awardId} />
+      </Dialog>
+      <Dialog
+        open={openDeleteDialog}
+        handler={deleteDialogHandler}
+        dismiss={{ enabled: true }}
+        className="bg-transparent rounded-none"
+      >
+        {deleteId && (
+          <DialogBody className="flex items-center justify-center">
+            <DeleteDialog
+              closeModal={closeDeleteDialog}
+              fetchData={fetchData}
+              deleteId={deleteId}
+              deleteItem="Award Sponsor"
+            />
+          </DialogBody>
+        )}
       </Dialog>
     </>
   );

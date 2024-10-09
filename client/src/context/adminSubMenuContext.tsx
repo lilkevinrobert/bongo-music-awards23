@@ -14,7 +14,6 @@ const AdminSubMenuProvider:React.FC<{children: ReactNode}> = ({children}) => {
     const [expandedSubMenu, setExpandedSubMenu] = useState<string | null>(null);
 
     const subMenuClickHandler = (id: string) => {
-      console.log(id)
       setExpandedSubMenu(id === expandedSubMenu ? null : id)
     }
 

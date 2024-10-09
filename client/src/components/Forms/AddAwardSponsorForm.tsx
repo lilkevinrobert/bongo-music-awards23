@@ -28,6 +28,7 @@ export interface TempFetchResult {
     data: TempData | null;
     loading: boolean;
     error: Error | null;
+    fetchData: () => void;
 }
 interface FormData {
     selectedItems: number[];
