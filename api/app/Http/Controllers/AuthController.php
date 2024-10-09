@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Models\Auth;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -16,12 +17,17 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 class AuthController extends Controller
 {
 
+    public function test(){
+        return auth()->user();
+    }
+
     public function register(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'user_role' => ['required', 'in:ADMIN,VOTER,JUDGE,ARTIST'],
             'password' => ['required', 'confirmed', 'min:8', Rules\Password::defaults()],
         ]);
 
@@ -38,6 +44,7 @@ class AuthController extends Controller
             $data = [
                 'username' => $validator->validated()['username'],
                 'email' => $validator->validated()['email'],
+                'user_role' => $validator->validated()['user_role'],
                 'password' => Hash::make($validator->validated()['password']),
             ];
 
@@ -70,6 +77,22 @@ class AuthController extends Controller
                 'message' => $validator->messages(),
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNAUTHORIZED,
+                'message' => "Invalid credentials",
+            ])->setStatusCode(ResponseAlias::HTTP_UNAUTHORIZED, Response::$statusTexts[ResponseAlias::HTTP_UNAUTHORIZED]);
+        }
+
+        $token = $user->createToken('token')->plainTextToken;
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
     }
 
     public function logout(Request $request)

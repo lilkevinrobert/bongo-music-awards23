@@ -109,7 +109,7 @@ class SponsorController extends Controller
 
         //TODO updating the image logo of the sponsor
 
-        $sponsor->update($request->only(['sponsor_name', 'award_id', 'link']));
+        $sponsor->update($request->only(['sponsor_name', 'link']));
     }
 
     /**

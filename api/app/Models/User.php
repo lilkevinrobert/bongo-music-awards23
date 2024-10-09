@@ -67,4 +67,26 @@ class User extends Authenticatable
 
         return $validator;
     }
+
+    // Helper methods to check roles
+    public function isAdmin()
+    {
+        return $this->user_role === 'ADMIN';
+    }
+
+    public function isArtist()
+    {
+        return $this->user_role === 'ARTIST';
+    }
+
+    public function isJudge()
+    {
+        return $this->user_role === 'JUDGE';
+    }
+
+    public function isVote()
+    {
+        return $this->user_role === 'VOTER';
+    }
+
 }
