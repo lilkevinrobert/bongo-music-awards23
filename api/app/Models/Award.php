@@ -48,5 +48,10 @@ class Award extends Model
         return $this->belongsToMany(Genre::class, 'award_genres', 'award_id', 'genre_id');
     }
 
+    public function judges()
+    {
+        return $this->belongsToMany(Judge::class, 'award_judges', 'award_id', 'judge_id');
+    }
+
 
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardGenresController;
+use App\Http\Controllers\AwardJudgeController;
 use App\Http\Controllers\AwardNominationController;
 use App\Http\Controllers\AwardSponsorController;
 use App\Http\Controllers\ConfigController;
@@ -116,7 +117,6 @@ Route::group(['prefix' => 'v1'], function () {
     // SPONSORS APIS.
     Route::apiResource('sponsors', SponsorController::class);
 
-
     // AWARDS GENRE APIS.
     Route::group(['prefix' => 'awards'], function () {
         // Create Award  genres
@@ -128,6 +128,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/{awardId}/sponsors', [AwardSponsorController::class, 'store']);
         // Get All Genres for a Specific Award
         Route::get('/{awardId}/sponsors', [AwardSponsorController::class, 'show']);
+
+        // Create Award Judges
+        Route::post('/{awardId}/judges', [AwardJudgeController::class, 'store']);
+        // Get All Judges for specific award.
+        Route::get('/{awardId}/judges', [AwardJudgeController::class, 'show']);
 
         // Active Events and Awards
         Route::get('/active',  [AwardController::class, 'activeAwards']);
