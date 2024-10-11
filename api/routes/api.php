@@ -97,7 +97,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/', [UserInformationController::class, 'store']);
     });
 
-    // Artist Endpoints.
+    // ARTIST ENDPOINTS.
     Route::group(['prefix' => 'artists'], function ($request) {
 
         //Create artist profile

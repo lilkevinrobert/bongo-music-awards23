@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('judges', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_information_id');
             $table->string('organization');
             $table->string('position');
             $table->string('expertise');
             $table->text('bio');
-            $table->unsignedBigInteger('user_id');
             $table->string('created_by');
-            $table->foreign('user_id')
+            $table->foreign('user_information_id')
                 ->references('id')
-                ->on('users')
+                ->on('user_informations')
                 ->onDelete('cascade');
             $table->timestamps();
         });
