@@ -13,6 +13,7 @@ class Judge extends Model
     protected $table = 'judges';
 
     protected $fillable = [
+        'user_information_id',
         'organization',
         'position',
         'expertise',
