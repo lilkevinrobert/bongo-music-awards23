@@ -450,7 +450,7 @@ const AddArtistProfileForm = () => {
         <Button
           size="sm"
           type="submit"
-          className="h-10 rounded-full bg-gray-900 font-LatoBold capitalize transition ease-in-out hover:bg-yellow-300 hover:text-gray-900"
+          className="h-10 rounded-full bg-gray-900 font-LatoBold capitalize transition ease-in-out duration-300 hover:bg-yellow-300 hover:text-gray-900"
         >
           finish
         </Button>

@@ -35,7 +35,7 @@ const ArtistsPage = lazy(() => import("./pages/Admin/ArtistsPage"));
 const RecoveryPage = lazy(() => import("./pages/RecoveryPage"));
 
 import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
-import AdminArtistProfileCompletionPage from "./pages/Admin/AdminArtistProfileCompletionPage.tsx";
+import AdminUserProfileCompletionPage from "./pages/Admin/AdminUserProfileCompletionPage.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
@@ -79,10 +79,10 @@ function App() {
           ),
         },
         {
-          path: "artist-profile-completion/",
+          path: "user-profile-completion/",
           element: (
             <Suspense fallback={<Loading />}>
-              <AdminArtistProfileCompletionPage />
+              <AdminUserProfileCompletionPage />
             </Suspense>
           ),
         },
@@ -291,8 +291,8 @@ function App() {
   return (
     <AuthProvider>
       <>
-        {isOnline ? <RouterProvider router={router} /> : <OfflineErrorPage />}
-        {/* <RouterProvider router={router}/> */}
+        {/* {isOnline ? <RouterProvider router={router} /> : <OfflineErrorPage />} */}
+        <RouterProvider router={router}/>
       </>
     </AuthProvider>
   );

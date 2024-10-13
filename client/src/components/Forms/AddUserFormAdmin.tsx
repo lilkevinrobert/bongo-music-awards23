@@ -239,11 +239,12 @@ const AddUserFormAdmin = () => {
 
           setTimeout(() => {
             toast.dismiss(responseToastId);
-            const user = res.data.data.id
-            navigate(`/admin/artist-profile-completion?user=${user}`)
+            const user = res.data.data.id;
+            
+            // Re-direct user to profile completion
+            navigate(`/admin/user-profile-completion?user=${user}&user-type=${origin}`)
           }, 3000);
         } else if (res.status == 500) {
-
           toast.error("Action Failed")
         }
       })
