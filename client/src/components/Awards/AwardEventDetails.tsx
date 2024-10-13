@@ -42,7 +42,6 @@ const AwardEventDetails = ({ awardId }: AwardEventDetailsProps) => {
     error: awardSponsorsListError,
     fetchData
   }: TempFetchResult = useFetch(`${BASE_URL}/awards/${awardId}/sponsors`);
-  console.log(awardSponsorsList?.data.sponsors)
 
   // GET data - award genres
   const {

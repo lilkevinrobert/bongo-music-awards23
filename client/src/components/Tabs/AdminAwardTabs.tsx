@@ -10,6 +10,7 @@ import AwardEventDetails from "../Awards/AwardEventDetails";
 import AdminNominationsView from "../Nomination/AdminNominationsView";
 import { useParams } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import AdminAwardJudgesView from "../../pages/Admin/AdminAwardJudgesView";
 
 const AdminAwardTabs = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -24,6 +25,11 @@ const AdminAwardTabs = () => {
       label: "Nominations",
       value: "nominations",
       desc: <AdminNominationsView awardId={params.awardId} />,
+    },
+    {
+      label: "Judges",
+      value: "judges",
+      desc: <AdminAwardJudgesView awardId={params.awardId} />,
     },
   ];
   return (

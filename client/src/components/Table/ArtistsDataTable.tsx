@@ -57,7 +57,7 @@ const ArtistsDataTable: React.FC = () => {
     setConfirmDeleteOpen((c) => !c);
   };
 
-  // Get data
+  // Get data - artists
   const {
     data: artistsData,
     loading: artistsDataLoading,
@@ -87,6 +87,7 @@ const ArtistsDataTable: React.FC = () => {
         <AddEmptyState itemName="artist" />
       ) : (
         <div className="mx-auto py-4">
+          {/* controls section */}
           <div className="flex flex-row items-center justify-between mb-4 w-full">
             <div className="flex flex-row items-center justify-between w-auto">
               <input
