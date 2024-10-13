@@ -53,7 +53,7 @@ class AwardNominationController extends Controller
                 ]
             );
 
-            //TODO check status is active, then pull data for nominations
+            //TODO check status is active, then pull data for artist nominations
 
 
             DB::commit();

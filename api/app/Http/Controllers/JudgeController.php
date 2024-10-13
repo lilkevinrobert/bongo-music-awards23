@@ -53,7 +53,6 @@ class JudgeController extends Controller
                 'organization' => $validator->validated()['organization'],
                 'position' => $validator->validated()['position'],
                 'expertise' => $validator->validated()['expertise'],
-                'phone_number' => $validator->validated()['phone_number'],
                 'bio' => $validator->validated()['bio'],
                 'created_by' => auth()->id() ?: 1,
             ];

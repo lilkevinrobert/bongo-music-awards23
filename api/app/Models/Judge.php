@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 
 class Judge extends Model
 {
+    use HasFactory;
+
     protected $table = 'judges';
 
     protected $fillable = [
@@ -17,8 +19,6 @@ class Judge extends Model
         'bio',
         'created_by'
     ];
-
-    use HasFactory;
 
     public $timestamps = true;
 
