@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('username');
             $table->string('email')->unique();
-            $table->enum('user_role',['ARTIST','JUDGE','VOTER'])->default('VOTER');
+            $table->enum('user_role',['ARTIST','JUDGE','VOTER', 'ADMIN'])->default('VOTER');
             $table->string('password');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->timestamp('email_verified_at')->nullable();

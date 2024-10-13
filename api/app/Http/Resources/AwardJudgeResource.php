@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JudgeResource extends JsonResource
+class AwardJudgeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,5 +16,4 @@ class JudgeResource extends JsonResource
     {
         return parent::toArray($request);
     }
-
 }

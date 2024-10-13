@@ -57,7 +57,7 @@ class ArtistProfilesController extends Controller
                 'apple_music_link' => $request->input('apple_music_link'),
                 'youtube_music_link' => $request->input('youtube_music_link'),
                 'boomplay_music_link' => $request->input('boomplay_music_link'),
-                'created_by' => 1, //TODO to be change to authenticated user (ADMIN id)
+                'created_by' => auth()->id() ?: 1,
             ];
 
             $artist_profile = ArtistProfile::create($data);

@@ -157,7 +157,6 @@
       <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php81" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/uid" />
-      <path value="$PROJECT_DIR$/api/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/api/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/translation" />

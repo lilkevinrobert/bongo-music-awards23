@@ -3,13 +3,14 @@
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardGenresController;
+use App\Http\Controllers\AwardJudgeController;
 use App\Http\Controllers\AwardNominationController;
 use App\Http\Controllers\AwardSponsorController;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
 use App\Http\Controllers\WardController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\JudgeController;
@@ -30,9 +31,38 @@ use \App\Http\Controllers\AwardController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
 });
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    //Logout
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::middleware(['role:ADMIN'])->group(function () {
+        Route::get('tests', [AuthController::class, 'test']);
+    });
+//
+//    Route::middleware('role:artist')->group(function () {
+//        Route::get('/artist/profile', [ArtistController::class, 'profile']);
+//    });
+//
+//    Route::middleware('role:judge')->group(function () {
+//        Route::get('/judge/review', [JudgeController::class, 'review']);
+//    });
+//
+//    Route::middleware('role:vote')->group(function () {
+//        Route::get('/vote/cast', [VoteController::class, 'cast']);
+//    });
+
+});
+
+
+//Configurations
+Route::get('/clear-cache', [ConfigController::class, 'cacheClear']);
 
 
 /**
@@ -40,13 +70,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
  */
 Route::group(['prefix' => 'v1'], function () {
 
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('login', [AuthController::class, 'login']);
-
-
+    //GENRES & CATEGORIES END-POINT
     Route::apiResource('genres', GenresController::class);
     Route::apiResource('categories', CategoriesController::class);
-
 
     Route::get('genres/{genreId}/categories', [GenresController::class, 'getGenreCategories']);
     Route::get('genres/category/all', [GenresController::class, 'getAllGenreCategories']);
@@ -56,7 +82,6 @@ Route::group(['prefix' => 'v1'], function () {
             Route::get('/', [AdminController::class, 'counts']);
         });
     });
-
 
     //ADDRESS END POINTS
     Route::group(['prefix' => 'addresses'], function () {
@@ -73,7 +98,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/', [UserInformationController::class, 'store']);
     });
 
-    // Artist Endpoints.
+    // ARTIST ENDPOINTS.
     Route::group(['prefix' => 'artists'], function ($request) {
 
         //Create artist profile
@@ -92,7 +117,6 @@ Route::group(['prefix' => 'v1'], function () {
     // SPONSORS APIS.
     Route::apiResource('sponsors', SponsorController::class);
 
-
     // AWARDS GENRE APIS.
     Route::group(['prefix' => 'awards'], function () {
         // Create Award  genres
@@ -105,6 +129,11 @@ Route::group(['prefix' => 'v1'], function () {
         // Get All Genres for a Specific Award
         Route::get('/{awardId}/sponsors', [AwardSponsorController::class, 'show']);
 
+        // Create Award Judges
+        Route::post('/{awardId}/judges', [AwardJudgeController::class, 'store']);
+        // Get All Judges for specific award.
+        Route::get('/{awardId}/judges', [AwardJudgeController::class, 'show']);
+
         // Active Events and Awards
         Route::get('/active',  [AwardController::class, 'activeAwards']);
         Route::get('/closed',  [AwardController::class, 'inactiveAwards']);
@@ -113,41 +142,11 @@ Route::group(['prefix' => 'v1'], function () {
     // AWARDS APIS.
     Route::apiResource('awards', AwardController::class);
 
-
     // NOMINATION END POINTS
     Route::group(['prefix' => 'nominations'], function () {
         Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
         Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
 //        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
-
-
     });
-
-
-//    Route::group(['prefix' => 'awards'], function () {
-
-//    /**
-//     * Events (Awards) end-points.
-//     */
-//    Route::get('/', [EventsController::class, 'index']); // Available events.
-//    Route::post('/', [EventsController::class, 'store']);
-//    Route::get('/{eventId}', [EventsController::class, 'show']); // Read specific event.
-//    Route::get('/{eventId}/genres/{genreId}/categories', []); // all available categories of a specific genre
-
-
-//        /**
-//         * Genres end-points. (genres)
-//         */
-
-//    Route::get('/{eventId}/genres', [EventsController::class, 'eventGenres']);
-
-//    });
-
 });
 
-
-Route::middleware(['auth:sanctum'])->group(function () {
-//    Route::get('/events', function () {
-//
-//    });
-});

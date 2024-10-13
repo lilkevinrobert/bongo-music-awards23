@@ -45,27 +45,24 @@ class JudgeController extends Controller
                 Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
 
-
         try {
             DB::beginTransaction();
 
-            //saving the image to the database.
-
-            $judge = Judge::create([
+            $data = [
+                'user_information_id' => $validator->validated()['user_information_id'],
                 'organization' => $validator->validated()['organization'],
                 'position' => $validator->validated()['position'],
                 'expertise' => $validator->validated()['expertise'],
-                'phone_number' => $validator->validated()['phone_number'],
                 'bio' => $validator->validated()['bio'],
                 'created_by' => auth()->id() ?: 1,
-                'user_id' => 1,
-                'event_id' => $validator->validated()['event_id'] // The selected event id, (i.e )
-            ]);
+            ];
+
+            $judge = Judge::create($data);
 
             DB::commit();
             return response()->json([
                 'status' => ResponseAlias::HTTP_CREATED,
-                'data' => [$judge],
+                'data' => new JudgeResource($judge),
             ])->setStatusCode(ResponseAlias::HTTP_CREATED, Response::$statusTexts[ResponseAlias::HTTP_CREATED]);
 
         } catch (QueryException|\Exception $e) {

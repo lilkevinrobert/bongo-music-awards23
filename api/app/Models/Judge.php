@@ -8,48 +8,35 @@ use Illuminate\Support\Facades\Validator;
 
 class Judge extends Model
 {
+    use HasFactory;
+
     protected $table = 'judges';
 
     protected $fillable = [
-        'profile_image_url',
-        'user_id',
-        'event_id',
+        'user_information_id',
         'organization',
         'position',
         'expertise',
-        'phone_number',
-        'role',
         'bio',
         'created_by'
     ];
 
-    use HasFactory;
-
     public $timestamps = true;
-
 
     public static function validate($input, $id = null)
     {
         $rules = [
             # place-holder for user validation rules
-            'first_name' => ['required', 'min:2', 'max:50'],
-            'middle_name' => ['nullable'],
-            'last_name' => ['required', 'min:2', 'max:50'],
-            'email' => ['required','email'],
-
-            # place-holder for judge validation rules
-            'organization' => ['required', 'min:2', 'max:50'],
-            'bio' => ['required',],
-            'phone_number' => ['required'],
+            'user_information_id' => ['required', 'exists:user_informations,id'],
+            'organization' => ['required'],
             'position' => ['required'],
             'expertise' => ['required'],
-            'event_id' => ['required']
+            'bio' => ['required'],
         ];
 
         $nice_names = [ # Friendly names
-            'bio' => 'Judge biography',
-            'phone_number' => 'Phone number',
-            'event_id' => 'event id'
+            'user_information_id' => 'User Information',
+            'bio' => 'Judge biography'
         ];
 
         # validation code
