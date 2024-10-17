@@ -37,6 +37,7 @@ const RecoveryPage = lazy(() => import("./pages/RecoveryPage"));
 import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
 import AdminUserProfileCompletionPage from "./pages/Admin/AdminUserProfileCompletionPage.tsx";
 import JudgeDashboardPage from "./pages/Judge/JudgeDashboardPage.tsx";
+import JudgeProfilePage from "./pages/Judge/JudgeProfilePage.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
@@ -295,6 +296,14 @@ function App() {
           element: (
             <Suspense fallback={<Loading />}>
               <JudgeDashboardPage />
+            </Suspense>
+          )
+        },
+        {
+          path: "profile",
+          element: (
+            <Suspense fallback={<Loading />}>
+              <JudgeProfilePage />
             </Suspense>
           )
         }
