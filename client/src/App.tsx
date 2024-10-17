@@ -36,6 +36,7 @@ const RecoveryPage = lazy(() => import("./pages/RecoveryPage"));
 
 import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
 import AdminUserProfileCompletionPage from "./pages/Admin/AdminUserProfileCompletionPage.tsx";
+import JudgeDashboardPage from "./pages/Judge/JudgeDashboardPage.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
@@ -56,6 +57,22 @@ function App() {
       element: (
         <Suspense fallback={<Loading />}>
           <LoginPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/about",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <AboutPage />
+        </Suspense>
+      ),
+    },
+    {
+      path: "/contact",
+      element: (
+        <Suspense fallback={<Loading />}>
+          <ContactPage />
         </Suspense>
       ),
     },
@@ -271,21 +288,18 @@ function App() {
       ],
     },
     {
-      path: "/about",
-      element: (
-        <Suspense fallback={<Loading />}>
-          <AboutPage />
-        </Suspense>
-      ),
-    },
-    {
-      path: "/contact",
-      element: (
-        <Suspense fallback={<Loading />}>
-          <ContactPage />
-        </Suspense>
-      ),
-    },
+      path: "/judge",
+      children: [
+        {
+          path: "dashboard",
+          element: (
+            <Suspense fallback={<Loading />}>
+              <JudgeDashboardPage />
+            </Suspense>
+          )
+        }
+      ]
+    }
   ]);
 
   return (

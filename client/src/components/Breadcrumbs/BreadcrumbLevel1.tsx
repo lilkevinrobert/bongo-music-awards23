@@ -9,7 +9,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 interface BreadcrumbLevel1Props {
   currentPage: string;
-  user: "admin" | "artist";
+  user: "admin" | "artist" | "judge";
   separator?: "slash" | "arrow" | undefined;
   showProfileMenu?: "yes" | "no";
 }
