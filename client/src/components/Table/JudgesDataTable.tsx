@@ -294,7 +294,9 @@ const JudgesDataTable: React.FC = () => {
             </thead>
             <tbody className="font-LatoRegular text-sm">
               {
-
+              filteredData.length === 0 ? (
+                <p className="font-LatoRegular text-gray-900 text-base text-center">No data found.</p>
+              ) : 
               filteredData.map((row, index) => {
                 const fullname = `${row.user_information.first_name} ${row.user_information.middle_name} ${row.user_information.last_name}`
                 return (
