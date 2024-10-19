@@ -45,4 +45,9 @@ class Judge extends Model
 
         return $validator;
     }
+
+    public function userInformation()
+    {
+        return $this->belongsTo(UserInformation::class);
+    }
 }
