@@ -58,6 +58,7 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                 );
             }) ?? [];
         setFilteredData(filtered);
+        console.log(filtered)
     }, [searchTerm, judgesData]);
     return (
         <div>
@@ -75,7 +76,7 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                             <div className="flex flex-row items-center justify-between w-auto">
                                 <input
                                     type="text"
-                                    placeholder="Search artist..."
+                                    placeholder="Search judge..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="p-4 border border-gray-500 rounded-full w-4/4 h-8 font-LatoRegular"
@@ -170,34 +171,37 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                             </thead>
                             <tbody className="font-LatoRegular text-sm">
                                 {
-                                    filteredData.map((row, index) => (
-                                        <tr
-                                            key={index}
-                                            className={`${index % 2 === 0 ? "bg-gray-100" : ""
-                                                } group/actions`}
-                                        >
-                                            {/* <td className="border px-4 py-1 capitalize font-normal">
+                                    filteredData.length === 0 ? (
+                                        <p className="font-LatoRegular text-gray-900 text-base text-center">No data found.</p>
+                                    ) :
+                                        filteredData.map((row, index) => (
+                                            <tr
+                                                key={index}
+                                                className={`${index % 2 === 0 ? "bg-gray-100" : ""
+                                                    } group/actions`}
+                                            >
+                                                {/* <td className="border px-4 py-1 capitalize font-normal">
                                                 {`${row.first_name} ${row.middle_name != null ? row.middle_name : ""
                                                     } ${row.last_name}`}
                                             </td> */}
-                                            <td className="border px-4 py-1 capitalize">{row.organization}</td>
-                                            <td className="border px-4 py-1 capitalize">{row.position}</td>
-                                            <td className="border px-4 py-1 capitalize">{row.expertise}</td>
-                                            <td className="border px-4 py-1 opacity-80 flex flex-row items-center justify-center transition-all ease-linear duration-300 group-hover/actions:flex">
-                                                <NavLink to={`../judges/${row.id}`}>
-                                                    <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 transition ease-linear duration-300 group">
-                                                        <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                                                <td className="border px-4 py-1 capitalize">{row.organization}</td>
+                                                <td className="border px-4 py-1 capitalize">{row.position}</td>
+                                                <td className="border px-4 py-1 capitalize">{row.expertise}</td>
+                                                <td className="border px-4 py-1 opacity-80 flex flex-row items-center justify-center transition-all ease-linear duration-300 group-hover/actions:flex">
+                                                    <NavLink to={`../judges/${row.id}`}>
+                                                        <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 transition ease-linear duration-300 group">
+                                                            <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                                                        </button>
+                                                    </NavLink>
+                                                    <button
+                                                        //   onClick={() => handleConfirmDelete(row)}
+                                                        className="bg-transparent px-2 py-1 rounded hover:bg-red-700 transition ease-linear duration-300 group"
+                                                    >
+                                                        <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
                                                     </button>
-                                                </NavLink>
-                                                <button
-                                                    //   onClick={() => handleConfirmDelete(row)}
-                                                    className="bg-transparent px-2 py-1 rounded hover:bg-red-700 transition ease-linear duration-300 group"
-                                                >
-                                                    <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
+                                                </td>
+                                            </tr>
+                                        ))
                                 }
                             </tbody>
                         </table>
