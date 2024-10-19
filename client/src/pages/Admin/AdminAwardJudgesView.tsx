@@ -7,6 +7,7 @@ import { MdOutlineDeleteOutline, MdOutlinePersonAdd, MdOutlineRemoveRedEye } fro
 import { NavLink } from "react-router-dom";
 import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
+import AddAwardJudgeForm from "../../components/Forms/AddAwardJudgeForm";
 
 interface AwardEventDetailsProps {
     awardId: string | undefined;
@@ -58,7 +59,6 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                 );
             }) ?? [];
         setFilteredData(filtered);
-        console.log(filtered)
     }, [searchTerm, judgesData]);
     return (
         <div>
@@ -83,7 +83,7 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                                 />
                                 <Button
                                     size="sm"
-                                    className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+                                    className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out duration-300 flex items-center justify-center gap-2"
                                     onClick={() => setSearchTerm("")}
                                 >
                                     <GiMagicBroom className="text-lg font-LatoRegular" />
@@ -93,7 +93,7 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                             <Button
                                 size="sm"
                                 onClick={handleOpenAddAwardJudge}
-                                className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+                                className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out duration-300"
                             >
                                 <MdOutlinePersonAdd className="text-lg" />
                                 <Typography className=" font-LatoRegular">Add</Typography>
@@ -107,11 +107,9 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                                 className="bg-transparent shadow-none"
                             >
                                 <div className="h-full border-red-400 flex items-center justify-center">
-                                    <p className="text-gray-900 text-center font-LatoBold text-lg capitalize bg-amber-300 px-4 py-4">add award judge, coming soon!</p>
+                                    <AddAwardJudgeForm handleOpenJudgesDialog={handleOpenAddAwardJudge} />
                                 </div>
                             </Dialog>
-
-
 
                             {/* <Dialog
                                 size="xs"
