@@ -23,6 +23,7 @@ class JudgeResource extends JsonResource
             'expertise' => $this->expertise,
             'biography' => $this->bio,
             'user_information' => new UserInformationResource($this->userInformation),
+            'user_id' => $this->userInformation->user_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

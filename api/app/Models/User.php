@@ -89,7 +89,7 @@ class User extends Authenticatable
         return $this->user_role === 'VOTER';
     }
 
-    public function userInformations(){
+    public function userInformation(){
         return $this->hasOne(UserInformation::class);
     }
 
