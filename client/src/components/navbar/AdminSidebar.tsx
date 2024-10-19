@@ -20,7 +20,7 @@ export function handleActiveAdminLinkColor(state: boolean) {
     return {
       color: "#242424",
       backgroundColor: "#F0F0F0",
-      borderRadius: "0px",
+      borderRadius: "0px", 
     };
   } else {
     return {

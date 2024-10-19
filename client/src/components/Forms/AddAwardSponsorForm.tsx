@@ -67,7 +67,6 @@ const AddAwardSponsorForm = ({ handleOpenSponsorsDialog }: FormProps) => {
 
     const handleCheckboxChange = (id: number, isChecked: boolean) => {
         const currentSelection = selectedItems || [];
-        console.log(id)
 
         if (isChecked) {
             // Add item to selectedItems array if checked
@@ -92,7 +91,7 @@ const AddAwardSponsorForm = ({ handleOpenSponsorsDialog }: FormProps) => {
             .then((res) => {
                 toast.dismiss(processingToastId);
                 if (res.status == 201) {
-                    const responseToastId = toast.success("Sponsor(s) added successfully.");
+                    const responseToastId = toast.success("Award Sponsor(s) added successfully.");
 
                     setTimeout(() => {
                         toast.dismiss(responseToastId);
@@ -141,7 +140,7 @@ const AddAwardSponsorForm = ({ handleOpenSponsorsDialog }: FormProps) => {
                                 <Typography
                                     variant="h6"
                                     color="blue-gray"
-                                    className="font-LatoBold"
+                                    className="font-LatoBold text-lg"
                                 >
                                     Add Awards Sponsor(s)
                                 </Typography>

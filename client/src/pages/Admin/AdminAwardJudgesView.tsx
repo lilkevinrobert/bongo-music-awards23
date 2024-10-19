@@ -7,6 +7,7 @@ import { MdOutlineDeleteOutline, MdOutlinePersonAdd, MdOutlineRemoveRedEye } fro
 import { NavLink } from "react-router-dom";
 import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
+import AddAwardJudgeForm from "../../components/Forms/AddAwardJudgeForm";
 
 interface AwardEventDetailsProps {
     awardId: string | undefined;
@@ -75,14 +76,14 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                             <div className="flex flex-row items-center justify-between w-auto">
                                 <input
                                     type="text"
-                                    placeholder="Search artist..."
+                                    placeholder="Search judge..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                     className="p-4 border border-gray-500 rounded-full w-4/4 h-8 font-LatoRegular"
                                 />
                                 <Button
                                     size="sm"
-                                    className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+                                    className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out duration-300 flex items-center justify-center gap-2"
                                     onClick={() => setSearchTerm("")}
                                 >
                                     <GiMagicBroom className="text-lg font-LatoRegular" />
@@ -92,7 +93,7 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                             <Button
                                 size="sm"
                                 onClick={handleOpenAddAwardJudge}
-                                className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+                                className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out duration-300"
                             >
                                 <MdOutlinePersonAdd className="text-lg" />
                                 <Typography className=" font-LatoRegular">Add</Typography>
@@ -106,11 +107,9 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                                 className="bg-transparent shadow-none"
                             >
                                 <div className="h-full border-red-400 flex items-center justify-center">
-                                    <p className="text-gray-900 text-center font-LatoBold text-lg capitalize bg-amber-300 px-4 py-4">add award judge, coming soon!</p>
+                                    <AddAwardJudgeForm handleOpenJudgesDialog={handleOpenAddAwardJudge} />
                                 </div>
                             </Dialog>
-
-
 
                             {/* <Dialog
                                 size="xs"
@@ -170,34 +169,37 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                             </thead>
                             <tbody className="font-LatoRegular text-sm">
                                 {
-                                    filteredData.map((row, index) => (
-                                        <tr
-                                            key={index}
-                                            className={`${index % 2 === 0 ? "bg-gray-100" : ""
-                                                } group/actions`}
-                                        >
-                                            {/* <td className="border px-4 py-1 capitalize font-normal">
+                                    filteredData.length === 0 ? (
+                                        <p className="font-LatoRegular text-gray-900 text-base text-center">No data found.</p>
+                                    ) :
+                                        filteredData.map((row, index) => (
+                                            <tr
+                                                key={index}
+                                                className={`${index % 2 === 0 ? "bg-gray-100" : ""
+                                                    } group/actions`}
+                                            >
+                                                {/* <td className="border px-4 py-1 capitalize font-normal">
                                                 {`${row.first_name} ${row.middle_name != null ? row.middle_name : ""
                                                     } ${row.last_name}`}
                                             </td> */}
-                                            <td className="border px-4 py-1 capitalize">{row.organization}</td>
-                                            <td className="border px-4 py-1 capitalize">{row.position}</td>
-                                            <td className="border px-4 py-1 capitalize">{row.expertise}</td>
-                                            <td className="border px-4 py-1 opacity-80 flex flex-row items-center justify-center transition-all ease-linear duration-300 group-hover/actions:flex">
-                                                <NavLink to={`../judges/${row.id}`}>
-                                                    <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 transition ease-linear duration-300 group">
-                                                        <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                                                <td className="border px-4 py-1 capitalize">{row.organization}</td>
+                                                <td className="border px-4 py-1 capitalize">{row.position}</td>
+                                                <td className="border px-4 py-1 capitalize">{row.expertise}</td>
+                                                <td className="border px-4 py-1 opacity-80 flex flex-row items-center justify-center transition-all ease-linear duration-300 group-hover/actions:flex">
+                                                    <NavLink to={`../judges/${row.id}`}>
+                                                        <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 transition ease-linear duration-300 group">
+                                                            <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                                                        </button>
+                                                    </NavLink>
+                                                    <button
+                                                        //   onClick={() => handleConfirmDelete(row)}
+                                                        className="bg-transparent px-2 py-1 rounded hover:bg-red-700 transition ease-linear duration-300 group"
+                                                    >
+                                                        <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
                                                     </button>
-                                                </NavLink>
-                                                <button
-                                                    //   onClick={() => handleConfirmDelete(row)}
-                                                    className="bg-transparent px-2 py-1 rounded hover:bg-red-700 transition ease-linear duration-300 group"
-                                                >
-                                                    <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
+                                                </td>
+                                            </tr>
+                                        ))
                                 }
                             </tbody>
                         </table>

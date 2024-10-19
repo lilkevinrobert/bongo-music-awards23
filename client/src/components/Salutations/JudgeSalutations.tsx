@@ -6,7 +6,7 @@ const JudgeSalutations = () => {
     <div className="relative w-full h-full flex items-center justify-center rounded-full bg-transparent">
     <div className="absolute z-20 flex flex-col items-center justify-center">
       <Typography className="font-LatoBold text-xl text-gray-900">
-        Hello, john doe
+        Hello, <span className='capitalize'>john doe</span>
       </Typography>
       <Typography className="font-LatoRegular text-xl text-center text-gray-900">
         Welcome, to your Bongo Music Awards Dashboard

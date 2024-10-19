@@ -107,13 +107,13 @@ const ArtistsDataTable: React.FC = () => {
               </Button>
             </div>
             <NavLink to={`/admin/add-user-form?origin=artist`}>
-            <Button
-              size="sm"
-              className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
+              <Button
+                size="sm"
+                className="capitalize rounded-full flex flex-row items-center gap-3 font-LatoRegular bg-gray-800 hover:bg-yellow-300 hover:text-gray-900 transition ease-in-out"
               >
-              <MdOutlinePersonAdd className="text-lg" />
-              <Typography className=" font-LatoRegular">Add</Typography>
-            </Button>
+                <MdOutlinePersonAdd className="text-lg" />
+                <Typography className=" font-LatoRegular">Add</Typography>
+              </Button>
             </NavLink>
 
             {/* Dialogs */}
@@ -160,8 +160,8 @@ const ArtistsDataTable: React.FC = () => {
                         You are about to delete an acount for
                       </Typography>
                       <span className="text-slate-900 uppercase font-LatoBold">
-                          {deleteItem && deleteItem?.stage_name}
-                        </span>
+                        {deleteItem && deleteItem?.stage_name}
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center justify-center mt-4 bg-transparent">
@@ -198,44 +198,46 @@ const ArtistsDataTable: React.FC = () => {
               </tr>
             </thead>
             <tbody className="font-LatoRegular text-sm">
-              {filteredData.map((row, index) => (
-                <tr
-                  key={index}
-                  className={`${
-                    index % 2 === 0 ? "bg-gray-100" : ""
-                  } group/actions`}
-                >
-                  <td className="border px-4 py-1 capitalize">
-                    {row.stage_name}
-                  </td>
-                  <td className="border px-4 py-1 capitalize font-normal">
-                    {`${row.first_name} ${
-                      row.middle_name != null ? row.middle_name : ""
-                    } ${row.last_name}`}
-                  </td>
-                  <td className="border px-4 py-1 capitalize">{row.phone}</td>
-                  <td className="border px-4 py-1 lowercase">{row.email}</td>
-                  <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
-                    <NavLink to={`../artists/${row.user_id}`}>
-                      <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
-                        <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
-                      </button>
-                    </NavLink>
-                    <button
-                      className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group"
-                      onClick={handleEdit}
+              {
+                filteredData.length === 0 ? (
+                  <p className="font-LatoRegular text-gray-900 text-base text-center">No data found.</p>
+                ) :
+                  filteredData.map((row, index) => (
+                    <tr
+                      key={index}
+                      className={`${index % 2 === 0 ? "bg-gray-100" : ""
+                        } group/actions`}
                     >
-                      <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
-                    </button>
-                    <button
-                      onClick={() => handleConfirmDelete(row)}
-                      className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group"
-                    >
-                      <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                      <td className="border px-4 py-1 capitalize">
+                        {row.stage_name}
+                      </td>
+                      <td className="border px-4 py-1 capitalize font-normal">
+                        {`${row.first_name} ${row.middle_name != null ? row.middle_name : ""
+                          } ${row.last_name}`}
+                      </td>
+                      <td className="border px-4 py-1 capitalize">{row.phone}</td>
+                      <td className="border px-4 py-1 lowercase">{row.email}</td>
+                      <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
+                        <NavLink to={`../artists/${row.user_id}`}>
+                          <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
+                            <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
+                          </button>
+                        </NavLink>
+                        <button
+                          className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group"
+                          onClick={handleEdit}
+                        >
+                          <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
+                        </button>
+                        <button
+                          onClick={() => handleConfirmDelete(row)}
+                          className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group"
+                        >
+                          <MdOutlineDeleteOutline className="w-5 h-5 text-red-500 group-hover:text-white transition ease-in-out" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </table>
         </div>
