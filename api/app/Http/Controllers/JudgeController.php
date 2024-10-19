@@ -22,9 +22,8 @@ class JudgeController extends Controller
      */
     public function index()
     {
-//        $judgesProfiles = Judge::all();
-//        return JudgeResource::collection($judgesProfiles);
-        return ['data'=> []];
+        $judgesProfiles = Judge::all();
+        return JudgeResource::collection($judgesProfiles);
     }
 
     /**
