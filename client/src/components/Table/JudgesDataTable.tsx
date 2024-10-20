@@ -155,11 +155,11 @@ const JudgesDataTable: React.FC = () => {
                 placeholder="Search judge..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="p-4 border border-gray-500 rounded-full w-4/4 h-8 font-LatoRegular"
+                className="p-4 border border-gray-500 rounded-full w-3/4 md:w-4/4 h-8 font-LatoRegular"
               />
               <Button
                 size="sm"
-                className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+                className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out hidden md:flex items-center justify-center gap-2"
                 onClick={() => setSearchTerm("")}
               >
                 <GiMagicBroom className="text-lg font-LatoRegular" />
@@ -281,13 +281,13 @@ const JudgesDataTable: React.FC = () => {
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
-                <th className="px-4 py-1"></th>
+                <th className="hidden md:table-cell px-4 py-1"></th>
                 <th className="px-4 py-1">Full Name</th>
-                <th className="px-4 py-1">Organization</th>
-                <th className="px-4 py-1">Position</th>
+                <th className="hidden lg:table-cell px-4 py-1">Organization</th>
+                <th className="hidden lg:table-cell px-4 py-1">Position</th>
                 <th className="px-4 py-1">Expertise</th>
                 {/* <th className="px-4 py-1">Gender</th> */}
-                <th className="px-4 py-1">Phone</th>
+                <th className="hidden md:table-cell px-4 py-1">Phone</th>
                 {/* <th className="px-4 py-1">Email</th> */}
                 <th className="px-4 py-1 text-center w-1/12"></th>
               </tr>
@@ -305,7 +305,7 @@ const JudgesDataTable: React.FC = () => {
                     className={`${index % 2 === 0 ? "bg-gray-50" : ""
                       } group/actions`}
                   >
-                    <td className="border px-4 py-1 capitalize">
+                    <td className="hidden md:table-cell border px-4 py-1 capitalize">
                       <img
                         src={`${HOME_URL}/${row.user_information.profile_picture_url}`} alt={`${row.user_information.last_name}'s logo`}
                         className="w-24 md:w-8 h-8 md:max-h-8 rounded-full bg-gray-300 shadow object-center object-contain bg-transparent text-xs"
@@ -314,17 +314,17 @@ const JudgesDataTable: React.FC = () => {
                     <td className="border px-4 py-1 capitalize">
                       {fullname}
                     </td>
-                    <td className="border px-4 py-1 capitalize">
+                    <td className="hidden lg:table-cell border px-4 py-1 capitalize">
                       {row.organization}
                     </td>
-                    <td className="border px-4 py-1 capitalize">
+                    <td className="hidden lg:table-cell border px-4 py-1 capitalize">
                       {row.position}
                     </td>
                     <td className="border px-4 py-1 capitalize">
                       {row.expertise}
                     </td>
                     {/* <td className="border px-4 py-1 capitalize">{row.user_information.gender}</td> */}
-                    <td className="border px-4 py-1 capitalize">{row.user_information.phone}</td>
+                    <td className="hidden md:table-cell border px-4 py-1 capitalize">{row.user_information.phone}</td>
                     {/* <td className="border px-4 py-1 lowercase">{row.user_information.email}</td> */}
                     <td className="px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
                       <NavLink to={`${row.user_information.user_id}`}>

@@ -103,11 +103,11 @@ const ArtistsDataTable: React.FC = () => {
                 placeholder="Search artist..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="p-4 border border-gray-500 rounded-full w-4/4 h-8 font-LatoRegular"
+                className="p-4 border border-gray-500 rounded-full w-3/4 md:w-4/4 h-8 font-LatoRegular"
               />
               <Button
                 size="sm"
-                className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out flex items-center justify-center gap-2"
+                className="ml-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all ease-in-out hidden md:flex items-center justify-center gap-2"
                 onClick={() => setSearchTerm("")}
               >
                 <GiMagicBroom className="text-lg font-LatoRegular" />
@@ -200,11 +200,11 @@ const ArtistsDataTable: React.FC = () => {
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
-                <th className="px-4 py-1"></th>
+                <th className="hidden md:block px-4 py-1"></th>
                 <th className="px-4 py-1">Stage Name</th>
-                <th className="px-4 py-1">Full Name</th>
+                <th className="hidden md:block px-4 py-1">Full Name</th>
                 <th className="px-4 py-1">Phone</th>
-                <th className="px-4 py-1">Email</th>
+                <th className="hidden md:table-cell px-4 py-1">Email</th>
                 <th className="px-4 py-1 text-center w-40"></th>
               </tr>
             </thead>
@@ -219,7 +219,7 @@ const ArtistsDataTable: React.FC = () => {
                       className={`${index % 2 === 0 ? "bg-gray-100" : ""
                         } group/actions`}
                     >
-                      <td className="border px-4 py-1 capitalize">
+                      <td className="hidden md:block border px-4 py-1 capitalize">
                         <img
                           src={`${HOME_URL}/${row.user_information.profile_picture_url}`} alt={`${row.user_information.last_name}'s logo`}
                           className="w-24 md:w-8 h-8 md:max-h-8 rounded-full bg-gray-300 shadow object-center object-cover bg-transparent text-xs"
@@ -228,12 +228,12 @@ const ArtistsDataTable: React.FC = () => {
                       <td className="border px-4 py-1 capitalize">
                         {row.stage_name}
                       </td>
-                      <td className="border px-4 py-1 capitalize font-normal">
+                      <td className="hidden md:block border px-4 py-1 capitalize font-normal">
                         {`${row.user_information.first_name} ${row.user_information.middle_name != null ? row.user_information.middle_name : ""
                           } ${row.user_information.last_name}`}
                       </td>
                       <td className="border px-4 py-1 capitalize">{row.user_information.phone}</td>
-                      <td className="border px-4 py-1 lowercase">{row.user_information.email}</td>
+                      <td className="hidden md:table-cell border px-4 py-1 lowercase">{row.user_information.email}</td>
                       <td className="border border-b-transparent border-l-transparent border-r-transparent block px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
                         <NavLink to={`../artists/${row.id}`}>
                           <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">

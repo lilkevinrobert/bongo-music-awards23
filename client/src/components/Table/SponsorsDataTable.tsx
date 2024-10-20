@@ -100,9 +100,9 @@ const SponsorsDataTable = () => {
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left text-gray-900 font-LatoBold">
-                <th className="hidden md:block px-4 py-1">Name</th>
+                <th className="px-4 py-1">Name</th>
                 <th className="px-4 md:px-0 py-1 w-24">Logo</th>
-                <th className="px-4 py-1">Link</th>
+                <th className="hidden md:table-cell px-4 py-1">Link</th>
                 <th className="px-4 py-1 text-center w-40"></th>
               </tr>
             </thead>
@@ -116,7 +116,7 @@ const SponsorsDataTable = () => {
                       key={index}
                       className={`${index % 2 === 0 ? "bg-gray-50" : ""} hover:bg-blue-50 group/actions`}
                     >
-                      <td className="hidden md:block border-none px-4 py-1 capitalize font-LatoBold">
+                      <td className="border-none px-4 py-1 capitalize font-LatoBold">
                         {row.sponsor_name}
                       </td>
                       <td className="border px-0 md:px-0 py-1 capitalize font-LatoReguular bg-transparent">
@@ -125,7 +125,7 @@ const SponsorsDataTable = () => {
                           className="w-24 md:w-24 h-24 md:max-h-40 object-center object-contain bg-transparent text-xs"
                         />
                       </td>
-                      <td className="border p-2">
+                      <td className="hidden md:table-cell border p-2">
                         <Typography variant="paragraph" className="text-ellipsis">{row.link}</Typography>
                       </td>
                       <td className="border border-b-transparent border-l-transparent border-r-transparent block px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
