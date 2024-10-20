@@ -43,6 +43,8 @@ interface FetchResult {
 
 const ArtistsDataTable: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
+
   const [filteredData, setFilteredData] = useState<DataRow[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [deleteItem, setDeleteItem] = useState<DataRow>();
@@ -199,6 +201,7 @@ const ArtistsDataTable: React.FC = () => {
           <table className="table-auto w-full bg-white border shadow">
             <thead>
               <tr className="bg-gray-200 text-left font-LatoBold">
+                <th className="px-4 py-1"></th>
                 <th className="px-4 py-1">Stage Name</th>
                 <th className="px-4 py-1">Full Name</th>
                 <th className="px-4 py-1">Phone</th>
@@ -217,6 +220,12 @@ const ArtistsDataTable: React.FC = () => {
                       className={`${index % 2 === 0 ? "bg-gray-100" : ""
                         } group/actions`}
                     >
+                      <td className="border px-4 py-1 capitalize">
+                        <img
+                          src={`${HOME_URL}/${row.user_information.profile_picture_url}`} alt={`${row.user_information.last_name}'s logo`}
+                          className="w-24 md:w-8 h-8 md:max-h-8 rounded-full bg-gray-300 shadow object-center object-cover bg-transparent text-xs"
+                        />
+                      </td>
                       <td className="border px-4 py-1 capitalize">
                         {row.stage_name}
                       </td>
