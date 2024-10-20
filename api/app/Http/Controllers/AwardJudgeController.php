@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AwardJudgeResource;
 use App\Http\Resources\AwardSponsorResource;
+use App\Http\Resources\JudgeResource;
 use App\Models\Award;
 use App\Models\AwardJudge;
 use Illuminate\Database\QueryException;

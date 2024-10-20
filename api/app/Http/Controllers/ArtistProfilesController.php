@@ -99,7 +99,7 @@ class ArtistProfilesController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(ArtistProfile $artistProfile, $id)
+    public function show($id)
     {
         $artistProfiles = ArtistProfile::find($id);
         if (!isset($artistProfiles)) {

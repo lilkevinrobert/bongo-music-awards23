@@ -75,4 +75,9 @@ class UserInformation extends Model
     {
         return $this->hasOne(Judge::class);
     }
+
+    public function artist()
+    {
+        return $this->hasOne(ArtistProfile::class);
+    }
 }
