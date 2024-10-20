@@ -227,7 +227,7 @@ const ArtistsDataTable: React.FC = () => {
                       <td className="border px-4 py-1 capitalize">{row.user_information.phone}</td>
                       <td className="border px-4 py-1 lowercase">{row.user_information.email}</td>
                       <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
-                        <NavLink to={`../artists/${row.user_information.user_id}`}>
+                        <NavLink to={`../artists/${row.user_information.id}`}>
                           <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                             <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
                           </button>
