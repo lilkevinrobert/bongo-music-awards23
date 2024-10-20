@@ -14,14 +14,6 @@ class AwardJudgeResource extends JsonResource
      */
     public function toArray($request)
     {
-//        return parent::toArray($request);
-        return [
-            'judge' => new JudgeResource($this->whenLoaded('judge')),
-            'title' => $this->title,
-            'location' => $this->location,
-            'status' => $this->status,
-            'poster_image_url' => $this->poster_image_url,
-            'judges' => $this->judges,
-        ];
+        return parent::toArray($request);
     }
 }

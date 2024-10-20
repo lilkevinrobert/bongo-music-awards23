@@ -21,10 +21,9 @@ class ArtistProfileResource extends JsonResource
 //        return parent::toArray($request);
 
         return [
+            'id' => $this->id,
             'stage_name' => $this->stage_name,
             'genres' => $this->getArtistGenres($this->id),
-
-
             'user_information' => new UserInformationResource($this->userInformation),
 //        'artist_occupation_id',
             'record_label' => $this->record_label,
