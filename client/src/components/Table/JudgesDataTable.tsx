@@ -18,6 +18,7 @@ import FailedCard from "../Cards/FailedCard.tsx";
 import SuccessCard from "../Cards/SuccessCard.tsx";
 
 type DataRow = {
+  id: number;
   organization: string;
   position: string;
   expertise: string;
@@ -327,7 +328,7 @@ const JudgesDataTable: React.FC = () => {
                     <td className="hidden md:table-cell border px-4 py-1 capitalize">{row.user_information.phone}</td>
                     {/* <td className="border px-4 py-1 lowercase">{row.user_information.email}</td> */}
                     <td className="px-4 py-1 opacity-80 transition-all ease-linear flex group-hover/actions:flex">
-                      <NavLink to={`${row.user_information.user_id}`}>
+                      <NavLink to={`${row.id}`}>
                         <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group">
                           <MdOutlineEdit className="text-xl text-green-500 group-hover:text-white transition ease-in-out" />
                         </button>
