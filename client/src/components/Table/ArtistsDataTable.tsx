@@ -9,7 +9,6 @@ import {
 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import AddArtistForm from "../Forms/AddArtistForm";
-import EditArtist from "../Forms/EditArtist.tsx";
 import useFetch from "../../hooks/useFetch.ts";
 import AddEmptyState from "../EmptyState/AddEmptyState.tsx";
 import LoadingTable from "../Loading/LoadingTable.tsx";
@@ -20,13 +19,17 @@ import { IoIosWarning } from "react-icons/io";
 type DataRow = {
   id: number;
   stage_name: string;
-  first_name: string;
-  middle_name: string | null;
-  last_name: string;
-  genre: string;
-  phone: string;
-  email: string;
-  user_id: string;
+  user_information: {
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    email: string;
+    gender: string;
+    id: number;
+    phone: string;
+    profile_picture_url: string;
+    user_id: string;
+  }
 };
 
 interface ArtistsData {
@@ -67,8 +70,12 @@ const ArtistsDataTable: React.FC = () => {
   useEffect(() => {
     // Filter data based on the search term
     const filtered =
-      artistsData?.data.filter((row) => {
-        return Object.values(row).some(
+      artistsData?.data.filter((row: DataRow) => {
+        // Create a combined full name for searching
+        const fullName = `${row.user_information.first_name} ${row.user_information.middle_name} ${row.user_information.last_name}`.toLowerCase();
+        const phone = `${row.user_information.phone}`;
+        const searchLower = searchTerm.toLowerCase();
+        return fullName.includes(searchLower) || phone.includes(searchTerm) || Object.values(row).some(
           (value) =>
             typeof value === "string" &&
             value.toLowerCase().includes(searchTerm.toLowerCase())
@@ -134,8 +141,10 @@ const ArtistsDataTable: React.FC = () => {
               handler={handleEdit}
               className="bg-transparent shadow-none"
             >
-              <div className="h-full border-red-400 flex items-center">
-                <EditArtist closeModal={handleEdit} />
+              <div className="h-full border-red-400 flex items-center justify-center">
+                <p className="text-gray-900 bg-amber-300 font-LatoBold p-6">edit coming soon...</p>
+                <p className="text-gray-900 bg-amber-300 font-LatoBold p-6">(Press Esc to close dialog)</p>
+                {/* <EditArtist closeModal={handleEdit} /> */}
                 {/*how to pass props*/}
               </div>
             </Dialog>
@@ -212,13 +221,13 @@ const ArtistsDataTable: React.FC = () => {
                         {row.stage_name}
                       </td>
                       <td className="border px-4 py-1 capitalize font-normal">
-                        {`${row.first_name} ${row.middle_name != null ? row.middle_name : ""
-                          } ${row.last_name}`}
+                        {`${row.user_information.first_name} ${row.user_information.middle_name != null ? row.user_information.middle_name : ""
+                          } ${row.user_information.last_name}`}
                       </td>
-                      <td className="border px-4 py-1 capitalize">{row.phone}</td>
-                      <td className="border px-4 py-1 lowercase">{row.email}</td>
+                      <td className="border px-4 py-1 capitalize">{row.user_information.phone}</td>
+                      <td className="border px-4 py-1 lowercase">{row.user_information.email}</td>
                       <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
-                        <NavLink to={`../artists/${row.user_id}`}>
+                        <NavLink to={`../artists/${row.user_information.user_id}`}>
                           <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                             <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
                           </button>
