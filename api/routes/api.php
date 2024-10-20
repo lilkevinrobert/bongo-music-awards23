@@ -104,6 +104,7 @@ Route::group(['prefix' => 'v1'], function () {
         //Create artist profile
         Route::post('/profiles', [ArtistProfilesController::class, 'store']);
         Route::get('/', [ArtistProfilesController::class, 'index']);
+        Route::get('/{artistId}', [ArtistProfilesController::class, 'show']);
     });
 
     // Judges Endpoints
