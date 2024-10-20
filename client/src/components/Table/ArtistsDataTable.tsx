@@ -3,7 +3,6 @@ import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
 import {
   MdOutlinePersonAdd,
-  MdOutlineEdit,
   MdOutlineDeleteOutline,
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
@@ -235,18 +234,12 @@ const ArtistsDataTable: React.FC = () => {
                       </td>
                       <td className="border px-4 py-1 capitalize">{row.user_information.phone}</td>
                       <td className="border px-4 py-1 lowercase">{row.user_information.email}</td>
-                      <td className="border px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
+                      <td className="border border-b-transparent border-l-transparent border-r-transparent block px-4 py-1 opacity-80 transition-all ease-linear group-hover/actions:block">
                         <NavLink to={`../artists/${row.id}`}>
                           <button className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-blue-700 group">
                             <MdOutlineRemoveRedEye className="w-5 h-5 text-blue-500 group-hover:text-white transition ease-in-out" />
                           </button>
                         </NavLink>
-                        <button
-                          className="bg-transparent px-2 py-1 rounded mr-1 hover:bg-green-700 group"
-                          onClick={handleEdit}
-                        >
-                          <MdOutlineEdit className="w-5 h-5 text-green-500 group-hover:text-white transition ease-in-out" />
-                        </button>
                         <button
                           onClick={() => handleConfirmDelete(row)}
                           className="bg-transparent px-2 py-1 rounded hover:bg-red-700 group"
