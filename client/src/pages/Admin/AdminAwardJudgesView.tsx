@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import Errors from "../../components/Errors/Errors";
 import LoadingTable from "../../components/Loading/LoadingTable";
 import useFetch from "../../hooks/useFetch";
@@ -8,6 +7,8 @@ import { NavLink } from "react-router-dom";
 import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { GiMagicBroom } from "react-icons/gi";
 import AddAwardJudgeForm from "../../components/Forms/AddAwardJudgeForm";
+import { FaArrowDownLong } from "react-icons/fa6";
+import { BsInbox } from "react-icons/bs";
 
 interface AwardEventDetailsProps {
     awardId: string | undefined;
@@ -68,7 +69,36 @@ const AdminAwardJudgesView = ({ awardId }: AwardEventDetailsProps) => {
                 ) : judgesDataError ? (
                     <Errors errorName={judgesDataError?.name} message={judgesDataError?.message} />
                 ) : judgesData?.data.judges.length === 0 ? (
-                    <AddEmptyState itemName="judge" />
+                    <div>
+                        <div className="flex h-full w-full flex-col items-center justify-center gap-1 rounded-lg border border-transparent py-20">
+                            <FaArrowDownLong className="animate-bounce text-5xl text-gray-400" />
+                            <BsInbox className="text-8xl text-gray-400" />
+                            <Typography className="font-LatoBold text-xl normal-case text-gray-600">
+                                Nothing to show yet!
+                            </Typography>
+                            <Typography className="font-LatoRegular text-gray-500">
+                                Start by adding some
+                                <span className="capitalize"> award judge </span> data
+                            </Typography>
+                            <Button
+                                size="sm"
+                                className="my-4 rounded-full bg-yellow-300 font-LatoRegular capitalize text-gray-900 transition ease-in-out hover:bg-gray-900 hover:text-white"
+                                onClick={handleOpenAddAwardJudge}
+                            >
+                                add award Judge
+                            </Button>
+                        </div>
+                        <Dialog
+                            size="xs"
+                            open={openAddAwardJudge}
+                            handler={handleOpenAddAwardJudge}
+                            className="bg-transparent shadow-none"
+                        >
+                            <div className="h-full border-red-400 flex items-center justify-center">
+                                <AddAwardJudgeForm handleOpenJudgesDialog={handleOpenAddAwardJudge} />
+                            </div>
+                        </Dialog>
+                    </div>
                 ) : (
                     <div className="mx-auto py-4">
                         {/* controls section */}
