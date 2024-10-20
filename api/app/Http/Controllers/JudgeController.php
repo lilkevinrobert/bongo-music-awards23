@@ -78,41 +78,14 @@ class JudgeController extends Controller
     public function show($id)
     {
         $judge = Judge::find($id);
-        if ($judge){
-
-            $user = User::where('id', $judge->user_id)
-                ->select(['first_name', 'middle_name', 'last_name','email','gender'])
-                ->limit(1)
-                ->first();
-
-            $data  = [
-                'id' => $judge->id,
-                'first_name' => $user->first_name,
-                'middle_name' => $user->middle_name,
-                'last_name' => $user->last_name,
-                'gender' => $user->gender,
-                'email' => $user->email,
-                'organization' => $judge->organization,
-                'position' => $judge->position,
-                'expertise' => $judge->expertise,
-                'profile_image_url' => $judge->profile_image_url,
-                'phone_number' => $judge->phone_number,
-                'role' => $judge->role,
-                'bio' => $judge->bio,
-                'user_id' => $judge->user_id,
-                'event' => 'Bongo Music Awards 2024' // retrieving the event selected
-            ];
-
-            return \response()->json([
-                'data' => $data,
-                'message' => 'Successful'
-            ]);
+        if (!isset($judge)) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_NOT_FOUND,
+                'error' => 'Resource not found.',
+            ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        return response()->json([
-            'status' => ResponseAlias::HTTP_NOT_FOUND,
-            'error' => Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND],
-        ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
+        return new JudgeResource($judge);
     }
 
     /**
