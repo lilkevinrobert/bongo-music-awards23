@@ -123,7 +123,7 @@ const ArtistPage: React.FC = () => {
               <Button
                 size="sm"
                 onClick={handleEdit}
-                className="flex items-center gap-2 bg-amber-300 hover:bg-amber-400 transition 
+                className="hidden items-center gap-2 bg-amber-300 hover:bg-amber-400 transition 
             ease-in-out text-slate-900 font-LatoRegular rounded-full capitalize"
               >
                 <MdOutlineModeEdit className="text-lg" />
