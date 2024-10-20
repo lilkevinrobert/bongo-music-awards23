@@ -17,18 +17,30 @@ import { NavLink, useParams } from "react-router-dom";
 import { PiWarningFill } from "react-icons/pi";
 import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { IoAdd } from "react-icons/io5";
+import EditArtistDetails from "../../components/Forms/EditArtistDetails";
 
 type DataRow = {
   id: number;
   stage_name: string;
-  first_name: string;
-  middle_name: string | null;
-  last_name: string;
-  genre: string;
-  phone: string;
-  gender: string;
-  email: string;
-  user_id: string;
+  debut_year: string;
+  record_label: string;
+  bio: string;
+  genres: {
+    genre_id: string;
+  }[],
+  user_information: {
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    email: string;
+    gender: string;
+    id: number;
+    phone: string;
+    profile_picture_url: string;
+    user_id: string;
+    date_of_birth: string;
+    username: string;
+  }
   social_links: {
     youtubeMusicLink: string | null;
     spotifyMusicLink: string | null;
@@ -49,6 +61,8 @@ interface FetchResult {
 
 const ArtistPage: React.FC = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
+
   const { artistId } = useParams();
 
   // Dialog State
@@ -61,9 +75,6 @@ const ArtistPage: React.FC = () => {
   const handleConfirmDelete = () => setOpenConfirmDelete((c) => !c);
   const handleSocialsDialog = () => setOpenSocialsDialog((c) => !c);
 
-  const imgLink =
-    "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=600";
-
   // Get Data
   const {
     data: artistData,
@@ -71,12 +82,12 @@ const ArtistPage: React.FC = () => {
     error: artistDataError,
   }: FetchResult = useFetch(`${BASE_URL}/artists/${artistId}`);
 
-  const fullName = `${artistData?.data?.first_name} ${artistData?.data?.middle_name} ${artistData?.data?.last_name}`;
+  const fullName = `${artistData?.data?.user_information.first_name} ${artistData?.data?.user_information.middle_name} ${artistData?.data?.user_information.last_name}`;
   const stageName = `${artistData?.data?.stage_name}`;
-  const phoneNumber = `${artistData?.data?.phone}`;
-  const gender = `${artistData?.data?.gender}`;
-  const genre = `${artistData?.data?.genre}`;
-  const email = `${artistData?.data?.email}`;
+  const phoneNumber = `${artistData?.data?.user_information.phone}`;
+  const gender = `${artistData?.data?.user_information.gender}`;
+  const email = `${artistData?.data?.user_information.email}`;
+  const debutYear = `${artistData?.data?.debut_year}`;
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="artists" currentPage="artist" />
@@ -85,13 +96,14 @@ const ArtistPage: React.FC = () => {
       ) : artistDataError ? (
         <Errors errorName={artistDataError?.name} />
       ) : !(
-          artistData?.data !== null &&
-          artistData?.data !== undefined &&
-          Object.keys(artistData?.data).length > 0
-        ) ? (
+        artistData?.data !== null &&
+        artistData?.data !== undefined &&
+        Object.keys(artistData?.data).length > 0
+      ) ? (
         <AddEmptyState itemName="artist" />
       ) : (
         <div className="h-auto text-slate-900 px-4">
+          {/* Artist data view */}
           <div className="flex items-center justify-between">
             <Typography
               variant="h4"
@@ -124,106 +136,133 @@ const ArtistPage: React.FC = () => {
               </Button>
             </div>
           </div>
+          <div className="flex flex-col md:flex-row items-start gap-4 mt-4">
+            {/* profile photo */}
+            <Card className="relative w-full h-fit rounded-lg bg-white md:shadow-inner">
+              {/* background pattern */}
+              <img
+                className={`w-full h-28 rounded-t-lg object-cover object-center bg-yellow-200`}
+                src={TopographyBackground}
+                loading="lazy"
+              />
+              {/* Profile picture */}
+              <img
+                className=" h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-amber-300 font-LatoRegular text-sm"
+                src={`${HOME_URL}/${artistData.data.user_information.profile_picture_url}`} alt={`${artistData.data.user_information.last_name}'s logo`}
+                loading="lazy"
+              />
+              <div className="px-6 pt-14 pb-4">
+                <Typography className="text-lg font-LatoBold capitalize">
+                  {fullName}
+                </Typography>
+                <Typography className="text-lg text-amber-700 font-LatoBold capitalize">
+                  ~ {stageName}
+                </Typography>
 
-          <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2 my-4 gap-6 bg-transparent">
-            <div className="w-full md:w-auto mx-2 md:mx-0 flex flex-col lg:flex-row items-center gap-4 lg:gap-2 md:col-span-2">
-              {/* profile photo */}
-              <Card className="relative w-full h-fit rounded-lg bg-white">
-                {/* background pattern */}
-                <img
-                  className={`w-full h-28 rounded-t-lg object-cover object-center bg-yellow-200`}
-                  src={TopographyBackground}
-                  loading="lazy"
-                />
-                {/* Profile picture */}
-                <img
-                  className=" h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-amber-300 font-LatoRegular text-sm"
-                  src={imgLink}
-                  loading="lazy"
-                  alt="profile pic"
-                />
-                <div className="px-6 pt-14 pb-4">
-                  <Typography className="text-lg font-LatoBold capitalize">
+                <div className="my-2">
+                  {artistData.data.genres.map((genre, index) => (
+                    <Typography key={index} className="text-sm font-LatoRegular bg-amber-200 w-fit px-2 py-1 rounded-full">
+                      {genre.genre_id}
+                    </Typography>
+                  ))}
+                </div>
+                <div className="hidden flex-row items-center py-4 gap-2">
+                  <input
+                    type="file"
+                    name="profile_pic"
+                    className="h-10 rounded-full bg-yellow-100 font-LatoRegular"
+                  />
+                  <Button
+                    size="md"
+                    className="capitalize transition ease-in-out font-LatoBold hover:bg-slate-800 rounded-full"
+                  >
+                    Save
+                  </Button>
+                </div>
+              </div>
+            </Card>
+
+            {/* artist summary */}
+            <Card className="bg-white w-full h-fit rounded-md px-6 py-6 md:shadow-inner">
+              <Typography className="text-lg capitalize font-LatoBold py-4">
+                artist information
+              </Typography>
+              <div className="space-y-2">
+                <div className="flex flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    full name:
+                  </Typography>
+                  <Typography className="flex-grow text-sm md:text-md font-LatoRegular">
                     {fullName}
                   </Typography>
-                  <Typography className="text-md font-LatoRegular">
-                    This photo will be displayed on artist&apos;s profile
+                </div>
+                <div className="flex flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    stage name:
                   </Typography>
-                  <div className="flex flex-row items-center py-4 gap-2">
-                    <input
-                      type="file"
-                      name="profile_pic"
-                      className="h-10 rounded-full bg-yellow-100 font-LatoRegular"
-                    />
-                    <Button
-                      size="md"
-                      className="capitalize transition ease-in-out font-LatoBold hover:bg-slate-800 rounded-full"
-                    >
-                      Save
-                    </Button>
+                  <Typography className="flex-grow text-sm md:text-md font-LatoRegular">
+                    {stageName}
+                  </Typography>
+                </div>
+                <div className="flex flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    email:
+                  </Typography>
+                  <Typography className="text-sm md:text-md font-LatoRegular">
+                    {email}
+                  </Typography>
+                </div>
+                <div className="flex flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    phone:
+                  </Typography>
+                  <Typography className="text-sm md:text-md font-LatoRegular">
+                    {phoneNumber}
+                  </Typography>
+                </div>
+                <div className="flex flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    Gender:
+                  </Typography>
+                  <Typography className="text-sm md:text-md uppercase font-LatoRegular">
+                    {gender}
+                  </Typography>
+                </div>
+                <div className="flex flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    Debut Year:
+                  </Typography>
+                  <Typography className="text-sm md:text-md uppercase font-LatoRegular">
+                    {debutYear}
+                  </Typography>
+                </div>
+                <div className="hidden flex-row gap-2 md:gap-4">
+                  <Typography className="w-1/4 text-sm md:text-md capitalize font-LatoBold">
+                    Genre:
+                  </Typography>
+                  <div>
+                    {artistData.data.genres.map((genre, index) => (
+                      <Typography key={index} className="text-sm font-LatoRegular">
+                        {genre.genre_id}
+                      </Typography>
+                    ))}
                   </div>
                 </div>
-              </Card>
+              </div>
+            </Card>
+          </div>
 
-              {/* artist summary */}
-              <Card className="bg-white w-full h-full rounded-md px-6 py-6">
-                <Typography className="text-lg capitalize font-LatoBold py-4">
-                  artist information
-                </Typography>
-                <div className="space-y-1">
-                  <div className="flex flex-row items-center gap-6">
-                    <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                      full name:
-                    </Typography>
+          {/* Headsup - information */}
+          <Typography className="text-base py-2 mt-4 md:mt-0 text-center text-gray-500 font-LatoRegular border border-dashed border-amber-200 bg-amber-50">
+            All data added or edited here, will be displayed on artist&apos;s profile.
+          </Typography>
 
-                    <Typography className="text-sm font-LatoRegular">
-                      {fullName}
-                    </Typography>
-                  </div>
-                  <div className="flex flex-row items-center gap-3">
-                    <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                      stage name:
-                    </Typography>
-                    <Typography className="text-sm font-LatoRegular capitalize">
-                      {stageName}
-                    </Typography>
-                  </div>
-                  <div className="flex flex-row items-center gap-12 md:gap-14">
-                    <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                      email:
-                    </Typography>
-                    <Typography className="text-sm font-LatoRegular">
-                      {email}
-                    </Typography>
-                  </div>
-                  <div className="flex flex-row items-center gap-11 md:gap-12">
-                    <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                      phone:
-                    </Typography>
-                    <Typography className="text-sm font-LatoRegular">
-                      {phoneNumber}
-                    </Typography>
-                  </div>
-                  <div className="flex flex-row items-center gap-11 md:gap-10">
-                    <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                      Gender:
-                    </Typography>
-                    <Typography className="text-sm font-LatoRegular">
-                      {gender}
-                    </Typography>
-                  </div>
-                  <div className="flex flex-row items-center gap-11 md:gap-12">
-                    <Typography className="text-sm md:text-md capitalize font-LatoBold">
-                      Genre:
-                    </Typography>
-                    <Typography className="text-sm font-LatoRegular">
-                      {genre}
-                    </Typography>
-                  </div>
-                </div>
-              </Card>
-            </div>
+          {/* edit form fields 1 */}
+          <div className="my-4">
+            <EditArtistDetails details={artistData.data} />
+          </div>
 
+          <div className="w-full h-auto hidden grid-cols-1 md:grid-cols-2 my-4 gap-0 md:gap-6">
             {/* Bio & Social Links */}
             <div className="col-span-2 space-y-6 bg-transparent">
               {/* Biography */}

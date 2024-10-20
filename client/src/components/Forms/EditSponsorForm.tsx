@@ -35,7 +35,6 @@ const schema = yup.object().shape({
 const EditSponsorForm = ({ closeModal, data }: EditSponsorFormProps) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
   const HOME_URL = import.meta.env.VITE_HOME_URL;
-  console.log(data)
 
   const {
     register,
