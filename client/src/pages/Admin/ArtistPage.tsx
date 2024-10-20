@@ -88,6 +88,7 @@ const ArtistPage: React.FC = () => {
   const gender = `${artistData?.data?.user_information.gender}`;
   const email = `${artistData?.data?.user_information.email}`;
   const debutYear = `${artistData?.data?.debut_year}`;
+  
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="artists" currentPage="artist" />
@@ -141,14 +142,14 @@ const ArtistPage: React.FC = () => {
             <Card className="relative w-full h-fit rounded-lg bg-white md:shadow-inner">
               {/* background pattern */}
               <img
-                className={`w-full h-28 rounded-t-lg object-cover object-center bg-yellow-200`}
+                className={`w-full h-28 rounded-t-lg object-cover object-center bg-yellow-100`}
                 src={TopographyBackground}
                 loading="lazy"
               />
               {/* Profile picture */}
               <img
                 className=" h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-amber-300 font-LatoRegular text-sm"
-                src={`${HOME_URL}/${artistData.data.user_information.profile_picture_url}`} alt={`${artistData.data.user_information.last_name}'s logo`}
+                src={`${HOME_URL}/${artistData.data.user_information.profile_picture_url}`} alt={`${artistData.data.user_information.last_name}`}
                 loading="lazy"
               />
               <div className="px-6 pt-14 pb-4">
