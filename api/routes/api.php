@@ -96,6 +96,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'user_informations'], function () {
         Route::get('/', [UserInformationController::class, 'index']);
         Route::post('/', [UserInformationController::class, 'store']);
+        Route::patch('/', [UserInformationController::class, 'update']);
     });
 
     // ARTIST ENDPOINTS.
@@ -107,7 +108,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/{artistId}', [ArtistProfilesController::class, 'show']);
     });
 
-    // Judges Endpoints
+    // JUDGES ENDPOINTS
     Route::group(['prefix' => 'judges'], function () {
         Route::get('/', [JudgeController::class, 'index']);
         Route::post('/', [JudgeController::class, 'store']);
@@ -148,6 +149,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
         Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
 //        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
+        Route::get('/{awardId}/status', [AwardNominationController::class, 'existAwardNomination']);
     });
 });
 

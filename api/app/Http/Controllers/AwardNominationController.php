@@ -11,6 +11,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class AwardNominationController extends Controller
@@ -24,6 +25,35 @@ class AwardNominationController extends Controller
     {
         $awardNominations = AwardNomination::all();
 
+    }
+
+    public function existAwardNomination($awardId): \Illuminate\Http\JsonResponse
+    {
+        $validator = Validator::make([
+            'award_id' => $awardId],
+            ['award_id' => 'required|exists:awards,id']);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $validator->messages(),
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+        }
+
+        $exists = AwardNomination::where('award_id', $awardId)->exists();
+
+        if ($exists) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_OK,
+                'message' => 'Award Nomination Exists',
+                'data' => $exists
+            ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+        }
+
+        return response()->json([
+            'status' => ResponseAlias::HTTP_NOT_FOUND,
+            'message' => 'Award Nomination Does Not Exist',
+        ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
     }
 
     /**
