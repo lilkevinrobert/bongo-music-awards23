@@ -9,6 +9,17 @@ import useFetch from "../../hooks/useFetch";
 import EditNominationForm from "../Forms/EditNominationForm";
 import { useState } from "react";
 
+
+interface NominationData {
+  data: boolean;
+}
+
+interface NominaitonFetchResult {
+  data: NominationData | null;
+  loading: boolean;
+  error: Error | null;
+  fetchData: () => void;
+}
 interface EditData {
   id: string;
   title: string;
@@ -115,6 +126,12 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
     loading: awardDataLoading,
     error: awardDataError
   }: FetchResult = useFetch(`${BASE_URL}/awards/${awardId}`);
+  // GET details about nomination status
+  const {
+    data: nominationData,
+    loading: nominationDataLoading,
+    error: nominationDataError
+  }: NominaitonFetchResult = useFetch(`${BASE_URL}/nominations/${awardId}/status`);
   return (
     <>
       <div className="flex flex-row items-center justify-between gap-2">
@@ -139,48 +156,56 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
           <Typography className="text-base text-gray-800 font-LatoBold uppercase py-2 border-2 border-l-amber-300 border-t-transparent border-b-transparent border-r-transparent pl-2 my-2">
             trend
           </Typography>
-          <div className="bg-stone-50 h-fit lg:h-96 rounded grid grid-cols-1 lg:grid-cols-2">
-            <AwardsEventBarChart />
-            <div className="h-96 w-full">
-              <AwardsEventPieChart />
-            </div>
-          </div>
-        </div>
-        {nominations.map((nomination, i) => (
-          <div key={i} className="py-6">
-            <div className="flex flex-row items-center justify-between">
-              <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.categoryId}`}>
-                <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
-                  {nomination.category}
-                </Typography>
-              </NavLink>
-              <FaArrowUp
-                onClick={toTop}
-                className="text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
-              />
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-              {nomination.nominees.map((nominee, ind) => (
-                <Card
-                  key={ind}
-                  className="h-fit w-full flex flex-row items-center justify-between bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
-                >
-                  <div>
-                    <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
-                      "{nominee.song}"
-                    </Typography>
-                    <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
-                      ~ {nominee.artist}
-                    </Typography>
+          {
+            nominationDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination status...</p> : nominationDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nominationData ? (
+              <>
+                <div className="bg-stone-50 h-fit lg:h-96 rounded grid grid-cols-1 lg:grid-cols-2">
+                  <AwardsEventBarChart />
+                  <div className="h-96 w-full">
+                    <AwardsEventPieChart />
                   </div>
-                  <NavLink to={`/admin/artists/${nominee.id}/nominations`}>
-                    <RxDotsVertical />
-                  </NavLink>
-                </Card>
-              ))}
-            </div>
-          </div>
-        ))}
+                </div>
+                {nominations.map((nomination, i) => (
+                  <div key={i} className="py-6">
+                    <div className="flex flex-row items-center justify-between">
+                      <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.categoryId}`}>
+                        <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
+                          {nomination.category}
+                        </Typography>
+                      </NavLink>
+                      <FaArrowUp
+                        onClick={toTop}
+                        className="text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                      {nomination.nominees.map((nominee, ind) => (
+                        <Card
+                          key={ind}
+                          className="h-fit w-full flex flex-row items-center justify-between bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
+                        >
+                          <div>
+                            <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
+                              "{nominee.song}"
+                            </Typography>
+                            <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
+                              ~ {nominee.artist}
+                            </Typography>
+                          </div>
+                          <NavLink to={`/admin/artists/${nominee.id}/nominations`}>
+                            <RxDotsVertical />
+                          </NavLink>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : <p>Nominationations not activated</p>
+          }
+
+        </div>
+
       </div>
 
       {/* Dialogs */}
