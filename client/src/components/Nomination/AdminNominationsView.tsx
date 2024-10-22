@@ -3,8 +3,6 @@ import { FaArrowUp } from "react-icons/fa";
 import { MdOutlineEvent } from "react-icons/md";
 import { RxDotsVertical } from "react-icons/rx";
 import { Button, Card, Dialog, Typography } from "@material-tailwind/react";
-import AwardsEventBarChart from "../Charts/AwardsEventBarChart";
-import AwardsEventPieChart from "../Charts/AwardsEventPieChart";
 import useFetch from "../../hooks/useFetch";
 import EditNominationForm from "../Forms/EditNominationForm";
 import { useState } from "react";
@@ -132,6 +130,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
     loading: nominationDataLoading,
     error: nominationDataError
   }: NominaitonFetchResult = useFetch(`${BASE_URL}/nominations/${awardId}/status`);
+  console.log(nominationData)
   return (
     <>
       <div className="flex flex-row items-center justify-between gap-2">
@@ -153,18 +152,9 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
       </div>
       <div className="">
         <div>
-          <Typography className="text-base text-gray-800 font-LatoBold uppercase py-2 border-2 border-l-amber-300 border-t-transparent border-b-transparent border-r-transparent pl-2 my-2">
-            trend
-          </Typography>
           {
             nominationDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination status...</p> : nominationDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nominationData ? (
               <>
-                <div className="bg-stone-50 h-fit lg:h-96 rounded grid grid-cols-1 lg:grid-cols-2">
-                  <AwardsEventBarChart />
-                  <div className="h-96 w-full">
-                    <AwardsEventPieChart />
-                  </div>
-                </div>
                 {nominations.map((nomination, i) => (
                   <div key={i} className="py-6">
                     <div className="flex flex-row items-center justify-between">

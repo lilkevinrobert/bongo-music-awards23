@@ -11,6 +11,7 @@ import AdminNominationsView from "../Nomination/AdminNominationsView";
 import { useParams } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import AdminAwardJudgesView from "../../pages/Admin/AdminAwardJudgesView";
+import AdminVotesView from "../Votes/AdminVotesView";
 
 const AdminAwardTabs = () => {
   const [activeTab, setActiveTab] = useState("details");
@@ -31,11 +32,16 @@ const AdminAwardTabs = () => {
       value: "nominations",
       desc: <AdminNominationsView awardId={params.awardId} />,
     },
+    {
+      label: "Votes",
+      value: "votes",
+      desc: <AdminVotesView awardId={params.awardId} />,
+    },
   ];
   return (
     <Tabs value={activeTab} className="bg-transparent w-full pt-0">
       <TabsHeader
-        className="rounded-none border-b border-blue-gray-50 bg-transparent p-0 w-10/12 lg:w-4/12 font-LatoBold"
+        className="rounded-none border-b border-blue-gray-50 bg-transparent p-0 w-12/12 lg:w-6/12 font-LatoBold"
         indicatorProps={{
           className:
             "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
@@ -46,7 +52,7 @@ const AdminAwardTabs = () => {
             key={value}
             value={value}
             onClick={() => setActiveTab(value)}
-            className={activeTab === value ? "text-gray-900" : ""}
+            className={`font-LatoBold ${activeTab === value ? "text-gray-900" : "text-gray-500"}`}
           >
             {label}
           </Tab>
