@@ -69,11 +69,13 @@ const ArtistPage: React.FC = () => {
   const [openEdit, setOpenEdit] = useState(false);
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
   const [openSocialsDialog, setOpenSocialsDialog] = useState(false);
+  const [openMaximizeImage, setOpenMaximizeImage] = useState(false);
 
   // Dialog handling
   const handleEdit = () => setOpenEdit((c) => !c);
   const handleConfirmDelete = () => setOpenConfirmDelete((c) => !c);
   const handleSocialsDialog = () => setOpenSocialsDialog((c) => !c);
+  const handleMaximizeImage = () => setOpenMaximizeImage((c) => !c);
 
   // Get Data
   const {
@@ -88,7 +90,7 @@ const ArtistPage: React.FC = () => {
   const gender = `${artistData?.data?.user_information.gender}`;
   const email = `${artistData?.data?.user_information.email}`;
   const debutYear = `${artistData?.data?.debut_year}`;
-  
+
   return (
     <Layout>
       <BreadcrumbLevel2 previousPage="artists" currentPage="artist" />
@@ -148,7 +150,8 @@ const ArtistPage: React.FC = () => {
               />
               {/* Profile picture */}
               <img
-                className=" h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-amber-300 font-LatoRegular text-sm"
+                onClick={handleMaximizeImage}
+                className="cursor-pointer h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-amber-300 font-LatoRegular text-sm"
                 src={`${HOME_URL}/${artistData.data.user_information.profile_picture_url}`} alt={`${artistData.data.user_information.last_name}`}
                 loading="lazy"
               />
@@ -251,6 +254,31 @@ const ArtistPage: React.FC = () => {
                 </div>
               </div>
             </Card>
+
+            {/* Maximize profile image */}
+            <Dialog
+              size="xs"
+              open={openMaximizeImage}
+              handler={handleMaximizeImage}
+              className="bg-transparent shadow-none flex items-center justify-center"
+            >
+              <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex flex-col items-center justify-center">
+                <img
+                  onClick={handleMaximizeImage}
+                  className="cursor-pointer h-96 w-96 rounded-t-3xl object-cover object-center border-4 border-gray-900 shadow-md bg-amber-300 font-LatoRegular text-sm"
+                  src={`${HOME_URL}/${artistData.data.user_information.profile_picture_url}`} alt={`${artistData.data.user_information.last_name}`}
+                  loading="lazy"
+                />
+                <div className="flex flex-col items-center bg-amber-50 w-96 px-4 shadow-lg rounded-b-3xl">
+                  <Typography className="text-lg text-gray-900 font-LatoBold capitalize">
+                    {fullName}
+                  </Typography>
+                  <Typography className="text-lg text-amber-700 font-LatoBold capitalize">
+                    ~ {stageName}
+                  </Typography>
+                </div>
+              </div>
+            </Dialog>
           </div>
 
           {/* Headsup - information */}
