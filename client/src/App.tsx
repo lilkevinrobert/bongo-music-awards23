@@ -38,6 +38,7 @@ import AdminAddArtistPage from "./pages/Admin/AdminAddUserPage.tsx";
 import AdminUserProfileCompletionPage from "./pages/Admin/AdminUserProfileCompletionPage.tsx";
 import JudgeDashboardPage from "./pages/Judge/JudgeDashboardPage.tsx";
 import JudgeProfilePage from "./pages/Judge/JudgeProfilePage.tsx";
+import ErrorElement from "./components/Errors/ErrorElement.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
@@ -87,6 +88,7 @@ function App() {
     },
     {
       path: "/admin",
+      errorElement: <ErrorElement />,
       children: [
         {
           path: "add-user-form/",
@@ -237,6 +239,7 @@ function App() {
     },
     {
       path: "/artist",
+      errorElement: <ErrorElement />,
       children: [
         {
           path: "dashboard/",
@@ -290,6 +293,7 @@ function App() {
     },
     {
       path: "/judge",
+      errorElement: <ErrorElement />,
       children: [
         {
           path: "dashboard",
