@@ -568,7 +568,7 @@ const EditJudgeDetails = ({ details }: EditJudgeDetailsProps) => {
                                     <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
                                     <select
                                         disabled
-                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-green-600 p-2 pl-4 font-LatoRegular capitalize"
                                     >
                                         <option selected>Populating Field...</option>
                                     </select>
@@ -607,7 +607,7 @@ const EditJudgeDetails = ({ details }: EditJudgeDetailsProps) => {
                                     <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
                                     <select
                                         disabled
-                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-green-600 p-2 pl-4 font-LatoRegular capitalize"
                                     >
                                         <option selected>Populating Field...</option>
                                     </select>
@@ -646,7 +646,7 @@ const EditJudgeDetails = ({ details }: EditJudgeDetailsProps) => {
                                     <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
                                     <select
                                         disabled
-                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-green-600 p-2 pl-4 font-LatoRegular capitalize"
                                     >
                                         <option selected>Populating Field...</option>
                                     </select>
@@ -736,7 +736,7 @@ const EditJudgeDetails = ({ details }: EditJudgeDetailsProps) => {
                 <Button
                     size="sm"
                     type="submit"
-                    className="float-right font-LatoBold text-xs capitalize transition ease-in-out hover:bg-amber-400 hover:text-gray-900"
+                    className="float-right font-LatoBold text-xs capitalize transition ease-in-out hover:bg-green-400 hover:text-gray-900"
                 >
                     save changes
                 </Button>
