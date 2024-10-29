@@ -9,6 +9,7 @@ import AddEmptyState from "../../components/EmptyState/AddEmptyState";
 import LoadingProfile from "../../components/Loading/LoadingProfile";
 import TopographyDarkBackground from "/topography-dark.svg";
 import { IoIosWarning } from "react-icons/io";
+import EditJudgeDetails from "../../components/Forms/EditJudgeDetails";
 
 type JudgeDataRow = {
   id: number;
@@ -81,7 +82,7 @@ const JudgePage: React.FC = () => {
         <AddEmptyState itemName="judge" />
       ) : (
         <div className="text-slate-900 px-4 h-auto">
-          {/* Artist data view */}
+          {/* Judge data view */}
           <div className="flex items-center justify-between">
             <Typography
               variant="h4"
@@ -112,7 +113,7 @@ const JudgePage: React.FC = () => {
               {/* Profile picture */}
               <img
                 onClick={handleMaximizeImage}
-                className="cursor-pointer h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-amber-300 font-LatoRegular text-sm"
+                className="cursor-pointer h-28 w-28 rounded-3xl object-cover object-center absolute top-10 ml-6 border-4 border-white shadow-md bg-green-200 font-LatoRegular text-sm"
                 src={`${HOME_URL}/${judgeData.data.user_information.profile_picture_url}`} alt={`${judgeData.data.user_information.last_name}`}
                 loading="lazy"
               />
@@ -120,13 +121,13 @@ const JudgePage: React.FC = () => {
                 <Typography className="text-lg font-LatoBold capitalize">
                   {fullName}
                 </Typography>
-                <Typography className="text-base text-amber-700 font-LatoRegular capitalize">
+                <Typography className="text-base text-green-700 font-LatoRegular capitalize">
                   ~ {`${judgeData?.data.biography}`}
                 </Typography>
               </div>
             </Card>
 
-            {/* artist summary */}
+            {/* judge summary */}
             <Card className="bg-white w-full h-fit rounded-md px-6 py-6 md:shadow-inner">
               <Typography className="text-lg capitalize font-LatoBold py-4">
                 judge information
@@ -176,17 +177,27 @@ const JudgePage: React.FC = () => {
               <div className="absolute inset-0 bg-slate-900 bg-opacity-50 flex flex-col items-center justify-center">
                 <img
                   onClick={handleMaximizeImage}
-                  className="cursor-pointer h-96 w-96 rounded-t-3xl object-cover object-center border-4 border-gray-900 shadow-md bg-amber-300 font-LatoRegular text-sm"
+                  className="cursor-pointer h-96 w-96 rounded-t-3xl object-cover object-center border-4 border-gray-900 shadow-md bg-green-200 font-LatoRegular text-sm"
                   src={`${HOME_URL}/${judgeData.data.user_information.profile_picture_url}`} alt={`${judgeData.data.user_information.last_name}`}
                   loading="lazy"
                 />
-                <div className="flex flex-col items-center bg-amber-50 w-96 px-4 py-2 shadow-lg rounded-b-3xl">
+                <div className="flex flex-col items-center bg-green-50 w-96 px-4 py-2 shadow-lg rounded-b-3xl">
                   <Typography className="text-lg text-gray-900 font-LatoBold capitalize">
                     {fullName}
                   </Typography>
                 </div>
               </div>
             </Dialog>
+          </div>
+
+          {/* Headsup - information */}
+          <Typography className="text-base py-2 mt-4 md:mt-0 text-center text-gray-500 font-LatoRegular border border-dashed border-green-200 bg-green-50">
+            All data added or edited here, will be displayed on the judge&apos;s profile.
+          </Typography>
+
+          {/* edit form fields 1 */}
+          <div className="my-4">
+            <EditJudgeDetails details={judgeData.data} />
           </div>
         </div>
 

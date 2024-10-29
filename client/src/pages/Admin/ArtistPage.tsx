@@ -283,7 +283,7 @@ const ArtistPage: React.FC = () => {
 
           {/* Headsup - information */}
           <Typography className="text-base py-2 mt-4 md:mt-0 text-center text-gray-500 font-LatoRegular border border-dashed border-amber-200 bg-amber-50">
-            All data added or edited here, will be displayed on artist&apos;s profile.
+            All data added or edited here, will be displayed on the artist&apos;s profile.
           </Typography>
 
           {/* edit form fields 1 */}
