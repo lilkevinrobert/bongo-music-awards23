@@ -39,38 +39,29 @@ interface File {
     name: string;
     size: number;
 }
-interface EditArtistDetailsProps {
+interface EditJudgeDetailsProps {
     details: ExpectedDetails
 }
 
 type ExpectedDetails = {
     id: number;
-    stage_name: string;
-    debut_year: string;
-    record_label: string;
-    bio: string;
-    genres: {
-        genre_id: string;
-    }[],
+    organization: string;
+    position: string;
+    expertise: string;
+    biography: string;
+    user_id: string;
     user_information: {
-        first_name: string;
-        middle_name: string;
-        last_name: string;
-        email: string;
-        gender: string;
-        id: number;
-        phone: string;
-        profile_picture_url: string;
-        user_id: string;
-        date_of_birth: string;
-        username: string;
+      first_name: string;
+      middle_name: string;
+      last_name: string;
+      username: string;
+      email: string;
+      gender: string;
+      id: number;
+      phone: string;
+      profile_picture_url: string;
+      date_of_birth: string;
     }
-    social_links: {
-        youtubeMusicLink: string | null;
-        spotifyMusicLink: string | null;
-        appleMusicLink: string | null;
-        boomPlayMusicLink: string | null;
-    } | null;
 };
 
 // Image validation constants
@@ -149,7 +140,7 @@ const schema = yup.object().shape({
         .trim(),
 });
 
-const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
+const EditJudgeDetails = ({ details }: EditJudgeDetailsProps) => {
     const BASE_URL = import.meta.env.VITE_BASE_URL;
     const HOME_URL = import.meta.env.VITE_HOME_URL;
 
@@ -303,7 +294,7 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
         <form className="pl-0" onSubmit={handleSubmit(onSubmit)}>
             {/* Personal information section */}
             <section className="py-2 pr-0">
-                <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
+                <Typography className="w-fit rounded-t-md bg-green-200 px-2 font-LatoBold text-base capitalize text-gray-800">
                     personal information
                 </Typography>
                 <div className="flex w-full flex-col gap-4 rounded-md bg-slate-50 p-4 lg:flex-row">
@@ -463,7 +454,7 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
             </section>
             {/* contact information section */}
             <section className="py-2 pr-0">
-                <Typography className="w-fit rounded-t-md bg-amber-200 px-2 font-LatoBold text-base capitalize text-gray-800">
+                <Typography className="w-fit rounded-t-md bg-green-200 px-2 font-LatoBold text-base capitalize text-gray-800">
                     contact information
                 </Typography>
                 <div className="flex w-full flex-col gap-4 rounded-md bg-slate-50 p-4 lg:flex-row">
@@ -577,7 +568,7 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
                                     <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
                                     <select
                                         disabled
-                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-green-600 p-2 pl-4 font-LatoRegular capitalize"
                                     >
                                         <option selected>Populating Field...</option>
                                     </select>
@@ -616,7 +607,7 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
                                     <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
                                     <select
                                         disabled
-                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-green-600 p-2 pl-4 font-LatoRegular capitalize"
                                     >
                                         <option selected>Populating Field...</option>
                                     </select>
@@ -655,7 +646,7 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
                                     <AiOutlineLoading3Quarters className="text-base text-gray-500 animate-spin" />
                                     <select
                                         disabled
-                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-amber-600 p-2 pl-4 font-LatoRegular capitalize"
+                                        className="mt-1 h-10 animate-pulse w-full rounded-md border border-dotted border-green-600 p-2 pl-4 font-LatoRegular capitalize"
                                     >
                                         <option selected>Populating Field...</option>
                                     </select>
@@ -745,7 +736,7 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
                 <Button
                     size="sm"
                     type="submit"
-                    className="float-right font-LatoBold text-xs capitalize transition ease-in-out hover:bg-amber-400 hover:text-gray-900"
+                    className="float-right font-LatoBold text-xs capitalize transition ease-in-out hover:bg-green-400 hover:text-gray-900"
                 >
                     save changes
                 </Button>
@@ -763,4 +754,4 @@ const EditArtistDetails = ({ details }: EditArtistDetailsProps) => {
     );
 }
 
-export default EditArtistDetails
+export default EditJudgeDetails

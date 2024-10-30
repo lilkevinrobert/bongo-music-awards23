@@ -30,7 +30,7 @@ const ProfileMenu = ( { profileAddress }:ProfileMenuProps ) => {
           src={imgLink}
         />
       </MenuHandler>
-      <MenuList className="py-2 pr-4">
+      <MenuList className="py-2 pr-4 z-20">
         <MenuItem>
           <NavLink to={profileAddress} className="flex items-center gap-2 group">
           <FaRegCircleUser className="text-lg text-slate-500 transition ease-in-out group-hover:text-slate-900" />
