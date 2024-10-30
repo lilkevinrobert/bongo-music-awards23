@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AwardGenreResource;
+use App\Http\Resources\AwardNominationResource;
 use App\Http\Resources\AwardResource;
+use App\Http\Resources\CategoryResource;
+use App\Models\ArtistNomination;
 use App\Models\Award;
 use App\Models\AwardGenre;
 use App\Models\AwardNomination;
+use App\Models\Category;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -43,10 +47,17 @@ class AwardNominationController extends Controller
         $exists = AwardNomination::where('award_id', $awardId)->exists();
 
         if ($exists) {
+            //TODO check status is active, then pull data for artist nominations
+
+            $artist_nomination = ArtistNomination::where('award_id', $awardId)->get();
+
+//            $artist_nominations = ArtistNomination::with(['artist', 'award', 'genre', 'category'])->where('award_id', $awardId)->get();
+            $artist_nominations = ArtistNomination::with(['artist','award', 'genre','category'])->where('award_id', $awardId)->get();
+
             return response()->json([
                 'status' => ResponseAlias::HTTP_OK,
                 'message' => 'Award Nomination Exists',
-                'data' => $exists
+                'data' => $artist_nominations
             ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
         }
 
@@ -85,7 +96,6 @@ class AwardNominationController extends Controller
 
             //TODO check status is active, then pull data for artist nominations
 
-
             DB::commit();
             return response()->json([
                 'status' => ResponseAlias::HTTP_CREATED,
@@ -99,6 +109,42 @@ class AwardNominationController extends Controller
                 'message' => $e->getMessage()
             ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
+
+    }
+
+    public function nominationCategories(Request $request, $awardId) {
+
+        // Award Validations
+        $validator = Validator::make([
+            'award_id' => $awardId],
+            ['award_id' => 'required|exists:awards,id']);
+
+        // Handle Validation Failures
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $validator->messages(),
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+        }
+
+        // Retrieving Nomination Categories
+        $nominationCategories = ArtistNomination::where('award_id', $awardId)->get();
+
+
+        $data = [
+            'award' => new AwardResource(Award::find($awardId)),
+            'categories' => new CategoryResource(Category::find($nominationCategories->pluck('category_id')->toArray())),
+        ];
+
+
+
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Nomination Categories Retrieved successfully',
+            'data' => $data,
+            'data1' => new AwardNominationResource($nominationCategories)
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+
 
     }
 
