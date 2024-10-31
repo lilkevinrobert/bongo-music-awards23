@@ -1,15 +1,15 @@
 import { NavLink, useParams } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa";
 import { MdOutlineEvent } from "react-icons/md";
-import { RxDotsVertical } from "react-icons/rx";
-import { Button, Card, Dialog, Typography } from "@material-tailwind/react";
+// import { RxDotsVertical } from "react-icons/rx";
+import { Button, Dialog, Typography } from "@material-tailwind/react";
 import useFetch from "../../hooks/useFetch";
 import EditNominationForm from "../Forms/EditNominationForm";
 import { useState } from "react";
 
 
 interface NominationData {
-  data: boolean;
+  data: [];
 }
 
 interface NominaitonFetchResult {
@@ -44,71 +44,7 @@ interface AwardNominationProps {
 const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-  const nav = useParams()
-  const nominations = [
-    {
-      category: "Song of the year",
-      categoryId: "dkjs93jknd",
-      nominees: [
-        {
-          id: "12345",
-          song: "some other competing song",
-          artist: "stage name",
-        },
-        {
-          id: "123",
-          song: "some song",
-          artist: "stage name",
-        },
-        {
-          id: "1234",
-          song: "some other song",
-          artist: "stage name",
-        },
-        {
-          id: "12345",
-          song: "some other competing song",
-          artist: "stage name",
-        },
-        {
-          id: "1234",
-          song: "some other song",
-          artist: "stage name",
-        },
-        {
-          id: "1234",
-          song: "some other song",
-          artist: "stage name",
-        },
-        {
-          id: "1234",
-          song: "some other song",
-          artist: "stage name",
-        },
-      ],
-    },
-    {
-      category: "Artist of the year",
-      categoryId: "ndae792ash",
-      nominees: [
-        {
-          id: "123",
-          song: "some song",
-          artist: "stage name",
-        },
-        {
-          id: "1234",
-          song: "some other song",
-          artist: "stage name",
-        },
-        {
-          id: "12345",
-          song: "some other competing song",
-          artist: "stage name",
-        },
-      ],
-    },
-  ];
+  const nav = useParams();
 
   const toTop = () => {
     window.scrollTo(0, 0);
@@ -130,6 +66,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
     loading: nominationDataLoading,
     error: nominationDataError
   }: NominaitonFetchResult = useFetch(`${BASE_URL}/nominations/${awardId}/status`);
+  console.log(nominationData, nominationDataLoading, nominationDataError)
   console.log(nominationData)
   return (
     <>
@@ -155,45 +92,31 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
           {
             nominationDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination status...</p> : nominationDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nominationData ? (
               <>
-                {nominations.map((nomination, i) => (
-                  <div key={i} className="py-6">
+              
+              <div className="flex flex-col gap-2">
+              {
+                nominationData.data.map((nomination:any, i) => (
+                  <div key={i} className="py-6 px-2 bg-gray-50 shadow">
+                    <Typography className="text-gray-800 font-LatoBold">{nomination.artist.stage_name}</Typography>
+                    {/* Nomination Category */}
                     <div className="flex flex-row items-center justify-between">
-                      <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.categoryId}`}>
+                      <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.category.id}`}>
                         <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
-                          {nomination.category}
+                          {nomination.category.name}
                         </Typography>
                       </NavLink>
                       <FaArrowUp
                         onClick={toTop}
-                        className="text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
+                        className="hidden text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
                       />
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                      {nomination.nominees.map((nominee, ind) => (
-                        <Card
-                          key={ind}
-                          className="h-fit w-full flex flex-row items-center justify-between bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
-                        >
-                          <div>
-                            <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
-                              "{nominee.song}"
-                            </Typography>
-                            <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
-                              ~ {nominee.artist}
-                            </Typography>
-                          </div>
-                          <NavLink to={`/admin/artists/${nominee.id}/nominations`}>
-                            <RxDotsVertical />
-                          </NavLink>
-                        </Card>
-                      ))}
-                    </div>
                   </div>
-                ))}
+                ))
+              }
+              </div>
               </>
             ) : <p>Nominationations not activated</p>
           }
-
         </div>
 
       </div>
