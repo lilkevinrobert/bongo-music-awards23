@@ -155,6 +155,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         // Nomination Votes
         Route::post('/{nominationId}/votes', [NominationVoteController::class, 'store']);
+        Route::get('/{nominationId}/votes', [NominationVoteController::class, 'show']);
     });
 
     // VOTES

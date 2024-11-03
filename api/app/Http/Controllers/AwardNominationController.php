@@ -54,10 +54,41 @@ class AwardNominationController extends Controller
 //            $artist_nominations = ArtistNomination::with(['artist', 'award', 'genre', 'category'])->where('award_id', $awardId)->get();
             $artist_nominations = ArtistNomination::with(['artist','award', 'genre','category'])->where('award_id', $awardId)->get();
 
+            $groupedData = [];
+            foreach ($artist_nominations as $nomination) {
+                $categoryId = $nomination->category->id;
+                $categoryName = $nomination->category->name;
+
+                // Check if the categoryId already exists in the groupedData array
+                if (!isset($groupedData[$categoryId])) {
+                    $groupedData[$categoryId] = [
+                        'category' => [
+                            'id' => $categoryId,
+                            'name' => $categoryName,
+                        ],
+                        'artists' => []
+                    ];
+                }
+
+                // Append the artist to the respective category
+                $groupedData[$categoryId]['artists'][] = [
+                    'id' => $nomination->artist->id,
+                    'stage_name' => $nomination->artist->stage_name,
+                    'record_label' => $nomination->artist->record_label,
+                    'debut_year' => $nomination->artist->debut_year,
+                    'bio' => $nomination->artist->bio,
+                    'official_website' => $nomination->artist->official_website_link,
+                    'spotify_music_link' => $nomination->artist->spotify_music_link,
+                    'apple_music_link' => $nomination->artist->apple_music_link,
+                    'youtube_music_link' => $nomination->artist->youtube_music_link,
+                    'boomplay_music_link' => $nomination->artist->boomplay_music_link,
+                ];
+            }
+
             return response()->json([
                 'status' => ResponseAlias::HTTP_OK,
                 'message' => 'Award Nomination Exists',
-                'data' => $artist_nominations
+                'data' => $groupedData
             ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
         }
 
