@@ -6,7 +6,9 @@ use App\Http\Controllers\AwardGenresController;
 use App\Http\Controllers\AwardJudgeController;
 use App\Http\Controllers\AwardNominationController;
 use App\Http\Controllers\AwardSponsorController;
+use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\NominationVoteController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
@@ -74,6 +76,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('genres', GenresController::class);
     Route::apiResource('categories', CategoriesController::class);
 
+    // CATEGORY TYPE END-POINT
+    Route::get('category_types', [CategoryTypeController::class, 'index']);
+
     Route::get('genres/{genreId}/categories', [GenresController::class, 'getGenreCategories']);
     Route::get('genres/category/all', [GenresController::class, 'getAllGenreCategories']);
     Route::group(['prefix' => 'admin'], function () {
@@ -137,8 +142,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/{awardId}/judges', [AwardJudgeController::class, 'show']);
 
         // Active Events and Awards
-        Route::get('/active',  [AwardController::class, 'activeAwards']);
-        Route::get('/closed',  [AwardController::class, 'inactiveAwards']);
+        Route::get('/active', [AwardController::class, 'activeAwards']);
+        Route::get('/closed', [AwardController::class, 'inactiveAwards']);
     });
 
     // AWARDS APIS.
@@ -150,6 +155,17 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
 //        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
         Route::get('/{awardId}/status', [AwardNominationController::class, 'existAwardNomination']);
+        Route::get('/{awardId}/categories', [AwardNominationController::class, 'nominationCategories']);
+
+        // Nomination Votes
+        Route::post('/{nominationId}/votes', [NominationVoteController::class, 'store']);
+        Route::get('/{nominationId}/votes', [NominationVoteController::class, 'show']);
+    });
+
+    // VOTES
+    Route::group(['prefix' => 'votes'], function () {
+
+
     });
 });
 

@@ -71,5 +71,11 @@ class ArtistProfile extends Model
         return $this->belongsTo(UserInformation::class);
     }
 
+    // Define the relationship with the ArtistNomination model
+    public function nominations()
+    {
+        return $this->hasMany(ArtistNomination::class, 'artist_id');
+    }
+
 
 }

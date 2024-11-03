@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AwardGenreResource;
+use App\Http\Resources\AwardNominationResource;
 use App\Http\Resources\AwardResource;
+use App\Http\Resources\CategoryResource;
+use App\Models\ArtistNomination;
 use App\Models\Award;
 use App\Models\AwardGenre;
 use App\Models\AwardNomination;
+use App\Models\Category;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -43,10 +47,46 @@ class AwardNominationController extends Controller
         $exists = AwardNomination::where('award_id', $awardId)->exists();
 
         if ($exists) {
+            //TODO check status is active, then pull data for artist nominations
+
+//            $artist_nominations = ArtistNomination::with(['artist', 'award', 'genre', 'category'])->where('award_id', $awardId)->get();
+            $artist_nominations = ArtistNomination::with(['artist','award', 'genre','category'])->where('award_id', $awardId)->get();
+
+            $groupedData = [];
+            foreach ($artist_nominations as $nomination) {
+                $categoryId = $nomination->category->id;
+                $categoryName = $nomination->category->name;
+
+                // Check if the categoryId already exists in the groupedData array
+                if (!isset($groupedData[$categoryId])) {
+                    $groupedData[$categoryId] = [
+                        'category' => [
+                            'id' => $categoryId,
+                            'name' => $categoryName,
+                        ],
+                        'artists' => []
+                    ];
+                }
+
+                // Append the artist to the respective category
+                $groupedData[$categoryId]['artists'][] = [
+                    'id' => $nomination->artist->id,
+                    'stage_name' => $nomination->artist->stage_name,
+                    'record_label' => $nomination->artist->record_label,
+                    'debut_year' => $nomination->artist->debut_year,
+                    'bio' => $nomination->artist->bio,
+                    'official_website' => $nomination->artist->official_website_link,
+                    'spotify_music_link' => $nomination->artist->spotify_music_link,
+                    'apple_music_link' => $nomination->artist->apple_music_link,
+                    'youtube_music_link' => $nomination->artist->youtube_music_link,
+                    'boomplay_music_link' => $nomination->artist->boomplay_music_link,
+                ];
+            }
+
             return response()->json([
                 'status' => ResponseAlias::HTTP_OK,
                 'message' => 'Award Nomination Exists',
-                'data' => $exists
+                'data' => array_values($groupedData)
             ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
         }
 
@@ -85,7 +125,6 @@ class AwardNominationController extends Controller
 
             //TODO check status is active, then pull data for artist nominations
 
-
             DB::commit();
             return response()->json([
                 'status' => ResponseAlias::HTTP_CREATED,
@@ -99,6 +138,42 @@ class AwardNominationController extends Controller
                 'message' => $e->getMessage()
             ], ResponseAlias::HTTP_INTERNAL_SERVER_ERROR)->setStatusCode(ResponseAlias::HTTP_INTERNAL_SERVER_ERROR, Response::$statusTexts[ResponseAlias::HTTP_INTERNAL_SERVER_ERROR]);
         }
+
+    }
+
+    public function nominationCategories(Request $request, $awardId) {
+
+        // Award Validations
+        $validator = Validator::make([
+            'award_id' => $awardId],
+            ['award_id' => 'required|exists:awards,id']);
+
+        // Handle Validation Failures
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $validator->messages(),
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+        }
+
+        // Retrieving Nomination Categories
+        $nominationCategories = ArtistNomination::where('award_id', $awardId)->get();
+
+
+        $data = [
+            'award' => new AwardResource(Award::find($awardId)),
+            'categories' => new CategoryResource(Category::find($nominationCategories->pluck('category_id')->toArray())),
+        ];
+
+
+
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Nomination Categories Retrieved successfully',
+            'data' => $data,
+            'data1' => new AwardNominationResource($nominationCategories)
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+
 
     }
 

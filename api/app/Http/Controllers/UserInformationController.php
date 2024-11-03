@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helper\ImageManager;
-use App\Http\Resources\CategoryResource;
 use App\Http\Resources\UserInformationResource;
-use App\Http\Resources\UserResource;
 use App\Models\Address;
-use App\Models\Category;
 use App\Models\User;
 use App\Models\UserInformation;
 use Illuminate\Database\QueryException;
