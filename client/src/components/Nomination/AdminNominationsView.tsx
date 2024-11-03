@@ -66,7 +66,6 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
     loading: nominationDataLoading,
     error: nominationDataError
   }: NominaitonFetchResult = useFetch(`${BASE_URL}/nominations/${awardId}/status`);
-  console.log(nominationData, nominationDataLoading, nominationDataError)
   console.log(nominationData)
   return (
     <>
@@ -92,28 +91,37 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
           {
             nominationDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination status...</p> : nominationDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nominationData ? (
               <>
-              
-              <div className="flex flex-col gap-2">
-              {
-                nominationData.data.map((nomination:any, i) => (
-                  <div key={i} className="py-6 px-2 bg-gray-50 shadow">
-                    <Typography className="text-gray-800 font-LatoBold">{nomination.artist.stage_name}</Typography>
-                    {/* Nomination Category */}
-                    <div className="flex flex-row items-center justify-between">
-                      <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.category.id}`}>
-                        <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
-                          {nomination.category.name}
-                        </Typography>
-                      </NavLink>
-                      <FaArrowUp
-                        onClick={toTop}
-                        className="hidden text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
-                      />
-                    </div>
-                  </div>
-                ))
-              }
-              </div>
+                <div className="flex flex-col gap-2">
+                  {
+                    nominationDataError ? (<p>A problem fetching nomination data</p>) :
+                      nominationData.data.map((nomination: any, i) => (
+                        <div key={i} className="py-6 px-2 bg-transparent">
+                          {/* Nomination Category */}
+                          <div className="flex flex-row items-center justify-between">
+                            <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.category.id}`}>
+                              <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
+                                {nomination.category.name}
+                              </Typography>
+                            </NavLink>
+                            <FaArrowUp
+                              onClick={toTop}
+                              className="text-gray-900 animate-bounce cursor-pointer text-base hover:text-lg transition ease-linear"
+                            />
+                          </div>
+                          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-2">
+                            {
+                              nomination.artists.map((artist: any, i:any) => (
+                                <div key={i} className="bg-amber-100 py-2 px-4 rounded-md">
+                                  <Typography className="text-gray-800 text-sm font-LatoBold capitalize">{artist.record_label}</Typography>
+                                  <Typography className="text-gray-800 text-sm font-LatoRegular capitalize">~ {artist.stage_name}</Typography>
+                                </div>
+                              ))
+                            }
+                          </div>
+                        </div>
+                      ))
+                  }
+                </div>
               </>
             ) : <p>Nominationations not activated</p>
           }
