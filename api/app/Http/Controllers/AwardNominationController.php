@@ -49,8 +49,6 @@ class AwardNominationController extends Controller
         if ($exists) {
             //TODO check status is active, then pull data for artist nominations
 
-            $artist_nomination = ArtistNomination::where('award_id', $awardId)->get();
-
 //            $artist_nominations = ArtistNomination::with(['artist', 'award', 'genre', 'category'])->where('award_id', $awardId)->get();
             $artist_nominations = ArtistNomination::with(['artist','award', 'genre','category'])->where('award_id', $awardId)->get();
 
@@ -88,7 +86,7 @@ class AwardNominationController extends Controller
             return response()->json([
                 'status' => ResponseAlias::HTTP_OK,
                 'message' => 'Award Nomination Exists',
-                'data' => $groupedData
+                'data' => array_values($groupedData)
             ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
         }
 
