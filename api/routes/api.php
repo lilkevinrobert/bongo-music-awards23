@@ -6,6 +6,7 @@ use App\Http\Controllers\AwardGenresController;
 use App\Http\Controllers\AwardJudgeController;
 use App\Http\Controllers\AwardNominationController;
 use App\Http\Controllers\AwardSponsorController;
+use App\Http\Controllers\CategoryTypeController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\NominationVoteController;
 use App\Http\Controllers\OccupationController;
@@ -74,6 +75,9 @@ Route::group(['prefix' => 'v1'], function () {
     //GENRES & CATEGORIES END-POINT
     Route::apiResource('genres', GenresController::class);
     Route::apiResource('categories', CategoriesController::class);
+
+    // CATEGORY TYPE END-POINT
+    Route::get('category_types', [CategoryTypeController::class, 'index']);
 
     Route::get('genres/{genreId}/categories', [GenresController::class, 'getGenreCategories']);
     Route::get('genres/category/all', [GenresController::class, 'getAllGenreCategories']);
