@@ -1,7 +1,6 @@
-import { Button, Typography } from "@material-tailwind/react"
+import { Typography } from "@material-tailwind/react"
 import BreadcrumbLevel1 from "../../components/Breadcrumbs/BreadcrumbLevel1"
 import Layout from "../../components/Layout/Layout"
-import { IoMdAdd } from "react-icons/io"
 import AdminOccupationSettings from "../../components/Settings/AdminOccupationSettings"
 
 const AdminSettingsPage = () => {
