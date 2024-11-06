@@ -13,7 +13,8 @@ class Category extends Model
     protected $table = 'categories';
     protected $fillable = [
         'name',
-        'genre_id'
+        'genre_id',
+        'category_type_id'
     ];
 
     public static function validate($input, $id = null)
@@ -39,6 +40,15 @@ class Category extends Model
     public function genres()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+
+    /**
+     * Get the category type that owns the category.
+     */
+    public function categoryType()
+    {
+        return $this->belongsTo(CategoryType::class);
     }
 
     public $timestamps = true;
