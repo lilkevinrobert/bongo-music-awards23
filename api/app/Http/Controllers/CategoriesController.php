@@ -19,7 +19,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        // Retrieve categories with their associated category types
+        $categories = Category::with('categoryType')->get();
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -30,10 +32,18 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
 
+//        $validator = Validator::make($request->all(), [
+//            'genre_id' => 'required|exists:genres,id',
+//            'categories' => 'required|array|min:1',
+//            'categories.*.name' => 'required|string|max:255',
+//        ]);
+
+
         $validator = Validator::make($request->all(), [
             'genre_id' => 'required|exists:genres,id',
             'categories' => 'required|array|min:1',
             'categories.*.name' => 'required|string|max:255',
+            'categories.*.category_type_id' => 'required|max:255|exists:category_types,id',
         ]);
 
         if ($validator->fails()) {
@@ -52,6 +62,7 @@ class CategoriesController extends Controller
                 Category::create([
                     'name' => $category['name'],
                     'genre_id' => $genreId,
+                    'category_type_id' => $category['category_type_id'],
                 ]);
 
                 $categories[] = $category;
@@ -79,7 +90,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $category = Category::with('categoryType')->find($id);
         if (!isset($category)) {
             return response()->json([
                 'status' => ResponseAlias::HTTP_NOT_FOUND,
@@ -105,7 +116,7 @@ class CategoriesController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_NOT_FOUND, Response::$statusTexts[ResponseAlias::HTTP_NOT_FOUND]);
         }
 
-        $category->update($request->only(['name']));
+        $category->update($request->only(['name','category_type_id']));
         return new CategoryResource(Category::find($id));
     }
 

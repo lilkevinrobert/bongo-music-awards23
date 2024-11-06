@@ -12,4 +12,11 @@ class CategoryType extends Model
     protected $fillable = [
         'type'
     ];
+    /**
+     * Get the category associated with the category type.
+     */
+    public function category()
+    {
+        return $this->hasOne(Category::class);
+    }
 }

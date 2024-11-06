@@ -78,6 +78,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     // CATEGORY TYPE END-POINT
     Route::get('category_types', [CategoryTypeController::class, 'index']);
+    Route::get('category_types/{category_type}', [CategoryTypeController::class, 'show']);
 
     Route::get('genres/{genreId}/categories', [GenresController::class, 'getGenreCategories']);
     Route::get('genres/category/all', [GenresController::class, 'getAllGenreCategories']);
