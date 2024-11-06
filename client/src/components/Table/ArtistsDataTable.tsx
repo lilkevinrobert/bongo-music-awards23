@@ -219,7 +219,7 @@ const ArtistsDataTable: React.FC = () => {
                       className={`${index % 2 === 0 ? "bg-gray-100" : ""
                         } group/actions`}
                     >
-                      <td className="hidden md:block border px-4 py-1 capitalize">
+                      <td className="hidden md:table-cell border px-4 py-1 capitalize">
                         <img
                           src={`${HOME_URL}/${row.user_information.profile_picture_url}`} alt={`${row.user_information.last_name}'s logo`}
                           className="w-24 md:w-8 h-8 md:max-h-8 rounded-full bg-gray-300 shadow object-center object-cover bg-transparent text-xs"
@@ -228,7 +228,7 @@ const ArtistsDataTable: React.FC = () => {
                       <td className="border px-4 py-1 capitalize">
                         {row.stage_name}
                       </td>
-                      <td className="hidden md:block border px-4 py-1 capitalize font-normal">
+                      <td className="hidden md:table-cell border px-4 py-1 capitalize font-normal">
                         {`${row.user_information.first_name} ${row.user_information.middle_name != null ? row.user_information.middle_name : ""
                           } ${row.user_information.last_name}`}
                       </td>

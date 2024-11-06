@@ -55,7 +55,6 @@ const AdminDashboardPage = () => {
                 <LoadingSummaryCard />
                 <LoadingSummaryCard />
                 <LoadingSummaryCard />
-                <LoadingSummaryCard />
               </>
             ) : summaryCountError == null && summaryCountData !== null ? (
               Object.keys(summaryCountData).map((key) => (
