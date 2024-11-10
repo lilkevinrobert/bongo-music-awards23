@@ -47,46 +47,36 @@ class AwardNominationController extends Controller
         $exists = AwardNomination::where('award_id', $awardId)->exists();
 
         if ($exists) {
-            //TODO check status is active, then pull data for artist nominations
 
-//            $artist_nominations = ArtistNomination::with(['artist', 'award', 'genre', 'category'])->where('award_id', $awardId)->get();
-            $artist_nominations = ArtistNomination::with(['artist','award', 'genre','category'])->where('award_id', $awardId)->get();
+            $result = DB::select('SELECT genre_id, genre, name as category, category_id_, artist_id, category_item_id, category_id, stage_name
+                        FROM (SELECT table_one.genre_id    as genre_id,
+                         table_one.genre,
+                         table_one.name,
+                         table_one.category_id as category_id_,
+                         artist_id,
+                         category_item_id,
+                         artist_nominations.category_id
+                  FROM (SELECT award_genres.genre_id, genres.name as genre, categories.name, categories.id as category_id
+                        FROM genres
+                                 INNER JOIN award_genres ON genres.id = award_genres.genre_id
+                                 LEFT JOIN categories ON award_genres.genre_id = categories.genre_id
+                        where award_genres.award_id = ?) AS table_one
+                           LEFT JOIN artist_nominations ON table_one.category_id = artist_nominations.category_id) AS table_two
+                     LEFT JOIN artist_profiles ON table_two.artist_id = artist_profiles.id', [$awardId]);
 
-            $groupedData = [];
-            foreach ($artist_nominations as $nomination) {
-                $categoryId = $nomination->category->id;
-                $categoryName = $nomination->category->name;
-
-                // Check if the categoryId already exists in the groupedData array
-                if (!isset($groupedData[$categoryId])) {
-                    $groupedData[$categoryId] = [
-                        'category' => [
-                            'id' => $categoryId,
-                            'name' => $categoryName,
-                        ],
-                        'artists' => []
-                    ];
+            $groupedByGenres = [];
+            foreach ($result as $item) {
+                $genre = $item->genre;
+                if (!isset($groupedByGenres[$genre])) {
+                    $groupedByGenres[$genre] = [];
                 }
-
-                // Append the artist to the respective category
-                $groupedData[$categoryId]['artists'][] = [
-                    'id' => $nomination->artist->id,
-                    'stage_name' => $nomination->artist->stage_name,
-                    'record_label' => $nomination->artist->record_label,
-                    'debut_year' => $nomination->artist->debut_year,
-                    'bio' => $nomination->artist->bio,
-                    'official_website' => $nomination->artist->official_website_link,
-                    'spotify_music_link' => $nomination->artist->spotify_music_link,
-                    'apple_music_link' => $nomination->artist->apple_music_link,
-                    'youtube_music_link' => $nomination->artist->youtube_music_link,
-                    'boomplay_music_link' => $nomination->artist->boomplay_music_link,
-                ];
+                $groupedByGenres[$genre][] = $item;
             }
 
             return response()->json([
                 'status' => ResponseAlias::HTTP_OK,
                 'message' => 'Award Nomination Exists',
-                'data' => array_values($groupedData)
+                'data' => array_values($groupedByGenres),
             ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
         }
 
@@ -141,7 +131,8 @@ class AwardNominationController extends Controller
 
     }
 
-    public function nominationCategories(Request $request, $awardId) {
+    public function nominationCategories(Request $request, $awardId)
+    {
 
         // Award Validations
         $validator = Validator::make([
@@ -164,7 +155,6 @@ class AwardNominationController extends Controller
             'award' => new AwardResource(Award::find($awardId)),
             'categories' => new CategoryResource(Category::find($nominationCategories->pluck('category_id')->toArray())),
         ];
-
 
 
         return response()->json([
