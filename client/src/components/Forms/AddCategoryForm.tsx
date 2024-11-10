@@ -6,6 +6,11 @@ import { IGenre } from "../Genre/Genres";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+export interface ICategoryType {
+  id: any;
+  name: string;
+}
+
 interface FormProps {
   closeModal: () => void;
 }
@@ -24,6 +29,7 @@ interface FetchResult {
 interface INewCategories {
   categories: {
     name: string;
+    category_type_id: string;
   }[],
   genre_id: string;
 }
@@ -37,19 +43,21 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
     error,
     loading: loadingGenres,
   }: FetchResult = useFetch(`${BASE_URL}/genres`);
+  const { data: categoryTypesData, error: categoryTypesError, loading: categoryTypesLoading }: FetchResult = useFetch(`${BASE_URL}/category_types`);
 
   // handle select options
   const [selectedOption, setSelectedOption] = useState("");
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedOption(e.target.value);
   };
-
-  // Handle multiple category inputs
+  // Handle multiple category inputs and selects
   const [inputFields, setInputFields] = useState([""]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([""]);
 
   const handleAddInputField = () => {
     // Create a new input field and add it to the state
     setInputFields([...inputFields, ""]);
+    setSelectedOptions([...selectedOptions, ""]);
   };
 
   const handleInputChange = (
@@ -60,24 +68,38 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
     newInputFields[index] = event.target.value;
     setInputFields(newInputFields);
   };
+
+  const handleSelectChange = (index: number, event: ChangeEvent<HTMLSelectElement>) => {
+    const newSelectedOptions = [...selectedOptions];
+    newSelectedOptions[index] = event.target.value;
+    setSelectedOptions(newSelectedOptions);
+    };
+
   const handleDeleteInputField = (
     index: number,
     e: { preventDefault: () => void },
   ) => {
     e.preventDefault();
     const newInputFields = [...inputFields];
-    newInputFields.splice(index, 1);
-    setInputFields(newInputFields);
-  };
-  
-  const dataToCategories = (items: string[]) => {
-    // Convert the array of items to an array of category objects
-    const categoryObjects = items.map((item) => ({
-      name: item,
-    }));
+    const newSelectedOptions = [...selectedOptions];
 
-    return categoryObjects;
+    // Remove the input and select option at the same index
+    newInputFields.splice(index, 1);
+    newSelectedOptions.splice(index, 1);
+
+    setInputFields(newInputFields);
+    setSelectedOptions(newSelectedOptions);
   };
+
+  const dataToCategories = (items: string[], selectedOptions: string[]) => {
+    // Convert the array of items to an array of category objects, including selected options
+    const categoryObjects = items.map((item, index) => ({
+      name: item,
+      category_type_id: selectedOptions[index], // Corresponding selected option
+    }));
+  
+    return categoryObjects;
+  };  
 
   // U may or may not need it 🤷🏾‍♂️👇🏾
   // const removeEmptyCategories = (categories: CategoriesType[]) => {
@@ -88,9 +110,10 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
 
   //   return filteredCategories;
   // };
-  
+
   const prepareData = (): INewCategories => {
-    const categories = dataToCategories(inputFields)
+    // Prepare categories using both input fields and selected options
+    const categories = dataToCategories(inputFields, selectedOptions)
     const newCategories = {
       categories,
       genre_id: selectedOption
@@ -101,24 +124,24 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     closeModal();
-    const dataToSubmit:INewCategories = prepareData();
+    const dataToSubmit: INewCategories = prepareData();
     const processingToastId = toast.loading("Processing..")
     axios
-    .post(`${BASE_URL}/categories`, dataToSubmit)
-    .then((res) => {
-      if (res.status == 201) {
+      .post(`${BASE_URL}/categories`, dataToSubmit)
+      .then((res) => {
+        if (res.status == 201) {
+          toast.dismiss(processingToastId)
+          const responseToastId = toast.success("Genre category created successfully.")
+          setTimeout(() => {
+            toast.dismiss(responseToastId)
+            window.location.reload()
+          }, 3000)
+        }
+      })
+      .catch(() => {
         toast.dismiss(processingToastId)
-        const responseToastId = toast.success("Genre category created successfully.")
-        setTimeout(()=>{
-          toast.dismiss(responseToastId)
-          window.location.reload()
-        }, 3000)
-      }
-    })
-    .catch(() => {
-      toast.dismiss(processingToastId)
-      toast.error("Failed to create.")
-    })
+        toast.error("Failed to create.")
+      })
   }
 
   return (
@@ -191,12 +214,47 @@ const AddCategoryForm = ({ closeModal }: FormProps) => {
                   type="text"
                   value={value}
                   required
-                  className="mt-1 h-10 w-full rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular"
+                  className="mt-1 h-10 w-1/2 text-sm rounded-md border border-gray-300 p-2 pl-4 font-LatoRegular"
                   placeholder={`Enter Category ${index + 1}`}
                   onChange={(event) => {
                     handleInputChange(index, event);
                   }}
                 />
+                <>
+                  {categoryTypesLoading && (
+                    <Typography
+                      variant="paragraph"
+                      className="text-center font-LatoRegular text-base capitalize"
+                    >
+                      populating fields...
+                    </Typography>
+                  )}
+                  {categoryTypesError && (
+                    <Typography
+                      variant="paragraph"
+                      className="font-LatoRegular text-base capitalize"
+                    >
+                      some problem occurred.
+                    </Typography>
+                  )}
+                  {
+                    categoryTypesData &&
+                    <select name="categoryType"
+                      value={selectedOptions[index]}
+                      onChange={(event) => handleSelectChange(index, event)}
+                      className="mt-1 h-10 w-1/2 text-sm rounded-md border border-gray-300 p-2 pl-4 capitalize font-LatoRegular"
+                    >
+                      <option value="" disabled className="normal-case">
+                        Select a type
+                      </option>
+                      {categoryTypesData?.data.map((type: ICategoryType, i) => (
+                        <option key={i} value={type.id} className="font-LatoRegular capitalize">
+                          {type.name}
+                        </option>
+                      ))}
+                    </select>
+                  }
+                </>
                 <Button
                   onClick={(e) => handleDeleteInputField(index, e)}
                   size="sm"

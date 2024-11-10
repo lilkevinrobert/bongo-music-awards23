@@ -75,6 +75,7 @@ const Categories = () => {
     fetchData,
   }: FetchResult = useFetch(`${BASE_URL}/genres/category/all`);
 
+
   // accordion controls
   const [open, _setOpen] = useState<Array<number>>([]);
   const [alwaysOpen, setAlwaysOpen] = useState(true);
@@ -100,7 +101,6 @@ const Categories = () => {
     setOpenDeleteDialog((cur) => !cur);
   };
   // Edit dialog handling
-  // console.log(categoryData?.data[0]?.categories[1]);
   const [_editId, setEditId] = useState(null);
   const [editCategoryGenre, setEditCategoryGenre] = useState<string>("");
   const [editData, setEditData] = useState<ICategory | null>(null);

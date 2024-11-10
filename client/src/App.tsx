@@ -89,7 +89,7 @@ function App() {
     },
     {
       path: "/admin",
-      // errorElement: <ErrorElement />,
+      errorElement: <ErrorElement />,
       children: [
         {
           path: "add-user-form/",

@@ -8,7 +8,7 @@ interface DeleteDialogProps {
   closeModal: () => void;
   fetchData: () => void;
   deleteId: string;
-  deleteItem: "Sponsor" | "User" | "Award" | "Genre" | "Category" | "Award Sponsor";
+  deleteItem: "Sponsor" | "User" | "Award" | "Genre" | "Category" | "Award Sponsor" | "Occupation";
 }
 
 const DeleteDialog = ({
@@ -28,6 +28,8 @@ const DeleteDialog = ({
         return `genres`;
       case "Category":
         return `categories`;
+      case "Occupation":
+        return `admin/occupations`;
       default:
         break;
     }
