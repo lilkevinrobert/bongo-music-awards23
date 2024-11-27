@@ -154,9 +154,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'nominations'], function () {
         Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
         Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
-//        Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
         Route::get('/{awardId}/status', [AwardNominationController::class, 'existAwardNomination']);
         Route::get('/{awardId}/categories', [AwardNominationController::class, 'nominationCategories']);
+        Route::get('/{awardId}/categories/{categoryId}', [AwardNominationController::class, 'nominationCategory']);
 
         // Nomination Votes
         Route::post('/{nominationId}/votes', [NominationVoteController::class, 'store']);

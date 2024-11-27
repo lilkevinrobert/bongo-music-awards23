@@ -201,6 +201,36 @@ class AwardNominationController extends Controller
         //
     }
 
+
+    public function nominationCategory(Request $request, $awardId, $categoryId)
+    {
+        $validator = Validator::make([
+            'award_id' => $awardId,
+            'category_id' => $categoryId
+        ],
+            ['award_id' => 'required|exists:awards,id|exists:artist_nominations,award_id',
+                'category_id' => 'required|exists:categories,id|exists:artist_nominations,category_id']
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => ResponseAlias::HTTP_UNPROCESSABLE_ENTITY,
+                'message' => $validator->messages(),
+            ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
+        }
+
+        $result =  DB::select('SELECT  name,stage_name,  record_label, artist_id,category_item_id FROM (SELECT record_label, stage_name,artist_profiles.id as artist_id, category_item_id, category_id FROM artist_nominations -- WHERE award_id = 2 AND category_id = 23
+                INNER JOIN  artist_profiles ON artist_profiles.id = artist_nominations.artist_id
+                WHERE award_id = ? AND category_id = ?) AS tbl_one
+                INNER JOIN categories ON tbl_one.category_id = categories.id', [$awardId, $categoryId]);
+
+        return response()->json([
+            'status' => ResponseAlias::HTTP_OK,
+            'message' => 'Award Retrieved successfully',
+            'data' => $result
+        ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
