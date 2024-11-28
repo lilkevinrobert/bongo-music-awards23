@@ -109,7 +109,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
                                     <div className="flex flex-row items-center justify-between">
                                       <div className="flex flex-row items-center ">
                                         <GoDotFill />
-                                        <NavLink to={`/admin/awards/${nav.awardId}/categories/`}>
+                                        <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.category_id}`}>
                                           <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
                                             {/* {nomination.category.name} */} {nomination.category}
                                           </Typography>
