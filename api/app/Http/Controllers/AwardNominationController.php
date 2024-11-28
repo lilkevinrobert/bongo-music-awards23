@@ -67,12 +67,13 @@ class AwardNominationController extends Controller
                 if (!isset($groupedByGenre[$genreId])) {
                     $groupedByGenre[$genreId] = [
                         'genre' => $item->genre,
+                        'award_id' => $item->award_id,
                         'genre_id'=> $item->genre_id,
                         'categories' => []
                     ];
                 }
                 $groupedByGenre[$genreId]['categories'][] = [
-                    'award_id' => $item->award_id,
+//                    'award_id' => $item->award_id,
                     'category_id' => $item->category_id,
                     'category' => $item->category,
                     'category_type_id' => $item->category_type_id
