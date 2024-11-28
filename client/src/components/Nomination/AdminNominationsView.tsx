@@ -67,6 +67,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
     loading: nominationDataLoading,
     error: nominationDataError
   }: NominaitonFetchResult = useFetch(`${BASE_URL}/nominations/${awardId}/status`);
+
   return (
     <>
       {/* Award Data */}
@@ -93,17 +94,19 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
           {
             nominationDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination status...</p> : nominationDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nominationData ? (
               <>
-                <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                   {
                     nominationDataError ? (<p>A problem fetching nomination data</p>) :
                       nominationData.data.length == 0 ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100 capitalize mt-4">no nomination request found.</p>
-                        : nominationData.data.map((nominationList: any[], i) => {
+                        : nominationData.data.map((nominationList: any, i) => {
+                          console.log(nominationList)
                           const genreGroup = nominationList[i]?.genre;
+                          console.log(nominationList.categories)
                           return (
                             <div key={i} className="bg-transparent mt-2">
                               <Typography className="font-LatoBold text-gray-900 uppercase pl-2 py-2 bg-amber-100 rounded-r-full">{genreGroup}</Typography>
                               {
-                                nominationList.map((nomination: any, count) => (
+                                nominationList.categories.map((nomination: any, count:number) => (
                                   <div key={count} className="py-2 px-2 bg-transparent">
                                     {/* Nomination Category */}
                                     <div className="flex flex-row items-center justify-between">

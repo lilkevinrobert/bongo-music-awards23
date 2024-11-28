@@ -1,7 +1,7 @@
 import { Card, Typography } from "@material-tailwind/react";
 import BreadcrumbLevel3 from "../../components/Breadcrumbs/BreadcrumbLevel3";
 import Layout from "../../components/Layout/Layout";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { RxDotsVertical } from "react-icons/rx";
 import AwardsEventCategoryPieChart from "../../components/Charts/AwardsEventCategoryPieChart";
 import useFetch from "../../hooks/useFetch";
@@ -20,12 +20,16 @@ interface NomineesFetchResult {
 const AdminAwardCategoryPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+  const nav = useParams();
+  console.log(nav)
+
+
   // GET nominations by category
   const {
     data: nomineesData,
     loading: nomineesDataLoading,
     error: nomineesDataError
-  }: NomineesFetchResult = useFetch(`${BASE_URL}/nominations/1/categories/41`);
+  }: NomineesFetchResult = useFetch(`${BASE_URL}/nominations/${nav.awardId}/categories/${nav.categoryId}`);
   
   // Category Title
   const lastItem:any = nomineesData?.data.pop();
