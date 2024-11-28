@@ -48,35 +48,43 @@ class AwardNominationController extends Controller
 
         if ($exists) {
 
-            $result = DB::select('SELECT genre_id, genre, name as category, category_id_, artist_id, category_item_id, category_id, stage_name
-                        FROM (SELECT table_one.genre_id    as genre_id,
-                         table_one.genre,
-                         table_one.name,
-                         table_one.category_id as category_id_,
-                         artist_id,
-                         category_item_id,
-                         artist_nominations.category_id
-                  FROM (SELECT award_genres.genre_id, genres.name as genre, categories.name, categories.id as category_id
-                        FROM genres
-                                 INNER JOIN award_genres ON genres.id = award_genres.genre_id
-                                 LEFT JOIN categories ON award_genres.genre_id = categories.genre_id
-                        where award_genres.award_id = ?) AS table_one
-                           LEFT JOIN artist_nominations ON table_one.category_id = artist_nominations.category_id) AS table_two
-                     LEFT JOIN artist_profiles ON table_two.artist_id = artist_profiles.id', [$awardId]);
+            $data = DB::select('SELECT award_genres.genre_id AS genre_id, genres.name AS genre, award_id, categories.id as category_id, categories.name AS category, category_type_id FROM genres
+                                        INNER JOIN award_genres ON genres.id = award_genres.genre_id
+                                        INNER JOIN categories ON award_genres.genre_id = categories.genre_id
+                                        WHERE award_genres.award_id = ?',[$awardId]);
 
-            $groupedByGenres = [];
-            foreach ($result as $item) {
-                $genre = $item->genre;
-                if (!isset($groupedByGenres[$genre])) {
-                    $groupedByGenres[$genre] = [];
+////            // Group the data by genre_id
+//            $grouped = collect($result)->groupBy('genre_id');
+////
+////            // Convert back to array if needed
+//            $groupedArray = $grouped->toArray();
+
+            $groupedByGenre = [];
+
+            foreach ($data as $item) {
+                $genreId = $item->genre_id;
+
+                if (!isset($groupedByGenre[$genreId])) {
+                    $groupedByGenre[$genreId] = [
+                        'genre' => $item->genre,
+                        'award_id' => $item->award_id,
+                        'genre_id'=> $item->genre_id,
+                        'categories' => []
+                    ];
                 }
-                $groupedByGenres[$genre][] = $item;
+                $groupedByGenre[$genreId]['categories'][] = [
+//                    'award_id' => $item->award_id,
+                    'category_id' => $item->category_id,
+                    'category' => $item->category,
+                    'category_type_id' => $item->category_type_id
+                ];
             }
 
             return response()->json([
                 'status' => ResponseAlias::HTTP_OK,
                 'message' => 'Award Nomination Exists',
-                'data' => array_values($groupedByGenres),
+                'data' => array_values($groupedByGenre),
+//                'data' => $groupedByGenre,
             ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
         }
 
