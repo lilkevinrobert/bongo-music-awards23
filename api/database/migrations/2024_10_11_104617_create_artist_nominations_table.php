@@ -19,13 +19,14 @@ return new class extends Migration
             $table->unsignedBigInteger('award_id');
             $table->unsignedBigInteger('genre_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_type_id');
             $table->unsignedBigInteger('category_item_id');
             $table->timestamps();
             $table->foreign('artist_id')->references('id')->on('artist_profiles')->onDelete('cascade');
             $table->foreign('award_id')->references('id')->on('awards')->onDelete('cascade');
             $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
+            $table->foreign('category_type_id')->references('id')->on('category_types')->onDelete('cascade');
         });
     }
 
