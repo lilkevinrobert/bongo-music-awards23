@@ -11,6 +11,7 @@ use App\Models\Award;
 use App\Models\AwardGenre;
 use App\Models\AwardNomination;
 use App\Models\Category;
+use App\Models\CategoryType;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -51,7 +52,7 @@ class AwardNominationController extends Controller
             $data = DB::select('SELECT award_genres.genre_id AS genre_id, genres.name AS genre, award_id, categories.id as category_id, categories.name AS category, category_type_id FROM genres
                                         INNER JOIN award_genres ON genres.id = award_genres.genre_id
                                         INNER JOIN categories ON award_genres.genre_id = categories.genre_id
-                                        WHERE award_genres.award_id = ?',[$awardId]);
+                                        WHERE award_genres.award_id = ?', [$awardId]);
 
 ////            // Group the data by genre_id
 //            $grouped = collect($result)->groupBy('genre_id');
@@ -68,7 +69,7 @@ class AwardNominationController extends Controller
                     $groupedByGenre[$genreId] = [
                         'genre' => $item->genre,
                         'award_id' => $item->award_id,
-                        'genre_id'=> $item->genre_id,
+                        'genre_id' => $item->genre_id,
                         'categories' => []
                     ];
                 }
@@ -214,10 +215,15 @@ class AwardNominationController extends Controller
     {
         $validator = Validator::make([
             'award_id' => $awardId,
-            'category_id' => $categoryId
+            'category_id' => $categoryId,
+            'genre_id' => $request->input('genre_id'),
+            'category_type_id' => $request->input('category_type_id')
         ],
-            ['award_id' => 'required|exists:awards,id|exists:artist_nominations,award_id',
-                'category_id' => 'required|exists:categories,id|exists:artist_nominations,category_id']
+            [   'award_id' => 'required|exists:awards,id|exists:artist_nominations,award_id',
+                'category_id' => 'required|exists:categories,id|exists:artist_nominations,category_id',
+                'genre_id' => 'required|exists:genres,id|exists:award_genres,genre_id',
+                'category_type_id' => 'required|exists:categories,category_type_id'
+            ]
         );
 
         if ($validator->fails()) {
@@ -227,26 +233,31 @@ class AwardNominationController extends Controller
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
 
-        $result =  DB::select('SELECT  name,stage_name,  record_label, artist_id,category_item_id FROM (SELECT record_label, stage_name,artist_profiles.id as artist_id, category_item_id, category_id FROM artist_nominations -- WHERE award_id = 2 AND category_id = 23
-                INNER JOIN  artist_profiles ON artist_profiles.id = artist_nominations.artist_id
-                WHERE award_id = ? AND category_id = ?) AS tbl_one
-                INNER JOIN categories ON tbl_one.category_id = categories.id', [$awardId, $categoryId]);
+        //category type name
+        $category_type = CategoryType::where('id',$validator->validated()['category_type_id'])->first();
+        $data = [];
+
+        switch ($category_type->name) {
+            case "VIDEO":
+                $data = 1;
+                break;
+            case 'MUSIC':
+                $data = 2;
+            default:
+                $data = [];
+
+        }
+
+//        $result =  DB::select('SELECT  name,stage_name,  record_label, artist_id,category_item_id FROM (SELECT record_label, stage_name,artist_profiles.id as artist_id, category_item_id, category_id FROM artist_nominations -- WHERE award_id = 2 AND category_id = 23
+//                INNER JOIN  artist_profiles ON artist_profiles.id = artist_nominations.artist_id
+//                WHERE award_id = ? AND category_id = ?) AS tbl_one
+//                INNER JOIN categories ON tbl_one.category_id = categories.id', [$awardId, $categoryId]);
 
         return response()->json([
             'status' => ResponseAlias::HTTP_OK,
             'message' => 'Award Retrieved successfully',
-            'data' => $result
+            'data' => $data
         ])->setStatusCode(ResponseAlias::HTTP_OK, Response::$statusTexts[ResponseAlias::HTTP_OK]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\AwardNomination $awardNomination
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AwardNomination $awardNomination)
-    {
-        //
-    }
 }
