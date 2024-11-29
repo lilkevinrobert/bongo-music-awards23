@@ -99,9 +99,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
                     nominationDataError ? (<p>A problem fetching nomination data</p>) :
                       nominationData.data.length == 0 ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100 capitalize mt-4">no nomination request found.</p>
                         : nominationData.data.map((nominationList: any, i) => {
-                          console.log(nominationList)
-                          const genreGroup = nominationList[i]?.genre;
-                          console.log(nominationList.categories)
+                          const genreGroup = nominationList?.genre;
                           return (
                             <div key={i} className="bg-transparent mt-2">
                               <Typography className="font-LatoBold text-gray-900 uppercase pl-2 py-2 bg-amber-100 rounded-r-full">{genreGroup}</Typography>
