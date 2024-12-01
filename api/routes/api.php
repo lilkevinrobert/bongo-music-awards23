@@ -13,6 +13,7 @@ use App\Http\Controllers\NominationVoteController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
+use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
@@ -78,6 +79,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('categories', CategoriesController::class);
     // ALBUMS
     Route::apiResource('albums', AlbumController::class);
+    // TRACKS
+    Route::apiResource('tracks', TrackController::class);
 
     // CATEGORY TYPE END-POINT
     Route::get('category_types', [CategoryTypeController::class, 'index']);

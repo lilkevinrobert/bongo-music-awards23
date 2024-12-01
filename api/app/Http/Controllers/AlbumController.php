@@ -40,7 +40,6 @@ class AlbumController extends Controller
                 'message' => $validator->messages(),
             ])->setStatusCode(ResponseAlias::HTTP_UNPROCESSABLE_ENTITY, Response::$statusTexts[ResponseAlias::HTTP_UNPROCESSABLE_ENTITY]);
         }
-//        dd($request->input('boomplay_music_link'));
 
         try {
             DB::beginTransaction();
