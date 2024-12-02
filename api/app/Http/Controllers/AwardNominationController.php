@@ -54,12 +54,6 @@ class AwardNominationController extends Controller
                                         INNER JOIN categories ON award_genres.genre_id = categories.genre_id
                                         WHERE award_genres.award_id = ?', [$awardId]);
 
-////            // Group the data by genre_id
-//            $grouped = collect($result)->groupBy('genre_id');
-////
-////            // Convert back to array if needed
-//            $groupedArray = $grouped->toArray();
-
             $groupedByGenre = [];
 
             foreach ($data as $item) {
@@ -238,10 +232,15 @@ class AwardNominationController extends Controller
         $data = [];
 
         switch ($category_type->name) {
-            case "VIDEO":
-                $data = 1;
+            case "VIDEO" || "SONG":
+                $data = DB::select('SELECT stage_name, record_label, release_date, title, track_artwork_url FROM (SELECT stage_name, record_label, category_item_id FROM artist_nominations
+                    INNER JOIN artist_profiles ON artist_nominations.artist_id = artist_profiles.id
+                    WHERE artist_nominations.award_id = ?
+                      AND artist_nominations.genre_id = ?
+                      AND artist_nominations.category_id = ?) AS tbl_one
+                    INNER JOIN tracks ON tbl_one.category_item_id = tracks.id', [$awardId, (int)$request->input('genre_id'),$categoryId]);
                 break;
-            case 'MUSIC':
+            case 'ALBUM':
                 $data = 2;
             default:
                 $data = [];
