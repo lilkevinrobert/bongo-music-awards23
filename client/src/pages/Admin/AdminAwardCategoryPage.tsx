@@ -1,8 +1,7 @@
 import { Card, Typography } from "@material-tailwind/react";
 import BreadcrumbLevel3 from "../../components/Breadcrumbs/BreadcrumbLevel3";
 import Layout from "../../components/Layout/Layout";
-import { NavLink, useParams } from "react-router-dom";
-import { RxDotsVertical } from "react-icons/rx";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import AwardsEventCategoryPieChart from "../../components/Charts/AwardsEventCategoryPieChart";
 import useFetch from "../../hooks/useFetch";
 
@@ -19,20 +18,22 @@ interface NomineesFetchResult {
 
 const AdminAwardCategoryPage = () => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const HOME_URL = import.meta.env.VITE_HOME_URL;
 
   const nav = useParams();
-  console.log(nav)
-
+  const location = useLocation();
+  const queryGenre = location.state.genre_id
+  const queryCategory = location.state.category_type_id
 
   // GET nominations by category
   const {
     data: nomineesData,
     loading: nomineesDataLoading,
     error: nomineesDataError
-  }: NomineesFetchResult = useFetch(`${BASE_URL}/nominations/${nav.awardId}/categories/${nav.categoryId}`);
-  
+  }: NomineesFetchResult = useFetch(`${BASE_URL}/nominations/${nav.awardId}/categories/${nav.categoryId}?genre_id=${queryGenre}&category_type_id=${queryCategory}`);
+
   // Category Title
-  const lastItem:any = nomineesData?.data.pop();
+  const lastItem: any = nomineesData?.data.pop();
 
   // Data from API - nominees by Category
 
@@ -89,7 +90,7 @@ const AdminAwardCategoryPage = () => {
           variant="h5"
           className="text-lg text-gray-900 font-LatoBold capitalize"
         >
-          { lastItem && lastItem.name } <span className="hidden text-base text-gray-700 font-LatoRegular"> - {nominees.awards}</span>
+          {lastItem && lastItem.name} <span className="hidden text-base text-gray-700 font-LatoRegular"> - {nominees.awards}</span>
         </Typography>
         <div className="py-4 flex flex-col-reverse">
           {/* Show Chart */}
@@ -105,7 +106,7 @@ const AdminAwardCategoryPage = () => {
               nominees
             </Typography>
             {
-              nomineesDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination data...</p> : nomineesDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nomineesData ? (
+              nomineesDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination data...</p> : nomineesDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nomineesData?.data.length == 0 ? <p>No Data found.</p> : nomineesData ? (
                 <>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                     {nomineesData.data.map((nominee: any, ind) => (
@@ -113,9 +114,9 @@ const AdminAwardCategoryPage = () => {
                         key={ind}
                         className="h-fit w-full flex flex-row items-center justify-between bg-stone-50 p-2 my-2 shadow rounded-none border-2 border-stone-100 border-l-amber-300"
                       >
-                        <div>
+                        <div className="bg-transparent w-3/4">
                           <Typography className="font-LatoBold text-base text-gray-950 text-pretty normal-case">
-                            "{nominee.song}"
+                            "{nominee.title}"
                           </Typography>
                           <Typography className="font-LatoRegular text-sm text-gray-900 text-pretty normal-case">
                             ~ {nominee.stage_name}
@@ -123,10 +124,14 @@ const AdminAwardCategoryPage = () => {
                           <Typography className="font-LatoRegular text-xs text-gray-900 text-pretty uppercase">
                             {nominee.record_label}
                           </Typography>
-                          <p className="font-LatoBold text-amber-600">{nominee.votes} <span className="font-LatoRegular text-sm">votes</span></p>
+                          <p className="font-LatoBold text-amber-600">{nominee.release_date} <span className="font-LatoRegular text-sm hidden">votes</span></p>
                         </div>
-                        <NavLink to={`/admin/artists/${nominee.id}/nominations`}>
-                          <RxDotsVertical />
+                        <NavLink to={`/admin/artists/${nominee.id}/nominations`} className="w-1/4 h-20 border border-l-transparent border-gray-900 rounded-r-md shadow-inner">
+                          <img
+                            src={`${HOME_URL}/${nominee.track_artwork_url}`} alt={`${nominee.stage_name}'s DP`}
+                            loading="lazy"
+                            className="bg-gray-200 w-full h-full object-cover group-hover:object-scale-down text-sm font-LatoRegular text-gray-900 rounded transition ease-in-out duration-300"
+                          />
                         </NavLink>
                       </Card>
                     ))}

@@ -100,6 +100,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
                       nominationData.data.length == 0 ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100 capitalize mt-4">no nomination request found.</p>
                         : nominationData.data.map((nominationList: any, i) => {
                           const genreGroup = nominationList?.genre;
+                          const genreId = nominationList?.genre_id;
                           return (
                             <div key={i} className="bg-transparent mt-2">
                               <Typography className="font-LatoBold text-gray-900 uppercase pl-2 py-2 bg-amber-100 rounded-r-full">{genreGroup}</Typography>
@@ -110,9 +111,9 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
                                     <div className="flex flex-row items-center justify-between">
                                       <div className="flex flex-row items-center ">
                                         <GoDotFill />
-                                        <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.category_id}`}>
+                                        <NavLink to={`/admin/awards/${nav.awardId}/categories/${nomination.category_id}`} state={{genre_id: genreId, category_type_id: nomination.category_type_id}}>
                                           <Typography className="text-gray-800 font-LatoBold uppercase underline underline-offset-4">
-                                            {/* {nomination.category.name} */} {nomination.category}
+                                            {nomination.category}
                                           </Typography>
                                         </NavLink>
                                       </div>
