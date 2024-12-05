@@ -210,8 +210,8 @@ class AwardNominationController extends Controller
         $validator = Validator::make([
             'award_id' => $awardId,
             'category_id' => $categoryId,
-            'genre_id' => $request->input('genre_id'),
-            'category_type_id' => $request->input('category_type_id')
+            'genre_id' => (int) $request->query('genre_id'),
+            'category_type_id' => (int)$request->query('category_type_id')
         ],
             [   'award_id' => 'required|exists:awards,id|exists:artist_nominations,award_id',
                 'category_id' => 'required|exists:categories,id|exists:artist_nominations,category_id',
