@@ -40,6 +40,7 @@ import JudgeDashboardPage from "./pages/Judge/JudgeDashboardPage.tsx";
 import JudgeProfilePage from "./pages/Judge/JudgeProfilePage.tsx";
 import ErrorElement from "./components/Errors/ErrorElement.tsx";
 import AdminSettingsPage from "./pages/Admin/AdminSettingsPage.tsx";
+import AdminAwardCategoryVotesPage from "./pages/Admin/AdminAwardCategoryVotesPage.tsx";
 
 function App() {
   const { isOnline } = useNetworkStatus();
@@ -145,6 +146,14 @@ function App() {
           element: (
             <Suspense fallback={<Loading />}>
               <AdminAwardCategoryPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: "awards/:awardId/votes/:categoryId",
+          element: (
+            <Suspense fallback={<Loading />}>
+              <AdminAwardCategoryVotesPage />
             </Suspense>
           ),
         },
