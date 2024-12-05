@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistProfilesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardGenresController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\NominationVoteController;
 use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\StreetController;
+use App\Http\Controllers\TrackController;
 use App\Http\Controllers\WardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
@@ -75,6 +77,10 @@ Route::group(['prefix' => 'v1'], function () {
     //GENRES & CATEGORIES END-POINT
     Route::apiResource('genres', GenresController::class);
     Route::apiResource('categories', CategoriesController::class);
+    // ALBUMS
+    Route::apiResource('albums', AlbumController::class);
+    // TRACKS
+    Route::apiResource('tracks', TrackController::class);
 
     // CATEGORY TYPE END-POINT
     Route::get('category_types', [CategoryTypeController::class, 'index']);
@@ -112,6 +118,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/profiles', [ArtistProfilesController::class, 'store']);
         Route::get('/', [ArtistProfilesController::class, 'index']);
         Route::get('/{artistId}', [ArtistProfilesController::class, 'show']);
+
+
     });
 
     // JUDGES ENDPOINTS
@@ -154,7 +162,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'nominations'], function () {
         Route::post('/update_status', [AwardNominationController::class, 'updateStatus']);
         Route::get('/award/{awardId}', [AwardNominationController::class, 'awardNomination']);
-        Route::get('/{awardId}/status', [AwardNominationController::class, 'existAwardNomination']); // TODO update this endpoint
+        Route::get('/{awardId}/status', [AwardNominationController::class, 'existAwardNomination']);
         Route::get('/{awardId}/categories', [AwardNominationController::class, 'nominationCategories']);
         Route::get('/{awardId}/categories/{categoryId}', [AwardNominationController::class, 'nominationCategory']);
 
@@ -168,5 +176,6 @@ Route::group(['prefix' => 'v1'], function () {
 
 
     });
+
 });
 
