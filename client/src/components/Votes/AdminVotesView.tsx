@@ -7,9 +7,6 @@ import useFetch from "../../hooks/useFetch";
 import EditNominationForm from "../Forms/EditNominationForm";
 import { useState } from "react";
 import { GoDotFill } from "react-icons/go";
-import axios from "axios";
-
-
 interface NominationData {
   data: [];
 }
