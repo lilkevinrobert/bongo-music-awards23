@@ -61,6 +61,7 @@ const AdminNominationsView = ({ awardId }: AwardNominationProps) => {
     loading: awardDataLoading,
     error: awardDataError
   }: FetchResult = useFetch(`${BASE_URL}/awards/${awardId}`);
+
   // GET details about nomination status
   const {
     data: nominationData,

@@ -32,6 +32,8 @@ const AdminAwardCategoryPage = () => {
     error: nomineesDataError
   }: NomineesFetchResult = useFetch(`${BASE_URL}/nominations/${nav.awardId}/categories/${nav.categoryId}?genre_id=${queryGenre}&category_type_id=${queryCategory}`);
 
+  console.log('nominees: ',nomineesData?.data)
+  console.log('/GET', `${BASE_URL}/nominations/${nav.awardId}/categories/${nav.categoryId}?genre_id=${queryGenre}&category_type_id=${queryCategory}`)
   // Category Title
   const lastItem: any = nomineesData?.data.pop();
 
@@ -105,6 +107,9 @@ const AdminAwardCategoryPage = () => {
             >
               nominees
             </Typography>
+            {
+              nomineesDataLoading ? <>loading</>: nomineesDataError ? <>not activated</> : <>haha</>
+            }
             {
               nomineesDataLoading ? <p className="text-base text-gray-900 font-LatoRegular py-3 text-center">Processing nomination data...</p> : nomineesDataError ? <p className="text-base text-gray-700 font-LatoRegular text-center py-3 bg-gray-100">Award Nominationations not activated</p> : nomineesData?.data.length == 0 ? <p>No Data found.</p> : nomineesData ? (
                 <>
